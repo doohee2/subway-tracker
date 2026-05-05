@@ -12,7 +12,7 @@ export default function Header() {
       <div className="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden flex items-center justify-center">
         {/* Placeholder image for user profile */}
         <div className="w-full h-full bg-indigo-500/20 text-indigo-300 flex items-center justify-center text-sm font-bold">
-          U
+          S
         </div>
       </div>
     </header>
