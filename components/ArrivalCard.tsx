@@ -1,5 +1,6 @@
 import { ArrivalGroup } from "@/types/subway";
 import { getLineColor, getLineNumberText } from "@/utils/subwayColors";
+import Link from "next/link";
 
 interface ArrivalCardProps {
   group: ArrivalGroup;
@@ -48,9 +49,23 @@ export default function ArrivalCard({ group }: ArrivalCardProps) {
               <span className="font-data-mono text-data-mono text-outline">
                 #{arrival.trainNumber}
               </span>
-              <button className="bg-primary/20 text-primary px-3 py-1.5 rounded-DEFAULT font-body-sm text-body-sm font-medium hover:bg-primary/30 transition-colors border border-primary/30 cursor-pointer">
+              <Link
+                href={{
+                  pathname: `/route/${arrival.trainNumber}`,
+                  query: {
+                    lineName: group.lineName,
+                    destination: group.destination,
+                    currentLocationMsg: arrival.currentLocationMsg,
+                    updnLine: arrival.updnLine,
+                    bstatnNm: arrival.bstatnNm,
+                    subwayId: arrival.subwayId,
+                    statnNm: arrival.statnNm,
+                  }
+                }}
+                className="bg-primary/20 text-primary px-3 py-1.5 rounded-DEFAULT font-body-sm text-body-sm font-medium hover:bg-primary/30 transition-colors border border-primary/30 cursor-pointer text-center block"
+              >
                 선택
-              </button>
+              </Link>
             </div>
           </div>
         ))}

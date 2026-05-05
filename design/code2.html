@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#f8f9fa",
+                        "surface": "#f8f9fa",
+                        "secondary": "#6f43c0",
+                        "on-secondary-container": "#3d0088",
+                        "inverse-primary": "#bac3ff",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#e1e3e4",
+                        "primary-fixed-dim": "#bac3ff",
+                        "surface-dim": "#d9dadb",
+                        "surface-bright": "#f8f9fa",
+                        "secondary-container": "#a97efd",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#5727a6",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#354282",
+                        "on-surface-variant": "#454652",
+                        "tertiary-fixed": "#dee1ff",
+                        "secondary-fixed": "#ebddff",
+                        "on-primary-fixed-variant": "#293ca0",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "outline": "#757684",
+                        "primary": "#24389c",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#d3bbff",
+                        "tertiary-fixed-dim": "#b9c3ff",
+                        "primary-container": "#3f51b5",
+                        "inverse-surface": "#2e3132",
+                        "on-primary-container": "#cacfff",
+                        "on-tertiary-fixed": "#021355",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#edeeef",
+                        "on-background": "#191c1d",
+                        "on-primary-fixed": "#00105c",
+                        "outline-variant": "#c5c5d4",
+                        "tertiary-container": "#495697",
+                        "surface-tint": "#4355b9",
+                        "surface-container-high": "#e7e8e9",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-tertiary-container": "#c9d0ff",
+                        "on-secondary-fixed": "#250059",
+                        "primary-fixed": "#dee0ff",
+                        "on-surface": "#191c1d",
+                        "tertiary": "#313e7e",
+                        "surface-container-low": "#f3f4f5",
+                        "error-container": "#ffdad6",
+                        "slate": {
+                            "950": "#020617"
+                        }
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "xl": "64px",
+                        "xs": "4px",
+                        "container-max": "1280px",
+                        "sm": "12px",
+                        "md": "24px",
+                        "gutter": "24px",
+                        "lg": "40px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "h2": ["Inter"],
+                        "data-mono": ["monospace"],
+                        "h3": ["Inter"],
+                        "h1": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #020617; } /* Forced dark mode background */
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="dark bg-slate-950 text-slate-200 font-body-md min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-4 h-16 max-w-[1280px] mx-auto bg-slate-950 border-b border-slate-800 shadow-none">
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center p-2 text-indigo-400 hover:bg-slate-900 transition-colors active:opacity-70 transition-all duration-150 rounded-full">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-['Inter'] font-semibold text-lg tracking-tight text-indigo-400">실시간 지하철</h1>
+</div>
+<button class="text-indigo-400 font-bold hover:bg-slate-900 px-3 py-1.5 rounded-lg active:opacity-70 transition-all duration-150">
+            새로고침
+        </button>
+</header>
+<main class="pt-20 pb-24 px-4 max-w-[1280px] mx-auto">
+<!-- Summary Section (Bento Style Card) -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+<div class="md:col-span-2 p-6 rounded-xl bg-slate-900 border border-slate-800 shadow-[0_4px_12px_rgba(63,81,181,0.08)]">
+<div class="flex flex-wrap items-center justify-between gap-4">
+<div class="space-y-2">
+<div class="flex items-center gap-2">
+<span class="px-3 py-1 rounded-full bg-green-600 text-white font-bold text-sm">2호선</span>
+<span class="text-slate-400 text-sm font-medium">열차번호: #2041</span>
+</div>
+<h2 class="text-3xl font-h2 font-bold text-white tracking-tight">성수행 - <span class="text-indigo-400">다음: 건대입구</span></h2>
+<div class="flex items-center gap-2 text-slate-300">
+<span class="material-symbols-outlined text-indigo-400" data-icon="location_on">location_on</span>
+<span class="font-semibold">현재역: 성수역</span>
+</div>
+</div>
+<button class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition-all active:scale-95 flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="refresh">refresh</span>
+                        다시 조회
+                    </button>
+</div>
+</div>
+<div class="hidden md:block overflow-hidden rounded-xl border border-slate-800 relative group">
+<img class="w-full h-full object-cover grayscale opacity-50 group-hover:opacity-80 transition-opacity" data-alt="A high-tech digital subway map interface showing vibrant neon indigo and purple transit lines against a deep black background. The design is minimalist and sophisticated, with glowing node points indicating station locations. Subtle light gradients create a sense of depth, reinforcing a modern, data-driven urban commuter aesthetic." data-location="Seoul Subway" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwdkXc2Dv_uufs9QncCwX_iMO-08D38PlzvCUbYTOkzERG6Azf7Xwv_CmyesrJys37Sv5NhvV9UVcLiK1ZTj7ob6RRrlmIC0xHBg_a5ff8IXaEL3pXrahjJZ3CUzeRXuiHb_lIlnx6ngvKq8PRJX59oZsHEw20ZFUUHJO1Zd_TVqpAOWQ7zeuwNcl9A20psNbegqF1zM8mgb5WTsjvuqPxozwgbPu5CE88gBJXw1-0OTV6XM74X0hzm_1bkwlZchLoPL_WtqXTv_TA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+<div class="absolute bottom-4 left-4">
+<p class="text-xs font-label-caps text-indigo-400 uppercase tracking-widest">실시간 위치 정보</p>
+<p class="text-sm font-semibold text-white">동부간선구간 주행 중</p>
+</div>
+</div>
+</section>
+<!-- Route Timeline -->
+<section class="bg-slate-900/50 rounded-2xl border border-slate-800 p-6 md:p-10">
+<h3 class="text-xl font-h3 font-bold text-white mb-8 px-2">운행 노선 상세</h3>
+<div class="relative space-y-0">
+<!-- Vertical Line -->
+<div class="absolute left-[19px] top-4 bottom-4 w-1 bg-slate-800"></div>
+<!-- 1st Node: Previous -->
+<div class="relative flex items-center gap-6 py-4 group">
+<div class="z-10 w-10 h-10 rounded-full bg-slate-800 border-4 border-slate-950 flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-slate-500"></div>
+</div>
+<div class="flex-1 flex items-center justify-between border-b border-slate-800/50 pb-4">
+<span class="text-lg font-medium text-slate-400">뚝섬역</span>
+<span class="px-4 py-1.5 rounded-lg bg-slate-800 text-slate-500 text-sm font-bold">지남</span>
+</div>
+</div>
+<!-- 2nd Node: Current (Highlighted) -->
+<div class="relative flex items-center gap-6 py-4 group">
+<div class="z-10 w-10 h-10 rounded-full bg-indigo-600 border-4 border-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(79,70,229,0.5)]">
+<span class="material-symbols-outlined text-white text-sm" data-icon="train" style="font-variation-settings: 'FILL' 1;">train</span>
+</div>
+<div class="flex-1 flex items-center justify-between border-b border-indigo-900/30 pb-4 bg-indigo-900/10 rounded-r-xl px-4 -mx-4">
+<span class="text-xl font-bold text-white">성수역</span>
+<span class="px-4 py-1.5 rounded-lg bg-indigo-600 text-white text-sm font-bold animate-pulse">도착</span>
+</div>
+</div>
+<!-- Subsequent Nodes -->
+<div class="relative flex items-center gap-6 py-4 group">
+<div class="z-10 w-10 h-10 rounded-full bg-slate-800 border-4 border-slate-950 flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-indigo-400"></div>
+</div>
+<div class="flex-1 flex items-center justify-between border-b border-slate-800/50 pb-4">
+<span class="text-lg font-medium text-slate-200">건대입구역</span>
+<span class="px-4 py-1.5 rounded-lg bg-indigo-900/40 border border-indigo-700/30 text-indigo-400 text-sm font-bold">14:33</span>
+</div>
+</div>
+<div class="relative flex items-center gap-6 py-4 group">
+<div class="z-10 w-10 h-10 rounded-full bg-slate-800 border-4 border-slate-950 flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-indigo-400"></div>
+</div>
+<div class="flex-1 flex items-center justify-between border-b border-slate-800/50 pb-4">
+<span class="text-lg font-medium text-slate-200">구의역</span>
+<span class="px-4 py-1.5 rounded-lg bg-indigo-900/40 border border-indigo-700/30 text-indigo-400 text-sm font-bold">14:35</span>
+</div>
+</div>
+<div class="relative flex items-center gap-6 py-4 group">
+<div class="z-10 w-10 h-10 rounded-full bg-slate-800 border-4 border-slate-950 flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-indigo-400"></div>
+</div>
+<div class="flex-1 flex items-center justify-between border-b border-slate-800/50 pb-4">
+<span class="text-lg font-medium text-slate-200">강변역</span>
+<span class="px-4 py-1.5 rounded-lg bg-indigo-900/40 border border-indigo-700/30 text-indigo-400 text-sm font-bold">14:38</span>
+</div>
+</div>
+<div class="relative flex items-center gap-6 py-4 group">
+<div class="z-10 w-10 h-10 rounded-full bg-slate-800 border-4 border-slate-950 flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-indigo-400"></div>
+</div>
+<div class="flex-1 flex items-center justify-between pb-4">
+<span class="text-lg font-medium text-slate-200">잠실나루역</span>
+<span class="px-4 py-1.5 rounded-lg bg-indigo-900/40 border border-indigo-700/30 text-indigo-400 text-sm font-bold">14:41</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 pb-safe bg-slate-950/90 backdrop-blur-md border-t border-slate-800 shadow-[0_-4px_12px_rgba(63,81,181,0.08)]">
+<a class="flex flex-col items-center justify-center text-slate-500 hover:text-indigo-500 px-3 py-1 active:scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="home">home</span>
+<span class="font-['Inter'] text-[11px] font-medium">홈</span>
+</a>
+<a class="flex flex-col items-center justify-center text-indigo-400 bg-indigo-900/30 rounded-xl px-3 py-1 active:scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="map" style="font-variation-settings: 'FILL' 1;">map</span>
+<span class="font-['Inter'] text-[11px] font-medium">노선도</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 hover:text-indigo-500 px-3 py-1 active:scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="star">star</span>
+<span class="font-['Inter'] text-[11px] font-medium">즐겨찾기</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 hover:text-indigo-500 px-3 py-1 active:scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="settings">settings</span>
+<span class="font-['Inter'] text-[11px] font-medium">설정</span>
+</a>
+</nav>
+</body></html>

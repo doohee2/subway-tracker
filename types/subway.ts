@@ -30,6 +30,10 @@ export interface ArrivalItem {
   currentLocationMsg: string; // 현재 위치 (ex. 2 정거장 전)
   trainNumber: string; // 열차번호
   isUrgent: boolean; // 1분 이내 혹은 진입 중 등 강조 여부
+  updnLine: string; // 상하행선구분
+  bstatnNm: string; // 종착지하철역명
+  subwayId: string; // 호선 ID
+  statnNm: string; // 검색한 기준역
 }
 
 export interface ArrivalGroup {

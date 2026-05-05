@@ -25,6 +25,14 @@ export default function Home() {
         setRecentSearches(JSON.parse(saved));
       } catch (e) {}
     }
+
+    // URL 파라미터로 station이 넘어오면 자동 검색
+    const params = new URLSearchParams(window.location.search);
+    const stationParam = params.get("station");
+    if (stationParam) {
+      handleSearch(stationParam);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const saveRecentSearch = (station: string) => {
@@ -109,6 +117,10 @@ export default function Home() {
             currentLocationMsg: item.arvlMsg3,
             trainNumber: item.btrainNo,
             isUrgent,
+            updnLine: item.updnLine,
+            bstatnNm: item.bstatnNm,
+            subwayId: item.subwayId,
+            statnNm: item.statnNm,
           });
         }
       });
