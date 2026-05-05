@@ -44,7 +44,8 @@ export default async function RoutePage({ params, searchParams }: { params: Prom
 
   let cumulativeSeconds = 0;
   
-  const now = new Date();
+  // 한국 표준시(KST, UTC+9) 기준으로 현재 시간 계산 (서버 타임존에 관계없이 일관된 시간 계산을 위함)
+  const now = new Date(new Date().getTime() + (9 * 60 * 60 * 1000));
 
   return (
     <div className="flex-1 overflow-y-auto bg-slate-950 text-slate-200">
@@ -133,7 +134,7 @@ export default async function RoutePage({ params, searchParams }: { params: Prom
               
               // Calculate estimated arrival time
               const estTime = new Date(now.getTime() + cumulativeSeconds * 1000);
-              const timeString = `${estTime.getHours().toString().padStart(2, '0')}:${estTime.getMinutes().toString().padStart(2, '0')}`;
+              const timeString = `${estTime.getUTCHours().toString().padStart(2, '0')}:${estTime.getUTCMinutes().toString().padStart(2, '0')}`;
 
               return (
                 <div key={idx} className="relative flex items-center gap-6 py-4 group">
