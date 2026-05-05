@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+import stationsJson from '../json/서울교통공사_노선별 지하철역 정보.json';
+import distancesJson from '../json/서울교통공사_역간거리.json';
 
 export interface StationInfo {
   line_num: string;
@@ -16,26 +16,12 @@ export interface StationDistance {
   sbwy_stns_nm: string;
 }
 
-// Memory cache
-let stationsCache: StationInfo[] | null = null;
-let distancesCache: StationDistance[] | null = null;
-
 export function loadStationsData(): StationInfo[] {
-  if (stationsCache) return stationsCache;
-  const filePath = path.join(process.cwd(), 'json', '서울교통공사_노선별 지하철역 정보.json');
-  const fileContent = fs.readFileSync(filePath, 'utf-8');
-  const parsed = JSON.parse(fileContent);
-  stationsCache = parsed.DATA;
-  return stationsCache!;
+  return stationsJson.DATA as StationInfo[];
 }
 
 export function loadDistancesData(): StationDistance[] {
-  if (distancesCache) return distancesCache;
-  const filePath = path.join(process.cwd(), 'json', '서울교통공사_역간거리.json');
-  const fileContent = fs.readFileSync(filePath, 'utf-8');
-  const parsed = JSON.parse(fileContent);
-  distancesCache = parsed.DATA;
-  return distancesCache!;
+  return distancesJson.DATA as StationDistance[];
 }
 
 // 노선 이름 표준화 (예: '2호선' -> '02호선' 또는 '2')
