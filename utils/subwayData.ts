@@ -1,5 +1,5 @@
-import stationsJson from '../json/서울교통공사_노선별 지하철역 정보.json';
-import distancesJson from '../json/서울교통공사_역간거리.json';
+import stationsJson from '../json/stations.json';
+import distancesJson from '../json/distances.json';
 
 export interface StationInfo {
   line_num: string;
