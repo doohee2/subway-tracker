@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>지하철 도착 정보</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-container": "#c9d0ff",
+                      "on-secondary": "#ffffff",
+                      "surface-container-highest": "#e1e3e4",
+                      "on-tertiary-fixed-variant": "#354282",
+                      "secondary-container": "#a97efd",
+                      "surface-container-lowest": "#0f172a",
+                      "on-error": "#ffffff",
+                      "on-primary-container": "#cacfff",
+                      "on-tertiary-fixed": "#021355",
+                      "tertiary-fixed-dim": "#b9c3ff",
+                      "tertiary-container": "#495697",
+                      "primary-fixed-dim": "#bac3ff",
+                      "tertiary": "#313e7e",
+                      "on-surface-variant": "#94a3b8",
+                      "surface-tint": "#4355b9",
+                      "on-tertiary": "#ffffff",
+                      "outline": "#475569",
+                      "inverse-surface": "#2e3132",
+                      "outline-variant": "#334155",
+                      "surface-variant": "#1e293b",
+                      "surface-container-high": "#1e293b",
+                      "on-primary": "#ffffff",
+                      "on-primary-fixed": "#00105c",
+                      "secondary-fixed-dim": "#d3bbff",
+                      "on-surface": "#f8fafc",
+                      "primary": "#6366f1",
+                      "primary-container": "#3f51b5",
+                      "background": "#020617",
+                      "inverse-on-surface": "#f0f1f2",
+                      "inverse-primary": "#bac3ff",
+                      "surface-container": "#0f172a",
+                      "surface-container-low": "#0b1120",
+                      "on-primary-fixed-variant": "#293ca0",
+                      "on-secondary-fixed": "#250059",
+                      "surface-dim": "#d9dadb",
+                      "on-secondary-fixed-variant": "#5727a6",
+                      "on-secondary-container": "#3d0088",
+                      "tertiary-fixed": "#dee1ff",
+                      "surface": "#020617",
+                      "error-container": "#ffdad6",
+                      "error": "#ef4444",
+                      "secondary": "#6f43c0",
+                      "on-background": "#f8fafc",
+                      "surface-bright": "#0f172a",
+                      "on-error-container": "#93000a",
+                      "primary-fixed": "#dee0ff",
+                      "secondary-fixed": "#ebddff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "8px",
+                      "gutter": "24px",
+                      "lg": "40px",
+                      "md": "24px",
+                      "sm": "12px",
+                      "xs": "4px",
+                      "xl": "64px",
+                      "container-max": "1280px"
+              },
+              "fontFamily": {
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "data-mono": [
+                              "monospace"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "h3": [
+                              "Inter"
+                      ],
+                      "h1": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "h2": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "data-mono": [
+                              "16px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "h3": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "h1": [
+                              "40px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "h2": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-body-md h-screen flex flex-col overflow-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 lg:px-10 h-16 bg-slate-900 border-b border-indigo-900/50 shadow-sm">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-indigo-400">directions_subway</span>
+<h1 class="text-2xl font-black tracking-tighter text-indigo-100 font-sans antialiased tracking-tight">지하철 도착 정보</h1>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden flex items-center justify-center">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdYtlFFFIG2Sp6CJvlRFeEO83w6e3fqJVRWVUks4Ay1Vy0-LGqeA7lU_7OWBUz95CWfEDJfCDE0GE-yc_0smWsxtYtCsQmy-71ueotdbGusYbJvAHaDc0UlIDf-r0RH9CQA-WL866OafEbHoTMw7aAMCXVYlRlXU9QFt9mE6ivkxgqlwc2sjyOvVzvu8324jAhFEklkKEsGo46iAUetHFalfdvjH-Nh5lLMCu55tV4pr2EKFI63aMxH-646SuYHMAtHIwrnMZZiidA"/>
+</div>
+</header>
+<!-- NavigationDrawer (Web) -->
+<nav class="hidden lg:flex flex-col fixed left-0 top-0 h-full border-r border-slate-800 h-screen w-72 bg-slate-900 shadow-2xl divide-y divide-slate-800 pt-16">
+<div class="p-6 flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container-high">
+<img alt="User Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5nuVvhVFPe8NNBzYijm9ISZg6ZWpIXSG4GKluEnKHQz7RuuI3XfwkFZpxpEQdpQ53gSkTQYNixs9HgBrdXHt9_GKP77_IF-SDuE8YJOOgPZOeSaUXF8lHUwU8HP9I8e4MUAcnEYOrVqW41jPskcwuyyg64XW8LjuIHW-CQdgSI-I6r_OHhHZedWH1-UH77oA3MpdztcaVj8SlJAya-B5p-6DG97p_1HT9P3gvcc9kwrJWZmekfLkxXUfuS0ezeYcePIEdKC5Slgsa"/>
+</div>
+<div>
+<div class="font-sans text-sm font-semibold text-indigo-50 font-black">Transit Pro</div>
+<div class="text-xs text-slate-400">Commuter Gold Status</div>
+</div>
+</div>
+<div class="flex-1 py-4 flex flex-col gap-2">
+<a class="flex items-center gap-3 px-6 py-3 bg-indigo-900/40 text-indigo-300 border-l-4 border-indigo-600 font-sans text-sm font-semibold Transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined">directions_subway</span>
+                실시간 트래킹
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 text-slate-400 pl-4 hover:bg-slate-800 font-sans text-sm font-semibold Transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined">explore</span>
+                시스템 맵
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 text-slate-400 pl-4 hover:bg-slate-800 font-sans text-sm font-semibold Transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined">warning</span>
+                서비스 알림
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 text-slate-400 pl-4 hover:bg-slate-800 font-sans text-sm font-semibold Transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined">star</span>
+                즐겨찾는 역
+            </a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 overflow-y-auto mt-16 pb-20 md:pb-0 lg:ml-72 bg-surface">
+<div class="max-w-container-max mx-auto w-full p-4 md:p-lg flex flex-col gap-md">
+<!-- Search & Status Section -->
+<section class="flex flex-col gap-sm">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-3 rounded-lg border-outline-variant bg-surface-container-lowest text-on-surface focus:border-primary focus:ring-1 focus:ring-primary shadow-sm outline-none transition-colors" placeholder="지하철역 이름 검색..." type="text"/>
+</div>
+<div class="flex flex-wrap gap-2">
+<button class="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-body-sm text-body-sm hover:bg-surface-container-high transition-colors">강남</button>
+<button class="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-body-sm text-body-sm hover:bg-surface-container-high transition-colors">서울역</button>
+<button class="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-body-sm text-body-sm hover:bg-surface-container-high transition-colors">홍대입구</button>
+<button class="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-body-sm text-body-sm hover:bg-surface-container-high transition-colors">잠실</button>
+<button class="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-body-sm text-body-sm hover:bg-surface-container-high transition-colors">성수</button>
+</div>
+<div class="mt-2 flex items-center gap-2 p-3 rounded-lg bg-emerald-900/30 text-emerald-400 border border-emerald-800/50">
+<span class="material-symbols-outlined text-emerald-400">check_circle</span>
+<span class="font-body-sm text-body-sm font-medium">정상 운행</span>
+</div>
+</section>
+<!-- Results Section -->
+<section class="flex flex-col gap-md">
+<h2 class="font-h3 text-h3 text-on-surface">실시간 도착 정보</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest rounded-lg border border-surface-container-high shadow-[0_4px_12px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col">
+<div class="p-sm border-b border-surface-container-high bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-green-600 flex items-center justify-center text-white text-xs font-bold">2</span>
+<span class="font-body-md text-body-md font-semibold text-on-surface">2호선</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">성수 - 다음: 건대입구</span>
+</div>
+<div class="p-sm flex flex-col gap-xs">
+<!-- Entry -->
+<div class="flex items-center justify-between p-2 rounded hover:bg-surface-container transition-colors">
+<div class="flex flex-col">
+<span class="font-body-lg text-body-lg font-bold text-primary">3 분</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">2 정거장 전</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-data-mono text-data-mono text-outline">#2041</span>
+<button class="bg-primary/20 text-primary px-3 py-1.5 rounded-DEFAULT font-body-sm text-body-sm font-medium hover:bg-primary/30 transition-colors border border-primary/30">선택</button>
+</div>
+</div>
+<!-- Entry -->
+<div class="flex items-center justify-between p-2 rounded hover:bg-surface-container transition-colors">
+<div class="flex flex-col">
+<span class="font-body-lg text-body-lg font-bold text-on-surface">8 분</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">4 정거장 전</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-data-mono text-data-mono text-outline">#2045</span>
+<button class="bg-primary/20 text-primary px-3 py-1.5 rounded-DEFAULT font-body-sm text-body-sm font-medium hover:bg-primary/30 transition-colors border border-primary/30">선택</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest rounded-lg border border-surface-container-high shadow-[0_4px_12px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col">
+<div class="p-sm border-b border-surface-container-high bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs font-bold">4</span>
+<span class="font-body-md text-body-md font-semibold text-on-surface">4호선</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">서울역 - 다음: 회현</span>
+</div>
+<div class="p-sm flex flex-col gap-xs">
+<!-- Entry -->
+<div class="flex items-center justify-between p-2 rounded hover:bg-surface-container transition-colors">
+<div class="flex flex-col">
+<span class="font-body-lg text-body-lg font-bold text-error">진입 중</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">이전 역</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-data-mono text-data-mono text-outline">#4102</span>
+<button class="bg-primary/20 text-primary px-3 py-1.5 rounded-DEFAULT font-body-sm text-body-sm font-medium hover:bg-primary/30 transition-colors border border-primary/30">선택</button>
+</div>
+</div>
+<!-- Entry -->
+<div class="flex items-center justify-between p-2 rounded hover:bg-surface-container transition-colors">
+<div class="flex flex-col">
+<span class="font-body-lg text-body-lg font-bold text-on-surface">5 분</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">3 정거장 전</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-data-mono text-data-mono text-outline">#4108</span>
+<button class="bg-primary/20 text-primary px-3 py-1.5 rounded-DEFAULT font-body-sm text-body-sm font-medium hover:bg-primary/30 transition-colors border border-primary/30">선택</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer -->
+<footer class="w-full py-8 px-10 flex flex-col md:flex-row justify-between items-center gap-4 mt-auto bg-slate-950 border-t border-slate-800">
+<p class="text-xs font-medium text-slate-500">© 2024 Silent Conductor Transit Systems</p>
+<div class="flex gap-4">
+<a class="text-xs font-medium text-slate-400 hover:text-indigo-400 underline" href="#">Privacy Policy</a>
+<a class="text-xs font-medium text-slate-400 hover:text-indigo-400 underline" href="#">Terms of Service</a>
+<a class="text-xs font-medium text-slate-400 hover:text-indigo-400 underline" href="#">API Status</a>
+</div>
+</footer>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 md:hidden bg-slate-900/90 backdrop-blur-md border-t border-indigo-900/50 shadow-[0_-4px_12px_rgba(0,0,0,0.5)]">
+<a class="flex flex-col items-center justify-center bg-indigo-900/30 text-indigo-300 rounded-xl px-3 py-1 Active: scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined">hub</span>
+<span class="text-[10px] font-bold uppercase tracking-widest mt-1">트래커</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 hover:text-indigo-400" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="text-[10px] font-bold uppercase tracking-widest mt-1">지도</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 hover:text-indigo-400" href="#">
+<span class="material-symbols-outlined">notifications</span>
+<span class="text-[10px] font-bold uppercase tracking-widest mt-1">알림</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 hover:text-indigo-400" href="#">
+<span class="material-symbols-outlined">bookmark</span>
+<span class="text-[10px] font-bold uppercase tracking-widest mt-1">저장됨</span>
+</a>
+</nav>
+</body></html>
