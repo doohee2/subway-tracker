@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import AlarmManager from "@/components/AlarmManager";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,6 +25,9 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} bg-background text-on-background font-body-md h-screen flex flex-col overflow-hidden`}>
         {children}
+        <div style={{ display: "none" }}>
+          <AlarmManager />
+        </div>
       </body>
     </html>
   );

@@ -6,6 +6,7 @@ import {
   hmToSeconds,
   secondsToHm
 } from '@/utils/subwayData';
+import AlarmButton from '@/components/AlarmButton';
 
 export default async function RoutePage({ params, searchParams }: { params: Promise<{ trainNo: string }>, searchParams: Promise<{ [key: string]: string }> }) {
   const resolvedParams = await params;
@@ -44,8 +45,7 @@ export default async function RoutePage({ params, searchParams }: { params: Prom
 
   let cumulativeSeconds = 0;
   
-  // 한국 표준시(KST, UTC+9) 기준으로 현재 시간 계산 (서버 타임존에 관계없이 일관된 시간 계산을 위함)
-  const now = new Date(new Date().getTime() + (9 * 60 * 60 * 1000));
+  const now = new Date();
 
   return (
     <div className="flex-1 overflow-y-auto bg-slate-950 text-slate-200">
@@ -134,7 +134,8 @@ export default async function RoutePage({ params, searchParams }: { params: Prom
               
               // Calculate estimated arrival time
               const estTime = new Date(now.getTime() + cumulativeSeconds * 1000);
-              const timeString = `${estTime.getUTCHours().toString().padStart(2, '0')}:${estTime.getUTCMinutes().toString().padStart(2, '0')}`;
+              const kstDate = new Date(estTime.getTime() + (9 * 60 * 60 * 1000));
+              const timeString = `${kstDate.getUTCHours().toString().padStart(2, '0')}:${kstDate.getUTCMinutes().toString().padStart(2, '0')}`;
 
               return (
                 <div key={idx} className="relative flex items-center gap-6 py-4 group">
@@ -143,16 +144,12 @@ export default async function RoutePage({ params, searchParams }: { params: Prom
                   </div>
                   <div className="flex-1 flex items-center justify-between border-b border-slate-800/50 pb-4">
                     <span className="text-lg font-medium text-slate-200">{station.station_nm}역</span>
-                    <button 
-                      disabled={isMissingData}
-                      className={`px-4 py-1.5 rounded-lg text-sm font-bold border transition-colors ${
-                        isMissingData 
-                          ? 'bg-slate-800 border-slate-700 text-slate-600 cursor-not-allowed'
-                          : 'bg-indigo-900/40 border-indigo-700/30 text-indigo-400 hover:bg-indigo-800/50'
-                      }`}
-                    >
-                      {isMissingData ? '역명 버튼' : timeString}
-                    </button>
+                    <AlarmButton
+                      stationName={station.station_nm}
+                      timeString={timeString}
+                      arrivalTime={estTime.getTime()}
+                      isMissingData={isMissingData}
+                    />
                   </div>
                 </div>
               );
@@ -180,14 +177,15 @@ export default async function RoutePage({ params, searchParams }: { params: Prom
             경로
           </span>
         </button>
-        <button
+        <Link
           className="flex flex-col items-center justify-center text-slate-500 hover:text-indigo-400"
+          href="/alarms"
         >
           <span className="material-symbols-outlined">notifications</span>
           <span className="text-[10px] font-bold uppercase tracking-widest mt-1">
             알림
           </span>
-        </button>
+        </Link>
         <a
           className="flex flex-col items-center justify-center text-slate-500 hover:text-indigo-400"
           href="http://www.seoulmetro.co.kr/kr/cyberStation.do"

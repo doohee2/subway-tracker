@@ -31,7 +31,7 @@ export default function Navigation() {
           </a>
           <a
             className="flex items-center gap-3 px-6 py-3 text-slate-400 pl-4 hover:bg-slate-800 font-sans text-sm font-semibold transition-all duration-300 ease-in-out"
-            href="#"
+            href="/alarms"
           >
             <span className="material-symbols-outlined">notifications</span>
             알림
@@ -70,7 +70,7 @@ export default function Navigation() {
         </a>
         <a
           className="flex flex-col items-center justify-center text-slate-500 hover:text-indigo-400"
-          href="#"
+          href="/alarms"
         >
           <span className="material-symbols-outlined">notifications</span>
           <span className="text-[10px] font-bold uppercase tracking-widest mt-1">
