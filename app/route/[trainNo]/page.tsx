@@ -162,7 +162,7 @@ export default async function RoutePage({ params, searchParams }: { params: Prom
       <nav className="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 pb-safe bg-slate-950/90 backdrop-blur-md border-t border-slate-800">
         <Link
           className="flex flex-col items-center justify-center text-slate-500 hover:text-indigo-400"
-          href="/"
+          href={statnNm ? `/?station=${encodeURIComponent(statnNm)}` : "/"}
         >
           <span className="material-symbols-outlined">hub</span>
           <span className="text-[10px] font-bold uppercase tracking-widest mt-1">

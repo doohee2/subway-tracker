@@ -1,4 +1,22 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 export default function Navigation() {
+  const [trackerHref, setTrackerHref] = useState("/");
+
+  useEffect(() => {
+    const saved = localStorage.getItem("recentStations");
+    if (saved) {
+      try {
+        const stations: string[] = JSON.parse(saved);
+        if (stations.length > 0) {
+          setTrackerHref(`/?station=${encodeURIComponent(stations[0])}`);
+        }
+      } catch (e) { }
+    }
+  }, []);
+
   return (
     <>
       {/* NavigationDrawer (Web) */}
@@ -17,7 +35,7 @@ export default function Navigation() {
         <div className="flex-1 py-4 flex flex-col gap-2">
           <a
             className="flex items-center gap-3 px-6 py-3 bg-indigo-900/40 text-indigo-300 border-l-4 border-indigo-600 font-sans text-sm font-semibold transition-all duration-300 ease-in-out"
-            href="#"
+            href={trackerHref}
           >
             <span className="material-symbols-outlined">hub</span>
             트래커
@@ -52,7 +70,7 @@ export default function Navigation() {
       <nav className="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 lg:hidden bg-slate-900/90 backdrop-blur-md border-t border-indigo-900/50 shadow-[0_-4px_12px_rgba(0,0,0,0.5)]">
         <a
           className="flex flex-col items-center justify-center bg-indigo-900/30 text-indigo-300 rounded-xl px-3 py-1 active:scale-95 transition-transform"
-          href="#"
+          href={trackerHref}
         >
           <span className="material-symbols-outlined">hub</span>
           <span className="text-[10px] font-bold uppercase tracking-widest mt-1">

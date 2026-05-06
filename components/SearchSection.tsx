@@ -1,9 +1,10 @@
-import { useState, KeyboardEvent } from "react";
+import { useState, useEffect, KeyboardEvent } from "react";
 
 interface SearchSectionProps {
   onSearch: (station: string) => void;
   recentSearches: string[];
   onRecentClick: (station: string) => void;
+  initialValue?: string;
   status: {
     type: "idle" | "loading" | "success" | "error";
     message: string;
@@ -15,9 +16,16 @@ export default function SearchSection({
   onSearch,
   recentSearches,
   onRecentClick,
+  initialValue,
   status,
 }: SearchSectionProps) {
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState(initialValue ?? "");
+
+  useEffect(() => {
+    if (initialValue) {
+      setInputValue(initialValue);
+    }
+  }, [initialValue]);
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && inputValue.trim()) {

@@ -11,6 +11,7 @@ import { ArrivalGroup, RealtimeArrival } from "@/types/subway";
 export default function Home() {
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
   const [arrivalGroups, setArrivalGroups] = useState<ArrivalGroup[]>([]);
+  const [initialSearchValue, setInitialSearchValue] = useState("");
   const [status, setStatus] = useState<{
     type: "idle" | "loading" | "success" | "error";
     message: string;
@@ -30,6 +31,7 @@ export default function Home() {
     const params = new URLSearchParams(window.location.search);
     const stationParam = params.get("station");
     if (stationParam) {
+      setInitialSearchValue(stationParam);
       handleSearch(stationParam);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -160,6 +162,7 @@ export default function Home() {
             onSearch={handleSearch}
             recentSearches={recentSearches}
             onRecentClick={handleSearch}
+            initialValue={initialSearchValue}
             status={status}
           />
 
