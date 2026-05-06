@@ -20,9 +20,9 @@ export default function AlarmModal({ isOpen, stationName, onConfirm, onCancel }:
   if (!isOpen || !mounted) return null;
 
   return createPortal(
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/60 backdrop-blur-sm p-4">
+    <div className="fixed top-0 left-0 w-screen h-screen z-[100] flex items-center justify-center bg-slate-950/60 backdrop-blur-sm p-4">
       <div 
-        className="bg-slate-900 border border-slate-700 shadow-2xl rounded-2xl w-full max-w-sm overflow-hidden"
+        className="bg-slate-900 border border-slate-700 shadow-2xl rounded-2xl w-full max-w-md overflow-hidden"
       >
         <div className="p-6 text-center space-y-4">
           <div className="w-16 h-16 bg-indigo-500/20 text-indigo-400 rounded-full flex items-center justify-center mx-auto mb-2">

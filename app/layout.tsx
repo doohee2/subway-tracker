@@ -23,7 +23,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className={`${inter.className} bg-background text-on-background font-body-md h-screen flex flex-col overflow-hidden`}>
+      <body className={`${inter.className} bg-background text-on-background font-body-md h-screen flex flex-col`}>
         {children}
         <div style={{ display: "none" }}>
           <AlarmManager />
