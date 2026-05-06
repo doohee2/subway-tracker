@@ -19,8 +19,22 @@ export default function Navigation() {
             className="flex items-center gap-3 px-6 py-3 bg-indigo-900/40 text-indigo-300 border-l-4 border-indigo-600 font-sans text-sm font-semibold transition-all duration-300 ease-in-out"
             href="#"
           >
-            <span className="material-symbols-outlined">directions_subway</span>
-            실시간 트래킹
+            <span className="material-symbols-outlined">hub</span>
+            트래커
+          </a>
+          <a
+            className="flex items-center gap-3 px-6 py-3 text-slate-400 pl-4 hover:bg-slate-800 font-sans text-sm font-semibold transition-all duration-300 ease-in-out"
+            href="#"
+          >
+            <span className="material-symbols-outlined">map</span>
+            경로
+          </a>
+          <a
+            className="flex items-center gap-3 px-6 py-3 text-slate-400 pl-4 hover:bg-slate-800 font-sans text-sm font-semibold transition-all duration-300 ease-in-out"
+            href="#"
+          >
+            <span className="material-symbols-outlined">notifications</span>
+            알림
           </a>
           <a
             className="flex items-center gap-3 px-6 py-3 text-slate-400 pl-4 hover:bg-slate-800 font-sans text-sm font-semibold transition-all duration-300 ease-in-out"
@@ -29,21 +43,7 @@ export default function Navigation() {
             rel="noopener noreferrer"
           >
             <span className="material-symbols-outlined">explore</span>
-            시스템 맵
-          </a>
-          <a
-            className="flex items-center gap-3 px-6 py-3 text-slate-400 pl-4 hover:bg-slate-800 font-sans text-sm font-semibold transition-all duration-300 ease-in-out"
-            href="#"
-          >
-            <span className="material-symbols-outlined">warning</span>
-            서비스 알림
-          </a>
-          <a
-            className="flex items-center gap-3 px-6 py-3 text-slate-400 pl-4 hover:bg-slate-800 font-sans text-sm font-semibold transition-all duration-300 ease-in-out"
-            href="#"
-          >
-            <span className="material-symbols-outlined">star</span>
-            즐겨찾는 역
+            노선도(웹)
           </a>
         </div>
       </nav>
@@ -65,7 +65,7 @@ export default function Navigation() {
         >
           <span className="material-symbols-outlined">map</span>
           <span className="text-[10px] font-bold uppercase tracking-widest mt-1">
-            지도
+            경로
           </span>
         </a>
         <a
@@ -79,11 +79,13 @@ export default function Navigation() {
         </a>
         <a
           className="flex flex-col items-center justify-center text-slate-500 hover:text-indigo-400"
-          href="#"
+          href="http://www.seoulmetro.co.kr/kr/cyberStation.do"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          <span className="material-symbols-outlined">bookmark</span>
+          <span className="material-symbols-outlined">explore</span>
           <span className="text-[10px] font-bold uppercase tracking-widest mt-1">
-            저장됨
+            노선도(웹)
           </span>
         </a>
       </nav>

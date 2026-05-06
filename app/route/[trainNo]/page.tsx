@@ -163,22 +163,42 @@ export default async function RoutePage({ params, searchParams }: { params: Prom
 
       {/* BottomNavBar */}
       <nav className="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 pb-safe bg-slate-950/90 backdrop-blur-md border-t border-slate-800">
-        <Link href="/" className="flex flex-col items-center justify-center text-slate-500 hover:text-indigo-500 px-3 py-1 active:scale-95 transition-transform duration-200">
-          <span className="material-symbols-outlined mb-1">home</span>
-          <span className="text-[11px] font-medium">홈</span>
+        <Link
+          className="flex flex-col items-center justify-center text-slate-500 hover:text-indigo-400"
+          href="/"
+        >
+          <span className="material-symbols-outlined">hub</span>
+          <span className="text-[10px] font-bold uppercase tracking-widest mt-1">
+            트래커
+          </span>
         </Link>
-        <button className="flex flex-col items-center justify-center text-indigo-400 bg-indigo-900/30 rounded-xl px-3 py-1 active:scale-95 transition-transform duration-200">
-          <span className="material-symbols-outlined mb-1" style={{ fontVariationSettings: "'FILL' 1" }}>map</span>
-          <span className="text-[11px] font-medium">노선도</span>
+        <button
+          className="flex flex-col items-center justify-center bg-indigo-900/30 text-indigo-300 rounded-xl px-3 py-1 active:scale-95 transition-transform"
+        >
+          <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>map</span>
+          <span className="text-[10px] font-bold uppercase tracking-widest mt-1">
+            경로
+          </span>
         </button>
-        <button className="flex flex-col items-center justify-center text-slate-500 hover:text-indigo-500 px-3 py-1 active:scale-95 transition-transform duration-200">
-          <span className="material-symbols-outlined mb-1">star</span>
-          <span className="text-[11px] font-medium">즐겨찾기</span>
+        <button
+          className="flex flex-col items-center justify-center text-slate-500 hover:text-indigo-400"
+        >
+          <span className="material-symbols-outlined">notifications</span>
+          <span className="text-[10px] font-bold uppercase tracking-widest mt-1">
+            알림
+          </span>
         </button>
-        <button className="flex flex-col items-center justify-center text-slate-500 hover:text-indigo-500 px-3 py-1 active:scale-95 transition-transform duration-200">
-          <span className="material-symbols-outlined mb-1">settings</span>
-          <span className="text-[11px] font-medium">설정</span>
-        </button>
+        <a
+          className="flex flex-col items-center justify-center text-slate-500 hover:text-indigo-400"
+          href="http://www.seoulmetro.co.kr/kr/cyberStation.do"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span className="material-symbols-outlined">explore</span>
+          <span className="text-[10px] font-bold uppercase tracking-widest mt-1">
+            노선도(웹)
+          </span>
+        </a>
       </nav>
     </div>
   );

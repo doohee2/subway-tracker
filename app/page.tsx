@@ -23,7 +23,7 @@ export default function Home() {
     if (saved) {
       try {
         setRecentSearches(JSON.parse(saved));
-      } catch (e) {}
+      } catch (e) { }
     }
 
     // URL 파라미터로 station이 넘어오면 자동 검색
@@ -126,18 +126,20 @@ export default function Home() {
       });
 
       const parsedGroups = Array.from(groupsMap.values());
-      
+
       // 호선명 오름차순 정렬 등 정렬 로직 추가 가능
       parsedGroups.sort((a, b) => a.lineName.localeCompare(b.lineName));
 
       setArrivalGroups(parsedGroups);
-      
+
       const now = new Date();
       const timeStr = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')} 기준`;
-      
+
+      const stationDisplayName = station.endsWith("역") ? station : `${station}역`;
+
       setStatus({
         type: "success",
-        message: "정상 운행 (조회 완료)",
+        message: `${stationDisplayName} 정상 운행 (조회 완료)`,
         time: timeStr,
       });
 
@@ -151,7 +153,7 @@ export default function Home() {
     <>
       <Header />
       <Navigation />
-      
+
       <main className="flex-1 overflow-y-auto mt-16 pb-20 lg:pb-0 lg:ml-72 bg-surface">
         <div className="max-w-container-max mx-auto w-full p-4 md:p-lg flex flex-col gap-md min-h-[calc(100vh-4rem)]">
           <SearchSection
@@ -160,7 +162,7 @@ export default function Home() {
             onRecentClick={handleSearch}
             status={status}
           />
-          
+
           {arrivalGroups.length > 0 && (
             <section className="flex flex-col gap-md mt-6">
               <h2 className="font-h3 text-h3 text-on-surface">실시간 도착 정보</h2>
@@ -171,7 +173,7 @@ export default function Home() {
               </div>
             </section>
           )}
-          
+
           <Footer />
         </div>
       </main>

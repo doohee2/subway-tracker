@@ -21,8 +21,12 @@ export default function SearchSection({
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && inputValue.trim()) {
-      onSearch(inputValue.trim());
-      setInputValue("");
+      let searchQuery = inputValue.trim();
+      if (searchQuery.endsWith("역")) {
+        searchQuery = searchQuery.slice(0, -1);
+      }
+      onSearch(searchQuery);
+      setInputValue(searchQuery);
     }
   };
 
