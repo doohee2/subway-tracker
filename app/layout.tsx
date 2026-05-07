@@ -7,7 +7,10 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "지하철 도착 정보",
-  description: "서울시 지하철 실시간 도착정보 조회",
+  description: "지하철 실시간 도착정보 조회",
+  icons: {
+    apple: "/apple-icon.png",
+  },
 };
 
 export default function RootLayout({
