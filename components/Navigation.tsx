@@ -3,11 +3,24 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
+interface LastRoute {
+  trainNo: string;
+  lineName: string;
+  destination: string;
+  currentLocationMsg: string;
+  updnLine: string;
+  bstatnNm: string;
+  subwayId: string;
+  statnNm: string;
+}
+
 export default function Navigation() {
   const [trackerHref, setTrackerHref] = useState("/");
+  const [routeHref, setRouteHref] = useState("#");
   const pathname = usePathname();
 
   useEffect(() => {
+    // 최근 검색 역 복원
     const saved = localStorage.getItem("recentStations");
     if (saved) {
       try {
@@ -15,6 +28,24 @@ export default function Navigation() {
         if (stations.length > 0) {
           setTrackerHref(`/?station=${encodeURIComponent(stations[0])}`);
         }
+      } catch (e) { }
+    }
+
+    // 마지막 조회 경로 복원
+    const savedRoute = localStorage.getItem("lastRoute");
+    if (savedRoute) {
+      try {
+        const r: LastRoute = JSON.parse(savedRoute);
+        const params = new URLSearchParams({
+          lineName: r.lineName,
+          destination: r.destination,
+          currentLocationMsg: r.currentLocationMsg,
+          updnLine: r.updnLine,
+          bstatnNm: r.bstatnNm,
+          subwayId: r.subwayId,
+          statnNm: r.statnNm,
+        });
+        setRouteHref(`/route/${encodeURIComponent(r.trainNo)}?${params.toString()}`);
       } catch (e) { }
     }
   }, []);
@@ -43,8 +74,8 @@ export default function Navigation() {
             트래커
           </a>
           <a
-            className={`flex items-center gap-3 px-6 py-3 font-sans text-sm font-semibold transition-all duration-300 ease-in-out ${pathname === '/route' ? 'bg-indigo-900/40 text-indigo-300 border-l-4 border-indigo-600' : 'text-slate-400 pl-4 hover:bg-slate-800'}`}
-            href="#"
+            className={`flex items-center gap-3 px-6 py-3 font-sans text-sm font-semibold transition-all duration-300 ease-in-out ${pathname.startsWith('/route') ? 'bg-indigo-900/40 text-indigo-300 border-l-4 border-indigo-600' : 'text-slate-400 pl-4 hover:bg-slate-800'}`}
+            href={routeHref}
           >
             <span className="material-symbols-outlined">map</span>
             경로
@@ -80,8 +111,8 @@ export default function Navigation() {
           </span>
         </a>
         <a
-          className={`flex flex-col items-center justify-center px-3 py-1 transition-transform ${pathname === '/route' ? 'bg-indigo-900/30 text-indigo-300 rounded-xl active:scale-95' : 'text-slate-500 hover:text-indigo-400'}`}
-          href="#"
+          className={`flex flex-col items-center justify-center px-3 py-1 transition-transform ${pathname.startsWith('/route') ? 'bg-indigo-900/30 text-indigo-300 rounded-xl active:scale-95' : 'text-slate-500 hover:text-indigo-400'}`}
+          href={routeHref}
         >
           <span className="material-symbols-outlined">map</span>
           <span className="text-[10px] font-bold uppercase tracking-widest mt-1">

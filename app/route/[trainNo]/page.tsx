@@ -5,6 +5,8 @@ import {
   getStationTimes
 } from '@/utils/subwayData';
 import RouteTrackerClient from '@/components/RouteTrackerClient';
+import Navigation from '@/components/Navigation';
+import Header from '@/components/Header';
 export default async function RoutePage({ params, searchParams }: { params: Promise<{ trainNo: string }>, searchParams: Promise<{ [key: string]: string }> }) {
   const resolvedParams = await params;
   const resolvedSearchParams = await searchParams;
@@ -17,19 +19,10 @@ export default async function RoutePage({ params, searchParams }: { params: Prom
 
   return (
     <div className="flex-1 overflow-y-auto bg-slate-950 text-slate-200">
-      {/* TopAppBar */}
-      <header className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-4 h-16 max-w-[1280px] mx-auto bg-slate-950 border-b border-slate-800 shadow-none">
-        <div className="flex items-center gap-4">
-          <Link href={`/?station=${encodeURIComponent(statnNm)}`} className="flex items-center justify-center p-2 text-indigo-400 hover:bg-slate-900 transition-colors active:opacity-70 rounded-full">
-            <span className="material-symbols-outlined">arrow_back</span>
-          </Link>
-          <h1 className="font-['Inter'] font-semibold text-lg tracking-tight text-indigo-400">실시간 지하철</h1>
-        </div>
-        <button className="text-indigo-400 font-bold hover:bg-slate-900 px-3 py-1.5 rounded-lg active:opacity-70 transition-all duration-150">
-          새로고침
-        </button>
-      </header>
+      <Header />
+      <Navigation />
 
+      <div className="lg:pl-72">
       <RouteTrackerClient 
         trainNo={trainNo}
         lineName={lineName}
@@ -39,10 +32,12 @@ export default async function RoutePage({ params, searchParams }: { params: Prom
         stations={stations}
         times={times}
         bstatnNm={bstatnNm}
+        routeParams={{ updnLine, subwayId, statnNm }}
       />
+      </div>
 
-      {/* BottomNavBar */}
-      <nav className="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 pb-safe bg-slate-950/90 backdrop-blur-md border-t border-slate-800">
+      {/* BottomNavBar (Mobile only) */}
+      <nav className="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 pb-safe bg-slate-950/90 backdrop-blur-md border-t border-slate-800 lg:hidden">
         <Link
           className="flex flex-col items-center justify-center text-slate-500 hover:text-indigo-400"
           href={statnNm ? `/?station=${encodeURIComponent(statnNm)}` : "/"}

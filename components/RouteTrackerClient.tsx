@@ -24,6 +24,12 @@ interface RouteTrackerClientProps {
   stations: Station[];
   times: TimeData[];
   bstatnNm: string;
+  // 마지막 경로 복원을 위해 저장할 전체 쿼리 파라미터
+  routeParams: {
+    updnLine: string;
+    subwayId: string;
+    statnNm: string;
+  };
 }
 
 export default function RouteTrackerClient({
@@ -35,6 +41,7 @@ export default function RouteTrackerClient({
   stations,
   times,
   bstatnNm,
+  routeParams,
 }: RouteTrackerClientProps) {
   const [currentLocationMsg, setCurrentLocationMsg] = useState(initialCurrentLocationMsg);
   const [currentStationName, setCurrentStationName] = useState(initialCurrentStationName);
@@ -67,8 +74,21 @@ export default function RouteTrackerClient({
     }
   };
 
-  // 페이지 첫 진입 시 자동으로 API 조회 (URL params의 arvlMsg3 값 대신 통일된 값 사용)
+  // 페이지 첫 진입 시 자동으로 API 조회 및 마지막 경로 저장
   useEffect(() => {
+    // 마지막으로 조회한 경로를 localStorage에 저장
+    const lastRoute = {
+      trainNo,
+      lineName,
+      destination,
+      currentLocationMsg: initialCurrentLocationMsg,
+      updnLine: routeParams.updnLine,
+      bstatnNm,
+      subwayId: routeParams.subwayId,
+      statnNm: routeParams.statnNm,
+    };
+    localStorage.setItem("lastRoute", JSON.stringify(lastRoute));
+
     handleRefresh();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
