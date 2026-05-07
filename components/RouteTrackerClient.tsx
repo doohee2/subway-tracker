@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import AlarmButton from "@/components/AlarmButton";
 import { hmToSeconds } from "@/utils/subwayData";
+import { getLineColor, getLineNumberText } from "@/utils/subwayColors";
 
 interface Station {
   station_cd: string;
@@ -117,7 +118,15 @@ export default function RouteTrackerClient({
     return match ? hmToSeconds(match.hm) : 0;
   };
 
-  let cumulativeSeconds = 0;
+  // 현재 상태에 따른 초기 오프셋: 진입=60초, 도착=30초, 출발=0초
+  const initialOffset =
+    currentLocationMsg === '진입' || currentLocationMsg === '0' ? 60
+    : currentLocationMsg === '도착' || currentLocationMsg === '1' ? 30
+    : 0;
+  let cumulativeSeconds = initialOffset;
+
+  const lineColor = getLineColor(lineName);
+  const lineNumberText = getLineNumberText(lineName);
 
   return (
     <main className="pt-20 pb-24 px-4 max-w-[1280px] mx-auto">
@@ -127,7 +136,8 @@ export default function RouteTrackerClient({
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="space-y-2">
               <div className="flex items-center gap-2">
-                <span className="px-3 py-1 rounded-full bg-green-600 text-white font-bold text-sm">{lineName}</span>
+                <span className={`w-7 h-7 rounded-full ${lineColor} flex items-center justify-center text-white text-xs font-bold`}>{lineNumberText}</span>
+                <span className="text-white font-bold text-sm">{lineName}</span>
                 <span className="text-slate-400 text-sm font-medium">열차번호: #{trainNo}</span>
               </div>
               <h2 className="text-3xl font-bold text-white tracking-tight">

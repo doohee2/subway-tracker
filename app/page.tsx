@@ -161,7 +161,10 @@ export default function Home() {
           <SearchSection
             onSearch={handleSearch}
             recentSearches={recentSearches}
-            onRecentClick={handleSearch}
+            onRecentClick={(station) => {
+              setInitialSearchValue(station);
+              handleSearch(station);
+            }}
             initialValue={initialSearchValue}
             status={status}
           />
