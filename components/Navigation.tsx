@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 export default function Navigation() {
   const [trackerHref, setTrackerHref] = useState("/");
+  const pathname = usePathname();
 
   useEffect(() => {
     const saved = localStorage.getItem("recentStations");
@@ -34,21 +36,21 @@ export default function Navigation() {
         </div>
         <div className="flex-1 py-4 flex flex-col gap-2">
           <a
-            className="flex items-center gap-3 px-6 py-3 bg-indigo-900/40 text-indigo-300 border-l-4 border-indigo-600 font-sans text-sm font-semibold transition-all duration-300 ease-in-out"
+            className={`flex items-center gap-3 px-6 py-3 font-sans text-sm font-semibold transition-all duration-300 ease-in-out ${pathname === '/' ? 'bg-indigo-900/40 text-indigo-300 border-l-4 border-indigo-600' : 'text-slate-400 pl-4 hover:bg-slate-800'}`}
             href={trackerHref}
           >
             <span className="material-symbols-outlined">hub</span>
             트래커
           </a>
           <a
-            className="flex items-center gap-3 px-6 py-3 text-slate-400 pl-4 hover:bg-slate-800 font-sans text-sm font-semibold transition-all duration-300 ease-in-out"
+            className={`flex items-center gap-3 px-6 py-3 font-sans text-sm font-semibold transition-all duration-300 ease-in-out ${pathname === '/route' ? 'bg-indigo-900/40 text-indigo-300 border-l-4 border-indigo-600' : 'text-slate-400 pl-4 hover:bg-slate-800'}`}
             href="#"
           >
             <span className="material-symbols-outlined">map</span>
             경로
           </a>
           <a
-            className="flex items-center gap-3 px-6 py-3 text-slate-400 pl-4 hover:bg-slate-800 font-sans text-sm font-semibold transition-all duration-300 ease-in-out"
+            className={`flex items-center gap-3 px-6 py-3 font-sans text-sm font-semibold transition-all duration-300 ease-in-out ${pathname === '/alarms' ? 'bg-indigo-900/40 text-indigo-300 border-l-4 border-indigo-600' : 'text-slate-400 pl-4 hover:bg-slate-800'}`}
             href="/alarms"
           >
             <span className="material-symbols-outlined">notifications</span>
@@ -69,7 +71,7 @@ export default function Navigation() {
       {/* BottomNavBar (Mobile) */}
       <nav className="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 lg:hidden bg-slate-900/90 backdrop-blur-md border-t border-indigo-900/50 shadow-[0_-4px_12px_rgba(0,0,0,0.5)]">
         <a
-          className="flex flex-col items-center justify-center bg-indigo-900/30 text-indigo-300 rounded-xl px-3 py-1 active:scale-95 transition-transform"
+          className={`flex flex-col items-center justify-center px-3 py-1 transition-transform ${pathname === '/' ? 'bg-indigo-900/30 text-indigo-300 rounded-xl active:scale-95' : 'text-slate-500 hover:text-indigo-400'}`}
           href={trackerHref}
         >
           <span className="material-symbols-outlined">hub</span>
@@ -78,7 +80,7 @@ export default function Navigation() {
           </span>
         </a>
         <a
-          className="flex flex-col items-center justify-center text-slate-500 hover:text-indigo-400"
+          className={`flex flex-col items-center justify-center px-3 py-1 transition-transform ${pathname === '/route' ? 'bg-indigo-900/30 text-indigo-300 rounded-xl active:scale-95' : 'text-slate-500 hover:text-indigo-400'}`}
           href="#"
         >
           <span className="material-symbols-outlined">map</span>
@@ -87,7 +89,7 @@ export default function Navigation() {
           </span>
         </a>
         <a
-          className="flex flex-col items-center justify-center text-slate-500 hover:text-indigo-400"
+          className={`flex flex-col items-center justify-center px-3 py-1 transition-transform ${pathname === '/alarms' ? 'bg-indigo-900/30 text-indigo-300 rounded-xl active:scale-95' : 'text-slate-500 hover:text-indigo-400'}`}
           href="/alarms"
         >
           <span className="material-symbols-outlined">notifications</span>
