@@ -7,7 +7,7 @@ export const getLineColor = (lineName: string) => {
   if (lineName.includes("6호선")) return "bg-yellow-600"; // 황토색 계열
   if (lineName.includes("7호선")) return "bg-emerald-600";
   if (lineName.includes("8호선")) return "bg-pink-500";
-  if (lineName.includes("9호선")) return "bg-stone-400";
+  if (lineName.includes("9호선")) return "bg-lime-700";
   if (lineName.includes("경의중앙")) return "bg-teal-500";
   if (lineName.includes("수인분당")) return "bg-yellow-400";
   if (lineName.includes("신분당")) return "bg-red-500";

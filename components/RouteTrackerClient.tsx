@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import AlarmButton from "@/components/AlarmButton";
-import { hmToSeconds } from "@/utils/subwayData";
+import { hmToSeconds, parseKSTDate, formatKSTTime } from "@/utils/subwayData";
 import { getLineColor, getLineNumberText } from "@/utils/subwayColors";
 
 interface Station {
@@ -31,6 +31,7 @@ interface RouteTrackerClientProps {
     subwayId: string;
     statnNm: string;
   };
+  initialRecptnDt?: string;
 }
 
 export default function RouteTrackerClient({
@@ -43,10 +44,24 @@ export default function RouteTrackerClient({
   times,
   bstatnNm,
   routeParams,
+  initialRecptnDt,
 }: RouteTrackerClientProps) {
   const [currentLocationMsg, setCurrentLocationMsg] = useState(initialCurrentLocationMsg);
   const [currentStationName, setCurrentStationName] = useState(initialCurrentStationName);
-  const [lastUpdated, setLastUpdated] = useState<Date>(new Date());
+  
+  // 초기값 설정: initialRecptnDt가 있으면 그것을 사용, 없으면 현재 시간
+  const getInitialLastUpdated = () => {
+    if (initialRecptnDt) {
+      try {
+        return parseKSTDate(initialRecptnDt);
+      } catch (e) {
+        return new Date();
+      }
+    }
+    return new Date();
+  };
+
+  const [lastUpdated, setLastUpdated] = useState<Date>(getInitialLastUpdated());
   const [isLoading, setIsLoading] = useState(true); // 첫 진입 시 바로 로딩 상태로 시작
 
   const handleRefresh = async () => {
@@ -61,7 +76,18 @@ export default function RouteTrackerClient({
         if (train) {
           setCurrentStationName(train.statnNm);
           setCurrentLocationMsg(train.trainSttus === '0' ? '진입' : train.trainSttus === '1' ? '도착' : '출발');
-          setLastUpdated(new Date());
+          
+          if (train.recptnDt) {
+            try {
+              // API의 recptnDt (정보수신일시)를 기준으로 설정
+              const recptnTime = parseKSTDate(train.recptnDt);
+              setLastUpdated(recptnTime);
+            } catch (e) {
+              setLastUpdated(new Date());
+            }
+          } else {
+            setLastUpdated(new Date());
+          }
         } else {
           // 열차를 찾을 수 없는 경우 처리 (선택사항)
           alert("현재 열차의 실시간 위치 정보를 찾을 수 없습니다.");
@@ -148,14 +174,19 @@ export default function RouteTrackerClient({
                 <span className="font-semibold">현재역: {currentStationInfo.station_nm}역</span>
               </div>
             </div>
-            <button 
-              onClick={handleRefresh}
-              disabled={isLoading}
-              className={`bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition-all active:scale-95 flex items-center gap-2 mt-4 md:mt-0 ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
-            >
-              <span className={`material-symbols-outlined ${isLoading ? 'animate-spin' : ''}`}>refresh</span>
-              다시 조회
-            </button>
+            <div className="flex flex-col items-center md:items-end gap-1.5 mt-4 md:mt-0">
+              <button 
+                onClick={handleRefresh}
+                disabled={isLoading}
+                className={`bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition-all active:scale-95 flex items-center gap-2 w-full md:w-auto justify-center ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+              >
+                <span className={`material-symbols-outlined ${isLoading ? 'animate-spin' : ''}`}>refresh</span>
+                다시 조회
+              </button>
+              <p className="text-[10px] text-slate-500 font-medium mr-1">
+                데이터 기준: {formatKSTTime(lastUpdated)}
+              </p>
+            </div>
           </div>
         </div>
         <div className="hidden md:block overflow-hidden rounded-xl border border-slate-800 relative group">
@@ -208,8 +239,7 @@ export default function RouteTrackerClient({
             
             // Calculate estimated arrival time
             const estTime = new Date(lastUpdated.getTime() + cumulativeSeconds * 1000);
-            const kstDate = new Date(estTime.getTime() + (9 * 60 * 60 * 1000));
-            const timeString = `${kstDate.getUTCHours().toString().padStart(2, '0')}:${kstDate.getUTCMinutes().toString().padStart(2, '0')}`;
+            const timeString = formatKSTTime(estTime);
 
             return (
               <div key={idx} className="relative flex items-center gap-6 py-4 group">

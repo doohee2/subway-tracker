@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import SearchSection from "@/components/SearchSection";
 import ArrivalCard from "@/components/ArrivalCard";
 import { ArrivalGroup, RealtimeArrival } from "@/types/subway";
+import { parseKSTDate, formatKSTTime, getStationRealName } from "@/utils/subwayData";
 
 export default function Home() {
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
@@ -49,11 +50,14 @@ export default function Home() {
   const handleSearch = async (station: string) => {
     if (!station) return;
 
+    // 별칭 처리 (예: '서울' -> '서울역')
+    const realStationName = getStationRealName(station);
+
     setStatus({ type: "loading", message: "조회 중입니다..." });
     setArrivalGroups([]);
 
     try {
-      const res = await fetch(`/api/subway?station=${encodeURIComponent(station)}`);
+      const res = await fetch(`/api/subway?station=${encodeURIComponent(realStationName)}`);
       const data = await res.json();
 
       if (!res.ok) {
@@ -69,7 +73,8 @@ export default function Home() {
       }
 
       // 검색 성공: 로컬 스토리지 업데이트
-      saveRecentSearch(station);
+      saveRecentSearch(realStationName);
+      localStorage.setItem("lastStation", realStationName);
 
       // 데이터 그룹화 로직
       const groupsMap = new Map<string, ArrivalGroup>();
@@ -113,6 +118,18 @@ export default function Home() {
             isUrgent = true;
           }
 
+          // 도착 시각 계산
+          let calculatedArrivalTime = "";
+          if (item.barvlDt && item.barvlDt !== "0") {
+            try {
+              const recptnTime = parseKSTDate(item.recptnDt);
+              const arrivalDate = new Date(recptnTime.getTime() + parseInt(item.barvlDt) * 1000);
+              calculatedArrivalTime = formatKSTTime(arrivalDate);
+            } catch (e) {
+              console.error("Time calculation error:", e);
+            }
+          }
+
           group.arrivals.push({
             id: item.btrainNo + "_" + item.barvlDt + "_" + Math.random(),
             estimatedTimeMsg: estTime,
@@ -122,7 +139,9 @@ export default function Home() {
             updnLine: item.updnLine,
             bstatnNm: item.bstatnNm,
             subwayId: item.subwayId,
-            statnNm: item.statnNm,
+            statnNm: realStationName,
+            recptnDt: item.recptnDt,
+            calculatedArrivalTime,
           });
         }
       });
@@ -134,10 +153,19 @@ export default function Home() {
 
       setArrivalGroups(parsedGroups);
 
-      const now = new Date();
-      const timeStr = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')} 기준`;
+      // recptnDt 기반으로 조회 시간 표시
+      let timeStr = "조회 완료";
+      if (data.realtimeArrivalList.length > 0) {
+        try {
+          const firstRecptnDt = data.realtimeArrivalList[0].recptnDt;
+          const recptnTime = parseKSTDate(firstRecptnDt);
+          timeStr = `${formatKSTTime(recptnTime)} 기준`;
+        } catch (e) {
+          timeStr = `${formatKSTTime(new Date())} 기준`;
+        }
+      }
 
-      const stationDisplayName = station.endsWith("역") ? station : `${station}역`;
+      const stationDisplayName = realStationName.endsWith("역") ? realStationName : `${realStationName}역`;
 
       setStatus({
         type: "success",

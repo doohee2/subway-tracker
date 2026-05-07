@@ -1,5 +1,6 @@
 import stationsJson from '../json/stations.json';
 import distancesJson from '../json/distances.json';
+import aliasesJson from '../json/stations_nm_alias.json';
 
 export interface StationInfo {
   line_num: string;
@@ -96,4 +97,40 @@ export function extractCurrentStation(msg: string): string {
   // "성수 진입", "성수 도착", "성수"
   let parts = msg.split(' ');
   return parts[0].replace(/역$/, '').replace(/\[|\]/g, '');
+}
+
+// KST 시간 문자열을 Date 객체로 변환 (타임존 보정 포함)
+export function parseKSTDate(dateStr: string): Date {
+  if (!dateStr) return new Date();
+  
+  // "2024-05-08 06:56:18.0" -> "2024/05/08 06:56:18"
+  const cleanStr = dateStr.split('.')[0].replace(/-/g, '/');
+  
+  // 시스템 타임존에 관계없이 KST(+0900)로 파싱
+  return new Date(cleanStr + " +0900");
+}
+
+// Date 객체를 HH:mm (KST 기준) 문자열로 변환
+export function formatKSTTime(date: Date): string {
+  // force KST (UTC+9) for display
+  const kstDate = new Date(date.getTime() + (9 * 60 * 60 * 1000));
+  return `${kstDate.getUTCHours().toString().padStart(2, '0')}:${kstDate.getUTCMinutes().toString().padStart(2, '0')}`;
+}
+
+/**
+ * 역 이름의 별칭(Alias)이 있는 경우 실제 이름(NM)으로 변환합니다.
+ */
+export function getStationRealName(searchName: string): string {
+  if (!searchName) return searchName;
+  
+  // '역' 제거하고 비교 (alias 데이터에 '역'이 없는 경우가 많음)
+  const cleanName = searchName.replace(/역$/, '');
+  
+  const match = (aliasesJson as any[]).find(a => a.STATN_ALIAS === cleanName || a.STATN_ALIAS === searchName);
+  
+  if (match && match.STATN_NM) {
+    return match.STATN_NM;
+  }
+  
+  return searchName;
 }

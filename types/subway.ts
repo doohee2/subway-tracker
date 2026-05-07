@@ -9,6 +9,7 @@ export interface RealtimeArrival {
   arvlMsg2: string; // 첫번째도착메세지 (진입, 도착 등)
   arvlMsg3: string; // 두번째도착메세지 (종합운동장 도착, 12분 후 (광명사거리) 등)
   arvlCd: string; // 도착코드 (0:진입, 1:도착, 2:출발, 3:전역출발, 4:전역진입, 5:전역도착, 99:운행중)
+  recptnDt: string; // 정보수신일시
 }
 
 export interface SubwayAPIResponse {
@@ -34,6 +35,8 @@ export interface ArrivalItem {
   bstatnNm: string; // 종착지하철역명
   subwayId: string; // 호선 ID
   statnNm: string; // 검색한 기준역
+  recptnDt: string; // 정보수신일시
+  calculatedArrivalTime?: string; // 계산된 도착 시각 (HH:mm)
 }
 
 export interface ArrivalGroup {

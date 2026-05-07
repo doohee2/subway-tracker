@@ -34,13 +34,20 @@ export default function ArrivalCard({ group }: ArrivalCardProps) {
             className="flex items-center justify-between p-2 rounded hover:bg-surface-container transition-colors"
           >
             <div className="flex flex-col">
-              <span
-                className={`font-body-lg text-body-lg font-bold ${
-                  arrival.isUrgent ? "text-error" : "text-primary"
-                }`}
-              >
-                {arrival.estimatedTimeMsg}
-              </span>
+              <div className="flex items-center gap-2">
+                <span
+                  className={`font-body-lg text-body-lg font-bold ${
+                    arrival.isUrgent ? "text-error" : "text-primary"
+                  }`}
+                >
+                  {arrival.estimatedTimeMsg}
+                </span>
+                {arrival.calculatedArrivalTime && (
+                  <span className="text-xs font-medium text-indigo-400/80 bg-indigo-500/10 px-1.5 py-0.5 rounded">
+                    {arrival.calculatedArrivalTime}
+                  </span>
+                )}
+              </div>
               <span className="font-body-sm text-body-sm text-on-surface-variant">
                 {arrival.currentLocationMsg}
               </span>
@@ -60,6 +67,7 @@ export default function ArrivalCard({ group }: ArrivalCardProps) {
                     bstatnNm: arrival.bstatnNm,
                     subwayId: arrival.subwayId,
                     statnNm: arrival.statnNm,
+                    recptnDt: arrival.recptnDt,
                   }
                 }}
                 className="bg-primary/20 text-primary px-3 py-1.5 rounded-DEFAULT font-body-sm text-body-sm font-medium hover:bg-primary/30 transition-colors border border-primary/30 cursor-pointer text-center block"

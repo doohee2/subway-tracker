@@ -11,7 +11,8 @@ export default async function RoutePage({ params, searchParams }: { params: Prom
   const resolvedParams = await params;
   const resolvedSearchParams = await searchParams;
   const trainNo = resolvedParams.trainNo;
-  const { lineName = "", destination = "", currentLocationMsg = "", updnLine = "", bstatnNm = "", subwayId = "", statnNm = "" } = resolvedSearchParams;
+  const { lineName = "", destination = "", currentLocationMsg = "", updnLine = "", bstatnNm = "", subwayId = "", statnNm = "", recptnDt = "" } = resolvedSearchParams;
+  const trackerUrl = statnNm ? `/?station=${encodeURIComponent(statnNm)}` : "/";
 
   const currentStationName = extractCurrentStation(currentLocationMsg);
   const stations = getStationsForLine(lineName, updnLine);
@@ -33,6 +34,7 @@ export default async function RoutePage({ params, searchParams }: { params: Prom
         times={times}
         bstatnNm={bstatnNm}
         routeParams={{ updnLine, subwayId, statnNm }}
+        initialRecptnDt={recptnDt}
       />
       </div>
 
@@ -40,7 +42,7 @@ export default async function RoutePage({ params, searchParams }: { params: Prom
       <nav className="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 pb-safe bg-slate-950/90 backdrop-blur-md border-t border-slate-800 lg:hidden">
         <Link
           className="flex flex-col items-center justify-center text-slate-500 hover:text-indigo-400"
-          href={statnNm ? `/?station=${encodeURIComponent(statnNm)}` : "/"}
+          href={trackerUrl}
         >
           <span className="material-symbols-outlined">hub</span>
           <span className="text-[10px] font-bold uppercase tracking-widest mt-1">

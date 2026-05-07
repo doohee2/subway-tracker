@@ -21,14 +21,19 @@ export default function Navigation() {
 
   useEffect(() => {
     // 최근 검색 역 복원
-    const saved = localStorage.getItem("recentStations");
-    if (saved) {
-      try {
-        const stations: string[] = JSON.parse(saved);
-        if (stations.length > 0) {
-          setTrackerHref(`/?station=${encodeURIComponent(stations[0])}`);
-        }
-      } catch (e) { }
+    const lastStation = localStorage.getItem("lastStation");
+    if (lastStation) {
+      setTrackerHref(`/?station=${encodeURIComponent(lastStation)}`);
+    } else {
+      const saved = localStorage.getItem("recentStations");
+      if (saved) {
+        try {
+          const stations: string[] = JSON.parse(saved);
+          if (stations.length > 0) {
+            setTrackerHref(`/?station=${encodeURIComponent(stations[0])}`);
+          }
+        } catch (e) { }
+      }
     }
 
     // 마지막 조회 경로 복원
