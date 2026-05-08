@@ -1,0 +1,19 @@
+---
+description: Subway Tracker 작업 방식과 변경 원칙
+alwaysApply: true
+---
+
+# 작업 방식 규칙
+
+## 작업 전 확인
+- 구현 전 관련 `app`, `components`, `utils`, `types` 파일을 먼저 확인한다.
+- Next.js 동작/규약 이슈가 있으면 `node_modules/next/dist/docs/`를 우선 참고한다.
+
+## 변경 원칙
+- 요청 범위에 맞춰 작고 집중된 수정을 우선한다.
+- 불필요한 대규모 리팩터링, 파일 이동, 네이밍 변경은 피한다.
+- 기존 URL 쿼리 형식 및 `localStorage` 키 계약을 임의로 바꾸지 않는다.
+
+## 검증 원칙
+- 가능하면 수정 범위 기준으로 빠르게 점검하고, 필요 시 `npm run lint`를 실행한다.
+- API/클라이언트 경계, 타입 일관성, 에러 처리 누락 여부를 우선 확인한다.

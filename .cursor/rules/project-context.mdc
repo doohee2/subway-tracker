@@ -1,0 +1,21 @@
+---
+description: Subway Tracker 프로젝트 맥락과 목표
+alwaysApply: true
+---
+
+# 프로젝트 컨텍스트
+
+## 서비스 목적
+- 이 프로젝트는 지하철 실시간 도착 정보와 열차 위치 추적을 제공하는 반응형 웹 앱이다.
+- 핵심 사용자 흐름은 역 검색, 도착 정보 확인, 열차별 경로 추적이다.
+
+## 기술 스택
+- 프레임워크는 Next.js(App Router), React, TypeScript, Tailwind CSS를 사용한다.
+- 실시간 데이터는 `app/api/subway` 및 `app/api/subway/position` 경유로 조회한다.
+
+## 핵심 디렉터리 책임
+- `app`: 라우팅, 페이지, API 라우트
+- `components`: UI 컴포넌트 및 화면 단위 조합
+- `utils`: 역/호선 정규화, 시간 계산 등 도메인 유틸
+- `types`: API 응답/뷰 모델 타입 계약
+- `json`: 역/거리/별칭 정적 기준 데이터
