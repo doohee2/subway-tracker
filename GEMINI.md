@@ -11,7 +11,7 @@
 /subway tracker/
 ├── app/                  # Next.js 14+ App Router 폴더 (페이지 및 라우팅 로직)
 │   ├── alarms/           # 알림 관련 페이지
-│   ├── api/              # API 라우트 (프록시 서버, 서울 지하철 실시간 데이터 조회용)
+│   ├── api/              # API 라우트 (지하철 실시간 데이터 프록시 및 백그라운드 알림/푸시 처리용)
 │   ├── route/            # 경로 추적 관련 페이지
 │   ├── layout.tsx        # 글로벌 레이아웃 (공통 폰트, AlarmManager 주입, 메타데이터 관리)
 │   └── page.tsx          # 메인 페이지 (서버 컴포넌트)
@@ -22,10 +22,12 @@
 │   ├── RouteTrackerClient.tsx # 실시간 열차 위치를 렌더링하는 클라이언트 컴포넌트
 │   └── SearchSection.tsx # 지하철 역 검색 기능
 ├── utils/                # 유틸리티 함수 및 설정값 저장
+│   ├── alarmStorage.ts, push.ts, qstash.ts # 로컬 알람 스토리지, 웹 푸시, QStash 스케줄링 유틸리티
 │   ├── config.ts         # 공통 설정
 │   ├── subwayColors.ts   # 지하철 노선별 고유 색상(헥스코드 등) 정의
 │   └── subwayData.ts     # 지하철 API 연동 혹은 가공을 위한 공통 로직
 ├── types/                # TypeScript 인터페이스 및 타입 정의
+│   ├── alarm.ts          # 알람 및 푸시 구독 관련 데이터 타입
 │   └── subway.ts         # 공통 지하철 데이터 타입
 ├── json/                 # 정적 데이터 (예: stations_nm_alias.json 등 별칭 처리 데이터)
 ├── public/               # 정적 파일 (favicon.ico, apple-icon.png 등)
@@ -62,3 +64,8 @@
 *   `app/layout.tsx`에서 최상단 `<html>` 태그에 `className="dark"`를 적용하여 시스템 기본으로 세련된 **다크 모드**를 지원합니다.
 *   전역 레이아웃에서 하단 Navigation 바나 Modal 창들이 화면에 클리핑되거나 스크롤 시 위치가 틀어지는 문제를 방지하기 위해 Viewport 중심의 Layout(`h-screen`, Flexbox 등)과 고정 위치 Overlay 설계를 채택했습니다.
 *   글로벌 알림 매니저인 `<AlarmManager />`를 레이아웃의 보이지 않는 영역에 배치하여, 애플리케이션 어디에서든 백그라운드 도착 알람 기능을 안전하게 처리하도록 구현했습니다.
+
+### 3.5. 백그라운드 푸시 알림 및 스케줄링 (Web Push & QStash)
+*   사용자가 앱을 종료하거나 백그라운드 상태에 있어도 정해진 시간에 정확히 도착 알람을 받을 수 있도록 **Web Push API**와 **Service Worker**(`public/sw.js` 등) 기반의 푸시 시스템을 도입했습니다.
+*   **Upstash QStash**를 연동하여, `app/api/alarm/reserve` 라우트에서 사용자의 목표 시간에 맞춰 지연(Delay) 발송을 스케줄링하고, 해당 시간에 도달하면 `app/api/push` 라우트를 호출해 실제 푸시 메시지를 전송하는 아키텍처를 구현했습니다.
+*   클라이언트 측 로컬 스토리지(`alarmStorage.ts`)와 연계하여 예약된 알람의 상태와 QStash 메시지 ID를 동기화, 알람 취소 및 목록 관리가 용이하도록 설계되었습니다.

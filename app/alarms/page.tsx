@@ -4,20 +4,16 @@ import { useState, useEffect, useCallback } from "react";
 import Header from "@/components/Header";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { SubwayAlarm } from "@/components/AlarmManager";
+import { SubwayAlarm } from "@/types/alarm";
+import { loadAndNormalizeAlarms, saveAlarms } from "@/utils/alarmStorage";
 
 export default function AlarmsPage() {
-  const [alarms, setAlarms] = useState<SubwayAlarm[]>([]);
+  const [alarms, setAlarms] = useState<SubwayAlarm[]>(() => loadAndNormalizeAlarms());
   const [showPwaPrompt, setShowPwaPrompt] = useState(false);
 
   const loadAlarms = useCallback(() => {
     try {
-      const stored = localStorage.getItem("subway_alarms");
-      if (stored) {
-        setAlarms(JSON.parse(stored));
-      } else {
-        setAlarms([]);
-      }
+      setAlarms(loadAndNormalizeAlarms());
     } catch (e) {
       console.error("Failed to load alarms", e);
     }
@@ -28,16 +24,14 @@ export default function AlarmsPage() {
     const checkPwaStatus = () => {
       const userAgent = window.navigator.userAgent.toLowerCase();
       const isIos = /iphone|ipad|ipod/.test(userAgent);
-      // @ts-ignore - standalone is Apple specific
-      const isStandalone = ('standalone' in window.navigator) && window.navigator.standalone;
+      const navigatorWithStandalone = window.navigator as Navigator & { standalone?: boolean };
+      const isStandalone = Boolean(navigatorWithStandalone.standalone);
 
       if (isIos && !isStandalone) {
         setShowPwaPrompt(true);
       }
     };
     checkPwaStatus();
-
-    loadAlarms();
 
     // Listen for updates from AlarmManager or other tabs
     window.addEventListener("subway_alarms_updated", loadAlarms);
@@ -51,10 +45,24 @@ export default function AlarmsPage() {
     };
   }, [loadAlarms]);
 
-  const handleDelete = (id: string) => {
+  const handleDelete = async (id: string) => {
     try {
-      const newAlarms = alarms.filter(a => a.id !== id);
-      localStorage.setItem("subway_alarms", JSON.stringify(newAlarms));
+      const target = alarms.find((a) => a.id === id);
+
+      if (target?.qstashMessageId) {
+        const res = await fetch("/api/alarm/cancel", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ messageId: target.qstashMessageId }),
+        });
+
+        if (!res.ok) {
+          console.warn("Failed to cancel remote alarm job", await res.text());
+        }
+      }
+
+      const newAlarms = alarms.filter((a) => a.id !== id);
+      saveAlarms(newAlarms);
       setAlarms(newAlarms);
       window.dispatchEvent(new Event("subway_alarms_updated"));
     } catch (e) {
@@ -136,7 +144,7 @@ export default function AlarmsPage() {
                     </div>
 
                     <button
-                      onClick={() => handleDelete(alarm.id)}
+                      onClick={() => void handleDelete(alarm.id)}
                       className="w-10 h-10 rounded-full flex items-center justify-center bg-slate-800 text-slate-400 hover:bg-red-500/20 hover:text-red-400 transition-colors"
                       aria-label="알람 삭제"
                     >
