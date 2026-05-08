@@ -72,7 +72,7 @@ export default function RouteTrackerClient({
       const data = await res.json();
       
       if (data.realtimePositionList) {
-        const train = data.realtimePositionList.find((t: any) => t.trainNo === trainNo);
+        const train = data.realtimePositionList.find((t: { trainNo: string; statnNm: string; trainSttus: string; recptnDt: string }) => t.trainNo === trainNo);
         if (train) {
           setCurrentStationName(train.statnNm);
           setCurrentLocationMsg(train.trainSttus === '0' ? '진입' : train.trainSttus === '1' ? '도착' : '출발');

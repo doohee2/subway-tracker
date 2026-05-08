@@ -51,7 +51,7 @@ export function getStationsForLine(lineName: string, updnLine: string): StationI
   const normalized = normalizeLineName(lineName);
   
   // 해당 호선의 역만 필터링
-  let lineStations = data.filter(s => s.line_num === normalized);
+  const lineStations = data.filter(s => s.line_num === normalized);
   
   // fr_code 기준으로 정렬 (순서 결정)
   // 문자열 비교로 정렬
@@ -91,11 +91,11 @@ export function getStationTimes(lineName: string) {
 export function extractCurrentStation(msg: string): string {
   if (!msg) return '';
   // "성수 도착", "5분 후 (건대입구)", "[성수] 진입" 등의 패턴
-  let match = msg.match(/\((.*?)\)/) || msg.match(/\[(.*?)\]/);
+  const match = msg.match(/\((.*?)\)/) || msg.match(/\[(.*?)\]/);
   if (match) return match[1].replace(/역$/, '');
   
   // "성수 진입", "성수 도착", "성수"
-  let parts = msg.split(' ');
+  const parts = msg.split(' ');
   return parts[0].replace(/역$/, '').replace(/\[|\]/g, '');
 }
 
@@ -126,7 +126,8 @@ export function getStationRealName(searchName: string): string {
   // '역' 제거하고 비교 (alias 데이터에 '역'이 없는 경우가 많음)
   const cleanName = searchName.replace(/역$/, '');
   
-  const match = (aliasesJson as any[]).find(a => a.STATN_ALIAS === cleanName || a.STATN_ALIAS === searchName);
+  const aliases = aliasesJson as { STATN_ALIAS: string; STATN_NM: string }[];
+  const match = aliases.find(a => a.STATN_ALIAS === cleanName || a.STATN_ALIAS === searchName);
   
   if (match && match.STATN_NM) {
     return match.STATN_NM;

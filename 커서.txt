@@ -1,0 +1,24 @@
+현재의 알람 기능을 개선해서, Upstash QStash를 사용하여 지연 호출(Delayed Call) 구조로 재개발할거야. 아래의 구현 사항에 대한 계획을 먼저 세워줘.
+
+[1단계: 환경 설정 및 라이브러리]
+@upstash/qstash, web-push 설치.
+
+npx web-push generate-vapid-keys를 통해 키 쌍 생성 및 .env.local 설정.
+
+[2단계: 서버 사이드 구현]
+/api/alarm/reserve (예약 API): 클라이언트로부터 delay, subscription, payload를 받아 QStash에 지연 호출 예약. 반환된 messageId를 클라이언트에 전달.
+
+/api/push (발송 API): QStash의 서명을 검증한 후, web-push를 사용하여 사용자 기기로 실제 알림 발송.
+
+/api/alarm/cancel (취소 API): 전달받은 messageId를 사용해 QStash 예약 작업 삭제.
+
+[3단계: 클라이언트 사이드 구현]
+PWA 상태 체크: 현재 앱이 standalone 모드(설치됨)인지 확인하는 로직.
+
+분기 처리: * Foreground(앱 켜짐): 기존 Web Notification API 사용.
+
+Background(앱 꺼짐/모바일): 서버 예약 방식(Upstash) 실행.
+
+Local Storage: 알람 정보와 함께 Upstash의 messageId를 매칭하여 저장.
+ 
+
