@@ -8,21 +8,30 @@ export async function POST(request: Request) {
     const { delayMs, subscription, payload } = body;
 
     if (!delayMs || delayMs <= 0) {
-      return NextResponse.json({ ok: false, error: "delayMs must be greater than 0." }, { status: 400 });
+      return NextResponse.json(
+        { ok: false, code: "INVALID_DELAY", error: "delayMs must be greater than 0." },
+        { status: 400 }
+      );
     }
 
     if (!subscription?.endpoint || !subscription?.keys?.auth || !subscription?.keys?.p256dh) {
-      return NextResponse.json({ ok: false, error: "Invalid push subscription." }, { status: 400 });
+      return NextResponse.json(
+        { ok: false, code: "INVALID_PUSH_SUBSCRIPTION", error: "Invalid push subscription." },
+        { status: 400 }
+      );
     }
 
     if (!payload?.alarmId || !payload?.stationName) {
-      return NextResponse.json({ ok: false, error: "Invalid notification payload." }, { status: 400 });
+      return NextResponse.json(
+        { ok: false, code: "INVALID_PAYLOAD", error: "Invalid notification payload." },
+        { status: 400 }
+      );
     }
 
     const pushApiUrl = process.env.QSTASH_PUSH_ENDPOINT_URL;
     if (!pushApiUrl) {
       return NextResponse.json(
-        { ok: false, error: "QSTASH_PUSH_ENDPOINT_URL is not configured." },
+        { ok: false, code: "QSTASH_CONFIG_MISSING", error: "QSTASH_PUSH_ENDPOINT_URL is not configured." },
         { status: 500 }
       );
     }
@@ -46,6 +55,9 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error("Failed to reserve alarm:", error);
-    return NextResponse.json({ ok: false, error: "Failed to reserve alarm." }, { status: 500 });
+    return NextResponse.json(
+      { ok: false, code: "QSTASH_RESERVE_FAILED", error: "Failed to reserve alarm." },
+      { status: 500 }
+    );
   }
 }
