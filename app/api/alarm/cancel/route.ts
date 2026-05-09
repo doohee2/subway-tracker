@@ -8,7 +8,7 @@ export async function POST(request: Request) {
     const { messageId } = body;
 
     if (!messageId) {
-      return NextResponse.json({ ok: false, error: "messageId is required." }, { status: 400 });
+      return NextResponse.json({ ok: false, code: "MESSAGE_ID_REQUIRED", error: "messageId is required." }, { status: 400 });
     }
 
     const client = getQstashClient();
@@ -17,6 +17,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   } catch (error) {
     console.error("Failed to cancel reserved alarm:", error);
-    return NextResponse.json({ ok: false, error: "Failed to cancel reserved alarm." }, { status: 500 });
+    return NextResponse.json(
+      { ok: false, code: "ALARM_CANCEL_FAILED", error: "Failed to cancel reserved alarm." },
+      { status: 500 }
+    );
   }
 }

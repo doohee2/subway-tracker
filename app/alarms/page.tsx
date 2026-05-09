@@ -6,6 +6,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { SubwayAlarm } from "@/types/alarm";
 import { loadAndNormalizeAlarms, saveAlarms } from "@/utils/alarmStorage";
+import { createClientError, extractClientErrorInfo, formatUserErrorMessage } from "@/utils/errorMessage";
 
 export default function AlarmsPage() {
   const [alarms, setAlarms] = useState<SubwayAlarm[]>(() => loadAndNormalizeAlarms());
@@ -57,7 +58,9 @@ export default function AlarmsPage() {
         });
 
         if (!res.ok) {
-          console.warn("Failed to cancel remote alarm job", await res.text());
+          const errorData = (await res.json()) as { code?: string; error?: string };
+          console.warn("Failed to cancel remote alarm job", errorData);
+          throw createClientError(errorData.code ?? "ALARM_CANCEL_FAILED", errorData.error || "Failed to cancel remote alarm.");
         }
       }
 
@@ -67,6 +70,8 @@ export default function AlarmsPage() {
       window.dispatchEvent(new Event("subway_alarms_updated"));
     } catch (e) {
       console.error("Failed to delete alarm", e);
+      const { code, technicalMessage } = extractClientErrorInfo(e, "ALARM_DELETE_FAILED");
+      alert(formatUserErrorMessage("알람 삭제 중 오류가 발생했습니다.", code, technicalMessage));
     }
   };
 

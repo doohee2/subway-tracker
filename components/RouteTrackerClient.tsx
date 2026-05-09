@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import AlarmButton from "@/components/AlarmButton";
 import { hmToSeconds, parseKSTDate, formatKSTTime } from "@/utils/subwayData";
 import { getLineColor, getLineNumberText } from "@/utils/subwayColors";
+import { createClientError, extractClientErrorInfo, formatUserErrorMessage } from "@/utils/errorMessage";
 
 interface Station {
   station_cd: string;
@@ -68,8 +69,10 @@ export default function RouteTrackerClient({
     setIsLoading(true);
     try {
       const res = await fetch(`/api/subway/position?lineName=${encodeURIComponent(lineName)}`);
-      if (!res.ok) throw new Error("Failed to fetch");
       const data = await res.json();
+      if (!res.ok) {
+        throw createClientError(data.code ?? "SUBWAY_POSITION_FETCH_FAILED", data.error ?? "Failed to fetch");
+      }
       
       if (data.realtimePositionList) {
         const train = data.realtimePositionList.find((t: { trainNo: string; statnNm: string; trainSttus: string; recptnDt: string }) => t.trainNo === trainNo);
@@ -95,7 +98,8 @@ export default function RouteTrackerClient({
       }
     } catch (error) {
       console.error(error);
-      alert("데이터를 갱신하는 중 오류가 발생했습니다.");
+      const { code, technicalMessage } = extractClientErrorInfo(error, "SUBWAY_POSITION_FETCH_FAILED");
+      alert(formatUserErrorMessage("데이터를 갱신하는 중 오류가 발생했습니다.", code, technicalMessage));
     } finally {
       setIsLoading(false);
     }

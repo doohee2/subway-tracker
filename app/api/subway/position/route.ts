@@ -7,7 +7,7 @@ export async function GET(request: Request) {
 
   if (!lineName) {
     return NextResponse.json(
-      { error: "lineName parameter is required" },
+      { code: "LINE_NAME_PARAM_REQUIRED", error: "lineName parameter is required" },
       { status: 400 }
     );
   }
@@ -16,7 +16,7 @@ export async function GET(request: Request) {
 
   if (!API_KEY) {
     return NextResponse.json(
-      { error: "Server API Key is not configured" },
+      { code: "SUBWAY_API_KEY_MISSING", error: "Server API Key is not configured" },
       { status: 500 }
     );
   }
@@ -31,7 +31,7 @@ export async function GET(request: Request) {
 
     if (data.errorMessage && data.errorMessage.status !== 200) {
       return NextResponse.json(
-        { error: data.errorMessage.message, details: data },
+        { code: "SUBWAY_POSITION_API_RESPONSE_ERROR", error: data.errorMessage.message, details: data },
         { status: 500 }
       );
     }
@@ -44,7 +44,7 @@ export async function GET(request: Request) {
   } catch (error) {
     console.error("Failed to fetch subway position data:", error);
     return NextResponse.json(
-      { error: "Failed to fetch subway position data" },
+      { code: "SUBWAY_POSITION_FETCH_FAILED", error: "Failed to fetch subway position data" },
       { status: 500 }
     );
   }

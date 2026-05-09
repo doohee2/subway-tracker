@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import AlarmModal from "./AlarmModal";
 import { AlarmErrorCode, AlarmReserveResponse, SubwayAlarm } from "@/types/alarm";
 import { loadAndNormalizeAlarms, saveAlarms } from "@/utils/alarmStorage";
+import { createClientError, extractClientErrorInfo, formatUserErrorMessage } from "@/utils/errorMessage";
 
 interface AlarmButtonProps {
   stationName: string;
@@ -14,13 +15,7 @@ interface AlarmButtonProps {
 
 export default function AlarmButton({ stationName, timeString, arrivalTime, isMissingData }: AlarmButtonProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const showDetailedAlarmError = process.env.NEXT_PUBLIC_SHOW_DETAILED_ALARM_ERROR === "true";
-
-  const createAlarmError = (code: AlarmErrorCode, message: string) => {
-    const error = new Error(message) as Error & { code: AlarmErrorCode };
-    error.code = code;
-    return error;
-  };
+  const createAlarmError = (code: AlarmErrorCode, message: string) => createClientError(code, message);
 
   const getDetailedAlarmErrorMessage = (code?: AlarmErrorCode): string => {
     switch (code) {
@@ -47,19 +42,8 @@ export default function AlarmButton({ stationName, timeString, arrivalTime, isMi
     }
   };
 
-  const formatAlarmErrorMessage = (code: AlarmErrorCode, technicalMessage?: string): string => {
-    const userMessage = getDetailedAlarmErrorMessage(code);
-    if (!showDetailedAlarmError) {
-      return userMessage;
-    }
-
-    const details = [`에러 코드: ${code}`];
-    if (technicalMessage) {
-      details.push(`원인: ${technicalMessage}`);
-    }
-
-    return `${userMessage}\n\n[${details.join(" | ")}]`;
-  };
+  const formatAlarmErrorMessage = (code: string, technicalMessage?: string): string =>
+    formatUserErrorMessage(getDetailedAlarmErrorMessage(code as AlarmErrorCode), code, technicalMessage);
 
   const isStandaloneMode = () => {
     const isDisplayModeStandalone = window.matchMedia("(display-mode: standalone)").matches;
@@ -218,14 +202,7 @@ export default function AlarmButton({ stationName, timeString, arrivalTime, isMi
       );
     } catch (e: unknown) {
       console.error("Failed to set alarm", e);
-      const technicalMessage =
-        typeof e === "object" && e !== null && "message" in e
-          ? String((e as { message?: unknown }).message ?? "")
-          : "";
-      const code =
-        typeof e === "object" && e !== null && "code" in e
-          ? ((e as { code?: AlarmErrorCode }).code ?? "UNKNOWN_ERROR")
-          : "UNKNOWN_ERROR";
+      const { code, technicalMessage } = extractClientErrorInfo(e, "UNKNOWN_ERROR");
       alert(formatAlarmErrorMessage(code, technicalMessage));
     }
   };

@@ -7,7 +7,7 @@ export async function GET(request: Request) {
 
   if (!station) {
     return NextResponse.json(
-      { error: "Station parameter is required" },
+      { code: "STATION_PARAM_REQUIRED", error: "Station parameter is required" },
       { status: 400 }
     );
   }
@@ -21,7 +21,7 @@ export async function GET(request: Request) {
 
   if (!API_KEY) {
     return NextResponse.json(
-      { error: "Server API Key is not configured" },
+      { code: "SUBWAY_API_KEY_MISSING", error: "Server API Key is not configured" },
       { status: 500 }
     );
   }
@@ -36,7 +36,7 @@ export async function GET(request: Request) {
 
     if (data.errorMessage && data.errorMessage.status !== 200) {
       return NextResponse.json(
-        { error: data.errorMessage.message, details: data },
+        { code: "SUBWAY_API_RESPONSE_ERROR", error: data.errorMessage.message, details: data },
         { status: 500 }
       );
     }
@@ -49,7 +49,7 @@ export async function GET(request: Request) {
   } catch (error) {
     console.error("Failed to fetch subway data:", error);
     return NextResponse.json(
-      { error: "Failed to fetch subway data" },
+      { code: "SUBWAY_FETCH_FAILED", error: "Failed to fetch subway data" },
       { status: 500 }
     );
   }

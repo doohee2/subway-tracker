@@ -8,6 +8,7 @@ import SearchSection from "@/components/SearchSection";
 import ArrivalCard from "@/components/ArrivalCard";
 import { ArrivalGroup, RealtimeArrival } from "@/types/subway";
 import { parseKSTDate, formatKSTTime, getStationRealName } from "@/utils/subwayData";
+import { createClientError, extractClientErrorInfo, formatUserErrorMessage } from "@/utils/errorMessage";
 
 export default function Home() {
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
@@ -61,7 +62,7 @@ export default function Home() {
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.error || "도착 정보를 불러오지 못했습니다.");
+        throw createClientError(data.code ?? "SUBWAY_FETCH_FAILED", data.error || "도착 정보를 불러오지 못했습니다.");
       }
 
       if (!data.realtimeArrivalList || data.realtimeArrivalList.length === 0) {
@@ -173,9 +174,13 @@ export default function Home() {
         time: timeStr,
       });
 
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error(err);
-      setStatus({ type: "error", message: err.message });
+      const { code, technicalMessage } = extractClientErrorInfo(err, "SUBWAY_FETCH_FAILED");
+      setStatus({
+        type: "error",
+        message: formatUserErrorMessage("도착 정보를 불러오지 못했습니다.", code, technicalMessage),
+      });
     }
   };
 
