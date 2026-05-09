@@ -59,8 +59,15 @@ export default function AlarmsPage() {
 
         if (!res.ok) {
           const errorData = (await res.json()) as { code?: string; error?: string };
-          console.warn("Failed to cancel remote alarm job", errorData);
-          throw createClientError(errorData.code ?? "ALARM_CANCEL_FAILED", errorData.error || "Failed to cancel remote alarm.");
+          
+          // Special case: Alarm already deleted or processed in QStash
+          if (res.status === 404 && errorData.code === "ALARM_NOT_FOUND") {
+            alert("존재하지 않거나 이미 삭제된 알람입니다.");
+            // Continue to delete from local state
+          } else {
+            console.warn("Failed to cancel remote alarm job", errorData);
+            throw createClientError(errorData.code ?? "ALARM_CANCEL_FAILED", errorData.error || "Failed to cancel remote alarm.");
+          }
         }
       }
 

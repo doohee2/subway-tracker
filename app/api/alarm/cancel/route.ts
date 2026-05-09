@@ -12,7 +12,18 @@ export async function POST(request: Request) {
     }
 
     const client = getQstashClient();
-    await client.messages.delete(messageId);
+    try {
+      await client.messages.cancel(messageId);
+    } catch (error: any) {
+      // If the message is already delivered or deleted, QStash returns 404
+      if (error.status === 404) {
+        return NextResponse.json(
+          { ok: false, code: "ALARM_NOT_FOUND", error: "Alarm not found or already deleted." },
+          { status: 404 }
+        );
+      }
+      throw error; // Re-throw other errors to be caught by the outer catch
+    }
 
     return NextResponse.json({ ok: true });
   } catch (error) {
