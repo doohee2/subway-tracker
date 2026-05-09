@@ -55,6 +55,19 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error("Failed to reserve alarm:", error);
+    const status =
+      typeof error === "object" && error !== null
+        ? ((error as { status?: number; statusCode?: number }).status ??
+          (error as { status?: number; statusCode?: number }).statusCode)
+        : undefined;
+
+    if (status === 401) {
+      return NextResponse.json(
+        { ok: false, code: "QSTASH_AUTH_INVALID", error: "QStash authentication failed." },
+        { status: 500 }
+      );
+    }
+
     return NextResponse.json(
       { ok: false, code: "QSTASH_RESERVE_FAILED", error: "Failed to reserve alarm." },
       { status: 500 }

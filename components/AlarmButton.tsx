@@ -14,6 +14,7 @@ interface AlarmButtonProps {
 
 export default function AlarmButton({ stationName, timeString, arrivalTime, isMissingData }: AlarmButtonProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const showDetailedAlarmError = process.env.NEXT_PUBLIC_SHOW_DETAILED_ALARM_ERROR === "true";
 
   const createAlarmError = (code: AlarmErrorCode, message: string) => {
     const error = new Error(message) as Error & { code: AlarmErrorCode };
@@ -36,12 +37,28 @@ export default function AlarmButton({ stationName, timeString, arrivalTime, isMi
         return "알람 예약 시간이 올바르지 않습니다. 도착 2분 이상 남은 열차에서 다시 시도해 주세요.";
       case "NETWORK_ERROR":
         return "네트워크 연결 문제로 알람 예약 요청에 실패했습니다. 인터넷 연결 상태를 확인한 뒤 다시 시도해 주세요.";
+      case "QSTASH_AUTH_INVALID":
+        return "서버 알람 인증에 실패했습니다. 운영자에게 문의해 주세요.";
       case "QSTASH_CONFIG_MISSING":
       case "QSTASH_RESERVE_FAILED":
         return "서버 예약 알람 처리 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.";
       default:
         return "알람 설정 중 알 수 없는 오류가 발생했습니다. 앱을 새로고침한 뒤 다시 시도해 주세요.";
     }
+  };
+
+  const formatAlarmErrorMessage = (code: AlarmErrorCode, technicalMessage?: string): string => {
+    const userMessage = getDetailedAlarmErrorMessage(code);
+    if (!showDetailedAlarmError) {
+      return userMessage;
+    }
+
+    const details = [`에러 코드: ${code}`];
+    if (technicalMessage) {
+      details.push(`원인: ${technicalMessage}`);
+    }
+
+    return `${userMessage}\n\n[${details.join(" | ")}]`;
   };
 
   const isStandaloneMode = () => {
@@ -119,7 +136,7 @@ export default function AlarmButton({ stationName, timeString, arrivalTime, isMi
     setIsModalOpen(false);
 
     if (!("Notification" in window)) {
-      alert(getDetailedAlarmErrorMessage("NOTIFICATION_UNSUPPORTED"));
+      alert(formatAlarmErrorMessage("NOTIFICATION_UNSUPPORTED"));
       return;
     }
 
@@ -129,7 +146,7 @@ export default function AlarmButton({ stationName, timeString, arrivalTime, isMi
     }
 
     if (permission !== "granted") {
-      alert(getDetailedAlarmErrorMessage("NOTIFICATION_PERMISSION_DENIED"));
+      alert(formatAlarmErrorMessage("NOTIFICATION_PERMISSION_DENIED"));
       return;
     }
 
@@ -201,11 +218,15 @@ export default function AlarmButton({ stationName, timeString, arrivalTime, isMi
       );
     } catch (e: unknown) {
       console.error("Failed to set alarm", e);
+      const technicalMessage =
+        typeof e === "object" && e !== null && "message" in e
+          ? String((e as { message?: unknown }).message ?? "")
+          : "";
       const code =
         typeof e === "object" && e !== null && "code" in e
           ? ((e as { code?: AlarmErrorCode }).code ?? "UNKNOWN_ERROR")
           : "UNKNOWN_ERROR";
-      alert(getDetailedAlarmErrorMessage(code));
+      alert(formatAlarmErrorMessage(code, technicalMessage));
     }
   };
 
