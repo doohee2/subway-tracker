@@ -117,6 +117,7 @@ export default function RouteTrackerClient({
       bstatnNm,
       subwayId: routeParams.subwayId,
       statnNm: routeParams.statnNm,
+      timestamp: Date.now(),
     };
     localStorage.setItem("lastRoute", JSON.stringify(lastRoute));
 

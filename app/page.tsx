@@ -59,6 +59,10 @@ export default function Home() {
       } catch (e) { }
     }
 
+    // URL 파라미터 확인
+    const params = new URLSearchParams(window.location.search);
+    const stationParam = params.get("station");
+
     // 로컬 스토리지에서 최근 검색어 불러오기
     const saved = localStorage.getItem("recentStations");
     if (saved) {
@@ -67,14 +71,17 @@ export default function Home() {
         // 최근 검색어와 즐겨찾기 역을 동기화하여 상태 복원
         const updated = sanitizeRecentSearches(loadedRecent, loadedPinned);
         setRecentSearches(updated);
+        
+        // 파라미터가 없다면, 최근 검색어의 가장 첫 번째 항목으로 검색
+        if (!stationParam && loadedRecent.length > 0) {
+          setInitialSearchValue(loadedRecent[0]);
+          handleSearch(loadedRecent[0]);
+        }
       } catch (e) { }
     } else if (loadedPinned.length > 0) {
       setRecentSearches(loadedPinned);
     }
 
-    // URL 파라미터로 station이 넘어오면 자동 검색
-    const params = new URLSearchParams(window.location.search);
-    const stationParam = params.get("station");
     if (stationParam) {
       setInitialSearchValue(stationParam);
       handleSearch(stationParam);
@@ -138,7 +145,6 @@ export default function Home() {
 
       // 검색 성공: 로컬 스토리지 업데이트
       saveRecentSearch(realStationName);
-      localStorage.setItem("lastStation", realStationName);
 
       // 데이터 그룹화 로직
       const groupsMap = new Map<string, ArrivalGroup>();

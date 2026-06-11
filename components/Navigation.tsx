@@ -12,6 +12,7 @@ interface LastRoute {
   bstatnNm: string;
   subwayId: string;
   statnNm: string;
+  timestamp?: number;
 }
 
 export default function Navigation() {
@@ -21,19 +22,14 @@ export default function Navigation() {
 
   useEffect(() => {
     // 최근 검색 역 복원
-    const lastStation = localStorage.getItem("lastStation");
-    if (lastStation) {
-      setTrackerHref(`/?station=${encodeURIComponent(lastStation)}`);
-    } else {
-      const saved = localStorage.getItem("recentStations");
-      if (saved) {
-        try {
-          const stations: string[] = JSON.parse(saved);
-          if (stations.length > 0) {
-            setTrackerHref(`/?station=${encodeURIComponent(stations[0])}`);
-          }
-        } catch (e) { }
-      }
+    const saved = localStorage.getItem("recentStations");
+    if (saved) {
+      try {
+        const stations: string[] = JSON.parse(saved);
+        if (stations.length > 0) {
+          setTrackerHref(`/?station=${encodeURIComponent(stations[0])}`);
+        }
+      } catch (e) { }
     }
 
     // 마지막 조회 경로 복원
@@ -41,16 +37,22 @@ export default function Navigation() {
     if (savedRoute) {
       try {
         const r: LastRoute = JSON.parse(savedRoute);
-        const params = new URLSearchParams({
-          lineName: r.lineName,
-          destination: r.destination,
-          currentLocationMsg: r.currentLocationMsg,
-          updnLine: r.updnLine,
-          bstatnNm: r.bstatnNm,
-          subwayId: r.subwayId,
-          statnNm: r.statnNm,
-        });
-        setRouteHref(`/route/${encodeURIComponent(r.trainNo)}?${params.toString()}`);
+        const now = Date.now();
+        if (r.timestamp && now - r.timestamp > 30 * 60 * 1000) {
+          // 30분 이상 경과 시 초기화
+          localStorage.removeItem("lastRoute");
+        } else {
+          const params = new URLSearchParams({
+            lineName: r.lineName,
+            destination: r.destination,
+            currentLocationMsg: r.currentLocationMsg,
+            updnLine: r.updnLine,
+            bstatnNm: r.bstatnNm,
+            subwayId: r.subwayId,
+            statnNm: r.statnNm,
+          });
+          setRouteHref(`/route/${encodeURIComponent(r.trainNo)}?${params.toString()}`);
+        }
       } catch (e) { }
     }
   }, []);
