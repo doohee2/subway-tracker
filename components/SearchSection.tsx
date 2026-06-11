@@ -4,6 +4,8 @@ interface SearchSectionProps {
   onSearch: (station: string) => void;
   recentSearches: string[];
   onRecentClick: (station: string) => void;
+  pinnedStations: string[];
+  onPinToggle: (station: string) => void;
   initialValue?: string;
   status: {
     type: "idle" | "loading" | "success" | "error";
@@ -16,6 +18,8 @@ export default function SearchSection({
   onSearch,
   recentSearches,
   onRecentClick,
+  pinnedStations,
+  onPinToggle,
   initialValue,
   status,
 }: SearchSectionProps) {
@@ -55,16 +59,43 @@ export default function SearchSection({
       </div>
       
       {recentSearches.length > 0 && (
-        <div className="flex flex-wrap gap-2">
-          {recentSearches.map((station) => (
-            <button
-              key={station}
-              onClick={() => onRecentClick(station)}
-              className="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-body-sm text-body-sm hover:bg-surface-container-high transition-colors cursor-pointer"
-            >
-              {station}
-            </button>
-          ))}
+        <div className="flex flex-wrap gap-2 items-center">
+          {recentSearches.map((station) => {
+            const isPinned = pinnedStations.includes(station);
+            return (
+              <div key={station} className="flex items-center gap-1 bg-transparent">
+                <button
+                  onClick={() => onPinToggle(station)}
+                  className={`flex items-center justify-center rounded-full transition-all cursor-pointer border ${
+                    isPinned
+                      ? "bg-primary/20 text-primary border-primary/30"
+                      : "bg-surface-container/50 text-on-surface-variant/40 hover:bg-surface-container hover:text-on-surface-variant/70 border-transparent"
+                  }`}
+                  style={{
+                    height: "28px",
+                    width: "36px",
+                  }}
+                  title={isPinned ? "즐겨찾기 해제" : "즐겨찾기 등록"}
+                >
+                  <span
+                    className="material-symbols-outlined text-[16px] transition-transform duration-200"
+                    style={{
+                      fontVariationSettings: isPinned ? "'FILL' 1" : "'FILL' 0",
+                      transform: isPinned ? "rotate(0deg)" : "rotate(-45deg)",
+                    }}
+                  >
+                    push_pin
+                  </span>
+                </button>
+                <button
+                  onClick={() => onRecentClick(station)}
+                  className="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-body-sm text-body-sm hover:bg-surface-container-high transition-colors cursor-pointer flex items-center justify-center h-[28px]"
+                >
+                  {station}
+                </button>
+              </div>
+            );
+          })}
         </div>
       )}
 

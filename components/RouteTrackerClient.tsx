@@ -134,7 +134,8 @@ export default function RouteTrackerClient({
   const currentStationInfo = stations[currentIndex] || { station_nm: currentStationName };
 
   let endIndex = stations.length;
-  if (bstatnNm) {
+  // 2호선(순환선)의 경우 종점 자르기 로직을 적용하지 않음
+  if (bstatnNm && !lineName.includes('2호선') && !lineName.includes('02호선')) {
     const bIndex = stations.findIndex(s => s.station_nm.includes(bstatnNm) || bstatnNm.includes(s.station_nm));
     if (bIndex > currentIndex) {
       endIndex = bIndex + 1;

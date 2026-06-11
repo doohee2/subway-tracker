@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Header from "@/components/Header";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -10,8 +10,29 @@ import { ArrivalGroup, RealtimeArrival } from "@/types/subway";
 import { parseKSTDate, formatKSTTime, getStationRealName } from "@/utils/subwayData";
 import { createClientError, extractClientErrorInfo, formatUserErrorMessage } from "@/utils/errorMessage";
 
+// 즐겨찾기 역과 최근 검색어를 결합하여 정리하는 헬퍼 함수
+const sanitizeRecentSearches = (searches: string[], pinned: string[]) => {
+  const pinnedSet = new Set(pinned);
+  
+  // 모든 즐겨찾기 역이 최근 검색어 목록에 들어가도록 병합
+  const combined = [...searches];
+  pinned.forEach(station => {
+    if (!combined.includes(station)) {
+      combined.push(station);
+    }
+  });
+
+  // 즐겨찾기인 항목과 아닌 항목 분리
+  const pinnedItems = combined.filter(station => pinnedSet.has(station));
+  const unpinnedItems = combined.filter(station => !pinnedSet.has(station)).slice(0, 5);
+
+  // 즐겨찾기 항목이 항상 앞에 오도록 병합
+  return [...pinnedItems, ...unpinnedItems];
+};
+
 export default function Home() {
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
+  const [pinnedStations, setPinnedStations] = useState<string[]>([]);
   const [arrivalGroups, setArrivalGroups] = useState<ArrivalGroup[]>([]);
   const [initialSearchValue, setInitialSearchValue] = useState("");
   const [status, setStatus] = useState<{
@@ -20,13 +41,35 @@ export default function Home() {
     time?: string;
   }>({ type: "idle", message: "" });
 
+  const pinnedRef = useRef<string[]>([]);
+
   useEffect(() => {
+    pinnedRef.current = pinnedStations;
+  }, [pinnedStations]);
+
+  useEffect(() => {
+    // 로컬 스토리지에서 즐겨찾기 역 불러오기
+    let loadedPinned: string[] = [];
+    const savedPinned = localStorage.getItem("pinnedStations");
+    if (savedPinned) {
+      try {
+        loadedPinned = JSON.parse(savedPinned);
+        setPinnedStations(loadedPinned);
+        pinnedRef.current = loadedPinned;
+      } catch (e) { }
+    }
+
     // 로컬 스토리지에서 최근 검색어 불러오기
     const saved = localStorage.getItem("recentStations");
     if (saved) {
       try {
-        setRecentSearches(JSON.parse(saved));
+        const loadedRecent: string[] = JSON.parse(saved);
+        // 최근 검색어와 즐겨찾기 역을 동기화하여 상태 복원
+        const updated = sanitizeRecentSearches(loadedRecent, loadedPinned);
+        setRecentSearches(updated);
       } catch (e) { }
+    } else if (loadedPinned.length > 0) {
+      setRecentSearches(loadedPinned);
     }
 
     // URL 파라미터로 station이 넘어오면 자동 검색
@@ -42,9 +85,29 @@ export default function Home() {
   const saveRecentSearch = (station: string) => {
     setRecentSearches((prev) => {
       const filtered = prev.filter((s) => s !== station);
-      const updated = [station, ...filtered].slice(0, 5); // 최근 5개 유지
+      const withNew = [station, ...filtered];
+      const updated = sanitizeRecentSearches(withNew, pinnedRef.current);
       localStorage.setItem("recentStations", JSON.stringify(updated));
       return updated;
+    });
+  };
+
+  const handlePinToggle = (station: string) => {
+    setPinnedStations((prevPinned) => {
+      const isPinned = prevPinned.includes(station);
+      const newPinned = isPinned
+        ? prevPinned.filter((s) => s !== station)
+        : [...prevPinned, station];
+      
+      localStorage.setItem("pinnedStations", JSON.stringify(newPinned));
+
+      setRecentSearches((prevRecent) => {
+        const updatedRecent = sanitizeRecentSearches(prevRecent, newPinned);
+        localStorage.setItem("recentStations", JSON.stringify(updatedRecent));
+        return updatedRecent;
+      });
+
+      return newPinned;
     });
   };
 
@@ -194,6 +257,8 @@ export default function Home() {
           <SearchSection
             onSearch={handleSearch}
             recentSearches={recentSearches}
+            pinnedStations={pinnedStations}
+            onPinToggle={handlePinToggle}
             onRecentClick={(station) => {
               setInitialSearchValue(station);
               handleSearch(station);
