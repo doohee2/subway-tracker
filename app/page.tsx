@@ -11,27 +11,32 @@ import { parseKSTDate, formatKSTTime, getStationRealName } from "@/utils/subwayD
 import { createClientError, extractClientErrorInfo, formatUserErrorMessage } from "@/utils/errorMessage";
 
 // 즐겨찾기 역과 최근 검색어를 결합하여 정리하는 헬퍼 함수
-const sanitizeRecentSearches = (searches: string[], pinned: string[]) => {
+export interface RecentStation {
+  name: string;
+  timestamp: number;
+}
+
+const sanitizeRecentSearches = (searches: RecentStation[], pinned: string[]) => {
   const pinnedSet = new Set(pinned);
   
   // 모든 즐겨찾기 역이 최근 검색어 목록에 들어가도록 병합
   const combined = [...searches];
   pinned.forEach(station => {
-    if (!combined.includes(station)) {
-      combined.push(station);
+    if (!combined.find(s => s.name === station)) {
+      combined.push({ name: station, timestamp: 0 });
     }
   });
 
   // 즐겨찾기인 항목과 아닌 항목 분리
-  const pinnedItems = combined.filter(station => pinnedSet.has(station));
-  const unpinnedItems = combined.filter(station => !pinnedSet.has(station)).slice(0, 5);
+  const pinnedItems = combined.filter(s => pinnedSet.has(s.name));
+  const unpinnedItems = combined.filter(s => !pinnedSet.has(s.name)).slice(0, 5);
 
   // 즐겨찾기 항목이 항상 앞에 오도록 병합
   return [...pinnedItems, ...unpinnedItems];
 };
 
 export default function Home() {
-  const [recentSearches, setRecentSearches] = useState<string[]>([]);
+  const [recentSearches, setRecentSearches] = useState<RecentStation[]>([]);
   const [pinnedStations, setPinnedStations] = useState<string[]>([]);
   const [arrivalGroups, setArrivalGroups] = useState<ArrivalGroup[]>([]);
   const [initialSearchValue, setInitialSearchValue] = useState("");
@@ -67,19 +72,38 @@ export default function Home() {
     const saved = localStorage.getItem("recentStations");
     if (saved) {
       try {
-        const loadedRecent: string[] = JSON.parse(saved);
+        const parsed = JSON.parse(saved);
+        let loadedRecent: RecentStation[] = [];
+        
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          if (typeof parsed[0] === 'string') {
+            // 기존 string[] 형태의 마이그레이션
+            loadedRecent = parsed.map((name: string) => ({ name, timestamp: Date.now() }));
+          } else {
+            loadedRecent = parsed;
+          }
+        }
+
         // 최근 검색어와 즐겨찾기 역을 동기화하여 상태 복원
         const updated = sanitizeRecentSearches(loadedRecent, loadedPinned);
         setRecentSearches(updated);
         
-        // 파라미터가 없다면, 최근 검색어의 가장 첫 번째 항목으로 검색
-        if (!stationParam && loadedRecent.length > 0) {
-          setInitialSearchValue(loadedRecent[0]);
-          handleSearch(loadedRecent[0]);
+        // 파라미터가 없다면, 최근 검색어 중에 가장 최근 시간으로 검색
+        if (!stationParam && updated.length > 0) {
+          const mostRecent = updated.reduce((prev, curr) => (prev.timestamp > curr.timestamp ? prev : curr));
+          const targetStation = mostRecent && mostRecent.timestamp > 0 ? mostRecent.name : updated[0].name;
+          setInitialSearchValue(targetStation);
+          handleSearch(targetStation);
         }
       } catch (e) { }
     } else if (loadedPinned.length > 0) {
-      setRecentSearches(loadedPinned);
+      const initialRecent = loadedPinned.map(name => ({ name, timestamp: 0 }));
+      setRecentSearches(initialRecent);
+      
+      if (!stationParam && loadedPinned.length > 0) {
+        setInitialSearchValue(loadedPinned[0]);
+        handleSearch(loadedPinned[0]);
+      }
     }
 
     if (stationParam) {
@@ -91,8 +115,8 @@ export default function Home() {
 
   const saveRecentSearch = (station: string) => {
     setRecentSearches((prev) => {
-      const filtered = prev.filter((s) => s !== station);
-      const withNew = [station, ...filtered];
+      const filtered = prev.filter((s) => s.name !== station);
+      const withNew = [{ name: station, timestamp: Date.now() }, ...filtered];
       const updated = sanitizeRecentSearches(withNew, pinnedRef.current);
       localStorage.setItem("recentStations", JSON.stringify(updated));
       return updated;
@@ -262,7 +286,7 @@ export default function Home() {
         <div className="max-w-container-max mx-auto w-full p-4 md:p-lg flex flex-col gap-md min-h-[calc(100vh-4rem)]">
           <SearchSection
             onSearch={handleSearch}
-            recentSearches={recentSearches}
+            recentSearches={recentSearches.map(s => s.name)}
             pinnedStations={pinnedStations}
             onPinToggle={handlePinToggle}
             onRecentClick={(station) => {

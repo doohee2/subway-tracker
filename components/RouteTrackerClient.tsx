@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import AlarmButton from "@/components/AlarmButton";
 import { hmToSeconds, parseKSTDate, formatKSTTime } from "@/utils/subwayData";
 import { getLineColor, getLineNumberText } from "@/utils/subwayColors";
@@ -217,7 +218,9 @@ export default function RouteTrackerClient({
                 <div className="w-2 h-2 rounded-full bg-slate-500"></div>
               </div>
               <div className="flex-1 flex items-center justify-between border-b border-slate-800/50 pb-4">
-                <span className="text-lg font-medium text-slate-400">{prevStation.station_nm}역</span>
+                <Link href={`/?station=${encodeURIComponent(prevStation.station_nm)}`} className="text-lg font-medium text-slate-400 hover:text-indigo-400 transition-colors">
+                  {prevStation.station_nm}역
+                </Link>
                 <span className="px-4 py-1.5 rounded-lg bg-slate-800 text-slate-500 text-sm font-bold">지남</span>
               </div>
             </div>
@@ -229,7 +232,9 @@ export default function RouteTrackerClient({
               <span className="material-symbols-outlined text-white text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>train</span>
             </div>
             <div className="flex-1 flex items-center justify-between border-b border-indigo-900/30 pb-4 bg-indigo-900/10 rounded-r-xl px-4 -mx-4">
-              <span className="text-xl font-bold text-white">{currentStationInfo.station_nm}역</span>
+              <Link href={`/?station=${encodeURIComponent(currentStationInfo.station_nm)}`} className="text-xl font-bold text-white hover:text-indigo-300 transition-colors">
+                {currentStationInfo.station_nm}역
+              </Link>
               <span className="px-4 py-1.5 rounded-lg bg-indigo-600 text-white text-sm font-bold animate-pulse">
                 {currentLocationMsg === '0' || currentLocationMsg === '진입' ? '진입' : currentLocationMsg === '1' || currentLocationMsg === '도착' ? '도착' : '출발'}
               </span>
@@ -253,7 +258,9 @@ export default function RouteTrackerClient({
                   <div className="w-2 h-2 rounded-full bg-indigo-400"></div>
                 </div>
                 <div className="flex-1 flex items-center justify-between border-b border-slate-800/50 pb-4">
-                  <span className="text-lg font-medium text-slate-200">{station.station_nm}역</span>
+                  <Link href={`/?station=${encodeURIComponent(station.station_nm)}`} className="text-lg font-medium text-slate-200 hover:text-indigo-400 transition-colors">
+                    {station.station_nm}역
+                  </Link>
                   <AlarmButton
                     stationName={station.station_nm}
                     timeString={timeString}

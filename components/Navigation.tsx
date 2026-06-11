@@ -25,9 +25,19 @@ export default function Navigation() {
     const saved = localStorage.getItem("recentStations");
     if (saved) {
       try {
-        const stations: string[] = JSON.parse(saved);
-        if (stations.length > 0) {
-          setTrackerHref(`/?station=${encodeURIComponent(stations[0])}`);
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          let targetStation = "";
+          if (typeof parsed[0] === "string") {
+            targetStation = parsed[0];
+          } else {
+            // Find the most recent
+            const mostRecent = parsed.reduce((prev: any, curr: any) => (prev.timestamp > curr.timestamp ? prev : curr));
+            targetStation = mostRecent && mostRecent.timestamp > 0 ? mostRecent.name : parsed[0].name;
+          }
+          if (targetStation) {
+            setTrackerHref(`/?station=${encodeURIComponent(targetStation)}`);
+          }
         }
       } catch (e) { }
     }
