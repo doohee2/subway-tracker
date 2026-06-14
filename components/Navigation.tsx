@@ -2,6 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import {
+  loadPinnedStations,
+  loadRecentStations,
+  normalizeStationStorage,
+  getMostRecentStation,
+} from "@/utils/stationHistory";
 
 interface LastRoute {
   trainNo: string;
@@ -21,25 +27,12 @@ export default function Navigation() {
   const pathname = usePathname();
 
   useEffect(() => {
-    // 최근 검색 역 복원
-    const saved = localStorage.getItem("recentStations");
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          let targetStation = "";
-          if (typeof parsed[0] === "string") {
-            targetStation = parsed[0];
-          } else {
-            // Find the most recent
-            const mostRecent = parsed.reduce((prev: any, curr: any) => (prev.timestamp > curr.timestamp ? prev : curr));
-            targetStation = mostRecent && mostRecent.timestamp > 0 ? mostRecent.name : parsed[0].name;
-          }
-          if (targetStation) {
-            setTrackerHref(`/?station=${encodeURIComponent(targetStation)}`);
-          }
-        }
-      } catch (e) { }
+    const loadedPinned = loadPinnedStations();
+    const loadedRecent = loadRecentStations();
+    const { recent, pinned } = normalizeStationStorage(loadedRecent, loadedPinned);
+    const mostRecent = getMostRecentStation(recent, pinned);
+    if (mostRecent && mostRecent.timestamp > 0) {
+      setTrackerHref(`/?station=${encodeURIComponent(mostRecent.name)}`);
     }
 
     // 마지막 조회 경로 복원

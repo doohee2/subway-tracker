@@ -9,35 +9,22 @@ import ArrivalCard from "@/components/ArrivalCard";
 import { ArrivalGroup, RealtimeArrival } from "@/types/subway";
 import { parseKSTDate, formatKSTTime, getStationRealName } from "@/utils/subwayData";
 import { createClientError, extractClientErrorInfo, formatUserErrorMessage } from "@/utils/errorMessage";
-
-// 즐겨찾기 역과 최근 검색어를 결합하여 정리하는 헬퍼 함수
-export interface RecentStation {
-  name: string;
-  timestamp: number;
-}
-
-const sanitizeRecentSearches = (searches: RecentStation[], pinned: string[]) => {
-  const pinnedSet = new Set(pinned);
-  
-  // 모든 즐겨찾기 역이 최근 검색어 목록에 들어가도록 병합
-  const combined = [...searches];
-  pinned.forEach(station => {
-    if (!combined.find(s => s.name === station)) {
-      combined.push({ name: station, timestamp: 0 });
-    }
-  });
-
-  // 즐겨찾기인 항목과 아닌 항목 분리
-  const pinnedItems = combined.filter(s => pinnedSet.has(s.name));
-  const unpinnedItems = combined.filter(s => !pinnedSet.has(s.name)).slice(0, 5);
-
-  // 즐겨찾기 항목이 항상 앞에 오도록 병합
-  return [...pinnedItems, ...unpinnedItems];
-};
+import {
+  StationRecord,
+  loadPinnedStations,
+  loadRecentStations,
+  savePinnedStations,
+  saveRecentStations,
+  normalizeStationStorage,
+  getMostRecentStation,
+  getOrderedStationButtons,
+  recordSearch,
+  togglePin,
+} from "@/utils/stationHistory";
 
 export default function Home() {
-  const [recentSearches, setRecentSearches] = useState<RecentStation[]>([]);
-  const [pinnedStations, setPinnedStations] = useState<string[]>([]);
+  const [recentSearches, setRecentSearches] = useState<StationRecord[]>([]);
+  const [pinnedStations, setPinnedStations] = useState<StationRecord[]>([]);
   const [arrivalGroups, setArrivalGroups] = useState<ArrivalGroup[]>([]);
   const [initialSearchValue, setInitialSearchValue] = useState("");
   const [status, setStatus] = useState<{
@@ -46,106 +33,40 @@ export default function Home() {
     time?: string;
   }>({ type: "idle", message: "" });
 
-  const pinnedRef = useRef<string[]>([]);
+  const recentRef = useRef<StationRecord[]>([]);
+  const pinnedRef = useRef<StationRecord[]>([]);
+
+  useEffect(() => {
+    recentRef.current = recentSearches;
+  }, [recentSearches]);
 
   useEffect(() => {
     pinnedRef.current = pinnedStations;
   }, [pinnedStations]);
 
-  useEffect(() => {
-    // 로컬 스토리지에서 즐겨찾기 역 불러오기
-    let loadedPinned: string[] = [];
-    const savedPinned = localStorage.getItem("pinnedStations");
-    if (savedPinned) {
-      try {
-        loadedPinned = JSON.parse(savedPinned);
-        setPinnedStations(loadedPinned);
-        pinnedRef.current = loadedPinned;
-      } catch (e) { }
-    }
-
-    // URL 파라미터 확인
-    const params = new URLSearchParams(window.location.search);
-    const stationParam = params.get("station");
-
-    // 로컬 스토리지에서 최근 검색어 불러오기
-    const saved = localStorage.getItem("recentStations");
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        let loadedRecent: RecentStation[] = [];
-        
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          if (typeof parsed[0] === 'string') {
-            // 기존 string[] 형태의 마이그레이션
-            loadedRecent = parsed.map((name: string) => ({ name, timestamp: Date.now() }));
-          } else {
-            loadedRecent = parsed;
-          }
-        }
-
-        // 최근 검색어와 즐겨찾기 역을 동기화하여 상태 복원
-        const updated = sanitizeRecentSearches(loadedRecent, loadedPinned);
-        setRecentSearches(updated);
-        
-        // 파라미터가 없다면, 최근 검색어 중에 가장 최근 시간으로 검색
-        if (!stationParam && updated.length > 0) {
-          const mostRecent = updated.reduce((prev, curr) => (prev.timestamp > curr.timestamp ? prev : curr));
-          const targetStation = mostRecent && mostRecent.timestamp > 0 ? mostRecent.name : updated[0].name;
-          setInitialSearchValue(targetStation);
-          handleSearch(targetStation);
-        }
-      } catch (e) { }
-    } else if (loadedPinned.length > 0) {
-      const initialRecent = loadedPinned.map(name => ({ name, timestamp: 0 }));
-      setRecentSearches(initialRecent);
-      
-      if (!stationParam && loadedPinned.length > 0) {
-        setInitialSearchValue(loadedPinned[0]);
-        handleSearch(loadedPinned[0]);
-      }
-    }
-
-    if (stationParam) {
-      setInitialSearchValue(stationParam);
-      handleSearch(stationParam);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const saveRecentSearch = (station: string) => {
-    setRecentSearches((prev) => {
-      const filtered = prev.filter((s) => s.name !== station);
-      const withNew = [{ name: station, timestamp: Date.now() }, ...filtered];
-      const updated = sanitizeRecentSearches(withNew, pinnedRef.current);
-      localStorage.setItem("recentStations", JSON.stringify(updated));
-      return updated;
-    });
+    const { recent, pinned } = recordSearch(station, recentRef.current, pinnedRef.current);
+    setRecentSearches(recent);
+    setPinnedStations(pinned);
+    recentRef.current = recent;
+    pinnedRef.current = pinned;
+    saveRecentStations(recent);
+    savePinnedStations(pinned);
   };
 
   const handlePinToggle = (station: string) => {
-    setPinnedStations((prevPinned) => {
-      const isPinned = prevPinned.includes(station);
-      const newPinned = isPinned
-        ? prevPinned.filter((s) => s !== station)
-        : [...prevPinned, station];
-      
-      localStorage.setItem("pinnedStations", JSON.stringify(newPinned));
-
-      setRecentSearches((prevRecent) => {
-        const updatedRecent = sanitizeRecentSearches(prevRecent, newPinned);
-        localStorage.setItem("recentStations", JSON.stringify(updatedRecent));
-        return updatedRecent;
-      });
-
-      return newPinned;
-    });
+    const { recent, pinned } = togglePin(station, recentRef.current, pinnedRef.current);
+    setRecentSearches(recent);
+    setPinnedStations(pinned);
+    recentRef.current = recent;
+    pinnedRef.current = pinned;
+    saveRecentStations(recent);
+    savePinnedStations(pinned);
   };
 
   const handleSearch = async (station: string) => {
     if (!station) return;
 
-    // 별칭 처리 (예: '서울' -> '서울역')
     const realStationName = getStationRealName(station);
 
     setStatus({ type: "loading", message: "조회 중입니다..." });
@@ -167,19 +88,14 @@ export default function Home() {
         return;
       }
 
-      // 검색 성공: 로컬 스토리지 업데이트
       saveRecentSearch(realStationName);
 
-      // 데이터 그룹화 로직
       const groupsMap = new Map<string, ArrivalGroup>();
 
       data.realtimeArrivalList.forEach((item: RealtimeArrival) => {
-        // 도착지 방면과 호선으로 그룹화 키 생성 (예: 2호선_성수 - 다음: 건대입구)
-        // trainLineNm은 보통 "성수행 - 건대입구방면" 형태이므로 이를 사용
         const groupKey = `${item.subwayId}_${item.updnLine}_${item.trainLineNm}`;
 
         if (!groupsMap.has(groupKey)) {
-          // subwayId에 따른 호선명 변환 로직 (간단히 매핑)
           let lineName = item.subwayId;
           const lineIdMap: Record<string, string> = {
             "1001": "1호선", "1002": "2호선", "1003": "3호선", "1004": "4호선",
@@ -193,7 +109,7 @@ export default function Home() {
 
           groupsMap.set(groupKey, {
             lineName,
-            lineNumber: lineName, // getLineNumberText 헬퍼에서 처리
+            lineNumber: lineName,
             destination: item.trainLineNm,
             arrivals: [],
           });
@@ -201,10 +117,7 @@ export default function Home() {
 
         const group = groupsMap.get(groupKey)!;
 
-        // 한 카드에 최대 3개까지만
         if (group.arrivals.length < 3) {
-          // 메시지 정제
-          // arvlMsg2: 진입, 도착, 2분 30초 후 등
           let estTime = item.arvlMsg2;
           let isUrgent = false;
 
@@ -212,7 +125,6 @@ export default function Home() {
             isUrgent = true;
           }
 
-          // 도착 시각 계산
           let calculatedArrivalTime = "";
           if (item.barvlDt && item.barvlDt !== "0") {
             try {
@@ -241,13 +153,10 @@ export default function Home() {
       });
 
       const parsedGroups = Array.from(groupsMap.values());
-
-      // 호선명 오름차순 정렬 등 정렬 로직 추가 가능
       parsedGroups.sort((a, b) => a.lineName.localeCompare(b.lineName));
 
       setArrivalGroups(parsedGroups);
 
-      // recptnDt 기반으로 조회 시간 표시
       let timeStr = "조회 완료";
       if (data.realtimeArrivalList.length > 0) {
         try {
@@ -277,6 +186,37 @@ export default function Home() {
     }
   };
 
+  useEffect(() => {
+    const loadedPinned = loadPinnedStations();
+    const loadedRecent = loadRecentStations();
+    const { recent, pinned } = normalizeStationStorage(loadedRecent, loadedPinned);
+
+    setRecentSearches(recent);
+    setPinnedStations(pinned);
+    recentRef.current = recent;
+    pinnedRef.current = pinned;
+    saveRecentStations(recent);
+    savePinnedStations(pinned);
+
+    const params = new URLSearchParams(window.location.search);
+    const stationParam = params.get("station");
+
+    if (stationParam) {
+      setInitialSearchValue(stationParam);
+      handleSearch(stationParam);
+    } else {
+      const mostRecent = getMostRecentStation(recent, pinned);
+      if (mostRecent && mostRecent.timestamp > 0) {
+        setInitialSearchValue(mostRecent.name);
+        handleSearch(mostRecent.name);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const orderedStations = getOrderedStationButtons(recentSearches, pinnedStations);
+  const pinnedStationNames = pinnedStations.map((s) => s.name);
+
   return (
     <>
       <Header />
@@ -286,8 +226,8 @@ export default function Home() {
         <div className="max-w-container-max mx-auto w-full p-4 md:p-lg flex flex-col gap-md min-h-[calc(100vh-4rem)]">
           <SearchSection
             onSearch={handleSearch}
-            recentSearches={recentSearches.map(s => s.name)}
-            pinnedStations={pinnedStations}
+            recentSearches={orderedStations.map((s) => s.name)}
+            pinnedStations={pinnedStationNames}
             onPinToggle={handlePinToggle}
             onRecentClick={(station) => {
               setInitialSearchValue(station);
