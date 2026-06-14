@@ -45,13 +45,42 @@ export function normalizeRouteLine(lineName: string): string {
   return lineName;
 }
 
+/** 2호선 경로 추적에서 제외할 지선 fr_code (용답~신설동 211-n, 신정~까치산 234-n) */
+const LINE2_BRANCH_FR_CODE = /^(211|234)-\d+$/;
+
+export function isExcludedFromLine2Route(frCode: string): boolean {
+  return LINE2_BRANCH_FR_CODE.test(frCode);
+}
+
+function matchStationName(a: string, b: string): boolean {
+  if (!a || !b) return false;
+  const cleanA = a.replace(/역$/, "");
+  const cleanB = b.replace(/역$/, "");
+  return a === b || cleanA === cleanB || a.includes(b) || b.includes(a);
+}
+
+/** 2호선 지선(211-n, 234-n) 역인지 역명으로 확인 */
+export function isLine2BranchStation(lineName: string, stationName: string): boolean {
+  if (!stationName) return false;
+  if (normalizeLineName(lineName) !== "02호선") return false;
+
+  const station = loadStationsData().find(
+    (s) => s.line_num === "02호선" && matchStationName(s.station_nm, stationName)
+  );
+  return station ? isExcludedFromLine2Route(station.fr_code) : false;
+}
+
 // 특정 노선의 모든 역 목록 가져오기 (순서대로 정렬)
 export function getStationsForLine(lineName: string, updnLine: string): StationInfo[] {
   const data = loadStationsData();
   const normalized = normalizeLineName(lineName);
   
   // 해당 호선의 역만 필터링
-  const lineStations = data.filter(s => s.line_num === normalized);
+  let lineStations = data.filter(s => s.line_num === normalized);
+
+  if (normalized === '02호선') {
+    lineStations = lineStations.filter(s => !isExcludedFromLine2Route(s.fr_code));
+  }
   
   // fr_code 기준으로 정렬 (순서 결정)
   // 문자열 비교로 정렬
