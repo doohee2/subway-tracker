@@ -1,0 +1,32 @@
+[
+    {
+        "line_num": "02호선",
+        "station_name_start": "시청",
+        "station_name_end": "충정로",
+        "tot_hm": "90:00"
+    },
+    {
+        "line_num": "수인분당선",
+        "station_name_start": "왕십리",
+        "station_name_end": "죽전",
+        "tot_hm": "55:00"
+    },
+    {
+        "line_num": "신분당선",
+        "station_name_start": "신사",
+        "station_name_end": "청계산입구",
+        "tot_hm": "12:00"
+    },
+    {
+        "line_num": "신분당선",
+        "station_name_start": "청계산입구",
+        "station_name_end": "판교",
+        "tot_hm": "6:00"
+    },
+    {
+        "line_num": "신분당선",
+        "station_name_start": "판교",
+        "station_name_end": "광교",
+        "tot_hm": "24:00"
+    }
+]

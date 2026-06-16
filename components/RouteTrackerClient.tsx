@@ -11,11 +11,10 @@ interface Station {
   station_cd: string;
   station_nm: string;
   fr_code: string;
-}
-
-interface TimeData {
-  sbwy_stns_nm: string;
   hm: string;
+  hm2: string;
+  adj_hm?: string;
+  adj_hm2?: string;
 }
 
 interface RouteTrackerClientProps {
@@ -25,7 +24,6 @@ interface RouteTrackerClientProps {
   initialCurrentLocationMsg: string;
   initialCurrentStationName: string;
   stations: Station[];
-  times: TimeData[];
   bstatnNm: string;
   // 마지막 경로 복원을 위해 저장할 전체 쿼리 파라미터
   routeParams: {
@@ -43,7 +41,6 @@ export default function RouteTrackerClient({
   initialCurrentLocationMsg,
   initialCurrentStationName,
   stations,
-  times,
   bstatnNm,
   routeParams,
   initialRecptnDt,
@@ -146,10 +143,22 @@ export default function RouteTrackerClient({
 
   const nextStations = stations.slice(currentIndex + 1, endIndex);
 
-  const getStationTimeSeconds = (stationName: string) => {
-    const match = times.find(t => t.sbwy_stns_nm.includes(stationName) || stationName.includes(t.sbwy_stns_nm));
-    return match ? hmToSeconds(match.hm) : 0;
+  const getStationTimeSeconds = (prev: Station, curr: Station) => {
+    if (!prev || !curr) return 0;
+    const isAscending = prev.fr_code.localeCompare(curr.fr_code, undefined, { numeric: true, sensitivity: 'base' }) < 0;
+    
+    const adj = isAscending ? curr.adj_hm2 : curr.adj_hm;
+    const base = isAscending ? curr.hm2 : curr.hm;
+    
+    if (adj && adj !== "0:00") {
+      return hmToSeconds(adj);
+    } else if (base && base !== "0:00") {
+      return hmToSeconds(base) + 30; // 30초 정차시간 추가
+    }
+    return 0; // 데이터 없음
   };
+
+  let hasMissingData = false;
 
   // 현재 상태에 따른 초기 오프셋: 진입=60초, 도착=30초, 출발=0초
   const initialOffset =
@@ -243,10 +252,18 @@ export default function RouteTrackerClient({
 
           {/* Next Stations */}
           {nextStations.map((station, idx) => {
-            const segSeconds = getStationTimeSeconds(station.station_nm);
-            cumulativeSeconds += segSeconds || 120; // fallback 2 mins if missing but we need cumulative logic
+            const prevSt = idx === 0 ? currentStationInfo : nextStations[idx - 1];
+            const segSeconds = getStationTimeSeconds(prevSt as Station, station);
             
-            const isMissingData = segSeconds === 0;
+            if (segSeconds === 0) {
+              hasMissingData = true;
+            }
+            
+            if (!hasMissingData) {
+              cumulativeSeconds += segSeconds;
+            }
+            
+            const isMissingData = hasMissingData;
             
             // Calculate estimated arrival time
             const estTime = new Date(lastUpdated.getTime() + cumulativeSeconds * 1000);

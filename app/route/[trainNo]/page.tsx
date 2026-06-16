@@ -1,8 +1,7 @@
 import Link from "next/link";
 import {
   getStationsForLine,
-  extractCurrentStation,
-  getStationTimes
+  extractCurrentStation
 } from '@/utils/subwayData';
 import RouteTrackerClient from '@/components/RouteTrackerClient';
 import Navigation from '@/components/Navigation';
@@ -16,7 +15,6 @@ export default async function RoutePage({ params, searchParams }: { params: Prom
 
   const currentStationName = extractCurrentStation(currentLocationMsg);
   const stations = getStationsForLine(lineName, updnLine, currentStationName, bstatnNm);
-  const times = getStationTimes(lineName);
 
   return (
     <div className="flex-1 overflow-y-auto bg-slate-950 text-slate-200">
@@ -31,7 +29,6 @@ export default async function RoutePage({ params, searchParams }: { params: Prom
         initialCurrentLocationMsg={currentLocationMsg}
         initialCurrentStationName={currentStationName}
         stations={stations}
-        times={times}
         bstatnNm={bstatnNm}
         routeParams={{ updnLine, subwayId, statnNm }}
         initialRecptnDt={recptnDt}

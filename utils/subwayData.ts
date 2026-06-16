@@ -1,28 +1,23 @@
-import stationsJson from '../json/stations.json';
-import distancesJson from '../json/distances.json';
-import aliasesJson from '../json/stations_nm_alias.json';
+import subwayDataJson from '../json/subway_data.json';
 
 export interface StationInfo {
   line_num: string;
-  station_nm: string;
+  station_name: string;
+  station_nm: string; // mapped from station_name for backwards compatibility
+  station_alias: string[];
   station_cd: string;
   fr_code: string;
-}
-
-export interface StationDistance {
-  acml_dist: number;
-  sbwy_rout_ln: string;
-  dist_km: number;
-  hm: string; // 'M:SS' format
-  sbwy_stns_nm: string;
+  hm: string;
+  hm2: string;
+  adj_hm: string;
+  adj_hm2: string;
 }
 
 export function loadStationsData(): StationInfo[] {
-  return stationsJson.DATA as StationInfo[];
-}
-
-export function loadDistancesData(): StationDistance[] {
-  return distancesJson.DATA as StationDistance[];
+  return (subwayDataJson as any[]).map(d => ({
+    ...d,
+    station_nm: d.station_name
+  })) as StationInfo[];
 }
 
 // 노선 이름 표준화 (예: '2호선' -> '02호선' 또는 '2')
@@ -117,6 +112,11 @@ export function getStationsForLine(lineName: string, updnLine: string, currentSt
     return a.fr_code.localeCompare(b.fr_code, undefined, { numeric: true, sensitivity: 'base' });
   });
 
+  // 2호선 본선(순환선)인 경우, 시청(201)과 충정로(243)가 양방향으로 이어지도록 배열을 2배로 이어붙입니다.
+  if (normalized === '02호선' && !isSeongsuBranch && !isSinjeongBranch) {
+    lineStations = [...lineStations, ...lineStations];
+  }
+
   // 상행/내선 및 하행/외선 정렬 순서를 다시 한 번 반대로 변경합니다.
   if (updnLine === '0' || updnLine.includes('상행') || updnLine.includes('외선')) {
     lineStations.reverse();
@@ -147,12 +147,6 @@ export function secondsToHm(totalSeconds: number): string {
   const m = Math.floor(totalSeconds / 60);
   const s = totalSeconds % 60;
   return `${m}:${s.toString().padStart(2, '0')}`;
-}
-
-export function getStationTimes(lineName: string) {
-  const data = loadDistancesData();
-  const routeLn = normalizeRouteLine(lineName);
-  return data.filter(d => d.sbwy_rout_ln === routeLn);
 }
 
 // 열차의 현재역 추출 (arvlMsg3 등에서 괄호 제외 추출)
@@ -191,14 +185,22 @@ export function formatKSTTime(date: Date): string {
 export function getStationRealName(searchName: string): string {
   if (!searchName) return searchName;
   
-  // '역' 제거하고 비교 (alias 데이터에 '역'이 없는 경우가 많음)
+  // '역' 제거하고 비교
   const cleanName = searchName.replace(/역$/, '');
   
-  const aliases = aliasesJson as { STATN_ALIAS: string; STATN_NM: string }[];
-  const match = aliases.find(a => a.STATN_ALIAS === cleanName || a.STATN_ALIAS === searchName);
+  const stations = loadStationsData();
+  const match = stations.find(s => 
+    s.station_nm === cleanName || 
+    s.station_nm === searchName ||
+    (s.station_alias && s.station_alias.includes(cleanName)) ||
+    (s.station_alias && s.station_alias.includes(searchName))
+  );
   
-  if (match && match.STATN_NM) {
-    return match.STATN_NM;
+  if (match) {
+    // API에 질의하기 위한 정식 명칭은 주로 station_alias의 첫 번째 요소에 저장됨 (예: "천호(풍납토성)")
+    return match.station_alias && match.station_alias.length > 0 
+      ? match.station_alias[0] 
+      : match.station_nm;
   }
   
   return searchName;
