@@ -132,12 +132,20 @@ for (const line in lines) {
 
     // Find hm2 (time from prev station)
     if (i > 0) {
-      const prevSt = lineStations[i - 1];
-      for (let k = 0; k < lineDistances.length - 1; k++) {
-        if (isMatch(lineDistances[k].sbwy_stns_nm, prevSt.station_nm) && 
-            isMatch(lineDistances[k + 1].sbwy_stns_nm, st.station_nm)) {
-          hm2 = lineDistances[k + 1].hm || "0:00";
-          break;
+      let prevSt = lineStations[i - 1];
+      
+      // 5호선 마천 지선의 첫 역인 둔촌동(P549)의 이전 역은 강동(548)으로 고정.
+      // distances.json에서 둔촌동은 하남검단산 뒤에 위치하므로, 인접 조건을 무시하고 둔촌동의 hm을 직접 가져옵니다.
+      if (line === '05호선' && st.fr_code === 'P549') {
+        const dunchon = lineDistances.find(d => isMatch(d.sbwy_stns_nm, '둔촌동'));
+        if (dunchon) hm2 = dunchon.hm || "0:00";
+      } else {
+        for (let k = 0; k < lineDistances.length - 1; k++) {
+          if (isMatch(lineDistances[k].sbwy_stns_nm, prevSt.station_nm) && 
+              isMatch(lineDistances[k + 1].sbwy_stns_nm, st.station_nm)) {
+            hm2 = lineDistances[k + 1].hm || "0:00";
+            break;
+          }
         }
       }
     }

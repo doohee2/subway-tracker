@@ -106,6 +106,35 @@ export function getStationsForLine(lineName: string, updnLine: string, currentSt
     }
   }
   
+  if (normalized === '05호선') {
+    let isMacheonBranch = false;
+    
+    const checkLine5Branch = (stationName?: string) => {
+      if (!stationName) return;
+      const cleanName = stationName.replace(/역$/, "");
+      const st = lineStations.find(s => s.station_nm === cleanName || s.station_nm.includes(cleanName) || cleanName.includes(s.station_nm));
+      if (st && st.fr_code && st.fr_code.startsWith('P5')) {
+        isMacheonBranch = true;
+      }
+    };
+
+    checkLine5Branch(currentStationName);
+    checkLine5Branch(bstatnNm);
+
+    if (isMacheonBranch) {
+      // 마천 방면: 549~558 (하남검단산 방면) 제외
+      lineStations = lineStations.filter(s => {
+        if (s.fr_code.startsWith('P')) return true;
+        const codeNum = parseInt(s.fr_code, 10);
+        if (!isNaN(codeNum) && codeNum >= 549 && codeNum <= 558) return false;
+        return true;
+      });
+    } else {
+      // 하남검단산 방면 (또는 본선): 마천 지선 (P549~P555) 제외
+      lineStations = lineStations.filter(s => !s.fr_code.startsWith('P5'));
+    }
+  }
+  
   // fr_code 기준으로 정렬 (순서 결정)
   // 문자열 비교로 정렬
   lineStations.sort((a, b) => {
