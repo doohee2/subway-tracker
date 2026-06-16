@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import AlarmButton from "@/components/AlarmButton";
-import { hmToSeconds, parseKSTDate, formatKSTTime, isLine2BranchStation } from "@/utils/subwayData";
+import { hmToSeconds, parseKSTDate, formatKSTTime } from "@/utils/subwayData";
 import { getLineColor, getLineNumberText } from "@/utils/subwayColors";
 import { createClientError, extractClientErrorInfo, formatUserErrorMessage } from "@/utils/errorMessage";
 
@@ -126,36 +126,25 @@ export default function RouteTrackerClient({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const isBranchOnlyRoute = isLine2BranchStation(lineName, currentStationName);
-
-  let prevStation: Station | null = null;
-  let currentStationInfo: Station;
-  let nextStations: Station[];
-
-  if (isBranchOnlyRoute) {
-    currentStationInfo = { station_cd: "", station_nm: currentStationName, fr_code: "" };
-    nextStations = [];
-  } else {
-    let currentIndex = stations.findIndex(s => s.station_nm === currentStationName);
-    if (currentIndex === -1) {
-      currentIndex = stations.findIndex(s => s.station_nm.includes(currentStationName) || currentStationName.includes(s.station_nm));
-    }
-    if (currentIndex === -1) currentIndex = 1;
-
-    prevStation = stations[currentIndex - 1] || null;
-    currentStationInfo = stations[currentIndex] || { station_cd: "", station_nm: currentStationName, fr_code: "" };
-
-    let endIndex = stations.length;
-    // 2호선(순환선)의 경우 종점 자르기 로직을 적용하지 않음
-    if (bstatnNm && !lineName.includes('2호선') && !lineName.includes('02호선')) {
-      const bIndex = stations.findIndex(s => s.station_nm.includes(bstatnNm) || bstatnNm.includes(s.station_nm));
-      if (bIndex > currentIndex) {
-        endIndex = bIndex + 1;
-      }
-    }
-
-    nextStations = stations.slice(currentIndex + 1, endIndex);
+  let currentIndex = stations.findIndex(s => s.station_nm === currentStationName);
+  if (currentIndex === -1) {
+    currentIndex = stations.findIndex(s => s.station_nm.includes(currentStationName) || currentStationName.includes(s.station_nm));
   }
+  if (currentIndex === -1) currentIndex = 1;
+
+  const prevStation = stations[currentIndex - 1] || null;
+  const currentStationInfo = stations[currentIndex] || { station_cd: "", station_nm: currentStationName, fr_code: "" };
+
+  let endIndex = stations.length;
+  // 2호선(순환선)의 경우 종점 자르기 로직을 적용하지 않음
+  if (bstatnNm && !lineName.includes('2호선') && !lineName.includes('02호선')) {
+    const bIndex = stations.findIndex(s => s.station_nm.includes(bstatnNm) || bstatnNm.includes(s.station_nm));
+    if (bIndex > currentIndex) {
+      endIndex = bIndex + 1;
+    }
+  }
+
+  const nextStations = stations.slice(currentIndex + 1, endIndex);
 
   const getStationTimeSeconds = (stationName: string) => {
     const match = times.find(t => t.sbwy_stns_nm.includes(stationName) || stationName.includes(t.sbwy_stns_nm));

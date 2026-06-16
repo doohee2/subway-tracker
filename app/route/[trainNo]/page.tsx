@@ -15,7 +15,7 @@ export default async function RoutePage({ params, searchParams }: { params: Prom
   const trackerUrl = statnNm ? `/?station=${encodeURIComponent(statnNm)}` : "/";
 
   const currentStationName = extractCurrentStation(currentLocationMsg);
-  const stations = getStationsForLine(lineName, updnLine);
+  const stations = getStationsForLine(lineName, updnLine, currentStationName, bstatnNm);
   const times = getStationTimes(lineName);
 
   return (

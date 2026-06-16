@@ -70,16 +70,45 @@ export function isLine2BranchStation(lineName: string, stationName: string): boo
   return station ? isExcludedFromLine2Route(station.fr_code) : false;
 }
 
-// 특정 노선의 모든 역 목록 가져오기 (순서대로 정렬)
-export function getStationsForLine(lineName: string, updnLine: string): StationInfo[] {
+export function getStationsForLine(lineName: string, updnLine: string, currentStationName?: string, bstatnNm?: string): StationInfo[] {
   const data = loadStationsData();
   const normalized = normalizeLineName(lineName);
   
   // 해당 호선의 역만 필터링
   let lineStations = data.filter(s => s.line_num === normalized);
 
+  let isSeongsuBranch = false;
+  let isSinjeongBranch = false;
+
   if (normalized === '02호선') {
-    lineStations = lineStations.filter(s => !isExcludedFromLine2Route(s.fr_code));
+    // 현재역과 종착역의 fr_code 확인
+    const checkBranch = (stationName?: string) => {
+      if (!stationName) return;
+      const cleanName = stationName.replace(/역$/, "");
+      const st = lineStations.find(s => s.station_nm === cleanName || s.station_nm.includes(cleanName) || cleanName.includes(s.station_nm));
+      if (st) {
+        if (st.fr_code.startsWith('211-') || st.station_nm === '신설동' || st.station_nm === '용두' || st.station_nm === '신답' || st.station_nm === '용답') {
+          isSeongsuBranch = true;
+        }
+        if (st.fr_code.startsWith('234-') || st.station_nm === '까치산' || st.station_nm === '신정네거리' || st.station_nm === '양천구청' || st.station_nm === '도림천') {
+          isSinjeongBranch = true;
+        }
+      }
+    };
+
+    checkBranch(currentStationName);
+    checkBranch(bstatnNm);
+
+    if (isSeongsuBranch) {
+      // 성수지선: 성수(211) + 211-n
+      lineStations = lineStations.filter(s => s.fr_code === '211' || s.fr_code.startsWith('211-'));
+    } else if (isSinjeongBranch) {
+      // 신정지선: 신도림(234) + 234-n
+      lineStations = lineStations.filter(s => s.fr_code === '234' || s.fr_code.startsWith('234-'));
+    } else {
+      // 본선: 지선 역 제외
+      lineStations = lineStations.filter(s => !isExcludedFromLine2Route(s.fr_code));
+    }
   }
   
   // fr_code 기준으로 정렬 (순서 결정)
@@ -91,6 +120,16 @@ export function getStationsForLine(lineName: string, updnLine: string): StationI
   // 상행/내선 및 하행/외선 정렬 순서를 다시 한 번 반대로 변경합니다.
   if (updnLine === '0' || updnLine.includes('상행') || updnLine.includes('외선')) {
     lineStations.reverse();
+  }
+
+  // 지선인 경우 종착역(bstatnNm) 방향으로 올바르게 정렬되었는지 확인하고 보정
+  if (normalized === '02호선' && (isSeongsuBranch || isSinjeongBranch) && bstatnNm) {
+    const cleanDest = bstatnNm.replace(/역$/, "");
+    const destIndex = lineStations.findIndex(s => s.station_nm === cleanDest || s.station_nm.includes(cleanDest) || cleanDest.includes(s.station_nm));
+    // 목적지가 앞쪽에 있다면 방향이 반대이므로 뒤집음
+    if (destIndex !== -1 && destIndex < lineStations.length / 2) {
+      lineStations.reverse();
+    }
   }
 
   return lineStations;
