@@ -316,7 +316,7 @@ export default function RouteTrackerClient({
                 중요 안내
               </h3>
               <p className="text-sm text-slate-300 leading-relaxed text-left">
-                본 경로는 급행, 지선 정보가 반영되지 않아 실제 지하철 운행 경로 및 도착 시간 정보가 실제와 다를 수 있습니다.
+                본 지하철 경로 안내 페이지는 급행, 지선 정보가 반영되지 않아 운행경로 및 도착시간 정보가 실제와 다르거나 제공되지 않을 수 있습니다.
               </p>
             </div>
             <div className="flex border-t border-slate-800">
