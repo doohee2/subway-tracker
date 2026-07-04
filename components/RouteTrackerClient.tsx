@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import AlarmButton from "@/components/AlarmButton";
 import { hmToSeconds, parseKSTDate, formatKSTTime } from "@/utils/subwayData";
@@ -47,7 +48,7 @@ export default function RouteTrackerClient({
 }: RouteTrackerClientProps) {
   const [currentLocationMsg, setCurrentLocationMsg] = useState(initialCurrentLocationMsg);
   const [currentStationName, setCurrentStationName] = useState(initialCurrentStationName);
-  
+
   // 초기값 설정: initialRecptnDt가 있으면 그것을 사용, 없으면 현재 시간
   const getInitialLastUpdated = () => {
     if (initialRecptnDt) {
@@ -62,6 +63,7 @@ export default function RouteTrackerClient({
 
   const [lastUpdated, setLastUpdated] = useState<Date>(getInitialLastUpdated());
   const [isLoading, setIsLoading] = useState(true); // 첫 진입 시 바로 로딩 상태로 시작
+  const [showInfoModal, setShowInfoModal] = useState(false);
 
   const handleRefresh = async () => {
     setIsLoading(true);
@@ -71,13 +73,13 @@ export default function RouteTrackerClient({
       if (!res.ok) {
         throw createClientError(data.code ?? "SUBWAY_POSITION_FETCH_FAILED", data.error ?? "Failed to fetch");
       }
-      
+
       if (data.realtimePositionList) {
         const train = data.realtimePositionList.find((t: { trainNo: string; statnNm: string; trainSttus: string; recptnDt: string }) => t.trainNo === trainNo);
         if (train) {
           setCurrentStationName(train.statnNm);
           setCurrentLocationMsg(train.trainSttus === '0' ? '진입' : train.trainSttus === '1' ? '도착' : '출발');
-          
+
           if (train.recptnDt) {
             try {
               // API의 recptnDt (정보수신일시)를 기준으로 설정
@@ -120,7 +122,7 @@ export default function RouteTrackerClient({
     localStorage.setItem("lastRoute", JSON.stringify(lastRoute));
 
     handleRefresh();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   let currentIndex = stations.findIndex(s => s.station_nm === currentStationName);
@@ -146,10 +148,10 @@ export default function RouteTrackerClient({
   const getStationTimeSeconds = (prev: Station, curr: Station) => {
     if (!prev || !curr) return 0;
     const isAscending = prev.fr_code.localeCompare(curr.fr_code, undefined, { numeric: true, sensitivity: 'base' }) < 0;
-    
+
     const adj = isAscending ? curr.adj_hm2 : curr.adj_hm;
     const base = isAscending ? curr.hm2 : curr.hm;
-    
+
     if (adj && adj !== "0:00") {
       return hmToSeconds(adj);
     } else if (base && base !== "0:00") {
@@ -163,8 +165,8 @@ export default function RouteTrackerClient({
   // 현재 상태에 따른 초기 오프셋: 진입=60초, 도착=30초, 출발=0초
   const initialOffset =
     currentLocationMsg === '진입' || currentLocationMsg === '0' ? 60
-    : currentLocationMsg === '도착' || currentLocationMsg === '1' ? 30
-    : 0;
+      : currentLocationMsg === '도착' || currentLocationMsg === '1' ? 30
+        : 0;
   let cumulativeSeconds = initialOffset;
 
   const lineColor = getLineColor(lineName);
@@ -191,7 +193,7 @@ export default function RouteTrackerClient({
               </div>
             </div>
             <div className="flex flex-col items-center md:items-end gap-1.5 mt-4 md:mt-0">
-              <button 
+              <button
                 onClick={handleRefresh}
                 disabled={isLoading}
                 className={`bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition-all active:scale-95 flex items-center gap-2 w-full md:w-auto justify-center ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
@@ -207,15 +209,24 @@ export default function RouteTrackerClient({
         </div>
         <div className="hidden md:block overflow-hidden rounded-xl border border-slate-800 relative group">
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/50 to-slate-900 flex flex-col justify-end p-6">
-             <p className="text-xs text-indigo-400 uppercase tracking-widest font-bold">실시간 위치 정보</p>
-             <p className="text-sm font-semibold text-white mt-1">{currentLocationMsg}</p>
+            <p className="text-xs text-indigo-400 uppercase tracking-widest font-bold">실시간 위치 정보</p>
+            <p className="text-sm font-semibold text-white mt-1">{currentLocationMsg}</p>
           </div>
         </div>
       </section>
 
       {/* Route Timeline */}
       <section className="bg-slate-900/50 rounded-2xl border border-slate-800 p-6 md:p-10">
-        <h3 className="text-xl font-bold text-white mb-8 px-2">운행 노선 상세</h3>
+        <div className="flex items-center gap-2 mb-8 px-2">
+          <h3 className="text-xl font-bold text-white">운행 노선 상세</h3>
+          <button
+            onClick={() => setShowInfoModal(true)}
+            className="text-slate-400 hover:text-white transition-colors flex items-center justify-center"
+            title="안내"
+          >
+            <span className="material-symbols-outlined text-[20px]">info</span>
+          </button>
+        </div>
         <div className="relative space-y-0">
           {/* Vertical Line */}
           <div className="absolute left-[19px] top-4 bottom-4 w-1 bg-slate-800"></div>
@@ -254,17 +265,17 @@ export default function RouteTrackerClient({
           {nextStations.map((station, idx) => {
             const prevSt = idx === 0 ? currentStationInfo : nextStations[idx - 1];
             const segSeconds = getStationTimeSeconds(prevSt as Station, station);
-            
+
             if (segSeconds === 0) {
               hasMissingData = true;
             }
-            
+
             if (!hasMissingData) {
               cumulativeSeconds += segSeconds;
             }
-            
+
             const isMissingData = hasMissingData;
-            
+
             // Calculate estimated arrival time
             const estTime = new Date(lastUpdated.getTime() + cumulativeSeconds * 1000);
             const timeString = formatKSTTime(estTime);
@@ -290,6 +301,36 @@ export default function RouteTrackerClient({
           })}
         </div>
       </section>
+
+      {showInfoModal && typeof window !== 'undefined' && createPortal(
+        <div className="fixed top-0 left-0 w-screen h-screen z-[100] flex items-center justify-center bg-slate-950/60 backdrop-blur-sm p-4">
+          <div
+            style={{ width: 'min(448px, calc(100vw - 2rem))', flexShrink: 0 }}
+            className="bg-slate-900 border border-slate-700 shadow-2xl rounded-2xl overflow-hidden"
+          >
+            <div className="p-6 text-center space-y-4">
+              <div className="w-16 h-16 bg-indigo-500/20 text-indigo-400 rounded-full flex items-center justify-center mx-auto mb-2">
+                <span className="material-symbols-outlined text-3xl">info</span>
+              </div>
+              <h3 className="text-xl font-bold text-white tracking-tight">
+                중요 안내
+              </h3>
+              <p className="text-sm text-slate-300 leading-relaxed text-left">
+                본 경로는 급행, 지선 정보가 반영되지 않아 실제 지하철 운행 경로 및 도착 시간 정보가 실제와 다를 수 있습니다.
+              </p>
+            </div>
+            <div className="flex border-t border-slate-800">
+              <button
+                onClick={() => setShowInfoModal(false)}
+                className="flex-1 py-4 text-indigo-400 hover:text-indigo-300 hover:bg-indigo-900/20 transition-colors font-bold text-sm"
+              >
+                확인
+              </button>
+            </div>
+          </div>
+        </div>,
+        document.body
+      )}
     </main>
   );
 }

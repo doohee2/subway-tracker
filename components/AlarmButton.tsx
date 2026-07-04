@@ -222,7 +222,7 @@ export default function AlarmButton({ stationName, timeString, arrivalTime, isMi
             : 'bg-indigo-900/40 border-indigo-700/30 text-indigo-400 hover:bg-indigo-800/50'
         }`}
       >
-        {isMissingData ? '역명 버튼' : timeString}
+        {isMissingData ? '--:--' : timeString}
       </button>
 
       <AlarmModal 
