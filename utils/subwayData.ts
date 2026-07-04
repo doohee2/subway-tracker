@@ -151,13 +151,29 @@ export function getStationsForLine(lineName: string, updnLine: string, currentSt
     lineStations.reverse();
   }
 
-  // 지선인 경우 종착역(bstatnNm) 방향으로 올바르게 정렬되었는지 확인하고 보정
-  if (normalized === '02호선' && (isSeongsuBranch || isSinjeongBranch) && bstatnNm) {
+  // 현재역과 종착역의 상대적 위치를 비교하여 올바른 방향(현재역 -> 종착역)으로 보정합니다.
+  // 2호선 본선(순환선)은 양방향 순환이므로 예외로 처리합니다.
+  const isCircularLine2 = normalized === '02호선' && !isSeongsuBranch && !isSinjeongBranch;
+  if (!isCircularLine2 && bstatnNm) {
     const cleanDest = bstatnNm.replace(/역$/, "");
     const destIndex = lineStations.findIndex(s => s.station_nm === cleanDest || s.station_nm.includes(cleanDest) || cleanDest.includes(s.station_nm));
-    // 목적지가 앞쪽에 있다면 방향이 반대이므로 뒤집음
-    if (destIndex !== -1 && destIndex < lineStations.length / 2) {
-      lineStations.reverse();
+    
+    if (destIndex !== -1) {
+      let shouldReverse = false;
+      if (currentStationName) {
+        const cleanCurr = currentStationName.replace(/역$/, "");
+        const currIndex = lineStations.findIndex(s => s.station_nm === cleanCurr || s.station_nm.includes(cleanCurr) || cleanCurr.includes(s.station_nm));
+        if (currIndex !== -1 && currIndex > destIndex) {
+          shouldReverse = true;
+        }
+      } else if (destIndex < lineStations.length / 2) {
+        // 현재역을 모를 경우, 종점(목적지)이 배열 앞쪽에 있다면 역방향으로 간주
+        shouldReverse = true;
+      }
+
+      if (shouldReverse) {
+        lineStations.reverse();
+      }
     }
   }
 
