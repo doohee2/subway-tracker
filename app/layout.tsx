@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import AlarmManager from "@/components/AlarmManager";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,18 +20,36 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className="dark">
+    <html lang="ko">
       <head>
         <link
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
           rel="stylesheet"
         />
+        {/* 깜빡임(FOUC) 방지를 위한 인라인 스크립트 */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var savedTheme = localStorage.getItem('theme');
+                  if (!savedTheme) savedTheme = 'dark'; // 기본값
+                  if (savedTheme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
       </head>
       <body className={`${inter.className} bg-background text-on-background font-body-md h-screen flex flex-col`}>
-        {children}
-        <div style={{ display: "none" }}>
-          <AlarmManager />
-        </div>
+        <ThemeProvider>
+          {children}
+          <div style={{ display: "none" }}>
+            <AlarmManager />
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -4,15 +4,20 @@ import Link from "next/link";
 
 interface ArrivalCardProps {
   group: ArrivalGroup;
+  isExpanded: boolean;
+  onToggle: () => void;
 }
 
-export default function ArrivalCard({ group }: ArrivalCardProps) {
+export default function ArrivalCard({ group, isExpanded, onToggle }: ArrivalCardProps) {
   const lineColor = getLineColor(group.lineName);
   const lineNumberText = getLineNumberText(group.lineName);
 
   return (
     <div className="bg-surface-container-lowest rounded-lg border border-surface-container-high shadow-[0_4px_12px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col">
-      <div className="p-sm border-b border-surface-container-high bg-surface-container-low flex items-center justify-between">
+      <div 
+        className="p-sm border-b border-surface-container-high bg-surface-container-low flex items-center justify-between cursor-pointer hover:bg-surface-container transition-colors"
+        onClick={onToggle}
+      >
         <div className="flex items-center gap-2">
           <span
             className={`w-6 h-6 rounded-full ${lineColor} flex items-center justify-center text-white text-xs font-bold`}
@@ -23,11 +28,17 @@ export default function ArrivalCard({ group }: ArrivalCardProps) {
             {group.lineName}
           </span>
         </div>
-        <span className="font-body-sm text-body-sm text-on-surface-variant">
-          {group.destination}
-        </span>
+        <div className="flex items-center gap-2">
+          <span className="font-body-sm text-body-sm text-on-surface-variant">
+            {group.destination}
+          </span>
+          <span className={`material-symbols-outlined transition-transform duration-200 text-on-surface-variant ${isExpanded ? 'rotate-180' : ''}`}>
+            expand_more
+          </span>
+        </div>
       </div>
-      <div className="p-sm flex flex-col gap-xs">
+      {isExpanded && (
+        <div className="p-sm flex flex-col gap-xs">
         {group.arrivals.map((arrival) => (
           <div
             key={arrival.id}
@@ -78,6 +89,7 @@ export default function ArrivalCard({ group }: ArrivalCardProps) {
           </div>
         ))}
       </div>
+      )}
     </div>
   );
 }

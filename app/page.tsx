@@ -26,6 +26,7 @@ export default function Home() {
   const [recentSearches, setRecentSearches] = useState<StationRecord[]>([]);
   const [pinnedStations, setPinnedStations] = useState<StationRecord[]>([]);
   const [arrivalGroups, setArrivalGroups] = useState<ArrivalGroup[]>([]);
+  const [expandedGroups, setExpandedGroups] = useState<Set<number>>(new Set([0]));
   const [initialSearchValue, setInitialSearchValue] = useState("");
   const [status, setStatus] = useState<{
     type: "idle" | "loading" | "success" | "error";
@@ -156,6 +157,7 @@ export default function Home() {
       parsedGroups.sort((a, b) => a.lineName.localeCompare(b.lineName));
 
       setArrivalGroups(parsedGroups);
+      setExpandedGroups(new Set([0]));
 
       let timeStr = "조회 완료";
       if (data.realtimeArrivalList.length > 0) {
@@ -217,6 +219,18 @@ export default function Home() {
   const orderedStations = getOrderedStationButtons(recentSearches, pinnedStations);
   const pinnedStationNames = pinnedStations.map((s) => s.name);
 
+  const toggleGroup = (idx: number) => {
+    setExpandedGroups((prev) => {
+      const next = new Set(prev);
+      if (next.has(idx)) {
+        next.delete(idx);
+      } else {
+        next.add(idx);
+      }
+      return next;
+    });
+  };
+
   return (
     <>
       <Header />
@@ -242,7 +256,12 @@ export default function Home() {
               <h2 className="font-h3 text-h3 text-on-surface">실시간 도착 정보</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-md">
                 {arrivalGroups.map((group, idx) => (
-                  <ArrivalCard key={idx} group={group} />
+                  <ArrivalCard 
+                    key={idx} 
+                    group={group} 
+                    isExpanded={expandedGroups.has(idx)}
+                    onToggle={() => toggleGroup(idx)}
+                  />
                 ))}
               </div>
             </section>

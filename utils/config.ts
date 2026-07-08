@@ -1,3 +1,3 @@
 export const APP_CONFIG = {
-  VERSION: "2026.6.16 by doohee2",
+  VERSION: "2026.7.9 by doohee2",
 };
