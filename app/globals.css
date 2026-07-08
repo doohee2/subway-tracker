@@ -1,5 +1,5 @@
 @import "tailwindcss";
-
+@custom-variant dark (&:where(.dark, .dark *));
 @theme {
   --color-on-tertiary-container: var(--on-tertiary-container);
   --color-on-secondary: var(--on-secondary);

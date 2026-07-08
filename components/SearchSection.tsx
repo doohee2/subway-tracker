@@ -100,9 +100,9 @@ export default function SearchSection({
       )}
 
       {status.type === "success" && (
-        <div className="mt-2 flex items-center justify-between p-3 rounded-lg bg-emerald-900/30 text-emerald-400 border border-emerald-800/50">
+        <div className="mt-2 flex items-center justify-between p-3 rounded-lg dark:bg-emerald-900/30 bg-emerald-50 dark:text-emerald-400 text-emerald-800 border dark:border-emerald-800/50 border-emerald-200">
           <div className="flex items-center gap-2">
-            <span className="material-symbols-outlined text-emerald-400">
+            <span className="material-symbols-outlined dark:text-emerald-400 text-emerald-600">
               check_circle
             </span>
             <span className="font-body-sm text-body-sm font-medium">
@@ -110,14 +110,14 @@ export default function SearchSection({
             </span>
           </div>
           {status.time && (
-            <span className="text-xs text-emerald-500/70">{status.time}</span>
+            <span className="text-xs dark:text-emerald-500/70 text-emerald-600/80">{status.time}</span>
           )}
         </div>
       )}
 
       {status.type === "error" && (
-        <div className="mt-2 flex items-center gap-2 p-3 rounded-lg bg-red-900/30 text-red-400 border border-red-800/50">
-          <span className="material-symbols-outlined text-red-400">error</span>
+        <div className="mt-2 flex items-center gap-2 p-3 rounded-lg dark:bg-red-900/30 bg-red-50 dark:text-red-400 text-red-800 border dark:border-red-800/50 border-red-200">
+          <span className="material-symbols-outlined dark:text-red-400 text-red-600">error</span>
           <span className="font-body-sm text-body-sm font-medium">
             {status.message}
           </span>
@@ -125,8 +125,8 @@ export default function SearchSection({
       )}
       
       {status.type === "loading" && (
-        <div className="mt-2 flex items-center gap-2 p-3 rounded-lg bg-indigo-900/30 text-indigo-400 border border-indigo-800/50">
-          <span className="material-symbols-outlined text-indigo-400 animate-spin">
+        <div className="mt-2 flex items-center gap-2 p-3 rounded-lg dark:bg-indigo-900/30 bg-indigo-50 dark:text-indigo-400 text-indigo-800 border dark:border-indigo-800/50 border-indigo-200">
+          <span className="material-symbols-outlined dark:text-indigo-400 text-indigo-600 animate-spin">
             refresh
           </span>
           <span className="font-body-sm text-body-sm font-medium">

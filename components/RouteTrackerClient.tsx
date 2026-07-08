@@ -176,18 +176,18 @@ export default function RouteTrackerClient({
     <main className="pt-20 pb-24 px-4 max-w-[1280px] mx-auto">
       {/* Summary Section */}
       <section className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-        <div className="md:col-span-2 p-6 rounded-xl bg-slate-900 border border-slate-800 shadow-[0_4px_12px_rgba(63,81,181,0.08)]">
+        <div className="md:col-span-2 p-6 rounded-xl dark:bg-slate-900 bg-white border dark:border-slate-800 border-slate-200 shadow-[0_4px_12px_rgba(63,81,181,0.08)] transition-colors">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="space-y-2">
               <div className="flex items-center gap-2">
                 <span className={`w-7 h-7 rounded-full ${lineColor} flex items-center justify-center text-white text-xs font-bold`}>{lineNumberText}</span>
-                <span className="text-white font-bold text-sm">{lineName}</span>
+                <span className="dark:text-white text-slate-800 font-bold text-sm">{lineName}</span>
                 <span className="text-slate-400 text-sm font-medium">열차번호: #{trainNo}</span>
               </div>
-              <h2 className="text-3xl font-bold text-white tracking-tight">
+              <h2 className="text-3xl font-bold dark:text-white text-slate-900 tracking-tight">
                 {destination}
               </h2>
-              <div className="flex items-center gap-2 text-slate-300 mt-2">
+              <div className="flex items-center gap-2 dark:text-slate-300 text-slate-600 mt-2">
                 <span className="material-symbols-outlined text-indigo-400 text-sm">location_on</span>
                 <span className="font-semibold">현재역: {currentStationInfo.station_nm}역</span>
               </div>
@@ -207,18 +207,18 @@ export default function RouteTrackerClient({
             </div>
           </div>
         </div>
-        <div className="hidden md:block overflow-hidden rounded-xl border border-slate-800 relative group">
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/50 to-slate-900 flex flex-col justify-end p-6">
+        <div className="hidden md:block overflow-hidden rounded-xl border dark:border-slate-800 border-slate-200 relative group transition-colors">
+          <div className="absolute inset-0 dark:bg-gradient-to-t dark:from-slate-950 dark:via-slate-900/50 dark:to-slate-900 bg-slate-50 flex flex-col justify-end p-6">
             <p className="text-xs text-indigo-400 uppercase tracking-widest font-bold">실시간 위치 정보</p>
-            <p className="text-sm font-semibold text-white mt-1">{currentLocationMsg}</p>
+            <p className="text-sm font-semibold dark:text-white text-slate-800 mt-1">{currentLocationMsg}</p>
           </div>
         </div>
       </section>
 
       {/* Route Timeline */}
-      <section className="bg-slate-900/50 rounded-2xl border border-slate-800 p-6 md:p-10">
+      <section className="dark:bg-slate-900/50 bg-white rounded-2xl border dark:border-slate-800 border-slate-200 p-6 md:p-10 transition-colors">
         <div className="flex items-center gap-2 mb-8 px-2">
-          <h3 className="text-xl font-bold text-white">운행 노선 상세</h3>
+          <h3 className="text-xl font-bold dark:text-white text-slate-900">운행 노선 상세</h3>
           <button
             onClick={() => setShowInfoModal(true)}
             className="text-slate-400 hover:text-white transition-colors flex items-center justify-center"
@@ -229,30 +229,30 @@ export default function RouteTrackerClient({
         </div>
         <div className="relative space-y-0">
           {/* Vertical Line */}
-          <div className="absolute left-[19px] top-4 bottom-4 w-1 bg-slate-800"></div>
+          <div className="absolute left-[19px] top-4 bottom-4 w-1 dark:bg-slate-800 bg-slate-200"></div>
 
           {/* Previous Station */}
           {prevStation && (
             <div className="relative flex items-center gap-6 py-4 group">
-              <div className="z-10 w-10 h-10 rounded-full bg-slate-800 border-4 border-slate-950 flex items-center justify-center">
-                <div className="w-2 h-2 rounded-full bg-slate-500"></div>
+              <div className="z-10 w-10 h-10 rounded-full dark:bg-slate-800 bg-slate-200 border-4 dark:border-slate-950 border-white flex items-center justify-center transition-colors">
+                <div className="w-2 h-2 rounded-full dark:bg-slate-500 bg-slate-400"></div>
               </div>
-              <div className="flex-1 flex items-center justify-between border-b border-slate-800/50 pb-4">
-                <Link href={`/?station=${encodeURIComponent(prevStation.station_nm)}`} className="text-lg font-medium text-slate-400 hover:text-indigo-400 transition-colors">
+              <div className="flex-1 flex items-center justify-between border-b dark:border-slate-800/50 border-slate-100 pb-4">
+                <Link href={`/?station=${encodeURIComponent(prevStation.station_nm)}`} className="text-lg font-medium dark:text-slate-400 text-slate-500 hover:text-indigo-400 transition-colors">
                   {prevStation.station_nm}역
                 </Link>
-                <span className="px-4 py-1.5 rounded-lg bg-slate-800 text-slate-500 text-sm font-bold">지남</span>
+                <span className="px-4 py-1.5 rounded-lg dark:bg-slate-800 bg-slate-100 dark:text-slate-500 text-slate-400 text-sm font-bold">지남</span>
               </div>
             </div>
           )}
 
           {/* Current Station */}
           <div className="relative flex items-center gap-6 py-4 group">
-            <div className="z-10 w-10 h-10 rounded-full bg-indigo-600 border-4 border-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(79,70,229,0.5)]">
+            <div className="z-10 w-10 h-10 rounded-full bg-indigo-600 border-4 dark:border-slate-950 border-white flex items-center justify-center shadow-[0_0_15px_rgba(79,70,229,0.5)] transition-colors">
               <span className="material-symbols-outlined text-white text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>train</span>
             </div>
-            <div className="flex-1 flex items-center justify-between border-b border-indigo-900/30 pb-4 bg-indigo-900/10 rounded-r-xl px-4 -mx-4">
-              <Link href={`/?station=${encodeURIComponent(currentStationInfo.station_nm)}`} className="text-xl font-bold text-white hover:text-indigo-300 transition-colors">
+            <div className="flex-1 flex items-center justify-between border-b border-indigo-900/30 pb-4 bg-indigo-50 dark:bg-indigo-900/10 rounded-r-xl px-4 -mx-4">
+              <Link href={`/?station=${encodeURIComponent(currentStationInfo.station_nm)}`} className="text-xl font-bold dark:text-white text-indigo-950 hover:text-indigo-500 transition-colors">
                 {currentStationInfo.station_nm}역
               </Link>
               <span className="px-4 py-1.5 rounded-lg bg-indigo-600 text-white text-sm font-bold animate-pulse">
@@ -282,11 +282,11 @@ export default function RouteTrackerClient({
 
             return (
               <div key={idx} className="relative flex items-center gap-6 py-4 group">
-                <div className="z-10 w-10 h-10 rounded-full bg-slate-800 border-4 border-slate-950 flex items-center justify-center">
+                <div className="z-10 w-10 h-10 rounded-full dark:bg-slate-800 bg-slate-100 border-4 dark:border-slate-950 border-white flex items-center justify-center transition-colors">
                   <div className="w-2 h-2 rounded-full bg-indigo-400"></div>
                 </div>
-                <div className="flex-1 flex items-center justify-between border-b border-slate-800/50 pb-4">
-                  <Link href={`/?station=${encodeURIComponent(station.station_nm)}`} className="text-lg font-medium text-slate-200 hover:text-indigo-400 transition-colors">
+                <div className="flex-1 flex items-center justify-between border-b dark:border-slate-800/50 border-slate-100 pb-4">
+                  <Link href={`/?station=${encodeURIComponent(station.station_nm)}`} className="text-lg font-medium dark:text-slate-200 text-slate-700 hover:text-indigo-500 transition-colors">
                     {station.station_nm}역
                   </Link>
                   <AlarmButton
@@ -303,23 +303,23 @@ export default function RouteTrackerClient({
       </section>
 
       {showInfoModal && typeof window !== 'undefined' && createPortal(
-        <div className="fixed top-0 left-0 w-screen h-screen z-[100] flex items-center justify-center bg-slate-950/60 backdrop-blur-sm p-4">
+        <div className="fixed top-0 left-0 w-screen h-screen z-[100] flex items-center justify-center dark:bg-slate-950/60 bg-slate-900/30 backdrop-blur-sm p-4">
           <div
             style={{ width: 'min(448px, calc(100vw - 2rem))', flexShrink: 0 }}
-            className="bg-slate-900 border border-slate-700 shadow-2xl rounded-2xl overflow-hidden"
+            className="dark:bg-slate-900 bg-white border dark:border-slate-700 border-slate-200 shadow-2xl rounded-2xl overflow-hidden"
           >
             <div className="p-6 text-center space-y-4">
-              <div className="w-16 h-16 bg-indigo-500/20 text-indigo-400 rounded-full flex items-center justify-center mx-auto mb-2">
+              <div className="w-16 h-16 dark:bg-indigo-500/20 bg-indigo-100 text-indigo-400 rounded-full flex items-center justify-center mx-auto mb-2">
                 <span className="material-symbols-outlined text-3xl">info</span>
               </div>
-              <h3 className="text-xl font-bold text-white tracking-tight">
+              <h3 className="text-xl font-bold dark:text-white text-slate-900 tracking-tight">
                 중요 안내
               </h3>
-              <p className="text-sm text-slate-300 leading-relaxed text-left">
+              <p className="text-sm dark:text-slate-300 text-slate-600 leading-relaxed text-left">
                 본 지하철 경로 안내 페이지는 급행, 지선 정보가 반영되지 않아 운행경로 및 도착시간 정보가 실제와 다르거나 제공되지 않을 수 있습니다.
               </p>
             </div>
-            <div className="flex border-t border-slate-800">
+            <div className="flex border-t dark:border-slate-800 border-slate-100">
               <button
                 onClick={() => setShowInfoModal(false)}
                 className="flex-1 py-4 text-indigo-400 hover:text-indigo-300 hover:bg-indigo-900/20 transition-colors font-bold text-sm"

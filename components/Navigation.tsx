@@ -48,42 +48,42 @@ export default function Navigation() {
   return (
     <>
       {/* NavigationDrawer (Web) */}
-      <nav className="hidden lg:flex flex-col fixed left-0 top-0 h-full border-r border-slate-800 w-72 bg-slate-900 shadow-2xl divide-y divide-slate-800 pt-16">
+      <nav className="hidden lg:flex flex-col fixed left-0 top-0 h-full dark:border-slate-800 border-slate-200 w-72 dark:bg-slate-900 bg-white shadow-2xl dark:divide-slate-800 divide-slate-100 pt-16 transition-colors">
         <div className="p-6 flex items-center gap-4">
           <div className="w-12 h-12 rounded-full overflow-hidden bg-surface-container-high flex items-center justify-center text-indigo-300 bg-indigo-500/20 font-bold text-xl">
             S
           </div>
           <div>
-            <div className="font-sans text-sm font-semibold text-indigo-50">
+            <div className="font-sans text-sm font-semibold dark:text-indigo-50 text-slate-800">
               Subway Tracker
             </div>
-            <div className="text-xs text-slate-400">by doohee2</div>
+            <div className="text-xs dark:text-slate-400 text-slate-500">by doohee2</div>
           </div>
         </div>
         <div className="flex-1 py-4 flex flex-col gap-2">
           <a
-            className={`flex items-center gap-3 px-6 py-3 font-sans text-sm font-semibold transition-all duration-300 ease-in-out ${pathname === '/' ? 'bg-indigo-900/40 text-indigo-300 border-l-4 border-indigo-600' : 'text-slate-400 pl-4 hover:bg-slate-800'}`}
+            className={`flex items-center gap-3 px-6 py-3 font-sans text-sm font-semibold transition-all duration-300 ease-in-out ${pathname === '/' ? 'dark:bg-indigo-900/40 bg-indigo-50 dark:text-indigo-300 text-indigo-600 border-l-4 border-indigo-600' : 'dark:text-slate-400 text-slate-600 pl-4 dark:hover:bg-slate-800 hover:bg-slate-50'}`}
             href="/"
           >
             <span className="material-symbols-outlined">hub</span>
             트래커
           </a>
           <a
-            className={`flex items-center gap-3 px-6 py-3 font-sans text-sm font-semibold transition-all duration-300 ease-in-out ${pathname.startsWith('/route') ? 'bg-indigo-900/40 text-indigo-300 border-l-4 border-indigo-600' : 'text-slate-400 pl-4 hover:bg-slate-800'}`}
+            className={`flex items-center gap-3 px-6 py-3 font-sans text-sm font-semibold transition-all duration-300 ease-in-out ${pathname.startsWith('/route') ? 'dark:bg-indigo-900/40 bg-indigo-50 dark:text-indigo-300 text-indigo-600 border-l-4 border-indigo-600' : 'dark:text-slate-400 text-slate-600 pl-4 dark:hover:bg-slate-800 hover:bg-slate-50'}`}
             href={routeHref}
           >
             <span className="material-symbols-outlined">map</span>
             경로
           </a>
           <a
-            className={`flex items-center gap-3 px-6 py-3 font-sans text-sm font-semibold transition-all duration-300 ease-in-out ${pathname === '/alarms' ? 'bg-indigo-900/40 text-indigo-300 border-l-4 border-indigo-600' : 'text-slate-400 pl-4 hover:bg-slate-800'}`}
+            className={`flex items-center gap-3 px-6 py-3 font-sans text-sm font-semibold transition-all duration-300 ease-in-out ${pathname === '/alarms' ? 'dark:bg-indigo-900/40 bg-indigo-50 dark:text-indigo-300 text-indigo-600 border-l-4 border-indigo-600' : 'dark:text-slate-400 text-slate-600 pl-4 dark:hover:bg-slate-800 hover:bg-slate-50'}`}
             href="/alarms"
           >
             <span className="material-symbols-outlined">notifications</span>
             알림
           </a>
           <a
-            className="flex items-center gap-3 px-6 py-3 text-slate-400 pl-4 hover:bg-slate-800 font-sans text-sm font-semibold transition-all duration-300 ease-in-out"
+            className="flex items-center gap-3 px-6 py-3 dark:text-slate-400 text-slate-600 pl-4 dark:hover:bg-slate-800 hover:bg-slate-50 font-sans text-sm font-semibold transition-all duration-300 ease-in-out"
             href="http://www.seoulmetro.co.kr/kr/cyberStation.do"
             target="_blank"
             rel="noopener noreferrer"
@@ -95,9 +95,9 @@ export default function Navigation() {
       </nav>
 
       {/* BottomNavBar (Mobile) */}
-      <nav className="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 lg:hidden bg-slate-900/90 backdrop-blur-md border-t border-indigo-900/50 shadow-[0_-4px_12px_rgba(0,0,0,0.5)]">
+      <nav className="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 lg:hidden dark:bg-slate-900/90 bg-white/90 backdrop-blur-md border-t dark:border-indigo-900/50 border-slate-200 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] transition-colors">
         <a
-          className={`flex flex-col items-center justify-center px-3 py-1 transition-transform ${pathname === '/' ? 'bg-indigo-900/30 text-indigo-300 rounded-xl active:scale-95' : 'text-slate-500 hover:text-indigo-400'}`}
+          className={`flex flex-col items-center justify-center px-3 py-1 transition-transform ${pathname === '/' ? 'dark:bg-indigo-900/30 bg-indigo-50 dark:text-indigo-300 text-indigo-600 rounded-xl active:scale-95' : 'text-slate-500 hover:text-indigo-500'}`}
           href="/"
         >
           <span className="material-symbols-outlined">hub</span>
@@ -106,7 +106,7 @@ export default function Navigation() {
           </span>
         </a>
         <a
-          className={`flex flex-col items-center justify-center px-3 py-1 transition-transform ${pathname.startsWith('/route') ? 'bg-indigo-900/30 text-indigo-300 rounded-xl active:scale-95' : 'text-slate-500 hover:text-indigo-400'}`}
+          className={`flex flex-col items-center justify-center px-3 py-1 transition-transform ${pathname.startsWith('/route') ? 'dark:bg-indigo-900/30 bg-indigo-50 dark:text-indigo-300 text-indigo-600 rounded-xl active:scale-95' : 'text-slate-500 hover:text-indigo-500'}`}
           href={routeHref}
         >
           <span className="material-symbols-outlined">map</span>
@@ -115,7 +115,7 @@ export default function Navigation() {
           </span>
         </a>
         <a
-          className={`flex flex-col items-center justify-center px-3 py-1 transition-transform ${pathname === '/alarms' ? 'bg-indigo-900/30 text-indigo-300 rounded-xl active:scale-95' : 'text-slate-500 hover:text-indigo-400'}`}
+          className={`flex flex-col items-center justify-center px-3 py-1 transition-transform ${pathname === '/alarms' ? 'dark:bg-indigo-900/30 bg-indigo-50 dark:text-indigo-300 text-indigo-600 rounded-xl active:scale-95' : 'text-slate-500 hover:text-indigo-500'}`}
           href="/alarms"
         >
           <span className="material-symbols-outlined">notifications</span>
@@ -124,7 +124,7 @@ export default function Navigation() {
           </span>
         </a>
         <a
-          className="flex flex-col items-center justify-center text-slate-500 hover:text-indigo-400"
+          className="flex flex-col items-center justify-center text-slate-500 hover:text-indigo-500"
           href="http://www.seoulmetro.co.kr/kr/cyberStation.do"
           target="_blank"
           rel="noopener noreferrer"

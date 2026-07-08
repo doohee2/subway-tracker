@@ -254,7 +254,7 @@ export default function Home() {
           {arrivalGroups.length > 0 && (
             <section className="flex flex-col gap-md mt-6">
               <h2 className="font-h3 text-h3 text-on-surface">실시간 도착 정보</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-md">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-md items-start">
                 {arrivalGroups.map((group, idx) => (
                   <ArrivalCard 
                     key={idx} 

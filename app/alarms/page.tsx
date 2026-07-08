@@ -99,7 +99,7 @@ export default function AlarmsPage() {
         <div className="max-w-container-max mx-auto w-full p-4 md:p-lg flex flex-col gap-md min-h-[calc(100vh-4rem)]">
 
           {showPwaPrompt && (
-            <div className="bg-indigo-500/10 border border-indigo-500/30 rounded-2xl p-4 flex flex-col gap-3 mt-4 relative overflow-hidden shadow-lg">
+            <div className="dark:bg-indigo-500/10 bg-indigo-50 border dark:border-indigo-500/30 border-indigo-200 rounded-2xl p-4 flex flex-col gap-3 mt-4 relative overflow-hidden shadow-lg transition-colors">
               <div className="absolute top-0 right-0 p-2 z-10">
                 <button
                   onClick={() => setShowPwaPrompt(false)}
@@ -110,14 +110,14 @@ export default function AlarmsPage() {
                 </button>
               </div>
               <div className="flex items-start gap-3 relative z-0">
-                <div className="bg-indigo-500/20 p-2.5 rounded-xl text-indigo-400 mt-1">
+                <div className="dark:bg-indigo-500/20 bg-indigo-100 p-2.5 rounded-xl text-indigo-400 mt-1">
                   <span className="material-symbols-outlined text-2xl">add_to_home_screen</span>
                 </div>
                 <div className="flex-1 pr-4">
-                  <h3 className="text-white font-bold text-lg mb-1">앱처럼 편리하게 사용하세요</h3>
-                  <p className="text-slate-300 text-sm leading-relaxed">
-                    하단의 <span className="inline-block bg-slate-800 px-1.5 py-0.5 rounded align-middle mx-1"><span className="material-symbols-outlined text-[16px] leading-none block">ios_share</span></span> 공유 버튼을 누르고<br />
-                    <strong className="text-indigo-300 font-semibold">홈 화면에 추가</strong>를 선택하면 앱처럼 사용할 수 있습니다.
+                  <h3 className="dark:text-white text-slate-800 font-bold text-lg mb-1">앱처럼 편리하게 사용하세요</h3>
+                  <p className="dark:text-slate-300 text-slate-600 text-sm leading-relaxed">
+                    하단의 <span className="inline-block dark:bg-slate-800 bg-slate-200 px-1.5 py-0.5 rounded align-middle mx-1"><span className="material-symbols-outlined text-[16px] leading-none block">ios_share</span></span> 공유 버튼을 누르고<br />
+                    <strong className="text-indigo-400 font-semibold">홈 화면에 추가</strong>를 선택하면 앱처럼 사용할 수 있습니다.
                   </p>
                 </div>
               </div>
@@ -131,25 +131,25 @@ export default function AlarmsPage() {
             </h2>
 
             {alarms.length === 0 ? (
-              <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-10 text-center flex flex-col items-center justify-center gap-4 shadow-sm mt-4">
-                <span className="material-symbols-outlined text-5xl text-slate-700">notifications_off</span>
-                <p className="text-slate-400 font-medium text-lg">설정된 알람이 없습니다.</p>
-                <p className="text-slate-500 text-sm">경로 상세 페이지에서 도착 예정 시간 버튼을 눌러 알람을 설정해보세요.</p>
+              <div className="dark:bg-slate-900/50 bg-slate-50 border dark:border-slate-800 border-slate-200 rounded-2xl p-10 text-center flex flex-col items-center justify-center gap-4 shadow-sm mt-4 transition-colors">
+                <span className="material-symbols-outlined text-5xl dark:text-slate-700 text-slate-300">notifications_off</span>
+                <p className="dark:text-slate-400 text-slate-600 font-medium text-lg">설정된 알람이 없습니다.</p>
+                <p className="dark:text-slate-500 text-slate-400 text-sm">경로 상세 페이지에서 도착 예정 시간 버튼을 눌러 알람을 설정해보세요.</p>
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-md mt-4">
                 {alarms.map((alarm) => (
                   <div
                     key={alarm.id}
-                    className="bg-slate-900 border border-slate-700 rounded-xl p-5 flex items-center justify-between shadow-lg relative overflow-hidden group"
+                    className="dark:bg-slate-900 bg-white border dark:border-slate-700 border-slate-200 rounded-xl p-5 flex items-center justify-between shadow-lg relative overflow-hidden group transition-colors"
                   >
                     <div className="absolute left-0 top-0 bottom-0 w-1 bg-indigo-500"></div>
                     <div className="flex flex-col gap-1 ml-2">
                       <div className="flex items-center gap-2">
-                        <span className="text-2xl font-bold text-white tracking-tight">{formatTime(alarm.arrivalTime)}</span>
-                        <span className="text-xs font-semibold px-2 py-1 bg-indigo-500/20 text-indigo-400 rounded-full">예정</span>
+                        <span className="text-2xl font-bold dark:text-white text-slate-800 tracking-tight">{formatTime(alarm.arrivalTime)}</span>
+                        <span className="text-xs font-semibold px-2 py-1 dark:bg-indigo-500/20 bg-indigo-50 text-indigo-500 rounded-full">예정</span>
                       </div>
-                      <div className="text-slate-400 font-medium flex items-center gap-1 mt-1">
+                      <div className="dark:text-slate-400 text-slate-500 font-medium flex items-center gap-1 mt-1">
                         <span className="material-symbols-outlined text-[16px]">location_on</span>
                         {alarm.stationName}역 도착 전
                       </div>
@@ -157,7 +157,7 @@ export default function AlarmsPage() {
 
                     <button
                       onClick={() => void handleDelete(alarm.id)}
-                      className="w-10 h-10 rounded-full flex items-center justify-center bg-slate-800 text-slate-400 hover:bg-red-500/20 hover:text-red-400 transition-colors"
+                      className="w-10 h-10 rounded-full flex items-center justify-center dark:bg-slate-800 bg-slate-100 dark:text-slate-400 text-slate-500 hover:bg-red-500/20 hover:text-red-500 transition-colors"
                       aria-label="알람 삭제"
                     >
                       <span className="material-symbols-outlined">close</span>

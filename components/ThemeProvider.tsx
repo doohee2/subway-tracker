@@ -13,12 +13,10 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>("dark");
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
     const savedTheme = localStorage.getItem("theme") as Theme;
-    const initialTheme = savedTheme ? savedTheme : "dark"; // Default to dark as requested previously
+    const initialTheme = savedTheme ? savedTheme : "dark";
     setTheme(initialTheme);
     
     if (initialTheme === "dark") {
@@ -40,9 +38,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  // SSR mismatch 방지를 위해 
   return (
-    <ThemeContext.Provider value={mounted ? { theme, toggleTheme } : { theme: "dark", toggleTheme: () => {} }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );
