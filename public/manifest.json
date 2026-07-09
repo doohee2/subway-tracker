@@ -1,6 +1,6 @@
 {
-  "name": "Subway Tracker",
-  "short_name": "Subway Tracker",
+  "name": "지하철 도착 정보",
+  "short_name": "지하철 도착 정보",
   "description": "실시간 지하철 도착 정보 조회 애플리케이션",
   "start_url": "/",
   "display": "standalone",

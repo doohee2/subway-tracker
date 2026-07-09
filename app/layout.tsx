@@ -12,6 +12,10 @@ export const metadata: Metadata = {
   icons: {
     apple: "/apple-icon.png",
   },
+  appleWebApp: {
+    title: "지하철 도착 정보",
+    statusBarStyle: "default",
+  },
 };
 
 export default function RootLayout({
