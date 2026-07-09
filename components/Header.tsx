@@ -47,7 +47,7 @@ export default function Header() {
                 <span className="material-symbols-outlined text-3xl">info</span>
               </div>
               <h3 className="text-xl font-bold dark:text-white text-slate-900 tracking-tight transition-colors">
-                주의
+                안내
               </h3>
               <p className="text-sm dark:text-slate-300 text-slate-600 leading-relaxed text-left transition-colors">
                 {APP_CONFIG.INFO_MESSAGE}

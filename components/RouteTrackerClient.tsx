@@ -248,11 +248,11 @@ export default function RouteTrackerClient({
           )}
 
           {/* Current Station */}
-          <div className="relative flex items-center gap-6 py-4 group">
+          <div className="relative flex items-center gap-6 py-2 group">
             <div className="z-10 w-10 h-10 rounded-full bg-indigo-600 border-4 dark:border-slate-950 border-white flex items-center justify-center shadow-[0_0_15px_rgba(79,70,229,0.5)] transition-colors">
               <span className="material-symbols-outlined text-white text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>train</span>
             </div>
-            <div className="flex-1 flex items-center justify-between border-b border-indigo-900/30 pb-4 bg-indigo-50 dark:bg-indigo-900/10 rounded-r-xl px-4 -mx-4">
+            <div className="flex-1 flex items-center justify-between border-b border-indigo-900/30 py-4 bg-indigo-50 dark:bg-indigo-900/10 rounded-r-xl px-4 -mx-4">
               <Link href={`/?station=${encodeURIComponent(currentStationInfo.station_nm)}`} className="text-xl font-bold dark:text-white text-indigo-950 hover:text-indigo-500 transition-colors">
                 {currentStationInfo.station_nm}역
               </Link>
@@ -314,7 +314,7 @@ export default function RouteTrackerClient({
                 <span className="material-symbols-outlined text-3xl">info</span>
               </div>
               <h3 className="text-xl font-bold dark:text-white text-slate-900 tracking-tight transition-colors">
-                안내
+                주의
               </h3>
               <p className="text-sm dark:text-slate-300 text-slate-600 leading-relaxed text-left transition-colors">
                 {APP_CONFIG.INFO_MESSAGE}

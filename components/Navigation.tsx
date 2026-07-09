@@ -111,7 +111,7 @@ export default function Navigation() {
         >
           <span className="material-symbols-outlined">map</span>
           <span className="text-[10px] font-bold uppercase tracking-widest mt-1">
-            Route
+            경로
           </span>
         </a>
         <a
@@ -120,7 +120,7 @@ export default function Navigation() {
         >
           <span className="material-symbols-outlined">notifications</span>
           <span className="text-[10px] font-bold uppercase tracking-widest mt-1">
-            Alarms
+            알림
           </span>
         </a>
 
