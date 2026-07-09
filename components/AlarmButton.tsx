@@ -216,10 +216,10 @@ export default function AlarmButton({ stationName, timeString, arrivalTime, isMi
       <button 
         disabled={isMissingData}
         onClick={handleClick}
-        className={`px-4 py-1.5 rounded-lg text-sm font-bold border transition-colors ${
+        className={`px-4 py-1.5 rounded-lg text-sm font-bold border transition-all ${
           isMissingData 
-            ? 'bg-slate-800 border-slate-700 text-slate-600 cursor-not-allowed'
-            : 'bg-indigo-900/40 border-indigo-700/30 text-indigo-400 hover:bg-indigo-800/50'
+            ? 'dark:bg-slate-800 dark:border-slate-700 dark:text-slate-600 bg-slate-50 border-slate-100 text-slate-400 shadow-none cursor-not-allowed'
+            : 'dark:bg-indigo-900/40 dark:border-indigo-700/30 dark:text-indigo-400 dark:hover:bg-indigo-800/50 bg-white border-slate-200 text-slate-700 shadow-sm hover:border-indigo-300 hover:text-indigo-600 hover:shadow-md'
         }`}
       >
         {isMissingData ? '--:--' : timeString}

@@ -111,7 +111,7 @@ export default function Navigation() {
         >
           <span className="material-symbols-outlined">map</span>
           <span className="text-[10px] font-bold uppercase tracking-widest mt-1">
-            경로
+            Route
           </span>
         </a>
         <a
@@ -120,9 +120,10 @@ export default function Navigation() {
         >
           <span className="material-symbols-outlined">notifications</span>
           <span className="text-[10px] font-bold uppercase tracking-widest mt-1">
-            알림
+            Alarms
           </span>
         </a>
+
         <a
           className="flex flex-col items-center justify-center text-slate-500 hover:text-indigo-500"
           href="http://www.seoulmetro.co.kr/kr/cyberStation.do"

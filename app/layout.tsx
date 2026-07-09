@@ -20,12 +20,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
+    <html lang="ko" suppressHydrationWarning>
       <head>
         <link
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
           rel="stylesheet"
         />
+        <link rel="manifest" href="/manifest.json" />
         {/* 깜빡임(FOUC) 방지를 위한 인라인 스크립트 */}
         <script
           dangerouslySetInnerHTML={{

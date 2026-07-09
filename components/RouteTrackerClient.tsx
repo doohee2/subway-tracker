@@ -7,6 +7,7 @@ import AlarmButton from "@/components/AlarmButton";
 import { hmToSeconds, parseKSTDate, formatKSTTime } from "@/utils/subwayData";
 import { getLineColor, getLineNumberText } from "@/utils/subwayColors";
 import { createClientError, extractClientErrorInfo, formatUserErrorMessage } from "@/utils/errorMessage";
+import { APP_CONFIG } from "@/utils/config";
 
 interface Station {
   station_cd: string;
@@ -207,10 +208,10 @@ export default function RouteTrackerClient({
             </div>
           </div>
         </div>
-        <div className="hidden md:block overflow-hidden rounded-xl border dark:border-slate-800 border-slate-200 relative group transition-colors">
-          <div className="absolute inset-0 dark:bg-gradient-to-t dark:from-slate-950 dark:via-slate-900/50 dark:to-slate-900 bg-slate-50 flex flex-col justify-end p-6">
+        <div className="hidden md:block overflow-hidden rounded-xl border dark:border-slate-800/60 border-slate-200 relative group transition-colors">
+          <div className="absolute inset-0 dark:bg-slate-800/30 bg-slate-50 flex flex-col justify-end p-6 dark:group-hover:bg-slate-800/50 transition-colors">
             <p className="text-xs text-indigo-400 uppercase tracking-widest font-bold">실시간 위치 정보</p>
-            <p className="text-sm font-semibold dark:text-white text-slate-800 mt-1">{currentLocationMsg}</p>
+            <p className="text-sm font-semibold dark:text-slate-300 text-slate-800 mt-1 transition-colors">{currentLocationMsg}</p>
           </div>
         </div>
       </section>
@@ -221,7 +222,7 @@ export default function RouteTrackerClient({
           <h3 className="text-xl font-bold dark:text-white text-slate-900">운행 노선 상세</h3>
           <button
             onClick={() => setShowInfoModal(true)}
-            className="text-slate-400 hover:text-white transition-colors flex items-center justify-center"
+            className="dark:text-slate-400 text-slate-500 dark:hover:text-white hover:text-slate-800 transition-colors flex items-center justify-center"
             title="안내"
           >
             <span className="material-symbols-outlined text-[20px]">info</span>
@@ -306,23 +307,23 @@ export default function RouteTrackerClient({
         <div className="fixed top-0 left-0 w-screen h-screen z-[100] flex items-center justify-center dark:bg-slate-950/60 bg-slate-900/30 backdrop-blur-sm p-4">
           <div
             style={{ width: 'min(448px, calc(100vw - 2rem))', flexShrink: 0 }}
-            className="dark:bg-slate-900 bg-white border dark:border-slate-700 border-slate-200 shadow-2xl rounded-2xl overflow-hidden"
+            className="dark:bg-slate-900 bg-white border dark:border-slate-800 border-slate-200 shadow-2xl rounded-2xl overflow-hidden transition-colors"
           >
             <div className="p-6 text-center space-y-4">
-              <div className="w-16 h-16 dark:bg-indigo-500/20 bg-indigo-100 text-indigo-400 rounded-full flex items-center justify-center mx-auto mb-2">
+              <div className="w-16 h-16 dark:bg-indigo-500/20 bg-slate-100 dark:text-indigo-400 text-slate-500 rounded-full flex items-center justify-center mx-auto mb-2 transition-colors">
                 <span className="material-symbols-outlined text-3xl">info</span>
               </div>
-              <h3 className="text-xl font-bold dark:text-white text-slate-900 tracking-tight">
-                중요 안내
+              <h3 className="text-xl font-bold dark:text-white text-slate-900 tracking-tight transition-colors">
+                안내
               </h3>
-              <p className="text-sm dark:text-slate-300 text-slate-600 leading-relaxed text-left">
-                본 지하철 경로 안내 페이지는 급행, 지선 정보가 반영되지 않아 운행경로 및 도착시간 정보가 실제와 다르거나 제공되지 않을 수 있습니다.
+              <p className="text-sm dark:text-slate-300 text-slate-600 leading-relaxed text-left transition-colors">
+                {APP_CONFIG.INFO_MESSAGE}
               </p>
             </div>
-            <div className="flex border-t dark:border-slate-800 border-slate-100">
+            <div className="flex border-t dark:border-slate-800 border-slate-100 transition-colors">
               <button
                 onClick={() => setShowInfoModal(false)}
-                className="flex-1 py-4 text-indigo-400 hover:text-indigo-300 hover:bg-indigo-900/20 transition-colors font-bold text-sm"
+                className="flex-1 py-4 dark:text-indigo-400 text-slate-700 dark:hover:text-indigo-300 hover:text-slate-900 dark:hover:bg-indigo-900/20 hover:bg-slate-50 transition-colors font-bold text-sm"
               >
                 확인
               </button>
