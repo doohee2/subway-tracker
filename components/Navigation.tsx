@@ -49,15 +49,9 @@ export default function Navigation() {
     <>
       {/* NavigationDrawer (Web) */}
       <nav className="hidden lg:flex flex-col fixed left-0 top-0 h-full dark:border-slate-800 border-slate-200 w-72 dark:bg-slate-900 bg-white shadow-2xl dark:divide-slate-800 divide-slate-100 pt-16 transition-colors">
-        <div className="p-6 flex items-center gap-4">
-          <div className="w-12 h-12 rounded-full overflow-hidden bg-surface-container-high flex items-center justify-center text-indigo-300 bg-indigo-500/20 font-bold text-xl">
-            S
-          </div>
-          <div>
-            <div className="font-sans text-sm font-semibold dark:text-indigo-50 text-slate-800">
-              Subway Tracker
-            </div>
-            <div className="text-xs dark:text-slate-400 text-slate-500">by doohee2</div>
+        <div className="p-6">
+          <div className="font-sans text-lg font-bold dark:text-indigo-50 text-slate-800">
+            지하철 도착 정보
           </div>
         </div>
         <div className="flex-1 py-4 flex flex-col gap-2">

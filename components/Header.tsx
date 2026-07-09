@@ -12,6 +12,9 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 lg:px-10 h-16 bg-surface-container-lowest border-b border-outline-variant shadow-sm transition-colors">
       <div className="flex items-center gap-2">
+        <span className="material-symbols-outlined text-[28px] sm:text-[34px] text-indigo-600 dark:text-indigo-400 transition-colors drop-shadow-sm" style={{ fontVariationSettings: "'FILL' 1" }}>
+          directions_subway
+        </span>
         <svg viewBox="0 0 360 60" className="h-[28px] sm:h-[34px] w-auto drop-shadow-sm" fill="none" xmlns="http://www.w3.org/2000/svg">
           <text x="0" y="45" fontWeight="900" fontSize="42" letterSpacing="-0.04em" className="fill-indigo-600 dark:fill-indigo-400 transition-colors duration-300">Subway</text>
           <circle cx="178" cy="32" r="6" className="fill-indigo-600 dark:fill-indigo-400 transition-colors duration-300" />
