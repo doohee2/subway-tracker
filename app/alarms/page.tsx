@@ -7,10 +7,13 @@ import Footer from "@/components/Footer";
 import { SubwayAlarm } from "@/types/alarm";
 import { loadAndNormalizeAlarms, saveAlarms } from "@/utils/alarmStorage";
 import { createClientError, extractClientErrorInfo, formatUserErrorMessage } from "@/utils/errorMessage";
+import CustomAlarmModal from "@/components/CustomAlarmModal";
+import { setupSubwayAlarm } from "@/utils/alarmActions";
 
 export default function AlarmsPage() {
   const [alarms, setAlarms] = useState<SubwayAlarm[]>(() => loadAndNormalizeAlarms());
   const [showPwaPrompt, setShowPwaPrompt] = useState(false);
+  const [isCustomModalOpen, setIsCustomModalOpen] = useState(false);
 
   const loadAlarms = useCallback(() => {
     try {
@@ -90,6 +93,21 @@ export default function AlarmsPage() {
     return `${hours}:${minutes}`;
   };
 
+  const handleCustomConfirm = async (minutes: number) => {
+    setIsCustomModalOpen(false);
+    const now = Date.now();
+    const notifyAt = now + minutes * 60 * 1000;
+    
+    await setupSubwayAlarm({
+      stationName: "사용자 지정",
+      arrivalTime: notifyAt,
+      notifyAt,
+      title: `지하철 알림: 사용자 지정`,
+      body: `설정하신 사용자 지정 알람 시간입니다!`,
+      successMessage: `사용자 지정 ${minutes}분 후 알람이 설정되었습니다.`
+    });
+  };
+
   return (
     <>
       <Header />
@@ -125,10 +143,19 @@ export default function AlarmsPage() {
           )}
 
           <section className="flex flex-col gap-md mt-6">
-            <h2 className="font-h3 text-h3 text-on-surface flex items-center gap-2">
-              <span className="material-symbols-outlined text-indigo-500 text-3xl">notifications_active</span>
-              설정된 알람 목록
-            </h2>
+            <div className="flex items-center justify-between">
+              <h2 className="font-h3 text-h3 text-on-surface flex items-center gap-2">
+                <span className="material-symbols-outlined text-indigo-500 text-3xl">notifications_active</span>
+                설정된 알람 목록
+              </h2>
+              <button 
+                onClick={() => setIsCustomModalOpen(true)}
+                className="px-3 py-1.5 text-sm font-semibold rounded-lg dark:bg-indigo-500/20 bg-indigo-50 dark:text-indigo-400 text-indigo-600 hover:bg-indigo-100 dark:hover:bg-indigo-500/30 transition-colors flex items-center gap-1"
+              >
+                <span className="material-symbols-outlined text-[18px]">add_alert</span>
+                알람 설정
+              </button>
+            </div>
 
             {alarms.length === 0 ? (
               <div className="dark:bg-slate-900/50 bg-slate-50 border dark:border-slate-800 border-slate-200 rounded-2xl p-10 text-center flex flex-col items-center justify-center gap-4 shadow-sm mt-4 transition-colors">
@@ -151,7 +178,7 @@ export default function AlarmsPage() {
                       </div>
                       <div className="dark:text-slate-400 text-slate-500 font-medium flex items-center gap-1 mt-1">
                         <span className="material-symbols-outlined text-[16px]">location_on</span>
-                        {alarm.stationName}역 도착 전
+                        {alarm.stationName === "사용자 지정" ? "사용자 지정 알람" : `${alarm.stationName}역 도착 전`}
                       </div>
                     </div>
 
@@ -171,6 +198,12 @@ export default function AlarmsPage() {
           <Footer />
         </div>
       </main>
+
+      <CustomAlarmModal
+        isOpen={isCustomModalOpen}
+        onConfirm={handleCustomConfirm}
+        onCancel={() => setIsCustomModalOpen(false)}
+      />
     </>
   );
 }
