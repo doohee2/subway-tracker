@@ -8,12 +8,14 @@ import { SubwayAlarm } from "@/types/alarm";
 import { loadAndNormalizeAlarms, saveAlarms } from "@/utils/alarmStorage";
 import { createClientError, extractClientErrorInfo, formatUserErrorMessage } from "@/utils/errorMessage";
 import CustomAlarmModal from "@/components/CustomAlarmModal";
+import ConfirmModal from "@/components/ConfirmModal";
 import { setupSubwayAlarm } from "@/utils/alarmActions";
 
 export default function AlarmsPage() {
   const [alarms, setAlarms] = useState<SubwayAlarm[]>(() => loadAndNormalizeAlarms());
   const [showPwaPrompt, setShowPwaPrompt] = useState(false);
   const [isCustomModalOpen, setIsCustomModalOpen] = useState(false);
+  const [isDeleteAllModalOpen, setIsDeleteAllModalOpen] = useState(false);
 
   const loadAlarms = useCallback(() => {
     try {
@@ -108,6 +110,32 @@ export default function AlarmsPage() {
     });
   };
 
+  const handleDeleteAll = async () => {
+    setIsDeleteAllModalOpen(false);
+    
+    // QStash 서버 알람들을 병렬로 조용히 취소 요청 (404 등의 에러 무시)
+    const cancelPromises = alarms.map(async (alarm) => {
+      if (alarm.qstashMessageId) {
+        try {
+          await fetch("/api/alarm/cancel", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ messageId: alarm.qstashMessageId }),
+          });
+        } catch (e) {
+          // silently ignore
+        }
+      }
+    });
+
+    await Promise.allSettled(cancelPromises);
+
+    // 로컬 스토리지 비우기 및 상태 업데이트
+    saveAlarms([]);
+    setAlarms([]);
+    window.dispatchEvent(new Event("subway_alarms_updated"));
+  };
+
   return (
     <>
       <Header />
@@ -193,6 +221,18 @@ export default function AlarmsPage() {
                 ))}
               </div>
             )}
+
+            {alarms.length > 0 && (
+              <div className="flex justify-end mt-2">
+                <button 
+                  onClick={() => setIsDeleteAllModalOpen(true)}
+                  className="px-4 py-2 text-sm font-semibold rounded-lg dark:bg-red-500/10 bg-red-50 dark:text-red-400 text-red-600 hover:bg-red-100 dark:hover:bg-red-500/20 transition-colors flex items-center gap-1"
+                >
+                  <span className="material-symbols-outlined text-[18px]">delete_sweep</span>
+                  전체 삭제
+                </button>
+              </div>
+            )}
           </section>
 
           <Footer />
@@ -203,6 +243,15 @@ export default function AlarmsPage() {
         isOpen={isCustomModalOpen}
         onConfirm={handleCustomConfirm}
         onCancel={() => setIsCustomModalOpen(false)}
+      />
+
+      <ConfirmModal
+        isOpen={isDeleteAllModalOpen}
+        title="알람 전체 삭제"
+        message="모든 알람 설정을 삭제하겠습니까?"
+        icon="delete_sweep"
+        onConfirm={() => void handleDeleteAll()}
+        onCancel={() => setIsDeleteAllModalOpen(false)}
       />
     </>
   );

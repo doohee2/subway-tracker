@@ -21,23 +21,33 @@ export default function AlarmManager() {
         let hasChanges = false;
 
         const remainingAlarms = alarms.filter(alarm => {
-          if (alarm.strategy !== "local") {
-            return true;
-          }
+          // Fallback in case notifyAt is somehow missing (older data)
+          const notifyTime = alarm.notifyAt || alarm.arrivalTime - (2 * 60 * 1000);
 
-          const notifyTime = alarm.arrivalTime - (2 * 60 * 1000); // 2 minutes before arrival
-
-          if (now >= notifyTime) {
-            if (Notification.permission === "granted") {
-              new Notification(`지하철 알림: ${alarm.stationName}역`, {
-                body: `${alarm.stationName}역 도착 2분 전입니다!`,
-                icon: "/favicon.ico",
-              });
+          if (alarm.strategy === "local") {
+            if (now >= notifyTime) {
+              if (Notification.permission === "granted") {
+                new Notification(`지하철 알림: ${alarm.stationName}역`, {
+                  body: alarm.stationName === "사용자 지정" 
+                    ? `설정하신 사용자 지정 알람 시간입니다!` 
+                    : `${alarm.stationName}역 도착 2분 전입니다!`,
+                  icon: "/favicon.ico",
+                });
+              }
+              hasChanges = true;
+              return false; // Remove local alarm after firing
             }
-            hasChanges = true;
-            return false;
+          } else {
+            // QStash (iPhone PWA) alarms:
+            // Naturally remove them from the UI list a short moment after the notification was supposed to be delivered.
+            // We give it a 1-minute buffer so it doesn't disappear *before* the push actually arrives.
+            if (now > notifyTime + (1 * 60 * 1000)) {
+              hasChanges = true;
+              return false;
+            }
           }
 
+          // Global fallback cleanup: strictly clean anything 10 mins past arrival
           if (now > alarm.arrivalTime + (10 * 60 * 1000)) {
             hasChanges = true;
             return false;
