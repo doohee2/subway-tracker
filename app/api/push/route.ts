@@ -1,17 +1,18 @@
 import { NextResponse } from "next/server";
-import { PushDeliveryRequest } from "@/types/alarm";
 import { getQstashReceiver } from "@/utils/qstash";
 import { sendWebPush } from "@/utils/push";
+import { PushDeliverySchema } from "@/utils/apiValidation";
 
 export async function POST(request: Request) {
   const signature = request.headers.get("upstash-signature");
   if (!signature) {
-    return NextResponse.json({ ok: false, error: "Missing upstash-signature." }, { status: 401 });
+    return NextResponse.json({ ok: false, error: "요청을 처리할 수 없습니다." }, { status: 401 });
   }
 
   const rawBody = await request.text();
 
   try {
+    // 1. 리소스 소유권 및 호출 엔드포인트 암호화 서명 검증
     const receiver = getQstashReceiver();
     await receiver.verify({
       signature,
@@ -19,17 +20,27 @@ export async function POST(request: Request) {
       url: process.env.QSTASH_PUSH_ENDPOINT_URL,
     });
   } catch (error) {
-    console.error("QStash signature verification failed:", error);
-    return NextResponse.json({ ok: false, error: "Invalid signature." }, { status: 401 });
+    console.error("[QStash Signature Verification Failed]", error);
+    return NextResponse.json({ ok: false, error: "요청을 처리할 수 없습니다." }, { status: 401 });
   }
 
   try {
-    const body = JSON.parse(rawBody) as PushDeliveryRequest;
-    if (!body.subscription || !body.payload) {
-      return NextResponse.json({ ok: false, error: "Invalid push body." }, { status: 400 });
+    let parsedJson;
+    try {
+      parsedJson = JSON.parse(rawBody);
+    } catch {
+      return NextResponse.json({ ok: false, error: "요청을 처리할 수 없습니다." }, { status: 400 });
     }
 
-    await sendWebPush(body.subscription, body.payload);
+    // 2. Zod 스키마 기반 엄격한 페이로드 검증
+    const validation = PushDeliverySchema.safeParse(parsedJson);
+    if (!validation.success) {
+      return NextResponse.json({ ok: false, error: "요청을 처리할 수 없습니다." }, { status: 400 });
+    }
+
+    const { subscription, payload } = validation.data;
+
+    await sendWebPush(subscription, payload);
     return NextResponse.json({ ok: true });
   } catch (error: unknown) {
     const statusCode =
@@ -45,7 +56,8 @@ export async function POST(request: Request) {
       );
     }
 
-    console.error("Failed to send web push:", error);
-    return NextResponse.json({ ok: false, error: "Failed to send web push." }, { status: 500 });
+    // 3. 에러 위생화
+    console.error("[Push Delivery Failed Error]", error);
+    return NextResponse.json({ ok: false, error: "요청을 처리할 수 없습니다." }, { status: 500 });
   }
 }

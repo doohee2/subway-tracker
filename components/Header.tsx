@@ -4,6 +4,8 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import { useTheme } from "./ThemeProvider";
 import { APP_CONFIG } from "@/utils/config";
+import UserAvatar from "./UserAvatar";
+
 
 export default function Header() {
   const { theme, toggleTheme } = useTheme();
@@ -29,15 +31,18 @@ export default function Header() {
           <span className="material-symbols-outlined text-[20px]">info</span>
         </button>
       </div>
-      <button
-        onClick={toggleTheme}
-        className="w-10 h-10 rounded-full hover:bg-surface-container flex items-center justify-center transition-colors text-on-surface-variant focus:outline-none focus:ring-2 focus:ring-primary/50"
-        aria-label="Toggle Dark Mode"
-      >
-        <span className="material-symbols-outlined">
-          {theme === "dark" ? "light_mode" : "dark_mode"}
-        </span>
-      </button>
+      <div className="flex items-center gap-3">
+        <button
+          onClick={toggleTheme}
+          className="w-10 h-10 rounded-full hover:bg-surface-container flex items-center justify-center transition-colors text-on-surface-variant focus:outline-none focus:ring-2 focus:ring-primary/50"
+          aria-label="Toggle Dark Mode"
+        >
+          <span className="material-symbols-outlined">
+            {theme === "dark" ? "light_mode" : "dark_mode"}
+          </span>
+        </button>
+        <UserAvatar size={36} />
+      </div>
 
       {showInfo && typeof window !== 'undefined' && createPortal(
         <div className="fixed top-0 left-0 w-screen h-screen z-[100] flex items-center justify-center dark:bg-slate-950/60 bg-slate-900/30 backdrop-blur-sm p-4">

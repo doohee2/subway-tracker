@@ -89,3 +89,38 @@
 *   **사용자 지정 시간 알람 (Custom Alarm)**: 실시간 예상 도착 시간이 없거나(`--:--`) 사용자가 직접 특정 시간에 알람을 맞추고 싶을 때를 대비해, 직접 "+X분 후" 타이머 형태의 알람을 설정할 수 있는 기능(`CustomAlarmModal`)을 도입했습니다. 이를 위해 기존 알람 설정 코드를 `utils/alarmActions.ts`로 분리하여 모듈화 및 재사용성을 극대화했습니다.
 *   **알람 일괄 삭제 및 서버 예외 처리**: 알람 목록을 한 번에 비울 수 있는 "전체 삭제" 버튼과 공통 확인 모달(`ConfirmModal`)을 추가했습니다. 삭제 진행 중 QStash 서버로부터 이미 처리된 메시지에 대한 404 에러가 반환되더라도, 프론트엔드 로컬 스토리지에서는 이를 조용히(Silently) 무시하고 화면 목록을 정상적으로 갱신하도록 예외 처리를 강화했습니다.
 *   **아이폰(PWA) 로컬 상태 자연 삭제 (Auto Cleanup)**: 글로벌 `AlarmManager` 로직을 개선하여, 브라우저 로컬 알람뿐만 아니라 아이폰 환경의 QStash 푸시 알람들도 알림 예정 시간(`notifyAt`)이 1분 이상 지나면 사용자가 직접 지우지 않아도 로컬 스토리지 목록에서 자연스럽게 자동 삭제되도록 정리(Cleanup) 루틴을 보강했습니다. 앱이 종료된 상태여도 다음 번 앱 실행 시 즉각 정리됩니다.
+
+## 4. 보안 아키텍처 및 하드닝 체계 (Security Architecture & Hardening)
+
+본 애플리케이션은 Next.js App Router 및 PWA 환경에서 클라이언트와 서버리스 함수 간의 경계를 보호하기 위해 **4단계 보안 점검 및 하드닝(Hardening) 체계**를 완벽하게 적용하였습니다.
+
+### 4.1. 엔드포인트 인가 및 엄격한 입력 유효성 검사 (Zod)
+*   **엔드포인트 인가(Authorization)**: `app/api/push` 등 백엔드 서버리스 핸들러 호출 시 외부 임의 유저 파라미터나 조작된 식별자에 신뢰를 두지 않으며, Upstash 암호화 서명(`upstash-signature`) 등 철저한 인증 체계를 바탕으로 인가 작업을 수행합니다.
+*   **Zod 스키마 검증**: `utils/apiValidation.ts`에 각 API 요청(Query Params, Path Variables, Body payload)에 대한 엄격한 Zod 스키마(`SubwayQuerySchema`, `AlarmReserveSchema` 등)를 정의했습니다. `safeParse`를 거친 안전한 데이터만 비즈니스 로직으로 유입되며, 유효성 검사 실패 시 즉각 HTTP 400 Bad Request 에러를 반환합니다.
+*   **에러 위생화(Error Sanitization)**: 데이터베이스 쿼리나 공공데이터 API 통신 오류 발생 시 쿼리 구문 원문, raw 예외 데이터(`details`), 스택 트레이스 등을 브라우저 클라이언트 응답에 일절 노출하지 않습니다. 상세 내부 에러는 오직 서버 터미널 로그(`console.error`)에만 기록되며, 클라이언트로 전송되는 500 에러 문구는 `"요청을 처리할 수 없습니다."`로 위생화 통일되었습니다.
+
+### 4.2. 환경 변수 관리 및 백엔드 자격증명 격리 (Zero-Leak)
+*   **NEXT_PUBLIC_ 격리 준칙**: 서버 측에서 사용하는 외부 API 키(`SEOUL_SUBWAY_API_KEY`) 및 DB/서버 서명 자격증명(`QSTASH_TOKEN`, `VAPID_PRIVATE_KEY` 등)에는 클라이언트 번들로의 유출을 차단하기 위해 `NEXT_PUBLIC_` 접두사를 철저히 배제하고 순수 백엔드 서버 전용 변수로 격리하였습니다.
+*   **배포 대시보드 관리(Vercel 준칙)**: Vercel 등 Production 배포 시 `SEOUL_SUBWAY_API_KEY`, `QSTASH_*` 토큰은 오직 Server Root Environment에만 세팅하며, Web Push 구독을 위한 VAPID 공개키(`NEXT_PUBLIC_VAPID_PUBLIC_KEY`)만 클라이언트 노출 변수로 허용합니다.
+
+### 4.3. PWA 로컬 스토리지 및 오프라인 캐시 보안 (Cache Purging)
+*   **토큰 저장 장소 방어**: `localStorage` 및 `IndexedDB`에는 오직 일반 알람 목록, 역 이름 검색어 히스토리, UI 테마(`dark`/`light`) 등 비민감 데이터만 보관하며 토큰/민감 식별자 평문 보관을 차단합니다.
+*   **오프라인 캐시 파기(Cache Purging)**: 데이터 초기화 및 전체 삭제 시 다른 사람의 조작이나 캐시 잔류를 막기 위해, `utils/cachePurging.ts` (`purgeSensitiveOfflineCaches`) 모듈을 구비했습니다. 알람 전체 초기화 또는 세션 클리어 시 `window.caches.delete`를 순회 호출하여 로컬 오프라인 캐시 스토리지까지 소각 및 청정 상태로 복구하며, 평상시 오프라인 PWA 서비스는 100% 원활히 구동되도록 분리 설계되었습니다.
+
+### 4.4. Vercel 배포용 6대 강력 HTTP 보안 헤더 장착
+*   `next.config.ts` 내의 CommonJS 구문을 청결히 제거하고 ES Module 타입스크립트 기반의 `async headers()` 구성을 완료했습니다.
+*   **장착된 6대 HTTP 보안 헤더**:
+    *   **Content-Security-Policy (CSP)**: PWA 서비스 워커 구동을 위한 `worker-src 'self' blob:;` 및 이미지(`img-src 'self' data: blob: https:;`), 폰트 및 맞춤 허용 도메인(`connect-src`, `script-src`)만 명시하여 XSS 차단 및 비정상 데이터 외부 송신 방어.
+    *   **Strict-Transport-Security (HSTS)**: `max-age=63072000; includeSubDomains; preload`로 HTTPS 암호화 접속 강제.
+    *   **X-Frame-Options**: `DENY`로 클릭재킹 및 iframe 감싸기 차단.
+    *   **X-Content-Type-Options**: `nosniff` 적용을 통한 MIME 타입 스푸핑 차단.
+    *   **Referrer-Policy**: `strict-origin-when-cross-origin`으로 민감 URL 경로 유출 방지.
+    *   **Permissions-Policy**: 불필요한 하드웨어 접근 차단을 위해 `camera=(), microphone=(), geolocation=()` 강제 통제 적용.
+
+### 4.5. PWA 이미지 캐싱 이원화 및 프로필 예외 방어 (Image Caching & Fallback UX)
+*   **서비스 워커(`public/sw.js`) 캐싱 이원화 규칙**:
+    *   **외부(Cross-Origin) 도메인 이미지 런타임 캐시 (우선순위 상단 배치)**: 구글 OAuth 아바타(`*.googleusercontent.com`) 등 외부 도메인 이미지(`request.destination === "image" && url.origin !== self.location.origin`)에 대해 **`StaleWhileRevalidate`** 전략을 적용하여 백그라운드에서 유연하게 갱신되도록 구성했습니다. Opaque(상태 코드 0) 응답 에러를 방지하기 위해 `CacheableResponsePlugin({ statuses: [0, 200] })`를 장착하고 최대 TTL을 30일로 제한했습니다.
+    *   **내부(Self Origin) 불변 고정 자산 캐싱 (하단 유지)**: Next.js 빌드 자산(`/_next/static/**`), 내부 CSS/Script/Font, 앱 로컬 정적 이미지에는 1년짜리 **`CacheFirst`** 정책을 확정 적용하여 오프라인 즉각 로딩 및 제로 레이턴시를 구현했습니다.
+*   **프로필 이미지 엑박(Broken Image) 방어벽 (`components/UserAvatar.tsx`)**:
+    *   상단 헤더(`Header.tsx`) 및 프로필 영역에서 외부 사용자 이미지 도달에 실패(네트워크 단절, CORS 지연, 토큰 누락 등)하더라도 브라우저 기본 깨진 이미지 기호("?")가 노출되지 않도록 `onError` 상태 핸들러(`imgError`)를 장착했습니다.
+    *   에러 또는 URL 공백 발생 시 앱 디자인 시스템과 완벽히 동화되는 세련된 유저 기본 아이콘(`account_circle`)으로 즉시 전환(Fallback)되도록 UI를 단단히 보강했습니다.

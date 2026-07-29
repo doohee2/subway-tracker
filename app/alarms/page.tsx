@@ -10,6 +10,7 @@ import { createClientError, extractClientErrorInfo, formatUserErrorMessage } fro
 import CustomAlarmModal from "@/components/CustomAlarmModal";
 import ConfirmModal from "@/components/ConfirmModal";
 import { setupSubwayAlarm } from "@/utils/alarmActions";
+import { purgeSensitiveOfflineCaches } from "@/utils/cachePurging";
 
 export default function AlarmsPage() {
   const [alarms, setAlarms] = useState<SubwayAlarm[]>(() => loadAndNormalizeAlarms());
@@ -130,7 +131,8 @@ export default function AlarmsPage() {
 
     await Promise.allSettled(cancelPromises);
 
-    // 로컬 스토리지 비우기 및 상태 업데이트
+    // PWA 오프라인 캐시 및 로컬 스토리지 안전 클리어
+    await purgeSensitiveOfflineCaches();
     saveAlarms([]);
     setAlarms([]);
     window.dispatchEvent(new Event("subway_alarms_updated"));
