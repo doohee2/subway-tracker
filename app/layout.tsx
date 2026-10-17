@@ -9,6 +9,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "지하철 도착 정보",
   description: "지하철 실시간 도착정보 조회",
+  verification: {
+    google: "WdxZQ1sGoma51XTaHhrfapOp64txalt2SBACCB7GOCY",
+  },
   icons: {
     apple: "/apple-icon.png",
   },
