@@ -12,6 +12,7 @@ interface LastRoute {
   bstatnNm: string;
   subwayId: string;
   statnNm: string;
+  btrainSttus?: string;
   timestamp?: number;
 }
 
@@ -38,6 +39,7 @@ export default function Navigation() {
             bstatnNm: r.bstatnNm,
             subwayId: r.subwayId,
             statnNm: r.statnNm,
+            btrainSttus: r.btrainSttus || "일반",
           });
           setRouteHref(`/route/${encodeURIComponent(r.trainNo)}?${params.toString()}`);
         }

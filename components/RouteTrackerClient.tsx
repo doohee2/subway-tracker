@@ -13,11 +13,12 @@ interface Station {
   station_cd: string;
   station_nm: string;
   fr_code: string;
+  is_express?: boolean;
   hm: string;
   hm2: string;
   adj_hm?: string;
   adj_hm2?: string;
-  edges?: { to: string; sec: number }[];
+  edges?: { to: string; sec: number; express_sec?: number }[];
 }
 
 interface RouteTrackerClientProps {
@@ -35,6 +36,7 @@ interface RouteTrackerClientProps {
     statnNm: string;
   };
   initialRecptnDt?: string;
+  initialBtrainSttus?: string;
 }
 
 export default function RouteTrackerClient({
@@ -47,9 +49,13 @@ export default function RouteTrackerClient({
   bstatnNm,
   routeParams,
   initialRecptnDt,
+  initialBtrainSttus = "일반",
 }: RouteTrackerClientProps) {
   const [currentLocationMsg, setCurrentLocationMsg] = useState(initialCurrentLocationMsg);
   const [currentStationName, setCurrentStationName] = useState(initialCurrentStationName);
+  const [btrainSttus, setBtrainSttus] = useState(initialBtrainSttus);
+
+  const isExpressTrain = Boolean(btrainSttus && btrainSttus !== "일반" && btrainSttus !== "0");
 
   // 초기값 설정: initialRecptnDt가 있으면 그것을 사용, 없으면 현재 시간
   const getInitialLastUpdated = () => {
@@ -77,10 +83,16 @@ export default function RouteTrackerClient({
       }
 
       if (data.realtimePositionList) {
-        const train = data.realtimePositionList.find((t: { trainNo: string; statnNm: string; trainSttus: string; recptnDt: string }) => t.trainNo === trainNo);
+        const train = data.realtimePositionList.find((t: { trainNo: string; statnNm: string; trainSttus: string; recptnDt: string; directAt?: string }) => t.trainNo === trainNo);
         if (train) {
           setCurrentStationName(train.statnNm);
           setCurrentLocationMsg(train.trainSttus === '0' ? '진입' : train.trainSttus === '1' ? '도착' : '출발');
+
+          if (train.directAt === '1') {
+            setBtrainSttus('급행');
+          } else if (train.directAt === '7') {
+            setBtrainSttus('특급');
+          }
 
           if (train.recptnDt) {
             try {
@@ -119,6 +131,7 @@ export default function RouteTrackerClient({
       bstatnNm,
       subwayId: routeParams.subwayId,
       statnNm: routeParams.statnNm,
+      btrainSttus: initialBtrainSttus,
       timestamp: Date.now(),
     };
     localStorage.setItem("lastRoute", JSON.stringify(lastRoute));
@@ -150,10 +163,15 @@ export default function RouteTrackerClient({
   const getStationTimeSeconds = (prev: Station, curr: Station) => {
     if (!prev || !curr) return 0;
 
-    // 1순위: 그래프 간선(edges)에 정의된 정확한 역간 소요시간(sec) 직접 참조
+    // 1순위: 그래프 간선(edges)에 정의된 역간 소요시간 참조 (급행일 경우 express_sec 우선)
     const directEdge = prev.edges?.find((e) => e.to === curr.fr_code);
-    if (directEdge && directEdge.sec > 0) {
-      return directEdge.sec;
+    if (directEdge) {
+      if (isExpressTrain && directEdge.express_sec && directEdge.express_sec > 0) {
+        return directEdge.express_sec;
+      }
+      if (directEdge.sec > 0) {
+        return directEdge.sec;
+      }
     }
 
     // 2순위: 기존 보정 시간(adj_hm / adj_hm2) 또는 기본 시간(hm / hm2) + 정차시간(30초)
@@ -193,6 +211,11 @@ export default function RouteTrackerClient({
                 <span className={`w-7 h-7 rounded-full ${lineColor} flex items-center justify-center text-white text-xs font-bold`}>{lineNumberText}</span>
                 <span className="dark:text-white text-slate-800 font-bold text-sm">{lineName}</span>
                 <span className="text-slate-400 text-sm font-medium">열차번호: #{trainNo}</span>
+                {isExpressTrain && (
+                  <span className="text-xs font-bold text-rose-500 dark:text-rose-400 bg-rose-500/10 border border-rose-500/30 px-2 py-0.5 rounded-md">
+                    {btrainSttus}
+                  </span>
+                )}
               </div>
               <h2 className="text-3xl font-bold dark:text-white text-slate-900 tracking-tight">
                 {destination}
@@ -285,26 +308,46 @@ export default function RouteTrackerClient({
             }
 
             const isMissingData = hasMissingData;
+            const isTerminalStation = Boolean(
+              bstatnNm && (station.station_nm.includes(bstatnNm) || bstatnNm.includes(station.station_nm))
+            );
+            const isSkippedByExpress = isExpressTrain && station.is_express === false && !isTerminalStation;
 
             // Calculate estimated arrival time
             const estTime = new Date(lastUpdated.getTime() + cumulativeSeconds * 1000);
             const timeString = formatKSTTime(estTime);
 
             return (
-              <div key={idx} className="relative flex items-center gap-6 py-4 group">
+              <div key={idx} className={`relative flex items-center gap-6 ${isSkippedByExpress ? 'py-2 opacity-60' : 'py-4'} group`}>
                 <div className="z-10 w-10 h-10 rounded-full dark:bg-slate-800 bg-slate-100 border-4 dark:border-slate-950 border-white flex items-center justify-center transition-colors">
-                  <div className="w-2 h-2 rounded-full bg-indigo-400"></div>
+                  <div className={`w-2 h-2 rounded-full ${isSkippedByExpress ? 'bg-slate-400 dark:bg-slate-600' : 'bg-indigo-400'}`}></div>
                 </div>
                 <div className="flex-1 flex items-center justify-between border-b dark:border-slate-800/50 border-slate-100 pb-4">
-                  <Link href={`/?station=${encodeURIComponent(station.station_nm)}`} className="text-lg font-medium dark:text-slate-200 text-slate-700 hover:text-indigo-500 transition-colors">
-                    {station.station_nm}역
-                  </Link>
-                  <AlarmButton
-                    stationName={station.station_nm}
-                    timeString={timeString}
-                    arrivalTime={estTime.getTime()}
-                    isMissingData={isMissingData}
-                  />
+                  <div className="flex items-center gap-2">
+                    <Link
+                      href={`/?station=${encodeURIComponent(station.station_nm)}`}
+                      className={`${isSkippedByExpress ? 'text-base dark:text-slate-500 text-slate-400 line-through' : 'text-lg font-medium dark:text-slate-200 text-slate-700'} hover:text-indigo-500 transition-colors`}
+                    >
+                      {station.station_nm}역
+                    </Link>
+                    {isExpressTrain && !isSkippedByExpress && (
+                      <span className="text-[10px] font-bold text-rose-500 dark:text-rose-400 bg-rose-500/10 px-1.5 py-0.5 rounded">
+                        급행정차
+                      </span>
+                    )}
+                  </div>
+                  {isSkippedByExpress ? (
+                    <span className="px-3 py-1 rounded-lg dark:bg-slate-800/60 bg-slate-100 dark:text-slate-500 text-slate-400 text-xs font-medium">
+                      통과
+                    </span>
+                  ) : (
+                    <AlarmButton
+                      stationName={station.station_nm}
+                      timeString={timeString}
+                      arrivalTime={estTime.getTime()}
+                      isMissingData={isMissingData}
+                    />
+                  )}
                 </div>
               </div>
             );

@@ -137,6 +137,9 @@ export default function Home() {
             }
           }
 
+          const rawSttus = item.btrainSttus?.trim() || "일반";
+          const isExpress = rawSttus !== "일반";
+
           group.arrivals.push({
             id: item.btrainNo + "_" + item.barvlDt + "_" + Math.random(),
             estimatedTimeMsg: estTime,
@@ -149,6 +152,8 @@ export default function Home() {
             statnNm: realStationName,
             recptnDt: item.recptnDt,
             calculatedArrivalTime,
+            btrainSttus: rawSttus,
+            isExpress,
           });
         }
       });

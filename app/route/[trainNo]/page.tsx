@@ -10,7 +10,7 @@ export default async function RoutePage({ params, searchParams }: { params: Prom
   const resolvedParams = await params;
   const resolvedSearchParams = await searchParams;
   const trainNo = resolvedParams.trainNo;
-  const { lineName = "", destination = "", currentLocationMsg = "", updnLine = "", bstatnNm = "", subwayId = "", statnNm = "", recptnDt = "" } = resolvedSearchParams;
+  const { lineName = "", destination = "", currentLocationMsg = "", updnLine = "", bstatnNm = "", subwayId = "", statnNm = "", recptnDt = "", btrainSttus = "일반" } = resolvedSearchParams;
   const trackerUrl = statnNm ? `/?station=${encodeURIComponent(statnNm)}` : "/";
 
   const currentStationName = extractCurrentStation(currentLocationMsg);
@@ -32,6 +32,7 @@ export default async function RoutePage({ params, searchParams }: { params: Prom
         bstatnNm={bstatnNm}
         routeParams={{ updnLine, subwayId, statnNm }}
         initialRecptnDt={recptnDt}
+        initialBtrainSttus={btrainSttus}
       />
       </div>
 

@@ -53,6 +53,11 @@ export default function ArrivalCard({ group, isExpanded, onToggle }: ArrivalCard
                 >
                   {arrival.estimatedTimeMsg}
                 </span>
+                {arrival.isExpress && (
+                  <span className="text-[11px] font-bold text-rose-500 dark:text-rose-400 bg-rose-500/10 border border-rose-500/30 px-1.5 py-0.5 rounded">
+                    {arrival.btrainSttus || "급행"}
+                  </span>
+                )}
                 {arrival.calculatedArrivalTime && (
                   <span className="text-xs font-medium text-indigo-400/80 bg-indigo-500/10 px-1.5 py-0.5 rounded">
                     {arrival.calculatedArrivalTime}
@@ -79,6 +84,7 @@ export default function ArrivalCard({ group, isExpanded, onToggle }: ArrivalCard
                     subwayId: arrival.subwayId,
                     statnNm: arrival.statnNm,
                     recptnDt: arrival.recptnDt,
+                    btrainSttus: arrival.btrainSttus || "일반",
                   }
                 }}
                 className="bg-primary/20 text-primary px-3 py-1.5 rounded-DEFAULT font-body-sm text-body-sm font-medium hover:bg-primary/30 transition-colors border border-primary/30 cursor-pointer text-center block"

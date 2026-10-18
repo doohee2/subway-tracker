@@ -57,6 +57,57 @@ function compareFrCode(a, b) {
   return a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' });
 }
 
+/**
+ * 노선별 급행 정차역 목록 (역명 기준)
+ */
+const EXPRESS_STOP_NAMES = {
+  '01호선': new Set([
+    // 경원선 급행 (동두천~광운대)
+    '동두천', '동두천중앙', '지행', '덕정', '양주', '의정부', '회룡', '도봉산', '창동', '광운대',
+    // 서울 도심 및 경인·경부 공통
+    '청량리', '제기동', '신설동', '동묘앞', '동대문', '종로5가', '종로3가', '종각', '시청', '서울역',
+    '용산', '노량진', '대방', '신길', '영등포', '신도림', '구로',
+    // 경인선 급행 (구로~동인천)
+    '개봉', '역곡', '부천', '송내', '부평', '동암', '주안', '제물포', '동인천', '인천',
+    // 경부선 급행 (구로~천안/신창)
+    '가산디지털단지', '금천구청', '안양', '금정', '군포', '의왕', '성균관대', '수원', '병점', '오산',
+    '서정리', '평택지제', '평택', '성환', '두정', '천안', '아산', '온양온천', '신창'
+  ]),
+  '04호선': new Set([
+    // 과천·안산선 급행 (금정~오이도) 및 서울 본선 연결
+    '금정', '산본', '상록수', '중앙', '초지', '안산', '정왕', '오이도',
+    '범계', '평촌', '인덕원', '정부과천청사', ' 과천', '사당', '동작', '이촌', '서울역', '명동', '충무로', '동대문역사문화공원', '동대문', '혜화', '성신여대입구', '길음', '미아사거리', '창동', '노원', '상계', '당고개'
+  ]),
+  '09호선': new Set([
+    '김포공항', '마곡나루', '가양', '염창', '당산', '여의도', '노량진', '동작',
+    '고속터미널', '신논현', '선정릉', '봉은사', '종합운동장', '석촌', '올림픽공원', '중앙보훈병원'
+  ]),
+  '경의선': new Set([
+    '문산', '금촌', '금릉', '운정', '야당', '탄현', '일산', '백마', '대곡', '행신',
+    '디지털미디어시티', '가좌', '홍대입구', '공덕', '용산', '신촌', '서울역',
+    '이촌', '옥수', '왕십리', '청량리', '회기', '상봉', '구리', '도농', '덕소', '도심', '양수', '양평', '용문'
+  ]),
+  '경춘선': new Set([
+    '청량리', '회기', '상봉', '별내', '퇴계원', '사릉', '평내호평', '마석', '청평', '가평', '강촌', '남춘천', '춘천'
+  ]),
+  '공항철도': new Set([
+    '서울역', '인천공항1터미널', '인천공항2터미널'
+  ]),
+  '수인분당선': new Set([
+    // 왕십리~죽전(전역) + 죽전~수원 급행 + 수원~오이도(수인선 급행) + 오이도~인천
+    '청량리', '왕십리', '서울숲', '압구정로데오', '강남구청', '선정릉', '선릉', '한티', '도곡', '구룡', '개포동', '대모산입구', '수서', '복정', '가천대', '태평', '모란', '야탑', '이매', '서현', '수내', '정자', '미금', '오리',
+    '죽전', '기흥', '망포', '수원시청', '수원', '고색', '한대앞', '중앙', '초지', '안산', '정왕', '오이도',
+    '소래포구', '인천논현', '원인재', '연수', '인하대', '인천'
+  ])
+};
+
+function isExpressStation(line, stationName) {
+  const set = EXPRESS_STOP_NAMES[line];
+  if (!set) return true; // 급행 미운행 노선은 전역 정차로 간주
+  const clean = stationName.replace(/\(.*\)$/, '').replace(/역$/, '').trim();
+  return set.has(clean) || set.has(stationName);
+}
+
 // Map aliases by station name
 const aliasMap = {};
 stationsData.forEach((st) => {
@@ -86,30 +137,24 @@ stationsData.forEach((station) => {
 
 /**
  * 노선별 분기·순환·특수 코드 정렬을 반영하여 세그먼트(연속된 fr_code 배열) 목록을 반환합니다.
- * 각 세그먼트는 { codes: string[], oneWay?: boolean } 형태입니다.
  */
 function buildLineSegments(line, lineStations) {
   const codeSet = new Set(lineStations.map((s) => s.fr_code));
   const has = (c) => codeSet.has(c);
 
   if (line === '01호선') {
-    // 1) 연천(100-3) -> 소요산(100) -> 구로(141) -> 인천(161)
     const gyeongwonNorth = ['100-3', '100-2', '100-1'].filter(has);
     const mainGyeongin = [...codeSet]
       .filter((c) => /^\d+$/.test(c))
       .sort(compareFrCode);
     const seg1 = [...gyeongwonNorth, ...mainGyeongin];
 
-    // 2) 구로(141) -> 가산디지털단지(P142) ~ 신창(P177) (단, P144-1 광명, P157-1 서동탄 제외)
     const gyeongbuMain = [...codeSet]
       .filter((c) => /^P\d+$/.test(c))
       .sort(compareFrCode);
     const seg2 = ['141', ...gyeongbuMain].filter(has);
 
-    // 3) 금천구청(P144) -> 광명(P144-1)
     const seg3 = ['P144', 'P144-1'].filter(has);
-
-    // 4) 병점(P157) -> 서동탄(P157-1)
     const seg4 = ['P157', 'P157-1'].filter(has);
 
     return [{ codes: seg1 }, { codes: seg2 }, { codes: seg3 }, { codes: seg4 }];
@@ -119,7 +164,6 @@ function buildLineSegments(line, lineStations) {
     const mainLoop = [...codeSet]
       .filter((c) => /^\d+$/.test(c))
       .sort(compareFrCode);
-    // 순환선: 충정로(243) <-> 시청(201) 연결
     const segMain = [...mainLoop, mainLoop[0]];
     const seongsu = ['211', ...[...codeSet].filter((c) => c.startsWith('211-')).sort(compareFrCode)];
     const sinjeong = ['234', ...[...codeSet].filter((c) => c.startsWith('234-')).sort(compareFrCode)];
@@ -135,39 +179,33 @@ function buildLineSegments(line, lineStations) {
   }
 
   if (line === '06호선') {
-    // 응암 루프(610 -> 611 -> 612 -> 613 -> 614 -> 615 -> 610)는 단방향 운행
     const eungamLoop = ['610', '611', '612', '613', '614', '615', '610'].filter(has);
     const mainLine = ['610', ...[...codeSet].filter((c) => parseInt(c, 10) >= 616).sort(compareFrCode)].filter(has);
     return [{ codes: eungamLoop, oneWay: true }, { codes: mainLine }];
   }
 
   if (line === '경의선') {
-    // 임진강(K337) ~ 가좌(K315) ~ 공덕(K312) -> 효창공원앞(K826) -> 용산(K110) ~ 지평(K138)
     const gyeonguiWest = [...codeSet]
       .filter((c) => /^K3\d+$/.test(c))
       .sort(compareFrCode)
-      .reverse(); // K337(임진강) -> K312(공덕)
+      .reverse();
     const jungangEast = [...codeSet]
       .filter((c) => /^K1\d+$/.test(c))
-      .sort(compareFrCode); // K110(용산) -> K138(지평)
+      .sort(compareFrCode);
     const mainSeg = [...gyeonguiWest, ...(has('K826') ? ['K826'] : []), ...jungangEast];
-    // 가좌(K315) -> 신촌(P312) -> 서울역(P313)
     const seoulBranch = ['K315', 'P312', 'P313'].filter(has);
     return [{ codes: mainSeg }, { codes: seoulBranch }];
   }
 
   if (line === '경춘선') {
-    // 청량리(P117) ~ 상봉(P120) ~ 춘천(P140)
     const mainSeg = [...codeSet]
       .filter((c) => c !== 'P116')
       .sort(compareFrCode);
-    // 광운대(P116) <-> 상봉(P120)
     const gwangundaeBranch = ['P116', 'P120'].filter(has);
     return [{ codes: mainSeg }, { codes: gwangundaeBranch }];
   }
 
   if (line === '공항철도') {
-    // A042(마곡나루)는 A04~A05 사이, A071(청라)·A072(영종)는 A07~A08 사이에 위치
     const ordered = [
       'A01', 'A02', 'A03', 'A04', 'A042', 'A05',
       'A06', 'A07', 'A071', 'A072', 'A08', 'A09', 'A10', 'A11'
@@ -179,13 +217,9 @@ function buildLineSegments(line, lineStations) {
   return [{ codes: sorted }];
 }
 
-/**
- * distances.json에서 두 역(stA, stB) 사이의 기준 주행시간(초)을 양방향으로 탐색합니다.
- */
 function findBaseDistanceSeconds(line, stA, stB, lineDistances) {
   if (!stA || !stB) return 0;
 
-  // 5호선 강동(548) <-> 둔촌동(P549) 분기점 특수 처리
   if (
     line === '05호선' &&
     ((stA.fr_code === '548' && stB.fr_code === 'P549') ||
@@ -198,12 +232,10 @@ function findBaseDistanceSeconds(line, stA, stB, lineDistances) {
   for (let k = 0; k < lineDistances.length - 1; k++) {
     const currD = lineDistances[k];
     const nextD = lineDistances[k + 1];
-    // 정방향 (stA -> stB)
     if (isMatch(currD.sbwy_stns_nm, stA.station_nm) && isMatch(nextD.sbwy_stns_nm, stB.station_nm)) {
       const sec = hmToSeconds(nextD.hm);
       if (sec > 0) return sec;
     }
-    // 역방향 (stB -> stA): distances.json이 역순으로 기록된 노선(예: 1호선 서울역->청량리) 대응
     if (isMatch(currD.sbwy_stns_nm, stB.station_nm) && isMatch(nextD.sbwy_stns_nm, stA.station_nm)) {
       const sec = hmToSeconds(nextD.hm);
       if (sec > 0) return sec;
@@ -212,9 +244,6 @@ function findBaseDistanceSeconds(line, stA, stB, lineDistances) {
   return 0;
 }
 
-/**
- * 그래프 내에서 시작역 이름과 종료역 이름으로 최단 경로(fr_code 배열)를 찾습니다 (BFS).
- */
 function findShortestPathCodes(stationMap, adjMap, startName, endName) {
   const stations = Object.values(stationMap);
   const startNode = stations.find((s) => isMatch(s.station_name, startName));
@@ -247,7 +276,6 @@ for (const line in lines) {
   const routLn = normalizeRouteLine(line);
   const lineDistances = distancesData.filter((d) => d.sbwy_rout_ln === routLn);
 
-  // 세그먼트 생성 및 대표 정렬 순서 구성
   const segments = buildLineSegments(line, rawStations);
   const orderedCodes = [];
   const seenCodes = new Set();
@@ -259,7 +287,6 @@ for (const line in lines) {
       }
     });
   });
-  // 혹시 누락된 역이 있으면 뒤에 추가
   rawStations.forEach((s) => {
     if (!seenCodes.has(s.fr_code)) {
       seenCodes.add(s.fr_code);
@@ -288,6 +315,7 @@ for (const line in lines) {
       station_alias: allAliases,
       station_cd: st.station_cd,
       fr_code: st.fr_code,
+      is_express: isExpressStation(line, st.station_nm),
       hm: '0:00',
       hm2: '0:00',
       adj_hm: '0:00',
@@ -311,12 +339,12 @@ for (const line in lines) {
 
     list.push({
       to: toCode,
-      baseSec, // distances.json 순수 주행 시간 (없으면 0)
-      sec: baseSec > 0 ? baseSec + 30 : 0, // 정차시간 30초 포함 실소요시간
+      baseSec,
+      sec: baseSec > 0 ? baseSec + 30 : 0,
+      express_sec: 0,
     });
   };
 
-  // 세그먼트별 간선 연결
   segments.forEach((seg) => {
     const { codes, oneWay } = seg;
     for (let i = 0; i < codes.length - 1; i++) {
@@ -329,9 +357,9 @@ for (const line in lines) {
     }
   });
 
-  // adjust.json 적용 (그래프 최단 경로 기반)
-  const adjusts = adjustData.filter((a) => a.line_num === line);
-  adjusts.forEach((adj) => {
+  // 1) 완행 adjust.json 적용 (!adj.is_express)
+  const normalAdjusts = adjustData.filter((a) => a.line_num === line && !a.is_express);
+  normalAdjusts.forEach((adj) => {
     const pathCodes = findShortestPathCodes(
       stationMap,
       adjMap,
@@ -371,7 +399,6 @@ for (const line in lines) {
       if (forwardEdge && forwardEdge.sec === 0) {
         forwardEdge.sec = calcSec;
       } else if (forwardEdge && (line === '02호선' || line === '수인분당선' || line === '신분당선')) {
-        // 기존 adjust.json에 있던 보정 노선은 보정값 우선 적용
         forwardEdge.sec = calcSec;
       }
 
@@ -383,18 +410,75 @@ for (const line in lines) {
     }
   });
 
-  // Fallback: 여전히 sec === 0 인 간선은 표준 역간 소요시간(120초 = 주행 90초 + 정차 30초) 부여
-  for (const [code, edgeList] of adjMap.entries()) {
+  // 완행 Fallback (120초) 및 Step A: 물리 공식 기반 기본 express_sec 계산
+  for (const [, edgeList] of adjMap.entries()) {
     edgeList.forEach((edge) => {
       if (!edge.sec || edge.sec <= 0) {
         edge.sec = 120;
       }
+      const targetSt = stationMap[edge.to];
+      if (targetSt && targetSt.is_express) {
+        // 급행 정차역 도착: 정차시간(30초) 유지, 주행 가속분 15초 단축
+        edge.express_sec = Math.max(60, edge.sec - 15);
+      } else {
+        // 급행 통과역 무정차 통과: 정차시간(30초) + 가감속 손실(15초) = 45초 단축
+        edge.express_sec = Math.max(45, edge.sec - 45);
+      }
     });
+  }
 
+  // 2) Step B: adjust.json의 급행 구간(adj.is_express === true) 총 소요시간 비례 배분 우선 적용!
+  const expressAdjusts = adjustData.filter((a) => a.line_num === line && a.is_express === true);
+  expressAdjusts.forEach((adj) => {
+    const pathCodes = findShortestPathCodes(
+      stationMap,
+      adjMap,
+      adj.station_name_start,
+      adj.station_name_end
+    );
+    if (!pathCodes || pathCodes.length < 2) return;
+
+    const segmentCount = pathCodes.length - 1;
+    let totalDefaultExpressSec = 0;
+
+    for (let i = 0; i < segmentCount; i++) {
+      const u = pathCodes[i];
+      const v = pathCodes[i + 1];
+      const forwardEdge = (adjMap.get(u) || []).find((e) => e.to === v);
+      totalDefaultExpressSec += forwardEdge ? forwardEdge.express_sec : 90;
+    }
+
+    const totExpressSec = hmToSeconds(adj.tot_hm);
+    if (totExpressSec <= 0 || totalDefaultExpressSec <= 0) return;
+
+    for (let i = 0; i < segmentCount; i++) {
+      const u = pathCodes[i];
+      const v = pathCodes[i + 1];
+      const forwardEdge = (adjMap.get(u) || []).find((e) => e.to === v);
+      const backwardEdge = (adjMap.get(v) || []).find((e) => e.to === u);
+
+      if (forwardEdge) {
+        forwardEdge.express_sec = Math.max(
+          30,
+          Math.round(forwardEdge.express_sec * (totExpressSec / totalDefaultExpressSec))
+        );
+      }
+      if (backwardEdge) {
+        backwardEdge.express_sec = Math.max(
+          30,
+          Math.round(backwardEdge.express_sec * (totExpressSec / totalDefaultExpressSec))
+        );
+      }
+    }
+  });
+
+  // 최종 edges 배열 직렬화
+  for (const [code, edgeList] of adjMap.entries()) {
     const stObj = stationMap[code];
     stObj.edges = edgeList.map((e) => ({
       to: e.to,
       sec: e.sec,
+      express_sec: e.express_sec,
     }));
   }
 
@@ -432,4 +516,4 @@ for (const line in lines) {
 }
 
 fs.writeFileSync(outputPath, JSON.stringify(unifiedData, null, 2));
-console.log(`Successfully generated graph-based subway_data.json with ${unifiedData.length} stations.`);
+console.log(`Successfully generated graph+express subway_data.json with ${unifiedData.length} stations.`);

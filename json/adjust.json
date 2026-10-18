@@ -54,6 +54,20 @@
     "tot_hm": "62:00"
   },
   {
+    "line_num": "01호선",
+    "station_name_start": "용산",
+    "station_name_end": "동인천",
+    "tot_hm": "40:00",
+    "is_express": true
+  },
+  {
+    "line_num": "01호선",
+    "station_name_start": "서울역",
+    "station_name_end": "천안",
+    "tot_hm": "82:00",
+    "is_express": true
+  },
+  {
     "line_num": "02호선",
     "station_name_start": "시청",
     "station_name_end": "충정로",
@@ -76,6 +90,13 @@
     "station_name_start": "남태령",
     "station_name_end": "오이도",
     "tot_hm": "54:00"
+  },
+  {
+    "line_num": "04호선",
+    "station_name_start": "금정",
+    "station_name_end": "오이도",
+    "tot_hm": "30:00",
+    "is_express": true
   },
   {
     "line_num": "05호선",
@@ -102,6 +123,20 @@
     "tot_hm": "85:00"
   },
   {
+    "line_num": "09호선",
+    "station_name_start": "김포공항",
+    "station_name_end": "신논현",
+    "tot_hm": "30:00",
+    "is_express": true
+  },
+  {
+    "line_num": "09호선",
+    "station_name_start": "신논현",
+    "station_name_end": "중앙보훈병원",
+    "tot_hm": "24:00",
+    "is_express": true
+  },
+  {
     "line_num": "경의선",
     "station_name_start": "임진강",
     "station_name_end": "가좌",
@@ -120,6 +155,20 @@
     "tot_hm": "105:00"
   },
   {
+    "line_num": "경의선",
+    "station_name_start": "문산",
+    "station_name_end": "용산",
+    "tot_hm": "52:00",
+    "is_express": true
+  },
+  {
+    "line_num": "경의선",
+    "station_name_start": "용산",
+    "station_name_end": "용문",
+    "tot_hm": "66:00",
+    "is_express": true
+  },
+  {
     "line_num": "경춘선",
     "station_name_start": "청량리",
     "station_name_end": "춘천",
@@ -132,10 +181,24 @@
     "tot_hm": "6:00"
   },
   {
+    "line_num": "경춘선",
+    "station_name_start": "청량리",
+    "station_name_end": "춘천",
+    "tot_hm": "62:00",
+    "is_express": true
+  },
+  {
     "line_num": "공항철도",
     "station_name_start": "서울역",
     "station_name_end": "인천공항2터미널",
     "tot_hm": "66:00"
+  },
+  {
+    "line_num": "공항철도",
+    "station_name_start": "서울역",
+    "station_name_end": "인천공항2터미널",
+    "tot_hm": "51:00",
+    "is_express": true
   },
   {
     "line_num": "수인분당선",
@@ -154,6 +217,20 @@
     "station_name_start": "죽전",
     "station_name_end": "인천",
     "tot_hm": "95:00"
+  },
+  {
+    "line_num": "수인분당선",
+    "station_name_start": "죽전",
+    "station_name_end": "수원",
+    "tot_hm": "20:00",
+    "is_express": true
+  },
+  {
+    "line_num": "수인분당선",
+    "station_name_start": "고색",
+    "station_name_end": "오이도",
+    "tot_hm": "26:00",
+    "is_express": true
   },
   {
     "line_num": "신분당선",

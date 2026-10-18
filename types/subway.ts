@@ -10,6 +10,7 @@ export interface RealtimeArrival {
   arvlMsg3: string; // 두번째도착메세지 (종합운동장 도착, 12분 후 (광명사거리) 등)
   arvlCd: string; // 도착코드 (0:진입, 1:도착, 2:출발, 3:전역출발, 4:전역진입, 5:전역도착, 99:운행중)
   recptnDt: string; // 정보수신일시
+  btrainSttus?: string; // 열차종류 (일반, 급행, ITX, 특급 등)
 }
 
 export interface SubwayAPIResponse {
@@ -37,6 +38,8 @@ export interface ArrivalItem {
   statnNm: string; // 검색한 기준역
   recptnDt: string; // 정보수신일시
   calculatedArrivalTime?: string; // 계산된 도착 시각 (HH:mm)
+  btrainSttus?: string; // 열차종류 (일반, 급행, ITX, 특급 등)
+  isExpress?: boolean; // 급행 여부
 }
 
 export interface ArrivalGroup {

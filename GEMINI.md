@@ -255,7 +255,11 @@ Next.js App Router와 서버리스 함수 간의 경계를 보호하기 위한 �
 *   **[완료] Step 2 (인접 리스트 그래프 `edges` 전환 및 다중 분기 탐색 엔진 구축)**:
     *   `scripts/generate_subway_data.js`에서 노선별 분기·순환·특수 역코드 토폴로지(1호선 연천/구로/금천구청/병점 분기, 2호선 본선 순환 및 성수/신정 분기, 5호선 강동 분기, 6호선 응암 단선 루프, 경의중앙선 효창공원앞 및 서울역/용산 분기, 경춘선 광운대/상봉 분기, 공항철도 마곡나루/청라국제도시/영종 번호 보정)를 반영하여 총 799개 역의 양방향/단방향 그래프 간선(`edges`) 생성 완료.
     *   `utils/subwayData.ts`의 `normalizeLineName`(경의중앙선↔경의선, 우이신설선↔우이신설경전철 매핑) 및 `getStationsForLine`을 그래프 BFS 최단 경로 탐색 기반으로 리팩토링하고, `components/RouteTrackerClient.tsx`에서 그래프 간선 소요시간(`edge.sec`)을 1순위로 참조하도록 개선 완료.
-*   **[다음 할 일 / 예정] Step 3 (실시간 API 급행 `btrainSttus`/`directAt` 연동 및 급행 정차역 패턴 적용)**:
-    *   실시간 도착 API(`btrainSttus`: 일반/급행/ITX) 및 실시간 위치 API(`directAt`: 0/1/7)의 급행 여부를 프론트엔드 타입(`types/subway.ts`)과 UI(`ArrivalCard.tsx`, `RouteTrackerClient.tsx`)에 전달하여 `[급행]` 배지 표시.
-    *   노선별 급행 정차역 패턴(`expressStops`)을 기반으로 급행열차 추적 시 통과역 정차시간(30초) 제외 및 급행 주행시간 보정을 적용하여 급행 도착 예정 시각 정밀 산출.
-
+*   **[완료] Step 3 (실시간 API 급행 `btrainSttus`/`directAt` 연동 및 하이브리드 급행 소요시간 산출)**:
+    *   **1단계 (`json/adjust.json` 급행 구간 확장 완료)**: `"is_express": true` 필드를 도입하여 급행 운행 노선(`01호선` 용산~동인천·서울역~천안, `04호선` 금정~오이도, `09호선` 김포공항~신논현~중앙보훈병원, `경의선`, `경춘선`, `공항철도`, `수인분당선`)의 급행 총 소요시간(`tot_hm`) 정의 완료.
+    *   **2단계 (`scripts/generate_subway_data.js` 급행 정차역 및 `express_sec` 산출 완료)**:
+        *   각 역 노드에 급행 정차 여부(`is_express: boolean`) 태깅 완료.
+        *   각 간선(`edges`)에 초기 급행 소요시간(`express_sec`: 통과역은 `sec - 45`초, 정차역은 `sec - 15`초)을 산출한 뒤, `adjust.json`에 `"is_express": true` 구간 데이터가 존재하면 해당 구간의 초기 `express_sec` 비율에 따라 `tot_hm`을 정밀 비례 배분하여 최종 `express_sec` 확정 완료.
+    *   **3단계 (API 파이프라인 및 UI 연동 완료)**:
+        *   실시간 도착 API(`btrainSttus`: 일반/급행/ITX/특급) 및 실시간 위치 API(`directAt`: 0/1/7)의 급행 여부를 `types/subway.ts`, `app/page.tsx`, `ArrivalCard.tsx`, `app/route/[trainNo]/page.tsx`, `Navigation.tsx`, `RouteTrackerClient.tsx`에 연결하고 `[급행]` 배지 렌더링 완료.
+        *   급행열차 경로 추적 시 간선의 `express_sec`를 누적하여 도착 예정 시각을 계산하고, 급행 통과역(`!is_express`이고 종착역이 아닌 역)은 타임라인에서 `통과` 배지로 표시하며 실제 정차역에만 도착 시각 및 알람 버튼 제공 완료.

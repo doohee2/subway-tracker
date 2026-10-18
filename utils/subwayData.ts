@@ -3,6 +3,7 @@ import subwayDataJson from '../json/subway_data.json';
 export interface StationEdge {
   to: string;
   sec: number;
+  express_sec?: number;
 }
 
 export interface StationInfo {
@@ -12,6 +13,7 @@ export interface StationInfo {
   station_alias: string[];
   station_cd: string;
   fr_code: string;
+  is_express?: boolean;
   hm: string;
   hm2: string;
   adj_hm: string;
