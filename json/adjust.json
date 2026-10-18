@@ -1,32 +1,200 @@
 [
-    {
-        "line_num": "02호선",
-        "station_name_start": "시청",
-        "station_name_end": "충정로",
-        "tot_hm": "90:00"
-    },
-    {
-        "line_num": "수인분당선",
-        "station_name_start": "왕십리",
-        "station_name_end": "죽전",
-        "tot_hm": "55:00"
-    },
-    {
-        "line_num": "신분당선",
-        "station_name_start": "신사",
-        "station_name_end": "청계산입구",
-        "tot_hm": "12:00"
-    },
-    {
-        "line_num": "신분당선",
-        "station_name_start": "청계산입구",
-        "station_name_end": "판교",
-        "tot_hm": "6:00"
-    },
-    {
-        "line_num": "신분당선",
-        "station_name_start": "판교",
-        "station_name_end": "광교",
-        "tot_hm": "24:00"
-    }
+  {
+    "line_num": "01호선",
+    "station_name_start": "연천",
+    "station_name_end": "소요산",
+    "tot_hm": "16:00"
+  },
+  {
+    "line_num": "01호선",
+    "station_name_start": "소요산",
+    "station_name_end": "청량리",
+    "tot_hm": "58:00"
+  },
+  {
+    "line_num": "01호선",
+    "station_name_start": "서울역",
+    "station_name_end": "구로",
+    "tot_hm": "21:00"
+  },
+  {
+    "line_num": "01호선",
+    "station_name_start": "구로",
+    "station_name_end": "인천",
+    "tot_hm": "46:00"
+  },
+  {
+    "line_num": "01호선",
+    "station_name_start": "구로",
+    "station_name_end": "금천구청",
+    "tot_hm": "7:00"
+  },
+  {
+    "line_num": "01호선",
+    "station_name_start": "금천구청",
+    "station_name_end": "광명",
+    "tot_hm": "5:00"
+  },
+  {
+    "line_num": "01호선",
+    "station_name_start": "금천구청",
+    "station_name_end": "병점",
+    "tot_hm": "36:00"
+  },
+  {
+    "line_num": "01호선",
+    "station_name_start": "병점",
+    "station_name_end": "서동탄",
+    "tot_hm": "5:00"
+  },
+  {
+    "line_num": "01호선",
+    "station_name_start": "병점",
+    "station_name_end": "신창",
+    "tot_hm": "62:00"
+  },
+  {
+    "line_num": "02호선",
+    "station_name_start": "시청",
+    "station_name_end": "충정로",
+    "tot_hm": "90:00"
+  },
+  {
+    "line_num": "03호선",
+    "station_name_start": "대화",
+    "station_name_end": "지축",
+    "tot_hm": "25:00"
+  },
+  {
+    "line_num": "04호선",
+    "station_name_start": "진접",
+    "station_name_end": "당고개",
+    "tot_hm": "15:00"
+  },
+  {
+    "line_num": "04호선",
+    "station_name_start": "남태령",
+    "station_name_end": "오이도",
+    "tot_hm": "54:00"
+  },
+  {
+    "line_num": "05호선",
+    "station_name_start": "상일동",
+    "station_name_end": "하남검단산",
+    "tot_hm": "12:00"
+  },
+  {
+    "line_num": "07호선",
+    "station_name_start": "온수",
+    "station_name_end": "석남",
+    "tot_hm": "27:00"
+  },
+  {
+    "line_num": "08호선",
+    "station_name_start": "별내",
+    "station_name_end": "암사",
+    "tot_hm": "19:00"
+  },
+  {
+    "line_num": "09호선",
+    "station_name_start": "개화",
+    "station_name_end": "중앙보훈병원",
+    "tot_hm": "85:00"
+  },
+  {
+    "line_num": "경의선",
+    "station_name_start": "임진강",
+    "station_name_end": "가좌",
+    "tot_hm": "62:00"
+  },
+  {
+    "line_num": "경의선",
+    "station_name_start": "가좌",
+    "station_name_end": "서울역",
+    "tot_hm": "10:00"
+  },
+  {
+    "line_num": "경의선",
+    "station_name_start": "가좌",
+    "station_name_end": "지평",
+    "tot_hm": "105:00"
+  },
+  {
+    "line_num": "경춘선",
+    "station_name_start": "청량리",
+    "station_name_end": "춘천",
+    "tot_hm": "82:00"
+  },
+  {
+    "line_num": "경춘선",
+    "station_name_start": "광운대",
+    "station_name_end": "상봉",
+    "tot_hm": "6:00"
+  },
+  {
+    "line_num": "공항철도",
+    "station_name_start": "서울역",
+    "station_name_end": "인천공항2터미널",
+    "tot_hm": "66:00"
+  },
+  {
+    "line_num": "수인분당선",
+    "station_name_start": "청량리",
+    "station_name_end": "왕십리",
+    "tot_hm": "3:00"
+  },
+  {
+    "line_num": "수인분당선",
+    "station_name_start": "왕십리",
+    "station_name_end": "죽전",
+    "tot_hm": "55:00"
+  },
+  {
+    "line_num": "수인분당선",
+    "station_name_start": "죽전",
+    "station_name_end": "인천",
+    "tot_hm": "95:00"
+  },
+  {
+    "line_num": "신분당선",
+    "station_name_start": "신사",
+    "station_name_end": "청계산입구",
+    "tot_hm": "12:00"
+  },
+  {
+    "line_num": "신분당선",
+    "station_name_start": "청계산입구",
+    "station_name_end": "판교",
+    "tot_hm": "6:00"
+  },
+  {
+    "line_num": "신분당선",
+    "station_name_start": "판교",
+    "station_name_end": "광교",
+    "tot_hm": "24:00"
+  },
+  {
+    "line_num": "경강선",
+    "station_name_start": "판교",
+    "station_name_end": "여주",
+    "tot_hm": "48:00"
+  },
+  {
+    "line_num": "서해선",
+    "station_name_start": "일산",
+    "station_name_end": "원시",
+    "tot_hm": "65:00"
+  },
+  {
+    "line_num": "신림선",
+    "station_name_start": "샛강",
+    "station_name_end": "관악산",
+    "tot_hm": "16:00"
+  },
+  {
+    "line_num": "우이신설경전철",
+    "station_name_start": "북한산우이",
+    "station_name_end": "신설동",
+    "tot_hm": "23:00"
+  }
 ]

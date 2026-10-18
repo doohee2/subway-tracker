@@ -234,3 +234,28 @@ Next.js App Router와 서버리스 함수 간의 경계를 보호하기 위한 �
     npx tsc --noEmit
     ```
 *   `any` 타입의 무분별한 사용을 지양하고, `types/subway.ts` 및 `types/alarm.ts`에 정의된 정규 인터페이스를 활용하여 타입 안정성을 유지합니다.
+
+---
+
+## 7. 지하철 노선도 그래프 자료구조 개선 계획 및 로드맵 (Graph Migration Roadmap)
+
+기존 1차원 배열(`fr_code` 단순 정렬) 구조에서 발생하는 다중 분기 노선 왜곡, `distances.json` 역방향 매칭 누락, 급행(Express) 정차역 미반영 문제를 해결하기 위한 3단계 고도화 계획입니다.
+
+### 7.1. 데이터 파일 구성 변화 (기존 5개 파일 체계 유지)
+*   `json/stations.json` (유지): 역 기본 정보 원본
+*   `json/distances.json` (유지): 서울교통공사(1~8호선) 역간 거리·소요시간 원본 (양방향 매칭 적용)
+*   `json/stations_nm_alias.json` (유지): 역명 별칭 원본
+*   `json/adjust.json` (**확장 - Step 1**): 전 노선 주요 구간별 총 소요시간(`tot_hm`) 정의 파일로 확장하여 코레일·민자·외곽 노선(`01호선`, `03호선`, `04호선`, `09호선`, `경의선`, `경춘선`, `공항철도`, `수인분당선`, `서해선` 등) 소요시간 보정
+*   `json/subway_data.json` (**스키마 확장 - Step 2**): 기존 필드 하위 호환 유지 + 각 역 노드에 인접 역 연결 그래프 간선 배열(`edges: [{ to: string, sec: number }]`) 추가
+
+### 7.2. 단계별 실행 과제 및 진행 상태
+*   **[완료] Step 1 (소요시간 매칭 오류 수정 및 전 노선 누락 구간 보완)**:
+    *   `scripts/generate_subway_data.js`에서 `distances.json` 매칭 시 정방향·역방향 모두 탐색하도록 수정 완료 (1호선 서울역~청량리 등 복구).
+    *   `json/adjust.json`에 25개 주요 노선·지선 구간별 표준 소요시간 추가 및 미정의 구간 기본 역간 소요시간(120초) Fallback 적용 완료.
+*   **[완료] Step 2 (인접 리스트 그래프 `edges` 전환 및 다중 분기 탐색 엔진 구축)**:
+    *   `scripts/generate_subway_data.js`에서 노선별 분기·순환·특수 역코드 토폴로지(1호선 연천/구로/금천구청/병점 분기, 2호선 본선 순환 및 성수/신정 분기, 5호선 강동 분기, 6호선 응암 단선 루프, 경의중앙선 효창공원앞 및 서울역/용산 분기, 경춘선 광운대/상봉 분기, 공항철도 마곡나루/청라국제도시/영종 번호 보정)를 반영하여 총 799개 역의 양방향/단방향 그래프 간선(`edges`) 생성 완료.
+    *   `utils/subwayData.ts`의 `normalizeLineName`(경의중앙선↔경의선, 우이신설선↔우이신설경전철 매핑) 및 `getStationsForLine`을 그래프 BFS 최단 경로 탐색 기반으로 리팩토링하고, `components/RouteTrackerClient.tsx`에서 그래프 간선 소요시간(`edge.sec`)을 1순위로 참조하도록 개선 완료.
+*   **[다음 할 일 / 예정] Step 3 (실시간 API 급행 `btrainSttus`/`directAt` 연동 및 급행 정차역 패턴 적용)**:
+    *   실시간 도착 API(`btrainSttus`: 일반/급행/ITX) 및 실시간 위치 API(`directAt`: 0/1/7)의 급행 여부를 프론트엔드 타입(`types/subway.ts`)과 UI(`ArrivalCard.tsx`, `RouteTrackerClient.tsx`)에 전달하여 `[급행]` 배지 표시.
+    *   노선별 급행 정차역 패턴(`expressStops`)을 기반으로 급행열차 추적 시 통과역 정차시간(30초) 제외 및 급행 주행시간 보정을 적용하여 급행 도착 예정 시각 정밀 산출.
+

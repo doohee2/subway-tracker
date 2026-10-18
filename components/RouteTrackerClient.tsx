@@ -17,6 +17,7 @@ interface Station {
   hm2: string;
   adj_hm?: string;
   adj_hm2?: string;
+  edges?: { to: string; sec: number }[];
 }
 
 interface RouteTrackerClientProps {
@@ -148,6 +149,14 @@ export default function RouteTrackerClient({
 
   const getStationTimeSeconds = (prev: Station, curr: Station) => {
     if (!prev || !curr) return 0;
+
+    // 1순위: 그래프 간선(edges)에 정의된 정확한 역간 소요시간(sec) 직접 참조
+    const directEdge = prev.edges?.find((e) => e.to === curr.fr_code);
+    if (directEdge && directEdge.sec > 0) {
+      return directEdge.sec;
+    }
+
+    // 2순위: 기존 보정 시간(adj_hm / adj_hm2) 또는 기본 시간(hm / hm2) + 정차시간(30초)
     const isAscending = prev.fr_code.localeCompare(curr.fr_code, undefined, { numeric: true, sensitivity: 'base' }) < 0;
 
     const adj = isAscending ? curr.adj_hm2 : curr.adj_hm;
