@@ -8,6 +8,7 @@ import SearchSection from "@/components/SearchSection";
 import ArrivalCard from "@/components/ArrivalCard";
 import { ArrivalGroup, RealtimeArrival } from "@/types/subway";
 import { parseKSTDate, formatKSTTime, getStationRealName } from "@/utils/subwayData";
+import { getLineColor, getLineNumberText } from "@/utils/subwayColors";
 import { createClientError, extractClientErrorInfo, formatUserErrorMessage } from "@/utils/errorMessage";
 import {
   StationRecord,
@@ -22,11 +23,21 @@ import {
   togglePin,
 } from "@/utils/stationHistory";
 
+const getGroupKey = (group: ArrivalGroup) =>
+  `${group.lineName}_${group.updnLine ?? ""}_${group.destination}`;
+
+const isUpbound = (updnLine?: string) => {
+  if (!updnLine) return true;
+  return updnLine === "0" || updnLine.includes("상행") || updnLine.includes("외선");
+};
+
 export default function Home() {
   const [recentSearches, setRecentSearches] = useState<StationRecord[]>([]);
   const [pinnedStations, setPinnedStations] = useState<StationRecord[]>([]);
   const [arrivalGroups, setArrivalGroups] = useState<ArrivalGroup[]>([]);
-  const [expandedGroups, setExpandedGroups] = useState<Set<number>>(new Set([0]));
+  const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
+  const [selectedLine, setSelectedLine] = useState<string>("ALL");
+  const [directionOrder, setDirectionOrder] = useState<"up_first" | "down_first">("up_first");
   const [initialSearchValue, setInitialSearchValue] = useState("");
   const [status, setStatus] = useState<{
     type: "idle" | "loading" | "success" | "error";
@@ -112,6 +123,7 @@ export default function Home() {
             lineName,
             lineNumber: lineName,
             destination: item.trainLineNm,
+            updnLine: item.updnLine,
             arrivals: [],
           });
         }
@@ -162,7 +174,12 @@ export default function Home() {
       parsedGroups.sort((a, b) => a.lineName.localeCompare(b.lineName));
 
       setArrivalGroups(parsedGroups);
-      setExpandedGroups(new Set([0]));
+      setSelectedLine("ALL");
+      if (parsedGroups.length > 0) {
+        setExpandedGroups(new Set([getGroupKey(parsedGroups[0])]));
+      } else {
+        setExpandedGroups(new Set());
+      }
 
       let timeStr = "조회 완료";
       if (data.realtimeArrivalList.length > 0) {
@@ -224,17 +241,35 @@ export default function Home() {
   const orderedStations = getOrderedStationButtons(recentSearches, pinnedStations);
   const pinnedStationNames = pinnedStations.map((s) => s.name);
 
-  const toggleGroup = (idx: number) => {
+  const toggleGroup = (key: string) => {
     setExpandedGroups((prev) => {
       const next = new Set(prev);
-      if (next.has(idx)) {
-        next.delete(idx);
+      if (next.has(key)) {
+        next.delete(key);
       } else {
-        next.add(idx);
+        next.add(key);
       }
       return next;
     });
   };
+
+  const uniqueLines = Array.from(new Set(arrivalGroups.map((g) => g.lineName)));
+
+  const displayGroups = arrivalGroups
+    .filter((group) => selectedLine === "ALL" || group.lineName === selectedLine)
+    .sort((a, b) => {
+      const lineCompare = a.lineName.localeCompare(b.lineName);
+      if (lineCompare !== 0) return lineCompare;
+
+      const aIsUp = isUpbound(a.updnLine ?? a.arrivals[0]?.updnLine);
+      const bIsUp = isUpbound(b.updnLine ?? b.arrivals[0]?.updnLine);
+
+      if (aIsUp !== bIsUp) {
+        return directionOrder === "up_first" ? (aIsUp ? -1 : 1) : (aIsUp ? 1 : -1);
+      }
+
+      return a.destination.localeCompare(b.destination);
+    });
 
   return (
     <>
@@ -258,16 +293,86 @@ export default function Home() {
 
           {arrivalGroups.length > 0 && (
             <section className="flex flex-col gap-md mt-6">
-              <h2 className="font-h3 text-h3 text-on-surface">실시간 도착 정보</h2>
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div className="flex flex-wrap items-center gap-2.5">
+                  <h2 className="font-h3 text-h3 text-on-surface whitespace-nowrap">실시간 도착 정보</h2>
+
+                  {/* 호선별 필터 버튼 그룹 */}
+                  <div className="flex items-center gap-1.5 flex-wrap">
+                    {/* 전체 버튼 */}
+                    <button
+                      type="button"
+                      onClick={() => setSelectedLine("ALL")}
+                      className={`h-7 px-2.5 text-xs font-semibold rounded-full border transition-all cursor-pointer ${
+                        selectedLine === "ALL"
+                          ? "bg-primary text-on-primary border-primary shadow-sm"
+                          : "bg-surface-container text-on-surface-variant hover:text-on-surface border-surface-container-high hover:bg-surface-container-high"
+                      }`}
+                      aria-pressed={selectedLine === "ALL"}
+                    >
+                      전체
+                    </button>
+
+                    {/* 호선별 아이콘 버튼 */}
+                    {uniqueLines.map((line) => {
+                      const isSelected = selectedLine === line;
+                      const lineColor = getLineColor(line);
+                      const lineText = getLineNumberText(line);
+
+                      return (
+                        <button
+                          key={line}
+                          type="button"
+                          onClick={() => setSelectedLine(line)}
+                          className={`w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold transition-all cursor-pointer ${lineColor} ${
+                            isSelected
+                              ? "ring-2 ring-primary ring-offset-2 ring-offset-surface scale-110 shadow-md opacity-100"
+                              : selectedLine === "ALL"
+                              ? "opacity-85 hover:opacity-100 hover:scale-105"
+                              : "opacity-40 hover:opacity-90 hover:scale-105"
+                          }`}
+                          title={`${line}만 보기`}
+                          aria-label={`${line} 필터링`}
+                          aria-pressed={isSelected}
+                        >
+                          {lineText}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* 상행/하행 정렬 순서 토글 버튼 */}
+                <div className="flex items-center">
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setDirectionOrder((prev) => (prev === "up_first" ? "down_first" : "up_first"))
+                    }
+                    className="inline-flex items-center gap-1 h-7 px-2.5 text-xs font-semibold rounded-md bg-surface-container hover:bg-surface-container-high border border-surface-container-high text-on-surface transition-all shadow-sm active:scale-95 cursor-pointer"
+                    title="상행/하행 표시 순서 변경"
+                    aria-label="상행/하행 표시 순서 변경"
+                  >
+                    <span className="material-symbols-outlined text-[18px]">swap_vert</span>
+                    <span className="whitespace-nowrap font-medium">
+                      {directionOrder === "up_first" ? "상행 먼저" : "하행 먼저"}
+                    </span>
+                  </button>
+                </div>
+              </div>
+
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-md items-start">
-                {arrivalGroups.map((group, idx) => (
-                  <ArrivalCard 
-                    key={idx} 
-                    group={group} 
-                    isExpanded={expandedGroups.has(idx)}
-                    onToggle={() => toggleGroup(idx)}
-                  />
-                ))}
+                {displayGroups.map((group) => {
+                  const key = getGroupKey(group);
+                  return (
+                    <ArrivalCard
+                      key={key}
+                      group={group}
+                      isExpanded={expandedGroups.has(key)}
+                      onToggle={() => toggleGroup(key)}
+                    />
+                  );
+                })}
               </div>
             </section>
           )}

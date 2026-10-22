@@ -46,5 +46,6 @@ export interface ArrivalGroup {
   lineName: string; // 호선명 (1호선, 2호선...)
   lineNumber: string; // 호선 숫자/알파벳 (1, 2, K, B 등)
   destination: string; // 행선지 (성수 - 다음: 건대입구)
+  updnLine?: string; // 상하행선구분 (0: 상행/내선, 1: 하행/외선)
   arrivals: ArrivalItem[];
 }
