@@ -115,6 +115,7 @@
 │   └── subway.ts                     # 서울시 공공데이터 API 응답 및 가공 지하철 데이터 타입
 ├── json/                             # 지하철 정적 데이터셋
 │   ├── subway_data.json              # 통합 정적 데이터 (역 기본정보, 인접역 소요시간, 별칭 통합본)
+│   ├── subway_standard_timetables.json # 전처리된 역별·방향별 표준 열차 시간표 데이터 (columns & data 2차원 테이블 구조)
 │   ├── stations.json                 # 원본 역 정보 데이터
 │   ├── distances.json                # 원본 역간 소요시간 데이터
 │   ├── stations_nm_alias.json        # 역명 별칭 데이터
@@ -125,7 +126,9 @@
 │   ├── apple-icon.png                # iOS 홈 화면 바로가기 아이콘
 │   └── favicon.ico                   # 기본 파비콘
 ├── scripts/
-│   └── generate_subway_data.js       # 정적 데이터 파일들을 통합 subway_data.json으로 빌드하는 스크립트
+│   ├── generate_subway_data.js       # 정적 데이터 파일들을 통합 subway_data.json으로 빌드하는 스크립트
+│   └── preprocess_subway.py          # 코레일 엑셀 및 서울교통공사 CSV 시간표 전처리 파이썬 스크립트
+├── timetable/                        # 시간표 원본 데이터셋 (코레일 다이어그램 엑셀, 서울교통공사 CSV)
 ├── next.config.ts                    # Next.js 전역 설정 (6대 HTTP 보안 헤더, CSP, 허용 개발 오리진)
 └── tsconfig.json                     # TypeScript 컴파일러 설정
 ```
@@ -208,6 +211,35 @@ Next.js App Router와 서버리스 함수 간의 경계를 보호하기 위한 �
 *   **최상단 카드 단독 자동 오픈 및 아코디언 안정화**:
     *   호선별 검색 결과(또는 호선 변경) 및 상·하행 정렬 순서 전환 시마다 `getDisplayGroups()`의 최상단 카드(`displayGroups[0]`)만 자동으로 열리도록(`setExpandedGroups(new Set([getGroupKey(nextDisplay[0])]))`) 일원화했습니다.
     *   고유 그룹 키(`${group.lineName}_${group.updnLine}_${group.destination}`) 기반의 `Set<string>`을 사용하여 정렬 및 필터링 시 아코디언 상태가 오작동하지 않도록 방어했습니다.
+
+### 5.9. 지하철 시간표 원본 데이터 전처리 및 고속 표준화 파이프라인 (`scripts/preprocess_subway.py`)
+*   **개발 배경 및 로컬 DB(`Dexie.js`) 적재 최적화**:
+    *   공공데이터포털 및 코레일에서 배포하는 시간표 파일은 서울교통공사 테이블형 CSV와 코레일 2차원 열차 다이어그램 엑셀(`.xlsx`) 등 기관별 규격이 상이하며 수십만 행에 걸쳐 동일한 역명, 호선, 요일, 방향 키가 반복됩니다.
+    *   클라이언트 IndexedDB(`Dexie.js`) 적재 속도와 네트워크 전송 효율을 극대화하기 위해, 이기종 원본을 단일 파이프라인으로 파싱하여 역/방향/요일 기준 1개 그룹 내 2차원 테이블 형태로 묶는 파이썬 전처리 엔진(`scripts/preprocess_subway.py`)을 구축했습니다.
+*   **이기종 원본 데이터 호환 및 고속 파싱**:
+    *   **서울교통공사 CSV**: `pandas.itertuples` 기반의 스트리밍 순회를 적용하여 42만 행 대용량 CSV를 2초대에 파싱하며, `cp949`/`utf-8` 인코딩 자동 감지 및 유연한 컬럼명 매핑(`호선`, `역사명`, `주중주말`, `방향`, `열차출발시간`, `열차도착시간`, `도착역`, `급행여부`, `열차코드`)을 지원합니다.
+    *   **코레일 2차원 엑셀(`.xlsx`)**: 시발역, 종착역, 열차번호 행의 동적 인덱스를 자동 탐색하고, 역별 도착·출발 2행 구조를 순회하여 종착역 도착 시각 누락 없이 정확히 파싱합니다.
+*   **5단계 데이터 정규화 및 정밀 예외 처리**:
+    1.  **역명 정규화 (`KORAIL_STATION_MAP`)**: 코레일 운전용 약칭 32개(`신인천`➔`인천`, `신길온`➔`신길온천`, `과천청`➔`정부과천청사`, `평촌동`➔`평촌` 등) 및 노선 개정 역명(`당고개`➔`불암산`, `별가람`➔`별내별가람`, `총신대`➔`총신대입구(이수)`)을 표준 역명으로 자동 매핑하고, `'서울역'`을 제외한 일반 `'역'` 접미사를 제거합니다.
+    2.  **요일 매핑 및 코레일 휴일 복제**: CSV(`DAY`➔`평일`, `SAT`➔`토요일`, `END`/`HOL`➔`휴일`)를 정규화하고, 토·일요일을 통합 운행하는 코레일의 '휴일' 엑셀 시트는 `토요일`과 `휴일` 양쪽 그룹으로 자동 복제 적재합니다.
+    3.  **무정차 통과역 필터링**: 시발역이 아닌 역(`is_orig == False`)에서 도착 시각은 비어있고 출발/통과 시각만 존재하는 행(`not has_arr and has_dep`)을 무정차 통과역으로 판별하여 시간표에서 제외합니다 (경의중앙선 급행 `K5702`의 효창공원앞, 강매 무정차 통과 등 완벽 필터링).
+    4.  **심야 막차 시각 보정**: 00시대 ➔ `hour: 24`, 01시대 ➔ `hour: 25`, 02시대 ➔ `hour: 26`으로 정규화하여 시간순 오름차순 정렬이 깨지지 않도록 보장합니다.
+    5.  **이기종 파일 간 열차 중복 제거 (Deduplication)**: 4호선 등 서울교통공사 CSV와 코레일 엑셀에 동일 열차가 중복 기재된 경우(예: 사당역 상행 `4006`과 `S4006`), `(hour, minute, train_digits)` 정규화 키를 통해 중복 레코드를 원천 차단합니다.
+*   **`columns` & `data` 분리 2차원 테이블 구조 도입 (용량 68.7% 절감)**:
+    *   48만 건의 도착 정보마다 `"hour"`, `"minute"`, `"destStation"`, `"isExpress"`, `"trainNo"` 키를 반복하는 대신, 역 단위 객체 내 `timetables: { "columns": [...], "data": [[5, "31", "왕십리", false, "K6000"], ...] }` 구조를 채택했습니다.
+    *   **용량 최적화 성과**: 기존 딕셔너리 반복 구조 대비 파일 용량이 **`72.28 MB`에서 `22.63 MB`로 약 68.7% 급감**했으며, 압축(`--compact`) 시 **`15.95 MB`**(Gzip **`1.58 MB`**)로 경량화되어 클라이언트 번들 및 PWA 캐싱 부담을 최소화했습니다.
+*   **스마트 경로 탐색 및 CLI 실행 가이드**:
+    *   스크립트 실행 위치(프로젝트 루트 또는 `scripts/` 폴더)를 자동 감지하여 `timetable/` 원본 폴더와 `json/subway_standard_timetables.json` 출력 경로를 지능적으로 해결합니다.
+    ```bash
+    # 기본 실행 (timetable 폴더 전체 파싱 후 json/subway_standard_timetables.json 생성)
+    python scripts/preprocess_subway.py
+
+    # Dexie.js 적재 및 PWA 캐싱용 단일 압축본 생성
+    python scripts/preprocess_subway.py -o json/subway_standard_timetables.min.json --compact
+
+    # 특정 노선 파일만 개별 추출
+    python scripts/preprocess_subway.py timetable/2026041619d94115bb0130.xlsx -o json/gyeongui.json
+    ```
 
 ---
 
