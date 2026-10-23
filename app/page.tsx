@@ -31,6 +31,28 @@ const isUpbound = (updnLine?: string) => {
   return updnLine === "0" || updnLine.includes("상행") || updnLine.includes("외선");
 };
 
+const getDisplayGroups = (
+  groups: ArrivalGroup[],
+  line: string,
+  order: "up_first" | "down_first"
+) => {
+  return groups
+    .filter((group) => line === "ALL" || group.lineName === line)
+    .sort((a, b) => {
+      const lineCompare = a.lineName.localeCompare(b.lineName);
+      if (lineCompare !== 0) return lineCompare;
+
+      const aIsUp = isUpbound(a.updnLine ?? a.arrivals[0]?.updnLine);
+      const bIsUp = isUpbound(b.updnLine ?? b.arrivals[0]?.updnLine);
+
+      if (aIsUp !== bIsUp) {
+        return order === "up_first" ? (aIsUp ? -1 : 1) : (aIsUp ? 1 : -1);
+      }
+
+      return a.destination.localeCompare(b.destination);
+    });
+};
+
 export default function Home() {
   const [recentSearches, setRecentSearches] = useState<StationRecord[]>([]);
   const [pinnedStations, setPinnedStations] = useState<StationRecord[]>([]);
@@ -38,6 +60,7 @@ export default function Home() {
   const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
   const [selectedLine, setSelectedLine] = useState<string>("ALL");
   const [directionOrder, setDirectionOrder] = useState<"up_first" | "down_first">("up_first");
+  const [currentStation, setCurrentStation] = useState<string>("");
   const [initialSearchValue, setInitialSearchValue] = useState("");
   const [status, setStatus] = useState<{
     type: "idle" | "loading" | "success" | "error";
@@ -76,13 +99,17 @@ export default function Home() {
     savePinnedStations(pinned);
   };
 
-  const handleSearch = async (station: string) => {
+  const handleSearch = async (station: string, targetLine: string = "ALL") => {
     if (!station) return;
 
     const realStationName = getStationRealName(station);
+    const isDifferentStation = realStationName !== currentStation;
 
+    setCurrentStation(realStationName);
     setStatus({ type: "loading", message: "조회 중입니다..." });
-    setArrivalGroups([]);
+    if (isDifferentStation) {
+      setArrivalGroups([]);
+    }
 
     try {
       const res = await fetch(`/api/subway?station=${encodeURIComponent(realStationName)}`);
@@ -174,9 +201,11 @@ export default function Home() {
       parsedGroups.sort((a, b) => a.lineName.localeCompare(b.lineName));
 
       setArrivalGroups(parsedGroups);
-      setSelectedLine("ALL");
-      if (parsedGroups.length > 0) {
-        setExpandedGroups(new Set([getGroupKey(parsedGroups[0])]));
+      setSelectedLine(targetLine);
+
+      const nextDisplay = getDisplayGroups(parsedGroups, targetLine, directionOrder);
+      if (nextDisplay.length > 0) {
+        setExpandedGroups(new Set([getGroupKey(nextDisplay[0])]));
       } else {
         setExpandedGroups(new Set());
       }
@@ -253,23 +282,33 @@ export default function Home() {
     });
   };
 
+  const handleLineSelect = (line: string) => {
+    setSelectedLine(line);
+    const nextDisplay = getDisplayGroups(arrivalGroups, line, directionOrder);
+    if (nextDisplay.length > 0) {
+      setExpandedGroups(new Set([getGroupKey(nextDisplay[0])]));
+    } else {
+      setExpandedGroups(new Set());
+    }
+
+    if (currentStation) {
+      handleSearch(currentStation, line);
+    }
+  };
+
+  const handleDirectionToggle = () => {
+    const nextOrder = directionOrder === "up_first" ? "down_first" : "up_first";
+    setDirectionOrder(nextOrder);
+    const nextDisplay = getDisplayGroups(arrivalGroups, selectedLine, nextOrder);
+    if (nextDisplay.length > 0) {
+      setExpandedGroups(new Set([getGroupKey(nextDisplay[0])]));
+    } else {
+      setExpandedGroups(new Set());
+    }
+  };
+
   const uniqueLines = Array.from(new Set(arrivalGroups.map((g) => g.lineName)));
-
-  const displayGroups = arrivalGroups
-    .filter((group) => selectedLine === "ALL" || group.lineName === selectedLine)
-    .sort((a, b) => {
-      const lineCompare = a.lineName.localeCompare(b.lineName);
-      if (lineCompare !== 0) return lineCompare;
-
-      const aIsUp = isUpbound(a.updnLine ?? a.arrivals[0]?.updnLine);
-      const bIsUp = isUpbound(b.updnLine ?? b.arrivals[0]?.updnLine);
-
-      if (aIsUp !== bIsUp) {
-        return directionOrder === "up_first" ? (aIsUp ? -1 : 1) : (aIsUp ? 1 : -1);
-      }
-
-      return a.destination.localeCompare(b.destination);
-    });
+  const displayGroups = getDisplayGroups(arrivalGroups, selectedLine, directionOrder);
 
   return (
     <>
@@ -293,69 +332,63 @@ export default function Home() {
 
           {arrivalGroups.length > 0 && (
             <section className="flex flex-col gap-md mt-6">
-              <div className="flex flex-wrap items-center justify-between gap-3">
-                <div className="flex flex-wrap items-center gap-2.5">
-                  <h2 className="font-h3 text-h3 text-on-surface whitespace-nowrap">실시간 도착 정보</h2>
+              <div className="flex items-center justify-between gap-2 flex-wrap">
+                {/* 호선별 필터 및 전체 조회 버튼 그룹 */}
+                <div className="flex items-center gap-1.5 flex-wrap">
+                  {/* 전체 조회 버튼 */}
+                  <button
+                    type="button"
+                    onClick={() => handleLineSelect("ALL")}
+                    className={`h-7 px-2.5 text-xs font-semibold rounded-full border transition-all cursor-pointer ${
+                      selectedLine === "ALL"
+                        ? "bg-primary text-on-primary border-primary shadow-sm"
+                        : "bg-surface-container text-on-surface-variant hover:text-on-surface border-surface-container-high hover:bg-surface-container-high"
+                    }`}
+                    aria-pressed={selectedLine === "ALL"}
+                  >
+                    전체 조회
+                  </button>
 
-                  {/* 호선별 필터 버튼 그룹 */}
-                  <div className="flex items-center gap-1.5 flex-wrap">
-                    {/* 전체 버튼 */}
-                    <button
-                      type="button"
-                      onClick={() => setSelectedLine("ALL")}
-                      className={`h-7 px-2.5 text-xs font-semibold rounded-full border transition-all cursor-pointer ${
-                        selectedLine === "ALL"
-                          ? "bg-primary text-on-primary border-primary shadow-sm"
-                          : "bg-surface-container text-on-surface-variant hover:text-on-surface border-surface-container-high hover:bg-surface-container-high"
-                      }`}
-                      aria-pressed={selectedLine === "ALL"}
-                    >
-                      전체
-                    </button>
+                  {/* 호선별 아이콘 버튼 */}
+                  {uniqueLines.map((line) => {
+                    const isSelected = selectedLine === line;
+                    const lineColor = getLineColor(line);
+                    const lineText = getLineNumberText(line);
 
-                    {/* 호선별 아이콘 버튼 */}
-                    {uniqueLines.map((line) => {
-                      const isSelected = selectedLine === line;
-                      const lineColor = getLineColor(line);
-                      const lineText = getLineNumberText(line);
-
-                      return (
-                        <button
-                          key={line}
-                          type="button"
-                          onClick={() => setSelectedLine(line)}
-                          className={`w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold transition-all cursor-pointer ${lineColor} ${
-                            isSelected
-                              ? "ring-2 ring-primary ring-offset-2 ring-offset-surface scale-110 shadow-md opacity-100"
-                              : selectedLine === "ALL"
-                              ? "opacity-85 hover:opacity-100 hover:scale-105"
-                              : "opacity-40 hover:opacity-90 hover:scale-105"
-                          }`}
-                          title={`${line}만 보기`}
-                          aria-label={`${line} 필터링`}
-                          aria-pressed={isSelected}
-                        >
-                          {lineText}
-                        </button>
-                      );
-                    })}
-                  </div>
+                    return (
+                      <button
+                        key={line}
+                        type="button"
+                        onClick={() => handleLineSelect(line)}
+                        className={`w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold transition-all cursor-pointer ${lineColor} ${
+                          isSelected
+                            ? "ring-2 ring-primary ring-offset-2 ring-offset-surface scale-110 shadow-md opacity-100"
+                            : selectedLine === "ALL"
+                            ? "opacity-85 hover:opacity-100 hover:scale-105"
+                            : "opacity-40 hover:opacity-90 hover:scale-105"
+                        }`}
+                        title={`${line} 새로고침 및 필터링`}
+                        aria-label={`${line} 필터링`}
+                        aria-pressed={isSelected}
+                      >
+                        {lineText}
+                      </button>
+                    );
+                  })}
                 </div>
 
                 {/* 상행/하행 정렬 순서 토글 버튼 */}
                 <div className="flex items-center">
                   <button
                     type="button"
-                    onClick={() =>
-                      setDirectionOrder((prev) => (prev === "up_first" ? "down_first" : "up_first"))
-                    }
+                    onClick={handleDirectionToggle}
                     className="inline-flex items-center gap-1 h-7 px-2.5 text-xs font-semibold rounded-md bg-surface-container hover:bg-surface-container-high border border-surface-container-high text-on-surface transition-all shadow-sm active:scale-95 cursor-pointer"
                     title="상행/하행 표시 순서 변경"
                     aria-label="상행/하행 표시 순서 변경"
                   >
                     <span className="material-symbols-outlined text-[18px]">swap_vert</span>
                     <span className="whitespace-nowrap font-medium">
-                      {directionOrder === "up_first" ? "상행 먼저" : "하행 먼저"}
+                      {directionOrder === "up_first" ? "상행" : "하행"}
                     </span>
                   </button>
                 </div>
