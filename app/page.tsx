@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 import SearchSection from "@/components/SearchSection";
 import ArrivalCard from "@/components/ArrivalCard";
 import { ArrivalGroup, RealtimeArrival } from "@/types/subway";
-import { parseKSTDate, formatKSTTime, getStationRealName } from "@/utils/subwayData";
+import { parseKSTDate, formatKSTTime, getStationRealName, getNextStation, getDirectionLabel } from "@/utils/subwayData";
 import { getLineColor, getLineNumberText } from "@/utils/subwayColors";
 import { createClientError, extractClientErrorInfo, formatUserErrorMessage } from "@/utils/errorMessage";
 import {
@@ -24,7 +24,7 @@ import {
 } from "@/utils/stationHistory";
 
 const getGroupKey = (group: ArrivalGroup) =>
-  `${group.lineName}_${group.updnLine ?? ""}_${group.destination}`;
+  `${group.lineName}_${group.updnLine ?? ""}`;
 
 const isUpbound = (updnLine?: string) => {
   if (!updnLine) return true;
@@ -132,68 +132,108 @@ export default function Home() {
       const groupsMap = new Map<string, ArrivalGroup>();
 
       data.realtimeArrivalList.forEach((item: RealtimeArrival) => {
-        const groupKey = `${item.subwayId}_${item.updnLine}_${item.trainLineNm}`;
+        let lineName = item.subwayId;
+        const lineIdMap: Record<string, string> = {
+          "1001": "1호선", "1002": "2호선", "1003": "3호선", "1004": "4호선",
+          "1005": "5호선", "1006": "6호선", "1007": "7호선", "1008": "8호선",
+          "1009": "9호선", "1063": "경의중앙선", "1065": "공항철도", "1067": "경춘선",
+          "1075": "수인분당선", "1077": "신분당선", "1092": "우이신설선", "1093": "서해선"
+        };
+        if (lineIdMap[item.subwayId]) {
+          lineName = lineIdMap[item.subwayId];
+        }
+
+        const isUp = item.updnLine === "0" || item.updnLine.includes("상행") || item.updnLine.includes("외선");
+        const normalizedUpdn = isUp ? "0" : "1";
+        const groupKey = `${lineName}_${normalizedUpdn}`;
 
         if (!groupsMap.has(groupKey)) {
-          let lineName = item.subwayId;
-          const lineIdMap: Record<string, string> = {
-            "1001": "1호선", "1002": "2호선", "1003": "3호선", "1004": "4호선",
-            "1005": "5호선", "1006": "6호선", "1007": "7호선", "1008": "8호선",
-            "1009": "9호선", "1063": "경의중앙선", "1065": "공항철도", "1067": "경춘선",
-            "1075": "수인분당선", "1077": "신분당선", "1092": "우이신설선", "1093": "서해선"
-          };
-          if (lineIdMap[item.subwayId]) {
-            lineName = lineIdMap[item.subwayId];
-          }
+          const directionLabel = getDirectionLabel(lineName, normalizedUpdn);
+          const nextStation = getNextStation(
+            realStationName,
+            lineName,
+            normalizedUpdn,
+            item.bstatnNm,
+            item.trainLineNm
+          );
 
           groupsMap.set(groupKey, {
             lineName,
             lineNumber: lineName,
             destination: item.trainLineNm,
-            updnLine: item.updnLine,
+            directionLabel,
+            nextStationName: nextStation,
+            updnLine: normalizedUpdn,
             arrivals: [],
           });
         }
 
         const group = groupsMap.get(groupKey)!;
 
-        if (group.arrivals.length < 3) {
-          let estTime = item.arvlMsg2;
-          let isUrgent = false;
+        let estTime = item.arvlMsg2;
+        let isUrgent = false;
 
-          if (estTime.includes("진입") || estTime.includes("도착") || estTime.includes("전역")) {
-            isUrgent = true;
+        if (estTime.includes("진입") || estTime.includes("도착") || estTime.includes("전역")) {
+          isUrgent = true;
+        }
+
+        let calculatedArrivalTime = "";
+        if (item.barvlDt && item.barvlDt !== "0") {
+          try {
+            const recptnTime = parseKSTDate(item.recptnDt);
+            const arrivalDate = new Date(recptnTime.getTime() + parseInt(item.barvlDt) * 1000);
+            calculatedArrivalTime = formatKSTTime(arrivalDate);
+          } catch (e) {
+            console.error("Time calculation error:", e);
           }
+        }
 
-          let calculatedArrivalTime = "";
-          if (item.barvlDt && item.barvlDt !== "0") {
-            try {
-              const recptnTime = parseKSTDate(item.recptnDt);
-              const arrivalDate = new Date(recptnTime.getTime() + parseInt(item.barvlDt) * 1000);
-              calculatedArrivalTime = formatKSTTime(arrivalDate);
-            } catch (e) {
-              console.error("Time calculation error:", e);
-            }
-          }
+        const rawSttus = item.btrainSttus?.trim() || "일반";
+        const isExpress = rawSttus !== "일반";
 
-          const rawSttus = item.btrainSttus?.trim() || "일반";
-          const isExpress = rawSttus !== "일반";
+        group.arrivals.push({
+          id: item.btrainNo + "_" + item.barvlDt + "_" + Math.random(),
+          estimatedTimeMsg: estTime,
+          currentLocationMsg: item.arvlMsg3,
+          trainNumber: item.btrainNo,
+          isUrgent,
+          updnLine: normalizedUpdn,
+          bstatnNm: item.bstatnNm,
+          subwayId: item.subwayId,
+          statnNm: realStationName,
+          recptnDt: item.recptnDt,
+          calculatedArrivalTime,
+          btrainSttus: rawSttus,
+          isExpress,
+          barvlDt: item.barvlDt,
+          destination: item.trainLineNm,
+        });
+      });
 
-          group.arrivals.push({
-            id: item.btrainNo + "_" + item.barvlDt + "_" + Math.random(),
-            estimatedTimeMsg: estTime,
-            currentLocationMsg: item.arvlMsg3,
-            trainNumber: item.btrainNo,
-            isUrgent,
-            updnLine: item.updnLine,
-            bstatnNm: item.bstatnNm,
-            subwayId: item.subwayId,
-            statnNm: realStationName,
-            recptnDt: item.recptnDt,
-            calculatedArrivalTime,
-            btrainSttus: rawSttus,
-            isExpress,
-          });
+      // 각 그룹별 후처리 (도착 시간순 정렬 및 방면 요약 정리)
+      groupsMap.forEach((group) => {
+        // 1. 도착 시간순 오름차순 정렬
+        group.arrivals.sort((a, b) => {
+          const timeA = a.barvlDt && a.barvlDt !== "0" ? parseInt(a.barvlDt, 10) : 999999;
+          const timeB = b.barvlDt && b.barvlDt !== "0" ? parseInt(b.barvlDt, 10) : 999999;
+          return timeA - timeB;
+        });
+
+        // 2. 종착역 목록 기반 방면 텍스트 요약 (예: "소요산 · 광운대 방면")
+        const destNames = Array.from(new Set(group.arrivals.map((a) => a.bstatnNm).filter(Boolean)));
+        if (destNames.length > 0) {
+          group.destination = `${destNames.slice(0, 3).join(" · ")} 방면`;
+        }
+
+        // 3. 다음역이 아직 비어있다면 보강
+        if (!group.nextStationName) {
+          group.nextStationName = getNextStation(
+            realStationName,
+            group.lineName,
+            group.updnLine ?? "0",
+            group.arrivals[0]?.bstatnNm,
+            group.arrivals[0]?.destination
+          );
         }
       });
 

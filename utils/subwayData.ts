@@ -353,3 +353,104 @@ export function getStationRealName(searchName: string): string {
 
   return searchName;
 }
+
+/**
+ * 상하행 또는 순환선 라벨(상행, 하행, 내선순환, 외선순환)을 반환합니다.
+ */
+export function getDirectionLabel(lineName: string, updnLine: string): string {
+  const isUp = updnLine === '0' || updnLine.includes('상행') || updnLine.includes('외선');
+  if (lineName.includes('2호선') || lineName.includes('02호선')) {
+    return isUp ? '외선순환' : '내선순환';
+  }
+  return isUp ? '상행' : '하행';
+}
+
+/**
+ * 프로젝트 정적 노선 그래프 및 경로 탐색을 기반으로 다음 정차역명을 도출합니다.
+ */
+export function getNextStation(
+  currentStationName: string,
+  lineName: string,
+  updnLine: string,
+  bstatnNm?: string,
+  fallbackTrainLineNm?: string
+): string {
+  if (!currentStationName) return '';
+
+  const normalized = normalizeLineName(lineName);
+  const data = loadStationsData();
+  const lineStations = data.filter((s) => s.line_num === normalized);
+
+  if (lineStations.length > 0) {
+    const byCode = new Map<string, StationInfo>();
+    lineStations.forEach((s) => byCode.set(s.fr_code, s));
+
+    const findStation = (name?: string): StationInfo | undefined => {
+      if (!name) return undefined;
+      const cleaned = cleanStationQuery(name);
+      if (!cleaned) return undefined;
+      return (
+        lineStations.find((s) => cleanStationQuery(s.station_name) === cleaned) ||
+        lineStations.find((s) => matchStationName(s.station_name, cleaned)) ||
+        lineStations.find((s) => s.station_alias?.some((a) => matchStationName(a, cleaned)))
+      );
+    };
+
+    const curr = findStation(currentStationName);
+
+    // 1) 2호선 본선 순환선 (201~243)
+    if (normalized === '02호선' && curr && /^\d+$/.test(curr.fr_code)) {
+      const isOuter = updnLine === '0' || updnLine.includes('상행') || updnLine.includes('외선');
+      const currNum = parseInt(curr.fr_code, 10);
+      if (currNum >= 201 && currNum <= 243) {
+        const targetNum = isOuter
+          ? (currNum === 201 ? 243 : currNum - 1)
+          : (currNum === 243 ? 201 : currNum + 1);
+        const target = byCode.get(String(targetNum));
+        if (target) return target.station_name;
+      }
+    }
+
+    // 2) 종착역(bstatnNm)이 있으면 그래프 최단 경로 탐색으로 다음역 도출
+    const dest = findStation(bstatnNm);
+    if (curr && dest && curr.fr_code !== dest.fr_code) {
+      const path = bfsShortestPath(byCode, curr.fr_code, dest.fr_code);
+      if (path && path.length > 1) {
+        const nextNode = byCode.get(path[1]);
+        if (nextNode) return nextNode.station_name;
+      }
+    }
+
+    // 3) 종착역 BFS가 없거나 매칭되지 않은 경우, 현재역 edges 중 방향에 맞는 역 선택
+    if (curr && curr.edges && curr.edges.length > 0) {
+      const isUp = updnLine === '0' || updnLine.includes('상행') || updnLine.includes('외선');
+      const candidateEdges = curr.edges
+        .map((e) => byCode.get(e.to))
+        .filter((s): s is StationInfo => Boolean(s));
+
+      if (candidateEdges.length === 1) {
+        return candidateEdges[0].station_name;
+      }
+
+      for (const cand of candidateEdges) {
+        const cmp = cand.fr_code.localeCompare(curr.fr_code, undefined, { numeric: true });
+        if (isUp && cmp < 0) return cand.station_name;
+        if (!isUp && cmp > 0) return cand.station_name;
+      }
+
+      if (candidateEdges.length > 0) {
+        return candidateEdges[0].station_name;
+      }
+    }
+  }
+
+  // 4) Fallback: API trainLineNm 문자열에서 파싱 (예: "청량리행 - 종각방면" -> "종각")
+  if (fallbackTrainLineNm) {
+    const parts = fallbackTrainLineNm.split('-');
+    if (parts.length > 1) {
+      return parts[1].replace(/방면/g, '').trim();
+    }
+  }
+
+  return '';
+}
