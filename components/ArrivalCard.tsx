@@ -53,37 +53,39 @@ export default function ArrivalCard({ group, isExpanded, onToggle }: ArrivalCard
               key={arrival.id}
               className="flex items-center justify-between p-2 rounded hover:bg-surface-container transition-colors gap-2"
             >
-              <div className="flex flex-col gap-0.5 min-w-0">
-                <div className="flex items-center gap-1.5 flex-wrap">
-                  <span className="text-xs font-bold text-on-surface bg-surface-container-high px-1.5 py-0.5 rounded border border-surface-container-highest whitespace-nowrap">
-                    {arrival.bstatnNm ? `${arrival.bstatnNm}행` : "행선지"}
-                  </span>
-                  {arrival.isExpress && (
-                    <span className="text-[11px] font-bold text-rose-500 dark:text-rose-400 bg-rose-500/10 border border-rose-500/30 px-1.5 py-0.5 rounded whitespace-nowrap">
-                      {arrival.btrainSttus || "급행"}
-                    </span>
-                  )}
-                  <span
-                    className={`font-body-lg text-body-lg font-bold whitespace-nowrap ${
-                      arrival.isUrgent ? "text-error" : "text-primary"
-                    }`}
-                  >
-                    {arrival.estimatedTimeMsg}
-                  </span>
-                  {arrival.calculatedArrivalTime && (
-                    <span className="text-xs font-medium text-indigo-400/80 bg-indigo-500/10 px-1.5 py-0.5 rounded whitespace-nowrap">
-                      {arrival.calculatedArrivalTime}
-                    </span>
-                  )}
-                </div>
-                <span className="font-body-sm text-body-sm text-on-surface-variant truncate">
-                  {arrival.currentLocationMsg}
+              <div className="flex items-center gap-1.5 flex-wrap min-w-0">
+                <span className="text-xs font-bold text-on-surface bg-surface-container-high px-1.5 py-0.5 rounded border border-surface-container-highest whitespace-nowrap">
+                  {arrival.bstatnNm ? `${arrival.bstatnNm}행` : "행선지"}
                 </span>
+                {arrival.isExpress && (
+                  <span className="text-[11px] font-bold text-rose-500 dark:text-rose-400 bg-rose-500/10 border border-rose-500/30 px-1.5 py-0.5 rounded whitespace-nowrap">
+                    {arrival.btrainSttus || "급행"}
+                  </span>
+                )}
+                <span
+                  className={`font-body-lg text-body-lg font-bold whitespace-nowrap ${
+                    arrival.isUrgent ? "text-error" : "text-primary"
+                  }`}
+                >
+                  {arrival.estimatedTimeMsg}
+                </span>
+                {arrival.calculatedArrivalTime && (
+                  <span className="text-xs font-medium text-indigo-400/80 bg-indigo-500/10 px-1.5 py-0.5 rounded whitespace-nowrap">
+                    {arrival.calculatedArrivalTime}
+                  </span>
+                )}
               </div>
-              <div className="flex items-center gap-2 shrink-0">
-                <span className="font-data-mono text-data-mono text-outline text-xs">
-                  #{arrival.trainNumber}
-                </span>
+              <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
+                <div className="flex flex-col items-end">
+                  {arrival.currentLocationMsg && (
+                    <span className="font-data-mono text-data-mono text-outline text-xs whitespace-nowrap">
+                      {arrival.currentLocationMsg}
+                    </span>
+                  )}
+                  <span className="font-data-mono text-data-mono text-outline text-xs whitespace-nowrap">
+                    #{arrival.trainNumber}
+                  </span>
+                </div>
                 <Link
                   href={{
                     pathname: `/route/${arrival.trainNumber}`,
