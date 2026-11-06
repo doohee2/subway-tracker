@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "generate:transfer": "node scripts/generate_transfer_data.js",
+    "generate:subway": "node scripts/generate_subway_data.js"
   },
   "dependencies": {
     "@upstash/qstash": "^2.10.1",

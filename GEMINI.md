@@ -251,8 +251,9 @@ Next.js App Router와 서버리스 함수 간의 경계를 보호하기 위한 �
     ```
 
 ### 5.10. 수도권 전철 환승 정보 및 빠른 탑승 위치(출입문) 안내 기능
-*   **데이터 파이프라인 및 정규화 (`scripts/generate_transfer_data.js` -> `json/subway_transfer_data.json`)**:
-    *   수도권 483개 환승 구간 원본 데이터(`subway_transfer_info_v3.json`) 중 탑승 위치 미제공(`"-"`) 3건을 제외하고, GTX-A 파싱 결함(하이픈 분리 오류)을 복원하였으며, 신규 추가된 수인분당선(상행: 청량리/왕십리, 하행: 수원/고색/인천)을 포함한 480개 유효 레코드를 정제했습니다.
+*   **데이터 파이프라인 및 정규화 (`npm run generate:transfer` / `scripts/generate_transfer_data.js`)**:
+    *   터미널에서 `npm run generate:transfer` (또는 `node scripts/generate_transfer_data.js`) 명령어를 실행하면 `json/subway_transfer_info_v3.json`을 읽어 유효성 검증 및 정제를 거쳐 `json/subway_transfer_data.json`으로 즉시 빌드합니다.
+    *   수도권 환승 구간 원본 데이터 중 탑승 위치 미제공(`"-"`) 3건을 제외하고, GTX-A 파싱 결함(하이픈 분리 오류)을 복원하였으며, 신규 추가된 수인분당선(상행: 청량리/왕십리, 하행: 수원/고색/인천)을 포함한 유효 레코드를 정제합니다.
     *   역명 끝의 `'역'` 접미사를 제거(`'서울역'` 예외 유지)하여 기존 `subway_data.json`의 799개 역명 및 별칭과 100% 일치시켰습니다.
     *   텍스트 방면(`current_direction`)을 실시간 API의 `updnLine`(`"0"`: 상행/외선, `"1"`: 하행/내선, `"ALL"`: 공통)과 성수·신정지선, 마천·하남검단산 분기, 급행 태그(`branch_hint`)로 정규화 매핑했습니다.
     *   복수 환승 노선(예: `"경의·중앙선, 경춘선, 수인·분당선"`)을 개별 배열(`target_lines`)로 분리하여 노선별 고유 컬러 배지와 약칭이 렌더링되도록 구현했습니다.
