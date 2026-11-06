@@ -1,0 +1,7641 @@
+[
+  {
+    "id": "tr-1",
+    "station_key": "회룡",
+    "station_display": "회룡역",
+    "current_line": "1호선",
+    "current_direction": "연천 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "의정부경전철"
+    ],
+    "target_line_raw": "의정부 경전철",
+    "target_direction": "전체",
+    "boarding_position": "5-3",
+    "raw_source": "1호선 - 회룡역 - 연천 방면",
+    "raw_target": "의정부 경전철"
+  },
+  {
+    "id": "tr-2",
+    "station_key": "회룡",
+    "station_display": "회룡역",
+    "current_line": "1호선",
+    "current_direction": "인천 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "의정부경전철"
+    ],
+    "target_line_raw": "의정부 경전철",
+    "target_direction": "전체",
+    "boarding_position": "6-2",
+    "raw_source": "1호선 - 회룡역 - 인천 방면",
+    "raw_target": "의정부 경전철"
+  },
+  {
+    "id": "tr-3",
+    "station_key": "도봉산",
+    "station_display": "도봉산역",
+    "current_line": "1호선",
+    "current_direction": "연천 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "7호선"
+    ],
+    "target_line_raw": "7호선",
+    "target_direction": "전체",
+    "boarding_position": "2-1",
+    "raw_source": "1호선 - 도봉산역 - 연천 방면",
+    "raw_target": "7호선"
+  },
+  {
+    "id": "tr-4",
+    "station_key": "도봉산",
+    "station_display": "도봉산역",
+    "current_line": "1호선",
+    "current_direction": "인천 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "7호선"
+    ],
+    "target_line_raw": "7호선",
+    "target_direction": "전체",
+    "boarding_position": "9-3",
+    "raw_source": "1호선 - 도봉산역 - 인천 방면",
+    "raw_target": "7호선"
+  },
+  {
+    "id": "tr-5",
+    "station_key": "창동",
+    "station_display": "창동역",
+    "current_line": "1호선",
+    "current_direction": "연천 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "4호선"
+    ],
+    "target_line_raw": "4호선",
+    "target_direction": "진접 방면",
+    "boarding_position": "9-3",
+    "raw_source": "1호선 - 창동역 - 연천 방면",
+    "raw_target": "4호선 (진접 방면)"
+  },
+  {
+    "id": "tr-6",
+    "station_key": "창동",
+    "station_display": "창동역",
+    "current_line": "1호선",
+    "current_direction": "연천 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "4호선"
+    ],
+    "target_line_raw": "4호선",
+    "target_direction": "오이도 방면",
+    "boarding_position": "3-4",
+    "raw_source": "1호선 - 창동역 - 연천 방면",
+    "raw_target": "4호선 (오이도 방면)"
+  },
+  {
+    "id": "tr-7",
+    "station_key": "창동",
+    "station_display": "창동역",
+    "current_line": "1호선",
+    "current_direction": "인천 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "4호선"
+    ],
+    "target_line_raw": "4호선",
+    "target_direction": "진접 방면",
+    "boarding_position": "2-2",
+    "raw_source": "1호선 - 창동역 - 인천 방면",
+    "raw_target": "4호선 (진접 방면)"
+  },
+  {
+    "id": "tr-8",
+    "station_key": "창동",
+    "station_display": "창동역",
+    "current_line": "1호선",
+    "current_direction": "인천 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "4호선"
+    ],
+    "target_line_raw": "4호선",
+    "target_direction": "오이도 방면",
+    "boarding_position": "8-1",
+    "raw_source": "1호선 - 창동역 - 인천 방면",
+    "raw_target": "4호선 (오이도 방면)"
+  },
+  {
+    "id": "tr-9",
+    "station_key": "광운대",
+    "station_display": "광운대역",
+    "current_line": "1호선",
+    "current_direction": "연천 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "경춘선"
+    ],
+    "target_line_raw": "경춘선",
+    "target_direction": "전체",
+    "boarding_position": "1-3",
+    "raw_source": "1호선 - 광운대역 - 연천 방면",
+    "raw_target": "경춘선"
+  },
+  {
+    "id": "tr-10",
+    "station_key": "광운대",
+    "station_display": "광운대역",
+    "current_line": "1호선",
+    "current_direction": "인천/신창 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "경춘선"
+    ],
+    "target_line_raw": "경춘선",
+    "target_direction": "전체",
+    "boarding_position": "10-2",
+    "raw_source": "1호선 - 광운대역 - 인천/신창 방면",
+    "raw_target": "경춘선"
+  },
+  {
+    "id": "tr-11",
+    "station_key": "석계",
+    "station_display": "석계역",
+    "current_line": "1호선",
+    "current_direction": "연천/광운대 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "6호선"
+    ],
+    "target_line_raw": "6호선",
+    "target_direction": "전체",
+    "boarding_position": "10-4",
+    "raw_source": "1호선 - 석계역 - 연천/광운대 방면",
+    "raw_target": "6호선"
+  },
+  {
+    "id": "tr-12",
+    "station_key": "석계",
+    "station_display": "석계역",
+    "current_line": "1호선",
+    "current_direction": "인천/신창 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "6호선"
+    ],
+    "target_line_raw": "6호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "1호선 - 석계역 - 인천/신창 방면",
+    "raw_target": "6호선"
+  },
+  {
+    "id": "tr-13",
+    "station_key": "회기",
+    "station_display": "회기역",
+    "current_line": "1호선",
+    "current_direction": "연천/광운대 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "경의중앙선",
+      "경춘선"
+    ],
+    "target_line_raw": "경의·중앙선, 경춘선",
+    "target_direction": "전체",
+    "boarding_position": "4-3",
+    "raw_source": "1호선 - 회기역 - 연천/광운대 방면",
+    "raw_target": "경의·중앙선, 경춘선"
+  },
+  {
+    "id": "tr-14",
+    "station_key": "회기",
+    "station_display": "회기역",
+    "current_line": "1호선",
+    "current_direction": "인천/신창 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "경의중앙선",
+      "경춘선"
+    ],
+    "target_line_raw": "경의·중앙선, 경춘선",
+    "target_direction": "전체",
+    "boarding_position": "7-2",
+    "raw_source": "1호선 - 회기역 - 인천/신창 방면",
+    "raw_target": "경의·중앙선, 경춘선"
+  },
+  {
+    "id": "tr-15",
+    "station_key": "청량리",
+    "station_display": "청량리역",
+    "current_line": "1호선",
+    "current_direction": "연천/광운대 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "경의중앙선",
+      "경춘선",
+      "수인분당선"
+    ],
+    "target_line_raw": "경의·중앙선, 경춘선, 수인·분당선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "1호선 - 청량리역 - 연천/광운대 방면",
+    "raw_target": "경의·중앙선, 경춘선, 수인·분당선"
+  },
+  {
+    "id": "tr-16",
+    "station_key": "청량리",
+    "station_display": "청량리역",
+    "current_line": "1호선",
+    "current_direction": "인천/신창 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "경의중앙선",
+      "경춘선",
+      "수인분당선"
+    ],
+    "target_line_raw": "경의·중앙선, 경춘선, 수인·분당선",
+    "target_direction": "전체",
+    "boarding_position": "10-4",
+    "raw_source": "1호선 - 청량리역 - 인천/신창 방면",
+    "raw_target": "경의·중앙선, 경춘선, 수인·분당선"
+  },
+  {
+    "id": "tr-17",
+    "station_key": "신설동",
+    "station_display": "신설동역",
+    "current_line": "1호선",
+    "current_direction": "연천/광운대 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선 성수지선",
+      "우이신설선"
+    ],
+    "target_line_raw": "2호선 성수지선, 우이신설선",
+    "target_direction": "전체",
+    "boarding_position": "9-4",
+    "raw_source": "1호선 - 신설동역 - 연천/광운대 방면",
+    "raw_target": "2호선 성수지선, 우이신설선"
+  },
+  {
+    "id": "tr-18",
+    "station_key": "신설동",
+    "station_display": "신설동역",
+    "current_line": "1호선",
+    "current_direction": "인천/신창 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선 성수지선",
+      "우이신설선"
+    ],
+    "target_line_raw": "2호선 성수지선, 우이신설선",
+    "target_direction": "전체",
+    "boarding_position": "2-1",
+    "raw_source": "1호선 - 신설동역 - 인천/신창 방면",
+    "raw_target": "2호선 성수지선, 우이신설선"
+  },
+  {
+    "id": "tr-19",
+    "station_key": "동묘앞",
+    "station_display": "동묘앞역",
+    "current_line": "1호선",
+    "current_direction": "연천/광운대 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "6호선"
+    ],
+    "target_line_raw": "6호선",
+    "target_direction": "전체",
+    "boarding_position": "9-2",
+    "raw_source": "1호선 - 동묘앞역 - 연천/광운대 방면",
+    "raw_target": "6호선"
+  },
+  {
+    "id": "tr-20",
+    "station_key": "동묘앞",
+    "station_display": "동묘앞역",
+    "current_line": "1호선",
+    "current_direction": "인천/신창 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "6호선"
+    ],
+    "target_line_raw": "6호선",
+    "target_direction": "전체",
+    "boarding_position": "2-3",
+    "raw_source": "1호선 - 동묘앞역 - 인천/신창 방면",
+    "raw_target": "6호선"
+  },
+  {
+    "id": "tr-21",
+    "station_key": "동대문",
+    "station_display": "동대문역",
+    "current_line": "1호선",
+    "current_direction": "연천/광운대 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "4호선"
+    ],
+    "target_line_raw": "4호선",
+    "target_direction": "전체",
+    "boarding_position": "9-3",
+    "raw_source": "1호선 - 동대문역 - 연천/광운대 방면",
+    "raw_target": "4호선"
+  },
+  {
+    "id": "tr-22",
+    "station_key": "동대문",
+    "station_display": "동대문역",
+    "current_line": "1호선",
+    "current_direction": "인천/신창 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "4호선"
+    ],
+    "target_line_raw": "4호선",
+    "target_direction": "전체",
+    "boarding_position": "1-3",
+    "raw_source": "1호선 - 동대문역 - 인천/신창 방면",
+    "raw_target": "4호선"
+  },
+  {
+    "id": "tr-23",
+    "station_key": "종로3가",
+    "station_display": "종로3가역",
+    "current_line": "1호선",
+    "current_direction": "연천/광운대 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "3호선",
+      "5호선"
+    ],
+    "target_line_raw": "3호선, 5호선",
+    "target_direction": "전체",
+    "boarding_position": "6-1",
+    "raw_source": "1호선 - 종로3가역 - 연천/광운대 방면",
+    "raw_target": "3호선, 5호선"
+  },
+  {
+    "id": "tr-24",
+    "station_key": "종로3가",
+    "station_display": "종로3가역",
+    "current_line": "1호선",
+    "current_direction": "인천/신창 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "3호선"
+    ],
+    "target_line_raw": "3호선",
+    "target_direction": "전체",
+    "boarding_position": "6-2",
+    "raw_source": "1호선 - 종로3가역 - 인천/신창 방면",
+    "raw_target": "3호선"
+  },
+  {
+    "id": "tr-25",
+    "station_key": "종로3가",
+    "station_display": "종로3가역",
+    "current_line": "1호선",
+    "current_direction": "인천/신창 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선"
+    ],
+    "target_line_raw": "5호선",
+    "target_direction": "전체",
+    "boarding_position": "4-2, 7-3",
+    "raw_source": "1호선 - 종로3가역 - 인천/신창 방면",
+    "raw_target": "5호선"
+  },
+  {
+    "id": "tr-26",
+    "station_key": "시청",
+    "station_display": "시청역",
+    "current_line": "1호선",
+    "current_direction": "연천/광운대 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "전체",
+    "boarding_position": "10-4",
+    "raw_source": "1호선 - 시청역 - 연천/광운대 방면",
+    "raw_target": "2호선"
+  },
+  {
+    "id": "tr-27",
+    "station_key": "시청",
+    "station_display": "시청역",
+    "current_line": "1호선",
+    "current_direction": "인천/신창 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "1호선 - 시청역 - 인천/신창 방면",
+    "raw_target": "2호선"
+  },
+  {
+    "id": "tr-28",
+    "station_key": "서울역",
+    "station_display": "서울역",
+    "current_line": "1호선",
+    "current_direction": "연천/광운대 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "4호선",
+      "공항철도",
+      "GTX-A"
+    ],
+    "target_line_raw": "4호선, 공항철도, GTX-A",
+    "target_direction": "전체",
+    "boarding_position": "10-4",
+    "raw_source": "1호선 - 서울역 - 연천/광운대 방면",
+    "raw_target": "4호선, 공항철도, GTX-A"
+  },
+  {
+    "id": "tr-29",
+    "station_key": "서울역",
+    "station_display": "서울역",
+    "current_line": "1호선",
+    "current_direction": "연천/광운대 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "경의중앙선"
+    ],
+    "target_line_raw": "경의·중앙선",
+    "target_direction": "전체",
+    "boarding_position": "4-3",
+    "raw_source": "1호선 - 서울역 - 연천/광운대 방면",
+    "raw_target": "경의·중앙선"
+  },
+  {
+    "id": "tr-30",
+    "station_key": "서울역",
+    "station_display": "서울역",
+    "current_line": "1호선",
+    "current_direction": "인천/신창 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "4호선",
+      "공항철도",
+      "GTX-A"
+    ],
+    "target_line_raw": "4호선, 공항철도, GTX-A",
+    "target_direction": "전체",
+    "boarding_position": "1-2",
+    "raw_source": "1호선 - 서울역 - 인천/신창 방면",
+    "raw_target": "4호선, 공항철도, GTX-A"
+  },
+  {
+    "id": "tr-31",
+    "station_key": "서울역",
+    "station_display": "서울역",
+    "current_line": "1호선",
+    "current_direction": "인천/신창 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "경의중앙선"
+    ],
+    "target_line_raw": "경의·중앙선",
+    "target_direction": "전체",
+    "boarding_position": "8-2",
+    "raw_source": "1호선 - 서울역 - 인천/신창 방면",
+    "raw_target": "경의·중앙선"
+  },
+  {
+    "id": "tr-32",
+    "station_key": "용산",
+    "station_display": "용산역",
+    "current_line": "1호선",
+    "current_direction": "연천/광운대 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "경의중앙선"
+    ],
+    "target_line_raw": "경의·중앙선",
+    "target_direction": "전체",
+    "boarding_position": "10-1",
+    "raw_source": "1호선 - 용산역 - 연천/광운대 방면",
+    "raw_target": "경의·중앙선"
+  },
+  {
+    "id": "tr-33",
+    "station_key": "용산",
+    "station_display": "용산역",
+    "current_line": "1호선",
+    "current_direction": "인천/신창 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "경의중앙선"
+    ],
+    "target_line_raw": "경의·중앙선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "1호선 - 용산역 - 인천/신창 방면",
+    "raw_target": "경의·중앙선"
+  },
+  {
+    "id": "tr-34",
+    "station_key": "노량진",
+    "station_display": "노량진역",
+    "current_line": "1호선",
+    "current_direction": "연천/광운대 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "9호선"
+    ],
+    "target_line_raw": "9호선",
+    "target_direction": "전체",
+    "boarding_position": "8-4",
+    "raw_source": "1호선 - 노량진역 - 연천/광운대 방면",
+    "raw_target": "9호선"
+  },
+  {
+    "id": "tr-35",
+    "station_key": "노량진",
+    "station_display": "노량진역",
+    "current_line": "1호선",
+    "current_direction": "용산 급행",
+    "updn_code": "0",
+    "branch_hint": "급행",
+    "target_lines": [
+      "9호선"
+    ],
+    "target_line_raw": "9호선",
+    "target_direction": "전체",
+    "boarding_position": "5-2",
+    "raw_source": "1호선 - 노량진역 - 용산 급행",
+    "raw_target": "9호선"
+  },
+  {
+    "id": "tr-36",
+    "station_key": "노량진",
+    "station_display": "노량진역",
+    "current_line": "1호선",
+    "current_direction": "인천/신창 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "9호선"
+    ],
+    "target_line_raw": "9호선",
+    "target_direction": "전체",
+    "boarding_position": "3-1",
+    "raw_source": "1호선 - 노량진역 - 인천/신창 방면",
+    "raw_target": "9호선"
+  },
+  {
+    "id": "tr-37",
+    "station_key": "노량진",
+    "station_display": "노량진역",
+    "current_line": "1호선",
+    "current_direction": "동인천 급행",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "9호선"
+    ],
+    "target_line_raw": "9호선",
+    "target_direction": "전체",
+    "boarding_position": "6-3",
+    "raw_source": "1호선 - 노량진역 - 동인천 급행",
+    "raw_target": "9호선"
+  },
+  {
+    "id": "tr-38",
+    "station_key": "대방",
+    "station_display": "대방역",
+    "current_line": "1호선",
+    "current_direction": "연천/광운대 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "신림선"
+    ],
+    "target_line_raw": "신림선",
+    "target_direction": "전체",
+    "boarding_position": "4-3",
+    "raw_source": "1호선 - 대방역 - 연천/광운대 방면",
+    "raw_target": "신림선"
+  },
+  {
+    "id": "tr-39",
+    "station_key": "대방",
+    "station_display": "대방역",
+    "current_line": "1호선",
+    "current_direction": "용산 급행",
+    "updn_code": "0",
+    "branch_hint": "급행",
+    "target_lines": [
+      "신림선"
+    ],
+    "target_line_raw": "신림선",
+    "target_direction": "전체",
+    "boarding_position": "4-2",
+    "raw_source": "1호선 - 대방역 - 용산 급행",
+    "raw_target": "신림선"
+  },
+  {
+    "id": "tr-40",
+    "station_key": "대방",
+    "station_display": "대방역",
+    "current_line": "1호선",
+    "current_direction": "인천/신창 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "신림선"
+    ],
+    "target_line_raw": "신림선",
+    "target_direction": "전체",
+    "boarding_position": "4-1, 7-3",
+    "raw_source": "1호선 - 대방역 - 인천/신창 방면",
+    "raw_target": "신림선"
+  },
+  {
+    "id": "tr-41",
+    "station_key": "대방",
+    "station_display": "대방역",
+    "current_line": "1호선",
+    "current_direction": "동인천 급행",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "신림선"
+    ],
+    "target_line_raw": "신림선",
+    "target_direction": "전체",
+    "boarding_position": "5-1",
+    "raw_source": "1호선 - 대방역 - 동인천 급행",
+    "raw_target": "신림선"
+  },
+  {
+    "id": "tr-42",
+    "station_key": "신길",
+    "station_display": "신길역",
+    "current_line": "1호선",
+    "current_direction": "연천/광운대 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선"
+    ],
+    "target_line_raw": "5호선",
+    "target_direction": "전체",
+    "boarding_position": "9-1",
+    "raw_source": "1호선 - 신길역 - 연천/광운대 방면",
+    "raw_target": "5호선"
+  },
+  {
+    "id": "tr-43",
+    "station_key": "신길",
+    "station_display": "신길역",
+    "current_line": "1호선",
+    "current_direction": "인천/신창 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선"
+    ],
+    "target_line_raw": "5호선",
+    "target_direction": "전체",
+    "boarding_position": "2-3",
+    "raw_source": "1호선 - 신길역 - 인천/신창 방면",
+    "raw_target": "5호선"
+  },
+  {
+    "id": "tr-44",
+    "station_key": "신도림",
+    "station_display": "신도림역",
+    "current_line": "1호선",
+    "current_direction": "연천/광운대 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "전체",
+    "boarding_position": "5-1",
+    "raw_source": "1호선 - 신도림역 - 연천/광운대 방면",
+    "raw_target": "2호선"
+  },
+  {
+    "id": "tr-45",
+    "station_key": "신도림",
+    "station_display": "신도림역",
+    "current_line": "1호선",
+    "current_direction": "인천/신창 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "전체",
+    "boarding_position": "2-3, 6-2",
+    "raw_source": "1호선 - 신도림역 - 인천/신창 방면",
+    "raw_target": "2호선"
+  },
+  {
+    "id": "tr-46",
+    "station_key": "구로",
+    "station_display": "구로역",
+    "current_line": "1호선",
+    "current_direction": "경부선 광운대 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "인천 방면",
+    "boarding_position": "3-4, 6-1, 10-4",
+    "raw_source": "1호선 - 구로역 - 경부선 광운대 방면",
+    "raw_target": "1호선 (인천 방면)"
+  },
+  {
+    "id": "tr-47",
+    "station_key": "구로",
+    "station_display": "구로역",
+    "current_line": "1호선",
+    "current_direction": "경부선 신창 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "인천 방면",
+    "boarding_position": "1-1, 5-4, 8-1",
+    "raw_source": "1호선 - 구로역 - 경부선 신창 방면",
+    "raw_target": "1호선 (인천 방면)"
+  },
+  {
+    "id": "tr-48",
+    "station_key": "구로",
+    "station_display": "구로역",
+    "current_line": "1호선",
+    "current_direction": "경인선 인천 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "신창 방면",
+    "boarding_position": "1-1, 5-4, 8-1",
+    "raw_source": "1호선 - 구로역 - 경인선 인천 방면",
+    "raw_target": "1호선 (신창 방면)"
+  },
+  {
+    "id": "tr-49",
+    "station_key": "온수",
+    "station_display": "온수역",
+    "current_line": "1호선",
+    "current_direction": "연천 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "7호선"
+    ],
+    "target_line_raw": "7호선",
+    "target_direction": "전체",
+    "boarding_position": "10-4",
+    "raw_source": "1호선 - 온수역 - 연천 방면",
+    "raw_target": "7호선"
+  },
+  {
+    "id": "tr-50",
+    "station_key": "온수",
+    "station_display": "온수역",
+    "current_line": "1호선",
+    "current_direction": "인천 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "7호선"
+    ],
+    "target_line_raw": "7호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "1호선 - 온수역 - 인천 방면",
+    "raw_target": "7호선"
+  },
+  {
+    "id": "tr-51",
+    "station_key": "소사",
+    "station_display": "소사역",
+    "current_line": "1호선",
+    "current_direction": "연천 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "서해선"
+    ],
+    "target_line_raw": "서해선",
+    "target_direction": "전체",
+    "boarding_position": "6-2",
+    "raw_source": "1호선 - 소사역 - 연천 방면",
+    "raw_target": "서해선"
+  },
+  {
+    "id": "tr-52",
+    "station_key": "소사",
+    "station_display": "소사역",
+    "current_line": "1호선",
+    "current_direction": "인천 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "서해선"
+    ],
+    "target_line_raw": "서해선",
+    "target_direction": "전체",
+    "boarding_position": "5-3",
+    "raw_source": "1호선 - 소사역 - 인천 방면",
+    "raw_target": "서해선"
+  },
+  {
+    "id": "tr-53",
+    "station_key": "부평",
+    "station_display": "부평역",
+    "current_line": "1호선",
+    "current_direction": "연천 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "인천1호선"
+    ],
+    "target_line_raw": "인천 1호선",
+    "target_direction": "전체",
+    "boarding_position": "9-2",
+    "raw_source": "1호선 - 부평역 - 연천 방면",
+    "raw_target": "인천 1호선"
+  },
+  {
+    "id": "tr-54",
+    "station_key": "부평",
+    "station_display": "부평역",
+    "current_line": "1호선",
+    "current_direction": "인천 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "인천1호선"
+    ],
+    "target_line_raw": "인천 1호선",
+    "target_direction": "전체",
+    "boarding_position": "2-3",
+    "raw_source": "1호선 - 부평역 - 인천 방면",
+    "raw_target": "인천 1호선"
+  },
+  {
+    "id": "tr-55",
+    "station_key": "주안",
+    "station_display": "주안역",
+    "current_line": "1호선",
+    "current_direction": "연천 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "인천2호선"
+    ],
+    "target_line_raw": "인천 2호선",
+    "target_direction": "전체",
+    "boarding_position": "9-4",
+    "raw_source": "1호선 - 주안역 - 연천 방면",
+    "raw_target": "인천 2호선"
+  },
+  {
+    "id": "tr-56",
+    "station_key": "주안",
+    "station_display": "주안역",
+    "current_line": "1호선",
+    "current_direction": "인천 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "인천2호선"
+    ],
+    "target_line_raw": "인천 2호선",
+    "target_direction": "전체",
+    "boarding_position": "1-4",
+    "raw_source": "1호선 - 주안역 - 인천 방면",
+    "raw_target": "인천 2호선"
+  },
+  {
+    "id": "tr-57",
+    "station_key": "인천",
+    "station_display": "인천역",
+    "current_line": "1호선",
+    "current_direction": "전체",
+    "updn_code": "ALL",
+    "branch_hint": null,
+    "target_lines": [
+      "수인분당선"
+    ],
+    "target_line_raw": "수인·분당선",
+    "target_direction": "전체",
+    "boarding_position": "4-1",
+    "raw_source": "1호선 - 인천역",
+    "raw_target": "수인·분당선"
+  },
+  {
+    "id": "tr-58",
+    "station_key": "가산디지털단지",
+    "station_display": "가산디지털단지역",
+    "current_line": "1호선",
+    "current_direction": "청량리/광운대 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "7호선"
+    ],
+    "target_line_raw": "7호선",
+    "target_direction": "전체",
+    "boarding_position": "10-3",
+    "raw_source": "1호선 - 가산디지털단지역 - 청량리/광운대 방면",
+    "raw_target": "7호선"
+  },
+  {
+    "id": "tr-59",
+    "station_key": "가산디지털단지",
+    "station_display": "가산디지털단지역",
+    "current_line": "1호선",
+    "current_direction": "천안/신창 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "7호선"
+    ],
+    "target_line_raw": "7호선",
+    "target_direction": "전체",
+    "boarding_position": "1-2",
+    "raw_source": "1호선 - 가산디지털단지역 - 천안/신창 방면",
+    "raw_target": "7호선"
+  },
+  {
+    "id": "tr-60",
+    "station_key": "금천구청",
+    "station_display": "금천구청역",
+    "current_line": "1호선",
+    "current_direction": "천안/신창 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선 광명셔틀"
+    ],
+    "target_line_raw": "1호선 광명셔틀",
+    "target_direction": "광명 방면",
+    "boarding_position": "1-1 ~ 4-4",
+    "raw_source": "1호선 - 금천구청역 - 천안/신창 방면",
+    "raw_target": "1호선 광명셔틀 (광명 방면)"
+  },
+  {
+    "id": "tr-61",
+    "station_key": "금천구청",
+    "station_display": "금천구청역",
+    "current_line": "1호선",
+    "current_direction": "청량리/광운대 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선 광명셔틀"
+    ],
+    "target_line_raw": "1호선 광명셔틀",
+    "target_direction": "광명 방면",
+    "boarding_position": "4-4",
+    "raw_source": "1호선 - 금천구청역 - 청량리/광운대 방면",
+    "raw_target": "1호선 광명셔틀 (광명 방면)"
+  },
+  {
+    "id": "tr-62",
+    "station_key": "금정",
+    "station_display": "금정역",
+    "current_line": "1호선",
+    "current_direction": "청량리/광운대 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "4호선"
+    ],
+    "target_line_raw": "4호선",
+    "target_direction": "불암산 방면",
+    "boarding_position": "모든 문",
+    "raw_source": "1호선 - 금정역 - 청량리/광운대 방면",
+    "raw_target": "4호선 (불암산 방면)"
+  },
+  {
+    "id": "tr-63",
+    "station_key": "금정",
+    "station_display": "금정역",
+    "current_line": "1호선",
+    "current_direction": "청량리/광운대 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "4호선"
+    ],
+    "target_line_raw": "4호선",
+    "target_direction": "오이도 방면",
+    "boarding_position": "2-3",
+    "raw_source": "1호선 - 금정역 - 청량리/광운대 방면",
+    "raw_target": "4호선 (오이도 방면)"
+  },
+  {
+    "id": "tr-64",
+    "station_key": "금정",
+    "station_display": "금정역",
+    "current_line": "1호선",
+    "current_direction": "천안/신창 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "4호선"
+    ],
+    "target_line_raw": "4호선",
+    "target_direction": "불암산 방면",
+    "boarding_position": "9-2",
+    "raw_source": "1호선 - 금정역 - 천안/신창 방면",
+    "raw_target": "4호선 (불암산 방면)"
+  },
+  {
+    "id": "tr-65",
+    "station_key": "금정",
+    "station_display": "금정역",
+    "current_line": "1호선",
+    "current_direction": "천안/신창 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "4호선"
+    ],
+    "target_line_raw": "4호선",
+    "target_direction": "오이도 방면",
+    "boarding_position": "모든 문",
+    "raw_source": "1호선 - 금정역 - 천안/신창 방면",
+    "raw_target": "4호선 (오이도 방면)"
+  },
+  {
+    "id": "tr-66",
+    "station_key": "수원",
+    "station_display": "수원역",
+    "current_line": "1호선",
+    "current_direction": "청량리/광운대 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "수인분당선"
+    ],
+    "target_line_raw": "수인·분당선",
+    "target_direction": "전체",
+    "boarding_position": "8-2",
+    "raw_source": "1호선 - 수원역 - 청량리/광운대 방면",
+    "raw_target": "수인·분당선"
+  },
+  {
+    "id": "tr-67",
+    "station_key": "수원",
+    "station_display": "수원역",
+    "current_line": "1호선",
+    "current_direction": "천안/신창 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "수인분당선"
+    ],
+    "target_line_raw": "수인·분당선",
+    "target_direction": "전체",
+    "boarding_position": "1-3",
+    "raw_source": "1호선 - 수원역 - 천안/신창 방면",
+    "raw_target": "수인·분당선"
+  },
+  {
+    "id": "tr-68",
+    "station_key": "병점",
+    "station_display": "병점역",
+    "current_line": "1호선",
+    "current_direction": "청량리/광운대 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "서동탄/천안/신창 방면",
+    "boarding_position": "6-1",
+    "raw_source": "1호선 - 병점역 - 청량리/광운대 방면",
+    "raw_target": "1호선 (서동탄/천안/신창 방면)"
+  },
+  {
+    "id": "tr-69",
+    "station_key": "시청",
+    "station_display": "시청역",
+    "current_line": "2호선",
+    "current_direction": "내선 순환",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "2호선 - 시청역 - 내선 순환",
+    "raw_target": "1호선"
+  },
+  {
+    "id": "tr-70",
+    "station_key": "시청",
+    "station_display": "시청역",
+    "current_line": "2호선",
+    "current_direction": "외선 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "10-4",
+    "raw_source": "2호선 - 시청역 - 외선 순환",
+    "raw_target": "1호선"
+  },
+  {
+    "id": "tr-71",
+    "station_key": "을지로3가",
+    "station_display": "을지로3가역",
+    "current_line": "2호선",
+    "current_direction": "내선 순환",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "3호선"
+    ],
+    "target_line_raw": "3호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "2호선 - 을지로3가역 - 내선 순환",
+    "raw_target": "3호선"
+  },
+  {
+    "id": "tr-72",
+    "station_key": "을지로3가",
+    "station_display": "을지로3가역",
+    "current_line": "2호선",
+    "current_direction": "외선 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "3호선"
+    ],
+    "target_line_raw": "3호선",
+    "target_direction": "전체",
+    "boarding_position": "10-4",
+    "raw_source": "2호선 - 을지로3가역 - 외선 순환",
+    "raw_target": "3호선"
+  },
+  {
+    "id": "tr-73",
+    "station_key": "을지로4가",
+    "station_display": "을지로4가역",
+    "current_line": "2호선",
+    "current_direction": "내선 순환",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선"
+    ],
+    "target_line_raw": "5호선",
+    "target_direction": "전체",
+    "boarding_position": "4-3",
+    "raw_source": "2호선 - 을지로4가역 - 내선 순환",
+    "raw_target": "5호선"
+  },
+  {
+    "id": "tr-74",
+    "station_key": "을지로4가",
+    "station_display": "을지로4가역",
+    "current_line": "2호선",
+    "current_direction": "외선 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선"
+    ],
+    "target_line_raw": "5호선",
+    "target_direction": "전체",
+    "boarding_position": "7-2",
+    "raw_source": "2호선 - 을지로4가역 - 외선 순환",
+    "raw_target": "5호선"
+  },
+  {
+    "id": "tr-75",
+    "station_key": "동대문역사문화공원",
+    "station_display": "동대문역사문화공원역",
+    "current_line": "2호선",
+    "current_direction": "내선 순환",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "4호선"
+    ],
+    "target_line_raw": "4호선",
+    "target_direction": "전체",
+    "boarding_position": "9-2",
+    "raw_source": "2호선 - 동대문역사문화공원역 - 내선 순환",
+    "raw_target": "4호선"
+  },
+  {
+    "id": "tr-76",
+    "station_key": "동대문역사문화공원",
+    "station_display": "동대문역사문화공원역",
+    "current_line": "2호선",
+    "current_direction": "내선 순환",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선"
+    ],
+    "target_line_raw": "5호선",
+    "target_direction": "전체",
+    "boarding_position": "6-2, 8-2",
+    "raw_source": "2호선 - 동대문역사문화공원역 - 내선 순환",
+    "raw_target": "5호선"
+  },
+  {
+    "id": "tr-77",
+    "station_key": "동대문역사문화공원",
+    "station_display": "동대문역사문화공원역",
+    "current_line": "2호선",
+    "current_direction": "외선 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "4호선"
+    ],
+    "target_line_raw": "4호선",
+    "target_direction": "전체",
+    "boarding_position": "2-4",
+    "raw_source": "2호선 - 동대문역사문화공원역 - 외선 순환",
+    "raw_target": "4호선"
+  },
+  {
+    "id": "tr-78",
+    "station_key": "동대문역사문화공원",
+    "station_display": "동대문역사문화공원역",
+    "current_line": "2호선",
+    "current_direction": "외선 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선"
+    ],
+    "target_line_raw": "5호선",
+    "target_direction": "전체",
+    "boarding_position": "3-3, 5-3",
+    "raw_source": "2호선 - 동대문역사문화공원역 - 외선 순환",
+    "raw_target": "5호선"
+  },
+  {
+    "id": "tr-79",
+    "station_key": "신당",
+    "station_display": "신당역",
+    "current_line": "2호선",
+    "current_direction": "내선 순환",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "6호선"
+    ],
+    "target_line_raw": "6호선",
+    "target_direction": "전체",
+    "boarding_position": "10-4",
+    "raw_source": "2호선 - 신당역 - 내선 순환",
+    "raw_target": "6호선"
+  },
+  {
+    "id": "tr-80",
+    "station_key": "신당",
+    "station_display": "신당역",
+    "current_line": "2호선",
+    "current_direction": "외선 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "6호선"
+    ],
+    "target_line_raw": "6호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "2호선 - 신당역 - 외선 순환",
+    "raw_target": "6호선"
+  },
+  {
+    "id": "tr-81",
+    "station_key": "왕십리",
+    "station_display": "왕십리역",
+    "current_line": "2호선",
+    "current_direction": "내선 순환",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선"
+    ],
+    "target_line_raw": "5호선",
+    "target_direction": "전체",
+    "boarding_position": "6-1",
+    "raw_source": "2호선 - 왕십리역 - 내선 순환",
+    "raw_target": "5호선"
+  },
+  {
+    "id": "tr-82",
+    "station_key": "왕십리",
+    "station_display": "왕십리역",
+    "current_line": "2호선",
+    "current_direction": "내선 순환",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "경의중앙선",
+      "수인분당선"
+    ],
+    "target_line_raw": "경의·중앙선, 수인·분당선",
+    "target_direction": "전체",
+    "boarding_position": "3-1",
+    "raw_source": "2호선 - 왕십리역 - 내선 순환",
+    "raw_target": "경의·중앙선, 수인·분당선"
+  },
+  {
+    "id": "tr-83",
+    "station_key": "왕십리",
+    "station_display": "왕십리역",
+    "current_line": "2호선",
+    "current_direction": "외선 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선"
+    ],
+    "target_line_raw": "5호선",
+    "target_direction": "전체",
+    "boarding_position": "5-4",
+    "raw_source": "2호선 - 왕십리역 - 외선 순환",
+    "raw_target": "5호선"
+  },
+  {
+    "id": "tr-84",
+    "station_key": "왕십리",
+    "station_display": "왕십리역",
+    "current_line": "2호선",
+    "current_direction": "외선 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "경의중앙선",
+      "수인분당선"
+    ],
+    "target_line_raw": "경의·중앙선, 수인·분당선",
+    "target_direction": "전체",
+    "boarding_position": "8-2",
+    "raw_source": "2호선 - 왕십리역 - 외선 순환",
+    "raw_target": "경의·중앙선, 수인·분당선"
+  },
+  {
+    "id": "tr-85",
+    "station_key": "성수",
+    "station_display": "성수역",
+    "current_line": "2호선",
+    "current_direction": "내선 순환",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선 성수지선"
+    ],
+    "target_line_raw": "2호선 성수지선",
+    "target_direction": "신설동 방면",
+    "boarding_position": "10-4",
+    "raw_source": "2호선 - 성수역 - 내선 순환",
+    "raw_target": "2호선 성수지선 (신설동 방면)"
+  },
+  {
+    "id": "tr-86",
+    "station_key": "성수",
+    "station_display": "성수역",
+    "current_line": "2호선",
+    "current_direction": "외선 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선 성수지선"
+    ],
+    "target_line_raw": "2호선 성수지선",
+    "target_direction": "신설동 방면",
+    "boarding_position": "4-1 ~ 7-4",
+    "raw_source": "2호선 - 성수역 - 외선 순환",
+    "raw_target": "2호선 성수지선 (신설동 방면)"
+  },
+  {
+    "id": "tr-87",
+    "station_key": "건대입구",
+    "station_display": "건대입구역",
+    "current_line": "2호선",
+    "current_direction": "내선 순환",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "7호선"
+    ],
+    "target_line_raw": "7호선",
+    "target_direction": "전체",
+    "boarding_position": "3-2",
+    "raw_source": "2호선 - 건대입구역 - 내선 순환",
+    "raw_target": "7호선"
+  },
+  {
+    "id": "tr-88",
+    "station_key": "건대입구",
+    "station_display": "건대입구역",
+    "current_line": "2호선",
+    "current_direction": "외선 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "7호선"
+    ],
+    "target_line_raw": "7호선",
+    "target_direction": "전체",
+    "boarding_position": "8-3",
+    "raw_source": "2호선 - 건대입구역 - 외선 순환",
+    "raw_target": "7호선"
+  },
+  {
+    "id": "tr-89",
+    "station_key": "잠실",
+    "station_display": "잠실역",
+    "current_line": "2호선",
+    "current_direction": "내선 순환",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "8호선"
+    ],
+    "target_line_raw": "8호선",
+    "target_direction": "전체",
+    "boarding_position": "10-4",
+    "raw_source": "2호선 - 잠실역 - 내선 순환",
+    "raw_target": "8호선"
+  },
+  {
+    "id": "tr-90",
+    "station_key": "잠실",
+    "station_display": "잠실역",
+    "current_line": "2호선",
+    "current_direction": "외선 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "8호선"
+    ],
+    "target_line_raw": "8호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "2호선 - 잠실역 - 외선 순환",
+    "raw_target": "8호선"
+  },
+  {
+    "id": "tr-91",
+    "station_key": "종합운동장",
+    "station_display": "종합운동장역",
+    "current_line": "2호선",
+    "current_direction": "내선 순환",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "9호선"
+    ],
+    "target_line_raw": "9호선",
+    "target_direction": "전체",
+    "boarding_position": "9-1",
+    "raw_source": "2호선 - 종합운동장역 - 내선 순환",
+    "raw_target": "9호선"
+  },
+  {
+    "id": "tr-92",
+    "station_key": "종합운동장",
+    "station_display": "종합운동장역",
+    "current_line": "2호선",
+    "current_direction": "외선 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "9호선"
+    ],
+    "target_line_raw": "9호선",
+    "target_direction": "전체",
+    "boarding_position": "3-1",
+    "raw_source": "2호선 - 종합운동장역 - 외선 순환",
+    "raw_target": "9호선"
+  },
+  {
+    "id": "tr-93",
+    "station_key": "선릉",
+    "station_display": "선릉역",
+    "current_line": "2호선",
+    "current_direction": "내선 순환",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "수인분당선"
+    ],
+    "target_line_raw": "수인·분당선",
+    "target_direction": "인천 방면",
+    "boarding_position": "6-2",
+    "raw_source": "2호선 - 선릉역 - 내선 순환",
+    "raw_target": "수인·분당선 (인천 방면)"
+  },
+  {
+    "id": "tr-94",
+    "station_key": "선릉",
+    "station_display": "선릉역",
+    "current_line": "2호선",
+    "current_direction": "내선 순환",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "수인분당선"
+    ],
+    "target_line_raw": "수인·분당선",
+    "target_direction": "청량리 방면",
+    "boarding_position": "5-2",
+    "raw_source": "2호선 - 선릉역 - 내선 순환",
+    "raw_target": "수인·분당선 (청량리 방면)"
+  },
+  {
+    "id": "tr-95",
+    "station_key": "선릉",
+    "station_display": "선릉역",
+    "current_line": "2호선",
+    "current_direction": "외선 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "수인분당선"
+    ],
+    "target_line_raw": "수인·분당선",
+    "target_direction": "인천 방면",
+    "boarding_position": "5-2",
+    "raw_source": "2호선 - 선릉역 - 외선 순환",
+    "raw_target": "수인·분당선 (인천 방면)"
+  },
+  {
+    "id": "tr-96",
+    "station_key": "선릉",
+    "station_display": "선릉역",
+    "current_line": "2호선",
+    "current_direction": "외선 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "수인분당선"
+    ],
+    "target_line_raw": "수인·분당선",
+    "target_direction": "청량리 방면",
+    "boarding_position": "6-3",
+    "raw_source": "2호선 - 선릉역 - 외선 순환",
+    "raw_target": "수인·분당선 (청량리 방면)"
+  },
+  {
+    "id": "tr-97",
+    "station_key": "강남",
+    "station_display": "강남역",
+    "current_line": "2호선",
+    "current_direction": "내선 순환",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "신분당선"
+    ],
+    "target_line_raw": "신분당선",
+    "target_direction": "전체",
+    "boarding_position": "6-3",
+    "raw_source": "2호선 - 강남역 - 내선 순환",
+    "raw_target": "신분당선"
+  },
+  {
+    "id": "tr-98",
+    "station_key": "강남",
+    "station_display": "강남역",
+    "current_line": "2호선",
+    "current_direction": "외선 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "신분당선"
+    ],
+    "target_line_raw": "신분당선",
+    "target_direction": "전체",
+    "boarding_position": "5-1",
+    "raw_source": "2호선 - 강남역 - 외선 순환",
+    "raw_target": "신분당선"
+  },
+  {
+    "id": "tr-99",
+    "station_key": "교대",
+    "station_display": "교대역",
+    "current_line": "2호선",
+    "current_direction": "내선 순환",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "3호선"
+    ],
+    "target_line_raw": "3호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "2호선 - 교대역 - 내선 순환",
+    "raw_target": "3호선"
+  },
+  {
+    "id": "tr-100",
+    "station_key": "교대",
+    "station_display": "교대역",
+    "current_line": "2호선",
+    "current_direction": "외선 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "3호선"
+    ],
+    "target_line_raw": "3호선",
+    "target_direction": "전체",
+    "boarding_position": "10-4",
+    "raw_source": "2호선 - 교대역 - 외선 순환",
+    "raw_target": "3호선"
+  },
+  {
+    "id": "tr-101",
+    "station_key": "사당",
+    "station_display": "사당역",
+    "current_line": "2호선",
+    "current_direction": "내선 순환",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "4호선"
+    ],
+    "target_line_raw": "4호선",
+    "target_direction": "전체",
+    "boarding_position": "6-1",
+    "raw_source": "2호선 - 사당역 - 내선 순환",
+    "raw_target": "4호선"
+  },
+  {
+    "id": "tr-102",
+    "station_key": "사당",
+    "station_display": "사당역",
+    "current_line": "2호선",
+    "current_direction": "외선 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "4호선"
+    ],
+    "target_line_raw": "4호선",
+    "target_direction": "전체",
+    "boarding_position": "5-3",
+    "raw_source": "2호선 - 사당역 - 외선 순환",
+    "raw_target": "4호선"
+  },
+  {
+    "id": "tr-103",
+    "station_key": "신림",
+    "station_display": "신림역",
+    "current_line": "2호선",
+    "current_direction": "내선 순환",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "신림선"
+    ],
+    "target_line_raw": "신림선",
+    "target_direction": "전체",
+    "boarding_position": "6-2",
+    "raw_source": "2호선 - 신림역 - 내선 순환",
+    "raw_target": "신림선"
+  },
+  {
+    "id": "tr-104",
+    "station_key": "신림",
+    "station_display": "신림역",
+    "current_line": "2호선",
+    "current_direction": "외선 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "신림선"
+    ],
+    "target_line_raw": "신림선",
+    "target_direction": "전체",
+    "boarding_position": "5-2",
+    "raw_source": "2호선 - 신림역 - 외선 순환",
+    "raw_target": "신림선"
+  },
+  {
+    "id": "tr-105",
+    "station_key": "대림",
+    "station_display": "대림역",
+    "current_line": "2호선",
+    "current_direction": "내선 순환",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "7호선"
+    ],
+    "target_line_raw": "7호선",
+    "target_direction": "전체",
+    "boarding_position": "2-1",
+    "raw_source": "2호선 - 대림역 - 내선 순환",
+    "raw_target": "7호선"
+  },
+  {
+    "id": "tr-106",
+    "station_key": "대림",
+    "station_display": "대림역",
+    "current_line": "2호선",
+    "current_direction": "외선 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "7호선"
+    ],
+    "target_line_raw": "7호선",
+    "target_direction": "전체",
+    "boarding_position": "9-3",
+    "raw_source": "2호선 - 대림역 - 외선 순환",
+    "raw_target": "7호선"
+  },
+  {
+    "id": "tr-107",
+    "station_key": "신도림",
+    "station_display": "신도림역",
+    "current_line": "2호선",
+    "current_direction": "본선 내선 순환",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "2-3",
+    "raw_source": "2호선 - 신도림역 - 본선 내선 순환",
+    "raw_target": "1호선"
+  },
+  {
+    "id": "tr-108",
+    "station_key": "신도림",
+    "station_display": "신도림역",
+    "current_line": "2호선",
+    "current_direction": "본선 내선 순환",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선 신정지선"
+    ],
+    "target_line_raw": "2호선 신정지선",
+    "target_direction": "까치산 방면",
+    "boarding_position": "6-2",
+    "raw_source": "2호선 - 신도림역 - 본선 내선 순환",
+    "raw_target": "2호선 신정지선 (까치산 방면)"
+  },
+  {
+    "id": "tr-109",
+    "station_key": "신도림",
+    "station_display": "신도림역",
+    "current_line": "2호선",
+    "current_direction": "본선 외선 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "7-3",
+    "raw_source": "2호선 - 신도림역 - 본선 외선 순환",
+    "raw_target": "1호선"
+  },
+  {
+    "id": "tr-110",
+    "station_key": "신도림",
+    "station_display": "신도림역",
+    "current_line": "2호선",
+    "current_direction": "본선 외선 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선 신정지선"
+    ],
+    "target_line_raw": "2호선 신정지선",
+    "target_direction": "까치산 방면",
+    "boarding_position": "5-3",
+    "raw_source": "2호선 - 신도림역 - 본선 외선 순환",
+    "raw_target": "2호선 신정지선 (까치산 방면)"
+  },
+  {
+    "id": "tr-111",
+    "station_key": "영등포구청",
+    "station_display": "영등포구청역",
+    "current_line": "2호선",
+    "current_direction": "내선 순환",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선"
+    ],
+    "target_line_raw": "5호선",
+    "target_direction": "전체",
+    "boarding_position": "7-4",
+    "raw_source": "2호선 - 영등포구청역 - 내선 순환",
+    "raw_target": "5호선"
+  },
+  {
+    "id": "tr-112",
+    "station_key": "영등포구청",
+    "station_display": "영등포구청역",
+    "current_line": "2호선",
+    "current_direction": "외선 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선"
+    ],
+    "target_line_raw": "5호선",
+    "target_direction": "전체",
+    "boarding_position": "2-3",
+    "raw_source": "2호선 - 영등포구청역 - 외선 순환",
+    "raw_target": "5호선"
+  },
+  {
+    "id": "tr-113",
+    "station_key": "당산",
+    "station_display": "당산역",
+    "current_line": "2호선",
+    "current_direction": "내선 순환",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "9호선"
+    ],
+    "target_line_raw": "9호선",
+    "target_direction": "전체",
+    "boarding_position": "7-4",
+    "raw_source": "2호선 - 당산역 - 내선 순환",
+    "raw_target": "9호선"
+  },
+  {
+    "id": "tr-114",
+    "station_key": "당산",
+    "station_display": "당산역",
+    "current_line": "2호선",
+    "current_direction": "외선 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "9호선"
+    ],
+    "target_line_raw": "9호선",
+    "target_direction": "전체",
+    "boarding_position": "4-1",
+    "raw_source": "2호선 - 당산역 - 외선 순환",
+    "raw_target": "9호선"
+  },
+  {
+    "id": "tr-115",
+    "station_key": "합정",
+    "station_display": "합정역",
+    "current_line": "2호선",
+    "current_direction": "내선 순환",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "6호선"
+    ],
+    "target_line_raw": "6호선",
+    "target_direction": "전체",
+    "boarding_position": "9-2",
+    "raw_source": "2호선 - 합정역 - 내선 순환",
+    "raw_target": "6호선"
+  },
+  {
+    "id": "tr-116",
+    "station_key": "합정",
+    "station_display": "합정역",
+    "current_line": "2호선",
+    "current_direction": "외선 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "6호선"
+    ],
+    "target_line_raw": "6호선",
+    "target_direction": "전체",
+    "boarding_position": "2-2",
+    "raw_source": "2호선 - 합정역 - 외선 순환",
+    "raw_target": "6호선"
+  },
+  {
+    "id": "tr-117",
+    "station_key": "홍대입구",
+    "station_display": "홍대입구역",
+    "current_line": "2호선",
+    "current_direction": "내선 순환",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "경의중앙선",
+      "공항철도"
+    ],
+    "target_line_raw": "경의·중앙선, 공항철도",
+    "target_direction": "전체",
+    "boarding_position": "3-3",
+    "raw_source": "2호선 - 홍대입구역 - 내선 순환",
+    "raw_target": "경의·중앙선, 공항철도"
+  },
+  {
+    "id": "tr-118",
+    "station_key": "홍대입구",
+    "station_display": "홍대입구역",
+    "current_line": "2호선",
+    "current_direction": "외선 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "경의중앙선",
+      "공항철도"
+    ],
+    "target_line_raw": "경의·중앙선, 공항철도",
+    "target_direction": "전체",
+    "boarding_position": "8-2",
+    "raw_source": "2호선 - 홍대입구역 - 외선 순환",
+    "raw_target": "경의·중앙선, 공항철도"
+  },
+  {
+    "id": "tr-119",
+    "station_key": "충정로",
+    "station_display": "충정로역",
+    "current_line": "2호선",
+    "current_direction": "내선 순환",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선"
+    ],
+    "target_line_raw": "5호선",
+    "target_direction": "전체",
+    "boarding_position": "7-3",
+    "raw_source": "2호선 - 충정로역 - 내선 순환",
+    "raw_target": "5호선"
+  },
+  {
+    "id": "tr-120",
+    "station_key": "충정로",
+    "station_display": "충정로역",
+    "current_line": "2호선",
+    "current_direction": "외선 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선"
+    ],
+    "target_line_raw": "5호선",
+    "target_direction": "전체",
+    "boarding_position": "4-2",
+    "raw_source": "2호선 - 충정로역 - 외선 순환",
+    "raw_target": "5호선"
+  },
+  {
+    "id": "tr-121",
+    "station_key": "까치산",
+    "station_display": "까치산역",
+    "current_line": "2호선",
+    "current_direction": "신정지선",
+    "updn_code": "ALL",
+    "branch_hint": "신정지선",
+    "target_lines": [
+      "5호선"
+    ],
+    "target_line_raw": "5호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "2호선 - 까치산역 - 신정지선",
+    "raw_target": "5호선"
+  },
+  {
+    "id": "tr-122",
+    "station_key": "신설동",
+    "station_display": "신설동역",
+    "current_line": "2호선",
+    "current_direction": "성수지선",
+    "updn_code": "ALL",
+    "branch_hint": "성수지선",
+    "target_lines": [
+      "1호선",
+      "우이신설선"
+    ],
+    "target_line_raw": "1호선, 우이신설선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "2호선 - 신설동역 - 성수지선",
+    "raw_target": "1호선, 우이신설선"
+  },
+  {
+    "id": "tr-123",
+    "station_key": "대곡",
+    "station_display": "대곡역",
+    "current_line": "3호선",
+    "current_direction": "대화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "경의중앙선",
+      "서해선",
+      "GTX-A"
+    ],
+    "target_line_raw": "경의·중앙선, 서해선, GTX-A",
+    "target_direction": "전체",
+    "boarding_position": "4-1, 9-1",
+    "raw_source": "3호선 - 대곡역 - 대화 방면",
+    "raw_target": "경의·중앙선, 서해선, GTX-A"
+  },
+  {
+    "id": "tr-124",
+    "station_key": "대곡",
+    "station_display": "대곡역",
+    "current_line": "3호선",
+    "current_direction": "오금 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "경의중앙선",
+      "서해선",
+      "GTX-A"
+    ],
+    "target_line_raw": "경의·중앙선, 서해선, GTX-A",
+    "target_direction": "전체",
+    "boarding_position": "2-4, 7-4",
+    "raw_source": "3호선 - 대곡역 - 오금 방면",
+    "raw_target": "경의·중앙선, 서해선, GTX-A"
+  },
+  {
+    "id": "tr-125",
+    "station_key": "연신내",
+    "station_display": "연신내역",
+    "current_line": "3호선",
+    "current_direction": "대화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "6호선",
+      "GTX-A"
+    ],
+    "target_line_raw": "6호선, GTX-A",
+    "target_direction": "전체",
+    "boarding_position": "5-1",
+    "raw_source": "3호선 - 연신내역 - 대화 방면",
+    "raw_target": "6호선, GTX-A"
+  },
+  {
+    "id": "tr-126",
+    "station_key": "연신내",
+    "station_display": "연신내역",
+    "current_line": "3호선",
+    "current_direction": "오금 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "6호선",
+      "GTX-A"
+    ],
+    "target_line_raw": "6호선, GTX-A",
+    "target_direction": "전체",
+    "boarding_position": "6-3",
+    "raw_source": "3호선 - 연신내역 - 오금 방면",
+    "raw_target": "6호선, GTX-A"
+  },
+  {
+    "id": "tr-127",
+    "station_key": "불광",
+    "station_display": "불광역",
+    "current_line": "3호선",
+    "current_direction": "대화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "6호선"
+    ],
+    "target_line_raw": "6호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "3호선 - 불광역 - 대화 방면",
+    "raw_target": "6호선"
+  },
+  {
+    "id": "tr-128",
+    "station_key": "불광",
+    "station_display": "불광역",
+    "current_line": "3호선",
+    "current_direction": "오금 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "6호선"
+    ],
+    "target_line_raw": "6호선",
+    "target_direction": "전체",
+    "boarding_position": "10-4",
+    "raw_source": "3호선 - 불광역 - 오금 방면",
+    "raw_target": "6호선"
+  },
+  {
+    "id": "tr-129",
+    "station_key": "종로3가",
+    "station_display": "종로3가역",
+    "current_line": "3호선",
+    "current_direction": "대화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "연천, 청량리, 광운대 방면",
+    "boarding_position": "9-2",
+    "raw_source": "3호선 - 종로3가역 - 대화 방면",
+    "raw_target": "1호선 (연천, 청량리, 광운대 방면)"
+  },
+  {
+    "id": "tr-130",
+    "station_key": "종로3가",
+    "station_display": "종로3가역",
+    "current_line": "3호선",
+    "current_direction": "대화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "인천, 신창, 서동탄 방면",
+    "boarding_position": "10-4",
+    "raw_source": "3호선 - 종로3가역 - 대화 방면",
+    "raw_target": "1호선 (인천, 신창, 서동탄 방면)"
+  },
+  {
+    "id": "tr-131",
+    "station_key": "종로3가",
+    "station_display": "종로3가역",
+    "current_line": "3호선",
+    "current_direction": "대화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선"
+    ],
+    "target_line_raw": "5호선",
+    "target_direction": "전체",
+    "boarding_position": "2-2, 4-3",
+    "raw_source": "3호선 - 종로3가역 - 대화 방면",
+    "raw_target": "5호선"
+  },
+  {
+    "id": "tr-132",
+    "station_key": "종로3가",
+    "station_display": "종로3가역",
+    "current_line": "3호선",
+    "current_direction": "오금 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "연천, 청량리, 광운대 방면",
+    "boarding_position": "2-3",
+    "raw_source": "3호선 - 종로3가역 - 오금 방면",
+    "raw_target": "1호선 (연천, 청량리, 광운대 방면)"
+  },
+  {
+    "id": "tr-133",
+    "station_key": "종로3가",
+    "station_display": "종로3가역",
+    "current_line": "3호선",
+    "current_direction": "오금 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "인천, 신창, 서동탄 방면",
+    "boarding_position": "1-1",
+    "raw_source": "3호선 - 종로3가역 - 오금 방면",
+    "raw_target": "1호선 (인천, 신창, 서동탄 방면)"
+  },
+  {
+    "id": "tr-134",
+    "station_key": "종로3가",
+    "station_display": "종로3가역",
+    "current_line": "3호선",
+    "current_direction": "오금 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선"
+    ],
+    "target_line_raw": "5호선",
+    "target_direction": "전체",
+    "boarding_position": "7-2, 9-3",
+    "raw_source": "3호선 - 종로3가역 - 오금 방면",
+    "raw_target": "5호선"
+  },
+  {
+    "id": "tr-135",
+    "station_key": "을지로3가",
+    "station_display": "을지로3가역",
+    "current_line": "3호선",
+    "current_direction": "대화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "내선 순환",
+    "boarding_position": "7-1",
+    "raw_source": "3호선 - 을지로3가역 - 대화 방면",
+    "raw_target": "2호선 (내선 순환)"
+  },
+  {
+    "id": "tr-136",
+    "station_key": "을지로3가",
+    "station_display": "을지로3가역",
+    "current_line": "3호선",
+    "current_direction": "대화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "외선 순환",
+    "boarding_position": "2-2",
+    "raw_source": "3호선 - 을지로3가역 - 대화 방면",
+    "raw_target": "2호선 (외선 순환)"
+  },
+  {
+    "id": "tr-137",
+    "station_key": "을지로3가",
+    "station_display": "을지로3가역",
+    "current_line": "3호선",
+    "current_direction": "오금 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "내선 순환",
+    "boarding_position": "4-4",
+    "raw_source": "3호선 - 을지로3가역 - 오금 방면",
+    "raw_target": "2호선 (내선 순환)"
+  },
+  {
+    "id": "tr-138",
+    "station_key": "을지로3가",
+    "station_display": "을지로3가역",
+    "current_line": "3호선",
+    "current_direction": "오금 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "외선 순환",
+    "boarding_position": "9-3",
+    "raw_source": "3호선 - 을지로3가역 - 오금 방면",
+    "raw_target": "2호선 (외선 순환)"
+  },
+  {
+    "id": "tr-139",
+    "station_key": "충무로",
+    "station_display": "충무로역",
+    "current_line": "3호선",
+    "current_direction": "대화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "4호선"
+    ],
+    "target_line_raw": "4호선",
+    "target_direction": "진접/불암산 방면",
+    "boarding_position": "4-4",
+    "raw_source": "3호선 - 충무로역 - 대화 방면",
+    "raw_target": "4호선 (진접/불암산 방면)"
+  },
+  {
+    "id": "tr-140",
+    "station_key": "충무로",
+    "station_display": "충무로역",
+    "current_line": "3호선",
+    "current_direction": "대화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "4호선"
+    ],
+    "target_line_raw": "4호선",
+    "target_direction": "사당/오이도 방면",
+    "boarding_position": "4-1",
+    "raw_source": "3호선 - 충무로역 - 대화 방면",
+    "raw_target": "4호선 (사당/오이도 방면)"
+  },
+  {
+    "id": "tr-141",
+    "station_key": "충무로",
+    "station_display": "충무로역",
+    "current_line": "3호선",
+    "current_direction": "오금 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "4호선"
+    ],
+    "target_line_raw": "4호선",
+    "target_direction": "진접/불암산 방면",
+    "boarding_position": "8-1",
+    "raw_source": "3호선 - 충무로역 - 오금 방면",
+    "raw_target": "4호선 (진접/불암산 방면)"
+  },
+  {
+    "id": "tr-142",
+    "station_key": "충무로",
+    "station_display": "충무로역",
+    "current_line": "3호선",
+    "current_direction": "오금 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "4호선"
+    ],
+    "target_line_raw": "4호선",
+    "target_direction": "사당/오이도 방면",
+    "boarding_position": "8-4",
+    "raw_source": "3호선 - 충무로역 - 오금 방면",
+    "raw_target": "4호선 (사당/오이도 방면)"
+  },
+  {
+    "id": "tr-143",
+    "station_key": "약수",
+    "station_display": "약수역",
+    "current_line": "3호선",
+    "current_direction": "대화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "6호선"
+    ],
+    "target_line_raw": "6호선",
+    "target_direction": "전체",
+    "boarding_position": "4-3",
+    "raw_source": "3호선 - 약수역 - 대화 방면",
+    "raw_target": "6호선"
+  },
+  {
+    "id": "tr-144",
+    "station_key": "약수",
+    "station_display": "약수역",
+    "current_line": "3호선",
+    "current_direction": "오금 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "6호선"
+    ],
+    "target_line_raw": "6호선",
+    "target_direction": "전체",
+    "boarding_position": "7-1",
+    "raw_source": "3호선 - 약수역 - 오금 방면",
+    "raw_target": "6호선"
+  },
+  {
+    "id": "tr-145",
+    "station_key": "옥수",
+    "station_display": "옥수역",
+    "current_line": "3호선",
+    "current_direction": "대화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "경의중앙선"
+    ],
+    "target_line_raw": "경의·중앙선",
+    "target_direction": "전체",
+    "boarding_position": "9-4",
+    "raw_source": "3호선 - 옥수역 - 대화 방면",
+    "raw_target": "경의·중앙선"
+  },
+  {
+    "id": "tr-146",
+    "station_key": "옥수",
+    "station_display": "옥수역",
+    "current_line": "3호선",
+    "current_direction": "오금 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "경의중앙선"
+    ],
+    "target_line_raw": "경의·중앙선",
+    "target_direction": "전체",
+    "boarding_position": "1-4",
+    "raw_source": "3호선 - 옥수역 - 오금 방면",
+    "raw_target": "경의·중앙선"
+  },
+  {
+    "id": "tr-147",
+    "station_key": "신사",
+    "station_display": "신사역",
+    "current_line": "3호선",
+    "current_direction": "대화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "신분당선"
+    ],
+    "target_line_raw": "신분당선",
+    "target_direction": "전체",
+    "boarding_position": "9-2",
+    "raw_source": "3호선 - 신사역 - 대화 방면",
+    "raw_target": "신분당선"
+  },
+  {
+    "id": "tr-148",
+    "station_key": "신사",
+    "station_display": "신사역",
+    "current_line": "3호선",
+    "current_direction": "오금 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "신분당선"
+    ],
+    "target_line_raw": "신분당선",
+    "target_direction": "전체",
+    "boarding_position": "2-2",
+    "raw_source": "3호선 - 신사역 - 오금 방면",
+    "raw_target": "신분당선"
+  },
+  {
+    "id": "tr-149",
+    "station_key": "고속터미널",
+    "station_display": "고속터미널역",
+    "current_line": "3호선",
+    "current_direction": "대화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "7호선"
+    ],
+    "target_line_raw": "7호선",
+    "target_direction": "전체",
+    "boarding_position": "9-2",
+    "raw_source": "3호선 - 고속터미널역 - 대화 방면",
+    "raw_target": "7호선"
+  },
+  {
+    "id": "tr-150",
+    "station_key": "고속터미널",
+    "station_display": "고속터미널역",
+    "current_line": "3호선",
+    "current_direction": "대화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "9호선"
+    ],
+    "target_line_raw": "9호선",
+    "target_direction": "전체",
+    "boarding_position": "2-3",
+    "raw_source": "3호선 - 고속터미널역 - 대화 방면",
+    "raw_target": "9호선"
+  },
+  {
+    "id": "tr-151",
+    "station_key": "고속터미널",
+    "station_display": "고속터미널역",
+    "current_line": "3호선",
+    "current_direction": "오금 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "7호선"
+    ],
+    "target_line_raw": "7호선",
+    "target_direction": "전체",
+    "boarding_position": "2-3",
+    "raw_source": "3호선 - 고속터미널역 - 오금 방면",
+    "raw_target": "7호선"
+  },
+  {
+    "id": "tr-152",
+    "station_key": "고속터미널",
+    "station_display": "고속터미널역",
+    "current_line": "3호선",
+    "current_direction": "오금 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "9호선"
+    ],
+    "target_line_raw": "9호선",
+    "target_direction": "전체",
+    "boarding_position": "9-2",
+    "raw_source": "3호선 - 고속터미널역 - 오금 방면",
+    "raw_target": "9호선"
+  },
+  {
+    "id": "tr-153",
+    "station_key": "교대",
+    "station_display": "교대역",
+    "current_line": "3호선",
+    "current_direction": "대화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "내선 순환",
+    "boarding_position": "3-3",
+    "raw_source": "3호선 - 교대역 - 대화 방면",
+    "raw_target": "2호선 (내선 순환)"
+  },
+  {
+    "id": "tr-154",
+    "station_key": "교대",
+    "station_display": "교대역",
+    "current_line": "3호선",
+    "current_direction": "대화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "외선 순환",
+    "boarding_position": "7-4",
+    "raw_source": "3호선 - 교대역 - 대화 방면",
+    "raw_target": "2호선 (외선 순환)"
+  },
+  {
+    "id": "tr-155",
+    "station_key": "교대",
+    "station_display": "교대역",
+    "current_line": "3호선",
+    "current_direction": "오금 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "내선 순환",
+    "boarding_position": "8-2",
+    "raw_source": "3호선 - 교대역 - 오금 방면",
+    "raw_target": "2호선 (내선 순환)"
+  },
+  {
+    "id": "tr-156",
+    "station_key": "교대",
+    "station_display": "교대역",
+    "current_line": "3호선",
+    "current_direction": "오금 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "외선 순환",
+    "boarding_position": "4-1",
+    "raw_source": "3호선 - 교대역 - 오금 방면",
+    "raw_target": "2호선 (외선 순환)"
+  },
+  {
+    "id": "tr-157",
+    "station_key": "양재",
+    "station_display": "양재역",
+    "current_line": "3호선",
+    "current_direction": "대화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "신분당선"
+    ],
+    "target_line_raw": "신분당선",
+    "target_direction": "전체",
+    "boarding_position": "5-3",
+    "raw_source": "3호선 - 양재역 - 대화 방면",
+    "raw_target": "신분당선"
+  },
+  {
+    "id": "tr-158",
+    "station_key": "양재",
+    "station_display": "양재역",
+    "current_line": "3호선",
+    "current_direction": "오금 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "신분당선"
+    ],
+    "target_line_raw": "신분당선",
+    "target_direction": "전체",
+    "boarding_position": "6-1",
+    "raw_source": "3호선 - 양재역 - 오금 방면",
+    "raw_target": "신분당선"
+  },
+  {
+    "id": "tr-159",
+    "station_key": "도곡",
+    "station_display": "도곡역",
+    "current_line": "3호선",
+    "current_direction": "대화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "수인분당선"
+    ],
+    "target_line_raw": "수인·분당선",
+    "target_direction": "전체",
+    "boarding_position": "6-3",
+    "raw_source": "3호선 - 도곡역 - 대화 방면",
+    "raw_target": "수인·분당선"
+  },
+  {
+    "id": "tr-160",
+    "station_key": "도곡",
+    "station_display": "도곡역",
+    "current_line": "3호선",
+    "current_direction": "오금 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "수인분당선"
+    ],
+    "target_line_raw": "수인·분당선",
+    "target_direction": "전체",
+    "boarding_position": "6-2",
+    "raw_source": "3호선 - 도곡역 - 오금 방면",
+    "raw_target": "수인·분당선"
+  },
+  {
+    "id": "tr-161",
+    "station_key": "수서",
+    "station_display": "수서역",
+    "current_line": "3호선",
+    "current_direction": "대화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "수인분당선"
+    ],
+    "target_line_raw": "수인·분당선",
+    "target_direction": "전체",
+    "boarding_position": "3-1",
+    "raw_source": "3호선 - 수서역 - 대화 방면",
+    "raw_target": "수인·분당선"
+  },
+  {
+    "id": "tr-162",
+    "station_key": "수서",
+    "station_display": "수서역",
+    "current_line": "3호선",
+    "current_direction": "대화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "GTX-A"
+    ],
+    "target_line_raw": "GTX-A",
+    "target_direction": "전체",
+    "boarding_position": "5-3, 3-1",
+    "raw_source": "3호선 - 수서역 - 대화 방면",
+    "raw_target": "GTX-A"
+  },
+  {
+    "id": "tr-163",
+    "station_key": "수서",
+    "station_display": "수서역",
+    "current_line": "3호선",
+    "current_direction": "오금 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "수인분당선"
+    ],
+    "target_line_raw": "수인·분당선",
+    "target_direction": "전체",
+    "boarding_position": "8-4",
+    "raw_source": "3호선 - 수서역 - 오금 방면",
+    "raw_target": "수인·분당선"
+  },
+  {
+    "id": "tr-164",
+    "station_key": "수서",
+    "station_display": "수서역",
+    "current_line": "3호선",
+    "current_direction": "오금 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "GTX-A"
+    ],
+    "target_line_raw": "GTX-A",
+    "target_direction": "전체",
+    "boarding_position": "6-3, 8-4",
+    "raw_source": "3호선 - 수서역 - 오금 방면",
+    "raw_target": "GTX-A"
+  },
+  {
+    "id": "tr-165",
+    "station_key": "가락시장",
+    "station_display": "가락시장역",
+    "current_line": "3호선",
+    "current_direction": "대화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "8호선"
+    ],
+    "target_line_raw": "8호선",
+    "target_direction": "전체",
+    "boarding_position": "9-4",
+    "raw_source": "3호선 - 가락시장역 - 대화 방면",
+    "raw_target": "8호선"
+  },
+  {
+    "id": "tr-166",
+    "station_key": "가락시장",
+    "station_display": "가락시장역",
+    "current_line": "3호선",
+    "current_direction": "오금 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "8호선"
+    ],
+    "target_line_raw": "8호선",
+    "target_direction": "전체",
+    "boarding_position": "2-1",
+    "raw_source": "3호선 - 가락시장역 - 오금 방면",
+    "raw_target": "8호선"
+  },
+  {
+    "id": "tr-167",
+    "station_key": "오금",
+    "station_display": "오금역",
+    "current_line": "3호선",
+    "current_direction": "전체",
+    "updn_code": "ALL",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선"
+    ],
+    "target_line_raw": "5호선",
+    "target_direction": "전체",
+    "boarding_position": "9-3",
+    "raw_source": "3호선 - 오금역",
+    "raw_target": "5호선"
+  },
+  {
+    "id": "tr-168",
+    "station_key": "노원",
+    "station_display": "노원역",
+    "current_line": "4호선",
+    "current_direction": "진접/불암산 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "7호선"
+    ],
+    "target_line_raw": "7호선",
+    "target_direction": "전체",
+    "boarding_position": "10-4",
+    "raw_source": "4호선 - 노원역 - 진접/불암산 방면",
+    "raw_target": "7호선"
+  },
+  {
+    "id": "tr-169",
+    "station_key": "노원",
+    "station_display": "노원역",
+    "current_line": "4호선",
+    "current_direction": "사당/오이도 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "7호선"
+    ],
+    "target_line_raw": "7호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "4호선 - 노원역 - 사당/오이도 방면",
+    "raw_target": "7호선"
+  },
+  {
+    "id": "tr-170",
+    "station_key": "창동",
+    "station_display": "창동역",
+    "current_line": "4호선",
+    "current_direction": "진접/불암산 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "5-3",
+    "raw_source": "4호선 - 창동역 - 진접/불암산 방면",
+    "raw_target": "1호선"
+  },
+  {
+    "id": "tr-171",
+    "station_key": "창동",
+    "station_display": "창동역",
+    "current_line": "4호선",
+    "current_direction": "사당/오이도 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "6-1",
+    "raw_source": "4호선 - 창동역 - 사당/오이도 방면",
+    "raw_target": "1호선"
+  },
+  {
+    "id": "tr-172",
+    "station_key": "성신여대입구",
+    "station_display": "성신여대입구역",
+    "current_line": "4호선",
+    "current_direction": "진접/불암산 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "우이신설선"
+    ],
+    "target_line_raw": "우이신설선",
+    "target_direction": "전체",
+    "boarding_position": "5-4",
+    "raw_source": "4호선 - 성신여대입구역 - 진접/불암산 방면",
+    "raw_target": "우이신설선"
+  },
+  {
+    "id": "tr-173",
+    "station_key": "성신여대입구",
+    "station_display": "성신여대입구역",
+    "current_line": "4호선",
+    "current_direction": "사당/오이도 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "우이신설선"
+    ],
+    "target_line_raw": "우이신설선",
+    "target_direction": "전체",
+    "boarding_position": "5-2",
+    "raw_source": "4호선 - 성신여대입구역 - 사당/오이도 방면",
+    "raw_target": "우이신설선"
+  },
+  {
+    "id": "tr-174",
+    "station_key": "동대문",
+    "station_display": "동대문역",
+    "current_line": "4호선",
+    "current_direction": "진접/불암산 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "3-4",
+    "raw_source": "4호선 - 동대문역 - 진접/불암산 방면",
+    "raw_target": "1호선"
+  },
+  {
+    "id": "tr-175",
+    "station_key": "동대문",
+    "station_display": "동대문역",
+    "current_line": "4호선",
+    "current_direction": "사당/오이도 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "7-4",
+    "raw_source": "4호선 - 동대문역 - 사당/오이도 방면",
+    "raw_target": "1호선"
+  },
+  {
+    "id": "tr-176",
+    "station_key": "동대문역사문화공원",
+    "station_display": "동대문역사문화공원역",
+    "current_line": "4호선",
+    "current_direction": "진접/불암산 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "4호선 - 동대문역사문화공원역 - 진접/불암산 방면",
+    "raw_target": "2호선"
+  },
+  {
+    "id": "tr-177",
+    "station_key": "동대문역사문화공원",
+    "station_display": "동대문역사문화공원역",
+    "current_line": "4호선",
+    "current_direction": "진접/불암산 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선"
+    ],
+    "target_line_raw": "5호선",
+    "target_direction": "전체",
+    "boarding_position": "9-2",
+    "raw_source": "4호선 - 동대문역사문화공원역 - 진접/불암산 방면",
+    "raw_target": "5호선"
+  },
+  {
+    "id": "tr-178",
+    "station_key": "동대문역사문화공원",
+    "station_display": "동대문역사문화공원역",
+    "current_line": "4호선",
+    "current_direction": "사당/오이도 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "전체",
+    "boarding_position": "10-4",
+    "raw_source": "4호선 - 동대문역사문화공원역 - 사당/오이도 방면",
+    "raw_target": "2호선"
+  },
+  {
+    "id": "tr-179",
+    "station_key": "동대문역사문화공원",
+    "station_display": "동대문역사문화공원역",
+    "current_line": "4호선",
+    "current_direction": "사당/오이도 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선"
+    ],
+    "target_line_raw": "5호선",
+    "target_direction": "전체",
+    "boarding_position": "2-3",
+    "raw_source": "4호선 - 동대문역사문화공원역 - 사당/오이도 방면",
+    "raw_target": "5호선"
+  },
+  {
+    "id": "tr-180",
+    "station_key": "충무로",
+    "station_display": "충무로역",
+    "current_line": "4호선",
+    "current_direction": "진접/불암산 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "3호선"
+    ],
+    "target_line_raw": "3호선",
+    "target_direction": "전체",
+    "boarding_position": "5-1",
+    "raw_source": "4호선 - 충무로역 - 진접/불암산 방면",
+    "raw_target": "3호선"
+  },
+  {
+    "id": "tr-181",
+    "station_key": "충무로",
+    "station_display": "충무로역",
+    "current_line": "4호선",
+    "current_direction": "사당/오이도 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "3호선"
+    ],
+    "target_line_raw": "3호선",
+    "target_direction": "전체",
+    "boarding_position": "7-1",
+    "raw_source": "4호선 - 충무로역 - 사당/오이도 방면",
+    "raw_target": "3호선"
+  },
+  {
+    "id": "tr-182",
+    "station_key": "서울역",
+    "station_display": "서울역",
+    "current_line": "4호선",
+    "current_direction": "진접/불암산 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선",
+      "GTX-A",
+      "경의중앙선"
+    ],
+    "target_line_raw": "1호선, GTX-A, 경의·중앙선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "4호선 - 서울역 - 진접/불암산 방면",
+    "raw_target": "1호선, GTX-A, 경의·중앙선"
+  },
+  {
+    "id": "tr-183",
+    "station_key": "서울역",
+    "station_display": "서울역",
+    "current_line": "4호선",
+    "current_direction": "진접/불암산 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "공항철도"
+    ],
+    "target_line_raw": "공항철도",
+    "target_direction": "전체",
+    "boarding_position": "3-4",
+    "raw_source": "4호선 - 서울역 - 진접/불암산 방면",
+    "raw_target": "공항철도"
+  },
+  {
+    "id": "tr-184",
+    "station_key": "서울역",
+    "station_display": "서울역",
+    "current_line": "4호선",
+    "current_direction": "사당/오이도 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선",
+      "GTX-A",
+      "경의중앙선"
+    ],
+    "target_line_raw": "1호선, GTX-A, 경의·중앙선",
+    "target_direction": "전체",
+    "boarding_position": "10-4",
+    "raw_source": "4호선 - 서울역 - 사당/오이도 방면",
+    "raw_target": "1호선, GTX-A, 경의·중앙선"
+  },
+  {
+    "id": "tr-185",
+    "station_key": "서울역",
+    "station_display": "서울역",
+    "current_line": "4호선",
+    "current_direction": "사당/오이도 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "공항철도"
+    ],
+    "target_line_raw": "공항철도",
+    "target_direction": "전체",
+    "boarding_position": "8-1",
+    "raw_source": "4호선 - 서울역 - 사당/오이도 방면",
+    "raw_target": "공항철도"
+  },
+  {
+    "id": "tr-186",
+    "station_key": "삼각지",
+    "station_display": "삼각지역",
+    "current_line": "4호선",
+    "current_direction": "진접/불암산 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "6호선"
+    ],
+    "target_line_raw": "6호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "4호선 - 삼각지역 - 진접/불암산 방면",
+    "raw_target": "6호선"
+  },
+  {
+    "id": "tr-187",
+    "station_key": "삼각지",
+    "station_display": "삼각지역",
+    "current_line": "4호선",
+    "current_direction": "사당/오이도 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "6호선"
+    ],
+    "target_line_raw": "6호선",
+    "target_direction": "전체",
+    "boarding_position": "10-4",
+    "raw_source": "4호선 - 삼각지역 - 사당/오이도 방면",
+    "raw_target": "6호선"
+  },
+  {
+    "id": "tr-188",
+    "station_key": "이촌",
+    "station_display": "이촌역",
+    "current_line": "4호선",
+    "current_direction": "진접/불암산 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "경의중앙선"
+    ],
+    "target_line_raw": "경의·중앙선",
+    "target_direction": "전체",
+    "boarding_position": "4-2",
+    "raw_source": "4호선 - 이촌역 - 진접/불암산 방면",
+    "raw_target": "경의·중앙선"
+  },
+  {
+    "id": "tr-189",
+    "station_key": "이촌",
+    "station_display": "이촌역",
+    "current_line": "4호선",
+    "current_direction": "사당/오이도 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "경의중앙선"
+    ],
+    "target_line_raw": "경의·중앙선",
+    "target_direction": "전체",
+    "boarding_position": "7-2",
+    "raw_source": "4호선 - 이촌역 - 사당/오이도 방면",
+    "raw_target": "경의·중앙선"
+  },
+  {
+    "id": "tr-190",
+    "station_key": "동작",
+    "station_display": "동작역",
+    "current_line": "4호선",
+    "current_direction": "진접/불암산 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "9호선"
+    ],
+    "target_line_raw": "9호선",
+    "target_direction": "전체",
+    "boarding_position": "6-3, 8-4",
+    "raw_source": "4호선 - 동작역 - 진접/불암산 방면",
+    "raw_target": "9호선"
+  },
+  {
+    "id": "tr-191",
+    "station_key": "동작",
+    "station_display": "동작역",
+    "current_line": "4호선",
+    "current_direction": "사당/오이도 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "9호선"
+    ],
+    "target_line_raw": "9호선",
+    "target_direction": "전체",
+    "boarding_position": "3-1, 5-3",
+    "raw_source": "4호선 - 동작역 - 사당/오이도 방면",
+    "raw_target": "9호선"
+  },
+  {
+    "id": "tr-192",
+    "station_key": "총신대입구",
+    "station_display": "총신대입구역",
+    "current_line": "4호선",
+    "current_direction": "진접/불암산 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "7호선"
+    ],
+    "target_line_raw": "7호선",
+    "target_direction": "전체",
+    "boarding_position": "10-4",
+    "raw_source": "4호선 - 총신대입구(이수)역 - 진접/불암산 방면",
+    "raw_target": "7호선"
+  },
+  {
+    "id": "tr-193",
+    "station_key": "총신대입구",
+    "station_display": "총신대입구역",
+    "current_line": "4호선",
+    "current_direction": "사당/오이도 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "7호선"
+    ],
+    "target_line_raw": "7호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "4호선 - 총신대입구(이수)역 - 사당/오이도 방면",
+    "raw_target": "7호선"
+  },
+  {
+    "id": "tr-194",
+    "station_key": "사당",
+    "station_display": "사당역",
+    "current_line": "4호선",
+    "current_direction": "진접/불암산 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "내선 순환",
+    "boarding_position": "4-1",
+    "raw_source": "4호선 - 사당역 - 진접/불암산 방면",
+    "raw_target": "2호선 (내선 순환)"
+  },
+  {
+    "id": "tr-195",
+    "station_key": "사당",
+    "station_display": "사당역",
+    "current_line": "4호선",
+    "current_direction": "진접/불암산 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "외선 순환",
+    "boarding_position": "10-4",
+    "raw_source": "4호선 - 사당역 - 진접/불암산 방면",
+    "raw_target": "2호선 (외선 순환)"
+  },
+  {
+    "id": "tr-196",
+    "station_key": "사당",
+    "station_display": "사당역",
+    "current_line": "4호선",
+    "current_direction": "당역 종착/오이도 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "내선 순환",
+    "boarding_position": "7-3",
+    "raw_source": "4호선 - 사당역 - 당역 종착/오이도 방면",
+    "raw_target": "2호선 (내선 순환)"
+  },
+  {
+    "id": "tr-197",
+    "station_key": "사당",
+    "station_display": "사당역",
+    "current_line": "4호선",
+    "current_direction": "당역 종착/오이도 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "외선 순환",
+    "boarding_position": "1-1",
+    "raw_source": "4호선 - 사당역 - 당역 종착/오이도 방면",
+    "raw_target": "2호선 (외선 순환)"
+  },
+  {
+    "id": "tr-198",
+    "station_key": "금정",
+    "station_display": "금정역",
+    "current_line": "4호선",
+    "current_direction": "불암산 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "청량리/광운대 방면",
+    "boarding_position": "모든 문",
+    "raw_source": "4호선 - 금정역 - 불암산 방면",
+    "raw_target": "1호선 (청량리/광운대 방면)"
+  },
+  {
+    "id": "tr-199",
+    "station_key": "금정",
+    "station_display": "금정역",
+    "current_line": "4호선",
+    "current_direction": "불암산 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "천안/신창 방면",
+    "boarding_position": "2-3",
+    "raw_source": "4호선 - 금정역 - 불암산 방면",
+    "raw_target": "1호선 (천안/신창 방면)"
+  },
+  {
+    "id": "tr-200",
+    "station_key": "금정",
+    "station_display": "금정역",
+    "current_line": "4호선",
+    "current_direction": "오이도 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "청량리/광운대 방면",
+    "boarding_position": "7-1",
+    "raw_source": "4호선 - 금정역 - 오이도 방면",
+    "raw_target": "1호선 (청량리/광운대 방면)"
+  },
+  {
+    "id": "tr-201",
+    "station_key": "금정",
+    "station_display": "금정역",
+    "current_line": "4호선",
+    "current_direction": "오이도 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "천안/신창 방면",
+    "boarding_position": "모든 문",
+    "raw_source": "4호선 - 금정역 - 오이도 방면",
+    "raw_target": "1호선 (천안/신창 방면)"
+  },
+  {
+    "id": "tr-202",
+    "station_key": "한대앞",
+    "station_display": "한대앞역",
+    "current_line": "4호선",
+    "current_direction": "불암산 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "수인분당선"
+    ],
+    "target_line_raw": "수인·분당선",
+    "target_direction": "왕십리/청량리 방면",
+    "boarding_position": "1-1 ~ 6-4",
+    "raw_source": "4호선 - 한대앞역 - 불암산 방면",
+    "raw_target": "수인·분당선 (왕십리/청량리 방면)"
+  },
+  {
+    "id": "tr-203",
+    "station_key": "한대앞",
+    "station_display": "한대앞역",
+    "current_line": "4호선",
+    "current_direction": "오이도 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "수인분당선"
+    ],
+    "target_line_raw": "수인·분당선",
+    "target_direction": "인천 방면",
+    "boarding_position": "5-1 ~ 10-4",
+    "raw_source": "4호선 - 한대앞역 - 오이도 방면",
+    "raw_target": "수인·분당선 (인천 방면)"
+  },
+  {
+    "id": "tr-204",
+    "station_key": "초지",
+    "station_display": "초지역",
+    "current_line": "4호선",
+    "current_direction": "불암산 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "서해선"
+    ],
+    "target_line_raw": "서해선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "4호선 - 초지역 - 불암산 방면",
+    "raw_target": "서해선"
+  },
+  {
+    "id": "tr-205",
+    "station_key": "초지",
+    "station_display": "초지역",
+    "current_line": "4호선",
+    "current_direction": "오이도 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "서해선"
+    ],
+    "target_line_raw": "서해선",
+    "target_direction": "전체",
+    "boarding_position": "10-4",
+    "raw_source": "4호선 - 초지역 - 오이도 방면",
+    "raw_target": "서해선"
+  },
+  {
+    "id": "tr-206",
+    "station_key": "초지",
+    "station_display": "초지역",
+    "current_line": "4호선",
+    "current_direction": "불암산 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "수인분당선"
+    ],
+    "target_line_raw": "수인·분당선",
+    "target_direction": "왕십리/청량리 방면",
+    "boarding_position": "1-1 ~ 6-4",
+    "raw_source": "4호선 - 초지역 - 불암산 방면",
+    "raw_target": "수인·분당선 (왕십리/청량리 방면)"
+  },
+  {
+    "id": "tr-207",
+    "station_key": "초지",
+    "station_display": "초지역",
+    "current_line": "4호선",
+    "current_direction": "오이도 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "수인분당선"
+    ],
+    "target_line_raw": "수인·분당선",
+    "target_direction": "인천 방면",
+    "boarding_position": "5-1 ~ 10-4",
+    "raw_source": "4호선 - 초지역 - 오이도 방면",
+    "raw_target": "수인·분당선 (인천 방면)"
+  },
+  {
+    "id": "tr-208",
+    "station_key": "오이도",
+    "station_display": "오이도역",
+    "current_line": "4호선",
+    "current_direction": "전체",
+    "updn_code": "ALL",
+    "branch_hint": null,
+    "target_lines": [
+      "수인분당선"
+    ],
+    "target_line_raw": "수인·분당선",
+    "target_direction": "인천 방면",
+    "boarding_position": "5-1 ~ 10-4",
+    "raw_source": "4호선 - 오이도역",
+    "raw_target": "수인·분당선 (인천 방면)"
+  },
+  {
+    "id": "tr-209",
+    "station_key": "오이도",
+    "station_display": "오이도역",
+    "current_line": "4호선",
+    "current_direction": "전체",
+    "updn_code": "ALL",
+    "branch_hint": null,
+    "target_lines": [
+      "수인분당선"
+    ],
+    "target_line_raw": "수인·분당선",
+    "target_direction": "왕십리/청량리 방면",
+    "boarding_position": "3-1",
+    "raw_source": "4호선 - 오이도역",
+    "raw_target": "수인·분당선 (왕십리/청량리 방면)"
+  },
+  {
+    "id": "tr-210",
+    "station_key": "김포공항",
+    "station_display": "김포공항역",
+    "current_line": "5호선",
+    "current_direction": "하남검단산/마천 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "9호선",
+      "공항철도",
+      "김포골드라인",
+      "서해선"
+    ],
+    "target_line_raw": "9호선, 공항철도, 김포 골드라인, 서해선",
+    "target_direction": "전체",
+    "boarding_position": "1-4",
+    "raw_source": "5호선 - 김포공항역 - 하남검단산/마천 방면",
+    "raw_target": "9호선, 공항철도, 김포 골드라인, 서해선"
+  },
+  {
+    "id": "tr-211",
+    "station_key": "김포공항",
+    "station_display": "김포공항역",
+    "current_line": "5호선",
+    "current_direction": "방화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "9호선",
+      "공항철도",
+      "김포골드라인",
+      "서해선"
+    ],
+    "target_line_raw": "9호선, 공항철도, 김포 골드라인, 서해선",
+    "target_direction": "전체",
+    "boarding_position": "7-1",
+    "raw_source": "5호선 - 김포공항역 - 방화 방면",
+    "raw_target": "9호선, 공항철도, 김포 골드라인, 서해선"
+  },
+  {
+    "id": "tr-212",
+    "station_key": "까치산",
+    "station_display": "까치산역",
+    "current_line": "5호선",
+    "current_direction": "하남검단산/마천 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선 신정지선"
+    ],
+    "target_line_raw": "2호선 신정지선",
+    "target_direction": "신도림 방면",
+    "boarding_position": "4-4",
+    "raw_source": "5호선 - 까치산역 - 하남검단산/마천 방면",
+    "raw_target": "2호선 신정지선 (신도림 방면)"
+  },
+  {
+    "id": "tr-213",
+    "station_key": "까치산",
+    "station_display": "까치산역",
+    "current_line": "5호선",
+    "current_direction": "방화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선 신정지선"
+    ],
+    "target_line_raw": "2호선 신정지선",
+    "target_direction": "신도림 방면",
+    "boarding_position": "1-1",
+    "raw_source": "5호선 - 까치산역 - 방화 방면",
+    "raw_target": "2호선 신정지선 (신도림 방면)"
+  },
+  {
+    "id": "tr-214",
+    "station_key": "영등포구청",
+    "station_display": "영등포구청역",
+    "current_line": "5호선",
+    "current_direction": "하남검단산/마천 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "전체",
+    "boarding_position": "2-3",
+    "raw_source": "5호선 - 영등포구청역 - 하남검단산/마천 방면",
+    "raw_target": "2호선"
+  },
+  {
+    "id": "tr-215",
+    "station_key": "영등포구청",
+    "station_display": "영등포구청역",
+    "current_line": "5호선",
+    "current_direction": "방화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "전체",
+    "boarding_position": "7-2",
+    "raw_source": "5호선 - 영등포구청역 - 방화 방면",
+    "raw_target": "2호선"
+  },
+  {
+    "id": "tr-216",
+    "station_key": "신길",
+    "station_display": "신길역",
+    "current_line": "5호선",
+    "current_direction": "하남검단산/마천 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "2-2",
+    "raw_source": "5호선 - 신길역 - 하남검단산/마천 방면",
+    "raw_target": "1호선"
+  },
+  {
+    "id": "tr-217",
+    "station_key": "신길",
+    "station_display": "신길역",
+    "current_line": "5호선",
+    "current_direction": "방화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "7-3",
+    "raw_source": "5호선 - 신길역 - 방화 방면",
+    "raw_target": "1호선"
+  },
+  {
+    "id": "tr-218",
+    "station_key": "여의도",
+    "station_display": "여의도역",
+    "current_line": "5호선",
+    "current_direction": "하남검단산/마천 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "9호선"
+    ],
+    "target_line_raw": "9호선",
+    "target_direction": "전체",
+    "boarding_position": "4-1",
+    "raw_source": "5호선 - 여의도역 - 하남검단산/마천 방면",
+    "raw_target": "9호선"
+  },
+  {
+    "id": "tr-219",
+    "station_key": "여의도",
+    "station_display": "여의도역",
+    "current_line": "5호선",
+    "current_direction": "방화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "9호선"
+    ],
+    "target_line_raw": "9호선",
+    "target_direction": "전체",
+    "boarding_position": "5-4",
+    "raw_source": "5호선 - 여의도역 - 방화 방면",
+    "raw_target": "9호선"
+  },
+  {
+    "id": "tr-220",
+    "station_key": "공덕",
+    "station_display": "공덕역",
+    "current_line": "5호선",
+    "current_direction": "하남검단산/마천 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "6호선",
+      "공항철도",
+      "경의중앙선"
+    ],
+    "target_line_raw": "6호선, 공항철도, 경의·중앙선",
+    "target_direction": "전체",
+    "boarding_position": "8-4",
+    "raw_source": "5호선 - 공덕역 - 하남검단산/마천 방면",
+    "raw_target": "6호선, 공항철도, 경의·중앙선"
+  },
+  {
+    "id": "tr-221",
+    "station_key": "공덕",
+    "station_display": "공덕역",
+    "current_line": "5호선",
+    "current_direction": "방화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "6호선",
+      "공항철도",
+      "경의중앙선"
+    ],
+    "target_line_raw": "6호선, 공항철도, 경의·중앙선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "5호선 - 공덕역 - 방화 방면",
+    "raw_target": "6호선, 공항철도, 경의·중앙선"
+  },
+  {
+    "id": "tr-222",
+    "station_key": "충정로",
+    "station_display": "충정로역",
+    "current_line": "5호선",
+    "current_direction": "하남검단산/마천 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "전체",
+    "boarding_position": "5-3",
+    "raw_source": "5호선 - 충정로역 - 하남검단산/마천 방면",
+    "raw_target": "2호선"
+  },
+  {
+    "id": "tr-223",
+    "station_key": "충정로",
+    "station_display": "충정로역",
+    "current_line": "5호선",
+    "current_direction": "방화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "전체",
+    "boarding_position": "4-1",
+    "raw_source": "5호선 - 충정로역 - 방화 방면",
+    "raw_target": "2호선"
+  },
+  {
+    "id": "tr-224",
+    "station_key": "종로3가",
+    "station_display": "종로3가역",
+    "current_line": "5호선",
+    "current_direction": "하남검단산/마천 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선",
+      "3호선"
+    ],
+    "target_line_raw": "1호선, 3호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "5호선 - 종로3가역 - 하남검단산/마천 방면",
+    "raw_target": "1호선, 3호선"
+  },
+  {
+    "id": "tr-225",
+    "station_key": "종로3가",
+    "station_display": "종로3가역",
+    "current_line": "5호선",
+    "current_direction": "방화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선",
+      "3호선"
+    ],
+    "target_line_raw": "1호선, 3호선",
+    "target_direction": "전체",
+    "boarding_position": "8-4",
+    "raw_source": "5호선 - 종로3가역 - 방화 방면",
+    "raw_target": "1호선, 3호선"
+  },
+  {
+    "id": "tr-226",
+    "station_key": "을지로4가",
+    "station_display": "을지로4가역",
+    "current_line": "5호선",
+    "current_direction": "하남검단산/마천 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "내선 순환",
+    "boarding_position": "1-1",
+    "raw_source": "5호선 - 을지로4가역 - 하남검단산/마천 방면",
+    "raw_target": "2호선 (내선 순환)"
+  },
+  {
+    "id": "tr-227",
+    "station_key": "을지로4가",
+    "station_display": "을지로4가역",
+    "current_line": "5호선",
+    "current_direction": "하남검단산/마천 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "외선 순환",
+    "boarding_position": "1-4",
+    "raw_source": "5호선 - 을지로4가역 - 하남검단산/마천 방면",
+    "raw_target": "2호선 (외선 순환)"
+  },
+  {
+    "id": "tr-228",
+    "station_key": "을지로4가",
+    "station_display": "을지로4가역",
+    "current_line": "5호선",
+    "current_direction": "방화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "내선 순환",
+    "boarding_position": "8-4",
+    "raw_source": "5호선 - 을지로4가역 - 방화 방면",
+    "raw_target": "2호선 (내선 순환)"
+  },
+  {
+    "id": "tr-229",
+    "station_key": "을지로4가",
+    "station_display": "을지로4가역",
+    "current_line": "5호선",
+    "current_direction": "방화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "외선 순환",
+    "boarding_position": "8-1",
+    "raw_source": "5호선 - 을지로4가역 - 방화 방면",
+    "raw_target": "2호선 (외선 순환)"
+  },
+  {
+    "id": "tr-230",
+    "station_key": "동대문역사문화공원",
+    "station_display": "동대문역사문화공원역",
+    "current_line": "5호선",
+    "current_direction": "하남검단산/마천 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선",
+      "4호선"
+    ],
+    "target_line_raw": "2호선, 4호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "5호선 - 동대문역사문화공원역 - 하남검단산/마천 방면",
+    "raw_target": "2호선, 4호선"
+  },
+  {
+    "id": "tr-231",
+    "station_key": "동대문역사문화공원",
+    "station_display": "동대문역사문화공원역",
+    "current_line": "5호선",
+    "current_direction": "방화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선",
+      "4호선"
+    ],
+    "target_line_raw": "2호선, 4호선",
+    "target_direction": "전체",
+    "boarding_position": "8-4",
+    "raw_source": "5호선 - 동대문역사문화공원역 - 방화 방면",
+    "raw_target": "2호선, 4호선"
+  },
+  {
+    "id": "tr-232",
+    "station_key": "청구",
+    "station_display": "청구역",
+    "current_line": "5호선",
+    "current_direction": "하남검단산/마천 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "6호선"
+    ],
+    "target_line_raw": "6호선",
+    "target_direction": "전체",
+    "boarding_position": "6-4",
+    "raw_source": "5호선 - 청구역 - 하남검단산/마천 방면",
+    "raw_target": "6호선"
+  },
+  {
+    "id": "tr-233",
+    "station_key": "청구",
+    "station_display": "청구역",
+    "current_line": "5호선",
+    "current_direction": "방화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "6호선"
+    ],
+    "target_line_raw": "6호선",
+    "target_direction": "전체",
+    "boarding_position": "5-1",
+    "raw_source": "5호선 - 청구역 - 방화 방면",
+    "raw_target": "6호선"
+  },
+  {
+    "id": "tr-234",
+    "station_key": "왕십리",
+    "station_display": "왕십리역",
+    "current_line": "5호선",
+    "current_direction": "하남검단산/마천 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선",
+      "경의중앙선",
+      "수인분당선"
+    ],
+    "target_line_raw": "2호선, 경의·중앙선, 수인·분당선",
+    "target_direction": "전체",
+    "boarding_position": "5-2, 7-2",
+    "raw_source": "5호선 - 왕십리역 - 하남검단산/마천 방면",
+    "raw_target": "2호선, 경의·중앙선, 수인·분당선"
+  },
+  {
+    "id": "tr-235",
+    "station_key": "왕십리",
+    "station_display": "왕십리역",
+    "current_line": "5호선",
+    "current_direction": "방화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선",
+      "경의중앙선",
+      "수인분당선"
+    ],
+    "target_line_raw": "2호선, 경의·중앙선, 수인·분당선",
+    "target_direction": "전체",
+    "boarding_position": "2-3, 4-3",
+    "raw_source": "5호선 - 왕십리역 - 방화 방면",
+    "raw_target": "2호선, 경의·중앙선, 수인·분당선"
+  },
+  {
+    "id": "tr-236",
+    "station_key": "군자",
+    "station_display": "군자역",
+    "current_line": "5호선",
+    "current_direction": "하남검단산/마천 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "7호선"
+    ],
+    "target_line_raw": "7호선",
+    "target_direction": "석남 방면",
+    "boarding_position": "8-4",
+    "raw_source": "5호선 - 군자역 - 하남검단산/마천 방면",
+    "raw_target": "7호선 (석남 방면)"
+  },
+  {
+    "id": "tr-237",
+    "station_key": "군자",
+    "station_display": "군자역",
+    "current_line": "5호선",
+    "current_direction": "하남검단산/마천 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "7호선"
+    ],
+    "target_line_raw": "7호선",
+    "target_direction": "장암 방면",
+    "boarding_position": "1-1",
+    "raw_source": "5호선 - 군자역 - 하남검단산/마천 방면",
+    "raw_target": "7호선 (장암 방면)"
+  },
+  {
+    "id": "tr-238",
+    "station_key": "군자",
+    "station_display": "군자역",
+    "current_line": "5호선",
+    "current_direction": "방화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "7호선"
+    ],
+    "target_line_raw": "7호선",
+    "target_direction": "석남 방면",
+    "boarding_position": "1-1",
+    "raw_source": "5호선 - 군자역 - 방화 방면",
+    "raw_target": "7호선 (석남 방면)"
+  },
+  {
+    "id": "tr-239",
+    "station_key": "군자",
+    "station_display": "군자역",
+    "current_line": "5호선",
+    "current_direction": "방화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "7호선"
+    ],
+    "target_line_raw": "7호선",
+    "target_direction": "장암 방면",
+    "boarding_position": "8-4",
+    "raw_source": "5호선 - 군자역 - 방화 방면",
+    "raw_target": "7호선 (장암 방면)"
+  },
+  {
+    "id": "tr-240",
+    "station_key": "천호",
+    "station_display": "천호역",
+    "current_line": "5호선",
+    "current_direction": "하남검단산/마천 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "8호선"
+    ],
+    "target_line_raw": "8호선",
+    "target_direction": "모란 방면",
+    "boarding_position": "8-2",
+    "raw_source": "5호선 - 천호역 - 하남검단산/마천 방면",
+    "raw_target": "8호선 (모란 방면)"
+  },
+  {
+    "id": "tr-241",
+    "station_key": "천호",
+    "station_display": "천호역",
+    "current_line": "5호선",
+    "current_direction": "하남검단산/마천 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "8호선"
+    ],
+    "target_line_raw": "8호선",
+    "target_direction": "별내 방면",
+    "boarding_position": "8-1",
+    "raw_source": "5호선 - 천호역 - 하남검단산/마천 방면",
+    "raw_target": "8호선 (별내 방면)"
+  },
+  {
+    "id": "tr-242",
+    "station_key": "천호",
+    "station_display": "천호역",
+    "current_line": "5호선",
+    "current_direction": "방화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "8호선"
+    ],
+    "target_line_raw": "8호선",
+    "target_direction": "모란 방면",
+    "boarding_position": "1-2",
+    "raw_source": "5호선 - 천호역 - 방화 방면",
+    "raw_target": "8호선 (모란 방면)"
+  },
+  {
+    "id": "tr-243",
+    "station_key": "천호",
+    "station_display": "천호역",
+    "current_line": "5호선",
+    "current_direction": "방화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "8호선"
+    ],
+    "target_line_raw": "8호선",
+    "target_direction": "별내 방면",
+    "boarding_position": "1-3",
+    "raw_source": "5호선 - 천호역 - 방화 방면",
+    "raw_target": "8호선 (별내 방면)"
+  },
+  {
+    "id": "tr-244",
+    "station_key": "강동",
+    "station_display": "강동역",
+    "current_line": "5호선",
+    "current_direction": "방화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선"
+    ],
+    "target_line_raw": "5호선",
+    "target_direction": "하남검단산/마천 방면",
+    "boarding_position": "1-1, 8-4",
+    "raw_source": "5호선 - 강동역 - 방화 방면",
+    "raw_target": "5호선 (하남검단산/마천 방면)"
+  },
+  {
+    "id": "tr-245",
+    "station_key": "강동",
+    "station_display": "강동역",
+    "current_line": "5호선",
+    "current_direction": "하남검단산 방면",
+    "updn_code": "1",
+    "branch_hint": "하남검단산",
+    "target_lines": [
+      "5호선"
+    ],
+    "target_line_raw": "5호선",
+    "target_direction": "마천 방면",
+    "boarding_position": "모든 문",
+    "raw_source": "5호선 - 강동역 - 하남검단산 방면",
+    "raw_target": "5호선 (마천 방면)"
+  },
+  {
+    "id": "tr-246",
+    "station_key": "올림픽공원",
+    "station_display": "올림픽공원역",
+    "current_line": "5호선",
+    "current_direction": "마천 방면",
+    "updn_code": "1",
+    "branch_hint": "마천",
+    "target_lines": [
+      "9호선"
+    ],
+    "target_line_raw": "9호선",
+    "target_direction": "전체",
+    "boarding_position": "4-4",
+    "raw_source": "5호선 - 올림픽공원역 - 마천 방면",
+    "raw_target": "9호선"
+  },
+  {
+    "id": "tr-247",
+    "station_key": "올림픽공원",
+    "station_display": "올림픽공원역",
+    "current_line": "5호선",
+    "current_direction": "방화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "9호선"
+    ],
+    "target_line_raw": "9호선",
+    "target_direction": "전체",
+    "boarding_position": "6-1",
+    "raw_source": "5호선 - 올림픽공원역 - 방화 방면",
+    "raw_target": "9호선"
+  },
+  {
+    "id": "tr-248",
+    "station_key": "오금",
+    "station_display": "오금역",
+    "current_line": "5호선",
+    "current_direction": "마천 방면",
+    "updn_code": "1",
+    "branch_hint": "마천",
+    "target_lines": [
+      "3호선"
+    ],
+    "target_line_raw": "3호선",
+    "target_direction": "전체",
+    "boarding_position": "1-3",
+    "raw_source": "5호선 - 오금역 - 마천 방면",
+    "raw_target": "3호선"
+  },
+  {
+    "id": "tr-249",
+    "station_key": "오금",
+    "station_display": "오금역",
+    "current_line": "5호선",
+    "current_direction": "방화 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "3호선"
+    ],
+    "target_line_raw": "3호선",
+    "target_direction": "전체",
+    "boarding_position": "8-2",
+    "raw_source": "5호선 - 오금역 - 방화 방면",
+    "raw_target": "3호선"
+  },
+  {
+    "id": "tr-250",
+    "station_key": "불광",
+    "station_display": "불광역",
+    "current_line": "6호선",
+    "current_direction": "전체",
+    "updn_code": "ALL",
+    "branch_hint": null,
+    "target_lines": [
+      "3호선"
+    ],
+    "target_line_raw": "3호선",
+    "target_direction": "대화 방면",
+    "boarding_position": "2-3",
+    "raw_source": "6호선 - 불광역",
+    "raw_target": "3호선 (대화 방면)"
+  },
+  {
+    "id": "tr-251",
+    "station_key": "불광",
+    "station_display": "불광역",
+    "current_line": "6호선",
+    "current_direction": "전체",
+    "updn_code": "ALL",
+    "branch_hint": null,
+    "target_lines": [
+      "3호선"
+    ],
+    "target_line_raw": "3호선",
+    "target_direction": "오금 방면",
+    "boarding_position": "7-2",
+    "raw_source": "6호선 - 불광역",
+    "raw_target": "3호선 (오금 방면)"
+  },
+  {
+    "id": "tr-252",
+    "station_key": "연신내",
+    "station_display": "연신내역",
+    "current_line": "6호선",
+    "current_direction": "전체",
+    "updn_code": "ALL",
+    "branch_hint": null,
+    "target_lines": [
+      "3호선",
+      "GTX-A"
+    ],
+    "target_line_raw": "3호선, GTX-A",
+    "target_direction": "전체",
+    "boarding_position": "6-2",
+    "raw_source": "6호선 - 연신내역",
+    "raw_target": "3호선, GTX-A"
+  },
+  {
+    "id": "tr-253",
+    "station_key": "디지털미디어시티",
+    "station_display": "디지털미디어시티역",
+    "current_line": "6호선",
+    "current_direction": "신내 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "경의중앙선"
+    ],
+    "target_line_raw": "경의·중앙선",
+    "target_direction": "전체",
+    "boarding_position": "7-2",
+    "raw_source": "6호선 - 디지털미디어시티역 - 신내 방면",
+    "raw_target": "경의·중앙선"
+  },
+  {
+    "id": "tr-254",
+    "station_key": "디지털미디어시티",
+    "station_display": "디지털미디어시티역",
+    "current_line": "6호선",
+    "current_direction": "신내 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "공항철도"
+    ],
+    "target_line_raw": "공항철도",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "6호선 - 디지털미디어시티역 - 신내 방면",
+    "raw_target": "공항철도"
+  },
+  {
+    "id": "tr-255",
+    "station_key": "디지털미디어시티",
+    "station_display": "디지털미디어시티역",
+    "current_line": "6호선",
+    "current_direction": "응암 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "경의중앙선"
+    ],
+    "target_line_raw": "경의·중앙선",
+    "target_direction": "전체",
+    "boarding_position": "2-2",
+    "raw_source": "6호선 - 디지털미디어시티역 - 응암 순환",
+    "raw_target": "경의·중앙선"
+  },
+  {
+    "id": "tr-256",
+    "station_key": "디지털미디어시티",
+    "station_display": "디지털미디어시티역",
+    "current_line": "6호선",
+    "current_direction": "응암 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "공항철도"
+    ],
+    "target_line_raw": "공항철도",
+    "target_direction": "전체",
+    "boarding_position": "8-4",
+    "raw_source": "6호선 - 디지털미디어시티역 - 응암 순환",
+    "raw_target": "공항철도"
+  },
+  {
+    "id": "tr-257",
+    "station_key": "합정",
+    "station_display": "합정역",
+    "current_line": "6호선",
+    "current_direction": "신내 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "전체",
+    "boarding_position": "6-2",
+    "raw_source": "6호선 - 합정역 - 신내 방면",
+    "raw_target": "2호선"
+  },
+  {
+    "id": "tr-258",
+    "station_key": "합정",
+    "station_display": "합정역",
+    "current_line": "6호선",
+    "current_direction": "응암 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "전체",
+    "boarding_position": "3-2",
+    "raw_source": "6호선 - 합정역 - 응암 순환",
+    "raw_target": "2호선"
+  },
+  {
+    "id": "tr-259",
+    "station_key": "공덕",
+    "station_display": "공덕역",
+    "current_line": "6호선",
+    "current_direction": "신내 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선",
+      "경의중앙선",
+      "공항철도"
+    ],
+    "target_line_raw": "5호선, 경의·중앙선, 공항철도",
+    "target_direction": "전체",
+    "boarding_position": "8-4",
+    "raw_source": "6호선 - 공덕역 - 신내 방면",
+    "raw_target": "5호선, 경의·중앙선, 공항철도"
+  },
+  {
+    "id": "tr-260",
+    "station_key": "공덕",
+    "station_display": "공덕역",
+    "current_line": "6호선",
+    "current_direction": "응암 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선",
+      "경의중앙선",
+      "공항철도"
+    ],
+    "target_line_raw": "5호선, 경의·중앙선, 공항철도",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "6호선 - 공덕역 - 응암 순환",
+    "raw_target": "5호선, 경의·중앙선, 공항철도"
+  },
+  {
+    "id": "tr-261",
+    "station_key": "효창공원앞",
+    "station_display": "효창공원앞역",
+    "current_line": "6호선",
+    "current_direction": "신내 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "경의중앙선"
+    ],
+    "target_line_raw": "경의·중앙선",
+    "target_direction": "전체",
+    "boarding_position": "3-1",
+    "raw_source": "6호선 - 효창공원앞역 - 신내 방면",
+    "raw_target": "경의·중앙선"
+  },
+  {
+    "id": "tr-262",
+    "station_key": "효창공원앞",
+    "station_display": "효창공원앞역",
+    "current_line": "6호선",
+    "current_direction": "응암 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "경의중앙선"
+    ],
+    "target_line_raw": "경의·중앙선",
+    "target_direction": "전체",
+    "boarding_position": "6-4",
+    "raw_source": "6호선 - 효창공원앞역 - 응암 순환",
+    "raw_target": "경의·중앙선"
+  },
+  {
+    "id": "tr-263",
+    "station_key": "삼각지",
+    "station_display": "삼각지역",
+    "current_line": "6호선",
+    "current_direction": "신내 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "4호선"
+    ],
+    "target_line_raw": "4호선",
+    "target_direction": "진접/불암산 방면",
+    "boarding_position": "3-1",
+    "raw_source": "6호선 - 삼각지역 - 신내 방면",
+    "raw_target": "4호선 (진접/불암산 방면)"
+  },
+  {
+    "id": "tr-264",
+    "station_key": "삼각지",
+    "station_display": "삼각지역",
+    "current_line": "6호선",
+    "current_direction": "신내 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "4호선"
+    ],
+    "target_line_raw": "4호선",
+    "target_direction": "사당/오이도 방면",
+    "boarding_position": "6-4",
+    "raw_source": "6호선 - 삼각지역 - 신내 방면",
+    "raw_target": "4호선 (사당/오이도 방면)"
+  },
+  {
+    "id": "tr-265",
+    "station_key": "삼각지",
+    "station_display": "삼각지역",
+    "current_line": "6호선",
+    "current_direction": "응암 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "4호선"
+    ],
+    "target_line_raw": "4호선",
+    "target_direction": "진접/불암산 방면",
+    "boarding_position": "6-4",
+    "raw_source": "6호선 - 삼각지역 - 응암 순환",
+    "raw_target": "4호선 (진접/불암산 방면)"
+  },
+  {
+    "id": "tr-266",
+    "station_key": "삼각지",
+    "station_display": "삼각지역",
+    "current_line": "6호선",
+    "current_direction": "응암 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "4호선"
+    ],
+    "target_line_raw": "4호선",
+    "target_direction": "사당/오이도 방면",
+    "boarding_position": "3-1",
+    "raw_source": "6호선 - 삼각지역 - 응암 순환",
+    "raw_target": "4호선 (사당/오이도 방면)"
+  },
+  {
+    "id": "tr-267",
+    "station_key": "약수",
+    "station_display": "약수역",
+    "current_line": "6호선",
+    "current_direction": "신내 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "3호선"
+    ],
+    "target_line_raw": "3호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "6호선 - 약수역 - 신내 방면",
+    "raw_target": "3호선"
+  },
+  {
+    "id": "tr-268",
+    "station_key": "약수",
+    "station_display": "약수역",
+    "current_line": "6호선",
+    "current_direction": "응암 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "3호선"
+    ],
+    "target_line_raw": "3호선",
+    "target_direction": "전체",
+    "boarding_position": "8-4",
+    "raw_source": "6호선 - 약수역 - 응암 순환",
+    "raw_target": "3호선"
+  },
+  {
+    "id": "tr-269",
+    "station_key": "청구",
+    "station_display": "청구역",
+    "current_line": "6호선",
+    "current_direction": "신내 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선"
+    ],
+    "target_line_raw": "5호선",
+    "target_direction": "전체",
+    "boarding_position": "6-2",
+    "raw_source": "6호선 - 청구역 - 신내 방면",
+    "raw_target": "5호선"
+  },
+  {
+    "id": "tr-270",
+    "station_key": "청구",
+    "station_display": "청구역",
+    "current_line": "6호선",
+    "current_direction": "응암 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선"
+    ],
+    "target_line_raw": "5호선",
+    "target_direction": "전체",
+    "boarding_position": "6-1",
+    "raw_source": "6호선 - 청구역 - 응암 순환",
+    "raw_target": "5호선"
+  },
+  {
+    "id": "tr-271",
+    "station_key": "신당",
+    "station_display": "신당역",
+    "current_line": "6호선",
+    "current_direction": "신내 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "전체",
+    "boarding_position": "8-4",
+    "raw_source": "6호선 - 신당역 - 신내 방면",
+    "raw_target": "2호선"
+  },
+  {
+    "id": "tr-272",
+    "station_key": "신당",
+    "station_display": "신당역",
+    "current_line": "6호선",
+    "current_direction": "응암 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "6호선 - 신당역 - 응암 순환",
+    "raw_target": "2호선"
+  },
+  {
+    "id": "tr-273",
+    "station_key": "동묘앞",
+    "station_display": "동묘앞역",
+    "current_line": "6호선",
+    "current_direction": "신내 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "2-2",
+    "raw_source": "6호선 - 동묘앞역 - 신내 방면",
+    "raw_target": "1호선"
+  },
+  {
+    "id": "tr-274",
+    "station_key": "동묘앞",
+    "station_display": "동묘앞역",
+    "current_line": "6호선",
+    "current_direction": "응암 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "7-3",
+    "raw_source": "6호선 - 동묘앞역 - 응암 순환",
+    "raw_target": "1호선"
+  },
+  {
+    "id": "tr-275",
+    "station_key": "보문",
+    "station_display": "보문역",
+    "current_line": "6호선",
+    "current_direction": "신내 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "우이신설선"
+    ],
+    "target_line_raw": "우이신설선",
+    "target_direction": "전체",
+    "boarding_position": "3-4",
+    "raw_source": "6호선 - 보문역 - 신내 방면",
+    "raw_target": "우이신설선"
+  },
+  {
+    "id": "tr-276",
+    "station_key": "보문",
+    "station_display": "보문역",
+    "current_line": "6호선",
+    "current_direction": "응암 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "우이신설선"
+    ],
+    "target_line_raw": "우이신설선",
+    "target_direction": "전체",
+    "boarding_position": "3-4",
+    "raw_source": "6호선 - 보문역 - 응암 순환",
+    "raw_target": "우이신설선"
+  },
+  {
+    "id": "tr-277",
+    "station_key": "석계",
+    "station_display": "석계역",
+    "current_line": "6호선",
+    "current_direction": "신내 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "5-2",
+    "raw_source": "6호선 - 석계역 - 신내 방면",
+    "raw_target": "1호선"
+  },
+  {
+    "id": "tr-278",
+    "station_key": "석계",
+    "station_display": "석계역",
+    "current_line": "6호선",
+    "current_direction": "응암 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "4-3",
+    "raw_source": "6호선 - 석계역 - 응암 순환",
+    "raw_target": "1호선"
+  },
+  {
+    "id": "tr-279",
+    "station_key": "태릉입구",
+    "station_display": "태릉입구역",
+    "current_line": "6호선",
+    "current_direction": "신내 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "7호선"
+    ],
+    "target_line_raw": "7호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "6호선 - 태릉입구역 - 신내 방면",
+    "raw_target": "7호선"
+  },
+  {
+    "id": "tr-280",
+    "station_key": "태릉입구",
+    "station_display": "태릉입구역",
+    "current_line": "6호선",
+    "current_direction": "응암 순환",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "7호선"
+    ],
+    "target_line_raw": "7호선",
+    "target_direction": "전체",
+    "boarding_position": "8-4",
+    "raw_source": "6호선 - 태릉입구역 - 응암 순환",
+    "raw_target": "7호선"
+  },
+  {
+    "id": "tr-281",
+    "station_key": "신내",
+    "station_display": "신내역",
+    "current_line": "6호선",
+    "current_direction": "당역 종착",
+    "updn_code": "ALL",
+    "branch_hint": null,
+    "target_lines": [
+      "경춘선"
+    ],
+    "target_line_raw": "경춘선",
+    "target_direction": "전체",
+    "boarding_position": "7-4",
+    "raw_source": "6호선 - 신내역 - 당역 종착",
+    "raw_target": "경춘선"
+  },
+  {
+    "id": "tr-282",
+    "station_key": "도봉산",
+    "station_display": "도봉산역",
+    "current_line": "7호선",
+    "current_direction": "석남 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "8-4",
+    "raw_source": "7호선 - 도봉산역 - 석남 방면",
+    "raw_target": "1호선"
+  },
+  {
+    "id": "tr-283",
+    "station_key": "도봉산",
+    "station_display": "도봉산역",
+    "current_line": "7호선",
+    "current_direction": "장암 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "7호선 - 도봉산역 - 장암 방면",
+    "raw_target": "1호선"
+  },
+  {
+    "id": "tr-284",
+    "station_key": "노원",
+    "station_display": "노원역",
+    "current_line": "7호선",
+    "current_direction": "석남 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "4호선"
+    ],
+    "target_line_raw": "4호선",
+    "target_direction": "전체",
+    "boarding_position": "8-4",
+    "raw_source": "7호선 - 노원역 - 석남 방면",
+    "raw_target": "4호선"
+  },
+  {
+    "id": "tr-285",
+    "station_key": "노원",
+    "station_display": "노원역",
+    "current_line": "7호선",
+    "current_direction": "장암 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "4호선"
+    ],
+    "target_line_raw": "4호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "7호선 - 노원역 - 장암 방면",
+    "raw_target": "4호선"
+  },
+  {
+    "id": "tr-286",
+    "station_key": "태릉입구",
+    "station_display": "태릉입구역",
+    "current_line": "7호선",
+    "current_direction": "석남 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "6호선"
+    ],
+    "target_line_raw": "6호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "7호선 - 태릉입구역 - 석남 방면",
+    "raw_target": "6호선"
+  },
+  {
+    "id": "tr-287",
+    "station_key": "태릉입구",
+    "station_display": "태릉입구역",
+    "current_line": "7호선",
+    "current_direction": "장암 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "6호선"
+    ],
+    "target_line_raw": "6호선",
+    "target_direction": "전체",
+    "boarding_position": "8-4",
+    "raw_source": "7호선 - 태릉입구역 - 장암 방면",
+    "raw_target": "6호선"
+  },
+  {
+    "id": "tr-288",
+    "station_key": "상봉",
+    "station_display": "상봉역",
+    "current_line": "7호선",
+    "current_direction": "석남 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "경의중앙선",
+      "경춘선"
+    ],
+    "target_line_raw": "경의·중앙선, 경춘선",
+    "target_direction": "전체",
+    "boarding_position": "3-4",
+    "raw_source": "7호선 - 상봉역 - 석남 방면",
+    "raw_target": "경의·중앙선, 경춘선"
+  },
+  {
+    "id": "tr-289",
+    "station_key": "상봉",
+    "station_display": "상봉역",
+    "current_line": "7호선",
+    "current_direction": "장암 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "경의중앙선",
+      "경춘선"
+    ],
+    "target_line_raw": "경의·중앙선, 경춘선",
+    "target_direction": "전체",
+    "boarding_position": "5-4",
+    "raw_source": "7호선 - 상봉역 - 장암 방면",
+    "raw_target": "경의·중앙선, 경춘선"
+  },
+  {
+    "id": "tr-290",
+    "station_key": "군자",
+    "station_display": "군자역",
+    "current_line": "7호선",
+    "current_direction": "석남 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선"
+    ],
+    "target_line_raw": "5호선",
+    "target_direction": "전체",
+    "boarding_position": "5-1",
+    "raw_source": "7호선 - 군자역 - 석남 방면",
+    "raw_target": "5호선"
+  },
+  {
+    "id": "tr-291",
+    "station_key": "군자",
+    "station_display": "군자역",
+    "current_line": "7호선",
+    "current_direction": "장암 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선"
+    ],
+    "target_line_raw": "5호선",
+    "target_direction": "전체",
+    "boarding_position": "5-2",
+    "raw_source": "7호선 - 군자역 - 장암 방면",
+    "raw_target": "5호선"
+  },
+  {
+    "id": "tr-292",
+    "station_key": "건대입구",
+    "station_display": "건대입구역",
+    "current_line": "7호선",
+    "current_direction": "석남 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "7호선 - 건대입구역 - 석남 방면",
+    "raw_target": "2호선"
+  },
+  {
+    "id": "tr-293",
+    "station_key": "건대입구",
+    "station_display": "건대입구역",
+    "current_line": "7호선",
+    "current_direction": "장암 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "전체",
+    "boarding_position": "8-4",
+    "raw_source": "7호선 - 건대입구역 - 장암 방면",
+    "raw_target": "2호선"
+  },
+  {
+    "id": "tr-294",
+    "station_key": "강남구청",
+    "station_display": "강남구청역",
+    "current_line": "7호선",
+    "current_direction": "석남 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "수인분당선"
+    ],
+    "target_line_raw": "수인·분당선",
+    "target_direction": "전체",
+    "boarding_position": "5-1",
+    "raw_source": "7호선 - 강남구청역 - 석남 방면",
+    "raw_target": "수인·분당선"
+  },
+  {
+    "id": "tr-295",
+    "station_key": "강남구청",
+    "station_display": "강남구청역",
+    "current_line": "7호선",
+    "current_direction": "장암 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "수인분당선"
+    ],
+    "target_line_raw": "수인·분당선",
+    "target_direction": "전체",
+    "boarding_position": "4-3",
+    "raw_source": "7호선 - 강남구청역 - 장암 방면",
+    "raw_target": "수인·분당선"
+  },
+  {
+    "id": "tr-296",
+    "station_key": "논현",
+    "station_display": "논현역",
+    "current_line": "7호선",
+    "current_direction": "석남 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "신분당선"
+    ],
+    "target_line_raw": "신분당선",
+    "target_direction": "전체",
+    "boarding_position": "5-2",
+    "raw_source": "7호선 - 논현역 - 석남 방면",
+    "raw_target": "신분당선"
+  },
+  {
+    "id": "tr-297",
+    "station_key": "논현",
+    "station_display": "논현역",
+    "current_line": "7호선",
+    "current_direction": "장암 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "신분당선"
+    ],
+    "target_line_raw": "신분당선",
+    "target_direction": "전체",
+    "boarding_position": "4-4",
+    "raw_source": "7호선 - 논현역 - 장암 방면",
+    "raw_target": "신분당선"
+  },
+  {
+    "id": "tr-298",
+    "station_key": "고속터미널",
+    "station_display": "고속터미널역",
+    "current_line": "7호선",
+    "current_direction": "석남 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "3호선",
+      "9호선"
+    ],
+    "target_line_raw": "3호선, 9호선",
+    "target_direction": "전체",
+    "boarding_position": "7-1",
+    "raw_source": "7호선 - 고속터미널역 - 석남 방면",
+    "raw_target": "3호선, 9호선"
+  },
+  {
+    "id": "tr-299",
+    "station_key": "고속터미널",
+    "station_display": "고속터미널역",
+    "current_line": "7호선",
+    "current_direction": "장암 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "3호선",
+      "9호선"
+    ],
+    "target_line_raw": "3호선, 9호선",
+    "target_direction": "전체",
+    "boarding_position": "2-3",
+    "raw_source": "7호선 - 고속터미널역 - 장암 방면",
+    "raw_target": "3호선, 9호선"
+  },
+  {
+    "id": "tr-300",
+    "station_key": "이수",
+    "station_display": "이수역",
+    "current_line": "7호선",
+    "current_direction": "석남 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "4호선"
+    ],
+    "target_line_raw": "4호선",
+    "target_direction": "전체",
+    "boarding_position": "8-4",
+    "raw_source": "7호선 - 이수역 - 석남 방면",
+    "raw_target": "4호선"
+  },
+  {
+    "id": "tr-301",
+    "station_key": "이수",
+    "station_display": "이수역",
+    "current_line": "7호선",
+    "current_direction": "장암 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "4호선"
+    ],
+    "target_line_raw": "4호선",
+    "target_direction": "전체",
+    "boarding_position": "2-2",
+    "raw_source": "7호선 - 이수역 - 장암 방면",
+    "raw_target": "4호선"
+  },
+  {
+    "id": "tr-302",
+    "station_key": "보라매",
+    "station_display": "보라매역",
+    "current_line": "7호선",
+    "current_direction": "석남 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "신림선"
+    ],
+    "target_line_raw": "신림선",
+    "target_direction": "전체",
+    "boarding_position": "8-4",
+    "raw_source": "7호선 - 보라매역 - 석남 방면",
+    "raw_target": "신림선"
+  },
+  {
+    "id": "tr-303",
+    "station_key": "보라매",
+    "station_display": "보라매역",
+    "current_line": "7호선",
+    "current_direction": "장암 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "신림선"
+    ],
+    "target_line_raw": "신림선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "7호선 - 보라매역 - 장암 방면",
+    "raw_target": "신림선"
+  },
+  {
+    "id": "tr-304",
+    "station_key": "대림",
+    "station_display": "대림역",
+    "current_line": "7호선",
+    "current_direction": "석남 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "7호선 - 대림역 - 석남 방면",
+    "raw_target": "2호선"
+  },
+  {
+    "id": "tr-305",
+    "station_key": "대림",
+    "station_display": "대림역",
+    "current_line": "7호선",
+    "current_direction": "장암 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "전체",
+    "boarding_position": "8-4",
+    "raw_source": "7호선 - 대림역 - 장암 방면",
+    "raw_target": "2호선"
+  },
+  {
+    "id": "tr-306",
+    "station_key": "가산디지털단지",
+    "station_display": "가산디지털단지역",
+    "current_line": "7호선",
+    "current_direction": "석남 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "5-1",
+    "raw_source": "7호선 - 가산디지털단지역 - 석남 방면",
+    "raw_target": "1호선"
+  },
+  {
+    "id": "tr-307",
+    "station_key": "가산디지털단지",
+    "station_display": "가산디지털단지역",
+    "current_line": "7호선",
+    "current_direction": "장암 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "4-3",
+    "raw_source": "7호선 - 가산디지털단지역 - 장암 방면",
+    "raw_target": "1호선"
+  },
+  {
+    "id": "tr-308",
+    "station_key": "온수",
+    "station_display": "온수역",
+    "current_line": "7호선",
+    "current_direction": "석남 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "7호선 - 온수역 - 석남 방면",
+    "raw_target": "1호선"
+  },
+  {
+    "id": "tr-309",
+    "station_key": "온수",
+    "station_display": "온수역",
+    "current_line": "7호선",
+    "current_direction": "장암 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "8-4",
+    "raw_source": "7호선 - 온수역 - 장암 방면",
+    "raw_target": "1호선"
+  },
+  {
+    "id": "tr-310",
+    "station_key": "부천종합운동장",
+    "station_display": "부천종합운동장역",
+    "current_line": "7호선",
+    "current_direction": "석남 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "서해선"
+    ],
+    "target_line_raw": "서해선",
+    "target_direction": "전체",
+    "boarding_position": "3-1",
+    "raw_source": "7호선 - 부천종합운동장역 - 석남 방면",
+    "raw_target": "서해선"
+  },
+  {
+    "id": "tr-311",
+    "station_key": "부천종합운동장",
+    "station_display": "부천종합운동장역",
+    "current_line": "7호선",
+    "current_direction": "장암 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "서해선"
+    ],
+    "target_line_raw": "서해선",
+    "target_direction": "전체",
+    "boarding_position": "5-4",
+    "raw_source": "7호선 - 부천종합운동장역 - 장암 방면",
+    "raw_target": "서해선"
+  },
+  {
+    "id": "tr-312",
+    "station_key": "부평구청",
+    "station_display": "부평구청역",
+    "current_line": "7호선",
+    "current_direction": "석남 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "인천1호선"
+    ],
+    "target_line_raw": "인천 1호선",
+    "target_direction": "계양 방면",
+    "boarding_position": "5-2",
+    "raw_source": "7호선 - 부평구청역 - 석남 방면",
+    "raw_target": "인천 1호선 (계양 방면)"
+  },
+  {
+    "id": "tr-313",
+    "station_key": "부평구청",
+    "station_display": "부평구청역",
+    "current_line": "7호선",
+    "current_direction": "석남 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "인천1호선"
+    ],
+    "target_line_raw": "인천 1호선",
+    "target_direction": "송도달빛축제공원 방면",
+    "boarding_position": "2-2",
+    "raw_source": "7호선 - 부평구청역 - 석남 방면",
+    "raw_target": "인천 1호선 (송도달빛축제공원 방면)"
+  },
+  {
+    "id": "tr-314",
+    "station_key": "부평구청",
+    "station_display": "부평구청역",
+    "current_line": "7호선",
+    "current_direction": "장암 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "인천1호선"
+    ],
+    "target_line_raw": "인천 1호선",
+    "target_direction": "계양 방면",
+    "boarding_position": "4-3",
+    "raw_source": "7호선 - 부평구청역 - 장암 방면",
+    "raw_target": "인천 1호선 (계양 방면)"
+  },
+  {
+    "id": "tr-315",
+    "station_key": "부평구청",
+    "station_display": "부평구청역",
+    "current_line": "7호선",
+    "current_direction": "장암 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "인천1호선"
+    ],
+    "target_line_raw": "인천 1호선",
+    "target_direction": "송도달빛축제공원 방면",
+    "boarding_position": "7-3",
+    "raw_source": "7호선 - 부평구청역 - 장암 방면",
+    "raw_target": "인천 1호선 (송도달빛축제공원 방면)"
+  },
+  {
+    "id": "tr-316",
+    "station_key": "석남",
+    "station_display": "석남역",
+    "current_line": "7호선",
+    "current_direction": "전체",
+    "updn_code": "ALL",
+    "branch_hint": null,
+    "target_lines": [
+      "인천2호선"
+    ],
+    "target_line_raw": "인천 2호선",
+    "target_direction": "전체",
+    "boarding_position": "7-1",
+    "raw_source": "7호선 - 석남역",
+    "raw_target": "인천 2호선"
+  },
+  {
+    "id": "tr-317",
+    "station_key": "별내",
+    "station_display": "별내역",
+    "current_line": "8호선",
+    "current_direction": "전체",
+    "updn_code": "ALL",
+    "branch_hint": null,
+    "target_lines": [
+      "경춘선"
+    ],
+    "target_line_raw": "경춘선",
+    "target_direction": "전체",
+    "boarding_position": "4-4",
+    "raw_source": "8호선 - 별내역",
+    "raw_target": "경춘선"
+  },
+  {
+    "id": "tr-318",
+    "station_key": "구리",
+    "station_display": "구리역",
+    "current_line": "8호선",
+    "current_direction": "전체",
+    "updn_code": "ALL",
+    "branch_hint": null,
+    "target_lines": [
+      "경의중앙선"
+    ],
+    "target_line_raw": "경의·중앙선",
+    "target_direction": "전체",
+    "boarding_position": "2-2, 5-3",
+    "raw_source": "8호선 - 구리역",
+    "raw_target": "경의·중앙선"
+  },
+  {
+    "id": "tr-319",
+    "station_key": "천호",
+    "station_display": "천호역",
+    "current_line": "8호선",
+    "current_direction": "모란 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선"
+    ],
+    "target_line_raw": "5호선",
+    "target_direction": "하남검단산, 마천 방면",
+    "boarding_position": "5-2",
+    "raw_source": "8호선 - 천호역 - 모란 방면",
+    "raw_target": "5호선 (하남검단산, 마천 방면)"
+  },
+  {
+    "id": "tr-320",
+    "station_key": "천호",
+    "station_display": "천호역",
+    "current_line": "8호선",
+    "current_direction": "모란 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선"
+    ],
+    "target_line_raw": "5호선",
+    "target_direction": "방화 방면",
+    "boarding_position": "6-1",
+    "raw_source": "8호선 - 천호역 - 모란 방면",
+    "raw_target": "5호선 (방화 방면)"
+  },
+  {
+    "id": "tr-321",
+    "station_key": "천호",
+    "station_display": "천호역",
+    "current_line": "8호선",
+    "current_direction": "별내 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선"
+    ],
+    "target_line_raw": "5호선",
+    "target_direction": "하남검단산, 마천 방면",
+    "boarding_position": "2-2",
+    "raw_source": "8호선 - 천호역 - 별내 방면",
+    "raw_target": "5호선 (하남검단산, 마천 방면)"
+  },
+  {
+    "id": "tr-322",
+    "station_key": "천호",
+    "station_display": "천호역",
+    "current_line": "8호선",
+    "current_direction": "별내 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선"
+    ],
+    "target_line_raw": "5호선",
+    "target_direction": "방화 방면",
+    "boarding_position": "1-3",
+    "raw_source": "8호선 - 천호역 - 별내 방면",
+    "raw_target": "5호선 (방화 방면)"
+  },
+  {
+    "id": "tr-323",
+    "station_key": "잠실",
+    "station_display": "잠실역",
+    "current_line": "8호선",
+    "current_direction": "모란 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "8호선 - 잠실역 - 모란 방면",
+    "raw_target": "2호선"
+  },
+  {
+    "id": "tr-324",
+    "station_key": "잠실",
+    "station_display": "잠실역",
+    "current_line": "8호선",
+    "current_direction": "별내 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "전체",
+    "boarding_position": "6-4",
+    "raw_source": "8호선 - 잠실역 - 별내 방면",
+    "raw_target": "2호선"
+  },
+  {
+    "id": "tr-325",
+    "station_key": "석촌",
+    "station_display": "석촌역",
+    "current_line": "8호선",
+    "current_direction": "모란 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "9호선"
+    ],
+    "target_line_raw": "9호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "8호선 - 석촌역 - 모란 방면",
+    "raw_target": "9호선"
+  },
+  {
+    "id": "tr-326",
+    "station_key": "석촌",
+    "station_display": "석촌역",
+    "current_line": "8호선",
+    "current_direction": "별내 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "9호선"
+    ],
+    "target_line_raw": "9호선",
+    "target_direction": "전체",
+    "boarding_position": "6-4",
+    "raw_source": "8호선 - 석촌역 - 별내 방면",
+    "raw_target": "9호선"
+  },
+  {
+    "id": "tr-327",
+    "station_key": "가락시장",
+    "station_display": "가락시장역",
+    "current_line": "8호선",
+    "current_direction": "모란 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "3호선"
+    ],
+    "target_line_raw": "3호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "8호선 - 가락시장역 - 모란 방면",
+    "raw_target": "3호선"
+  },
+  {
+    "id": "tr-328",
+    "station_key": "가락시장",
+    "station_display": "가락시장역",
+    "current_line": "8호선",
+    "current_direction": "별내 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "3호선"
+    ],
+    "target_line_raw": "3호선",
+    "target_direction": "전체",
+    "boarding_position": "6-4",
+    "raw_source": "8호선 - 가락시장역 - 별내 방면",
+    "raw_target": "3호선"
+  },
+  {
+    "id": "tr-329",
+    "station_key": "복정",
+    "station_display": "복정역",
+    "current_line": "8호선",
+    "current_direction": "모란 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "수인분당선"
+    ],
+    "target_line_raw": "수인·분당선",
+    "target_direction": "전체",
+    "boarding_position": "3-2",
+    "raw_source": "8호선 - 복정역 - 모란 방면",
+    "raw_target": "수인·분당선"
+  },
+  {
+    "id": "tr-330",
+    "station_key": "복정",
+    "station_display": "복정역",
+    "current_line": "8호선",
+    "current_direction": "별내 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "수인분당선"
+    ],
+    "target_line_raw": "수인·분당선",
+    "target_direction": "전체",
+    "boarding_position": "4-2",
+    "raw_source": "8호선 - 복정역 - 별내 방면",
+    "raw_target": "수인·분당선"
+  },
+  {
+    "id": "tr-331",
+    "station_key": "모란",
+    "station_display": "모란역",
+    "current_line": "8호선",
+    "current_direction": "전체",
+    "updn_code": "ALL",
+    "branch_hint": null,
+    "target_lines": [
+      "수인분당선"
+    ],
+    "target_line_raw": "수인·분당선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "8호선 - 모란역",
+    "raw_target": "수인·분당선"
+  },
+  {
+    "id": "tr-332",
+    "station_key": "서울역",
+    "station_display": "서울역",
+    "current_line": "공항철도",
+    "current_direction": "전체",
+    "updn_code": "ALL",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선",
+      "4호선",
+      "GTX-A",
+      "경의중앙선"
+    ],
+    "target_line_raw": "1호선, 4호선, GTX-A, 경의·중앙선",
+    "target_direction": "전체",
+    "boarding_position": "5-1",
+    "raw_source": "공항철도 - 서울역",
+    "raw_target": "1호선, 4호선, GTX-A, 경의·중앙선"
+  },
+  {
+    "id": "tr-333",
+    "station_key": "공덕",
+    "station_display": "공덕역",
+    "current_line": "공항철도",
+    "current_direction": "서울역 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선",
+      "6호선",
+      "경의중앙선"
+    ],
+    "target_line_raw": "5호선, 6호선, 경의·중앙선",
+    "target_direction": "전체",
+    "boarding_position": "6-1",
+    "raw_source": "공항철도 - 공덕역 - 서울역 방면",
+    "raw_target": "5호선, 6호선, 경의·중앙선"
+  },
+  {
+    "id": "tr-334",
+    "station_key": "공덕",
+    "station_display": "공덕역",
+    "current_line": "공항철도",
+    "current_direction": "인천공항2터미널 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선",
+      "6호선",
+      "경의중앙선"
+    ],
+    "target_line_raw": "5호선, 6호선, 경의·중앙선",
+    "target_direction": "전체",
+    "boarding_position": "1-4",
+    "raw_source": "공항철도 - 공덕역 - 인천공항2터미널 방면",
+    "raw_target": "5호선, 6호선, 경의·중앙선"
+  },
+  {
+    "id": "tr-335",
+    "station_key": "홍대입구",
+    "station_display": "홍대입구역",
+    "current_line": "공항철도",
+    "current_direction": "서울역 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선",
+      "경의중앙선"
+    ],
+    "target_line_raw": "2호선, 경의·중앙선",
+    "target_direction": "전체",
+    "boarding_position": "5-3",
+    "raw_source": "공항철도 - 홍대입구역 - 서울역 방면",
+    "raw_target": "2호선, 경의·중앙선"
+  },
+  {
+    "id": "tr-336",
+    "station_key": "홍대입구",
+    "station_display": "홍대입구역",
+    "current_line": "공항철도",
+    "current_direction": "인천공항2터미널 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선",
+      "경의중앙선"
+    ],
+    "target_line_raw": "2호선, 경의·중앙선",
+    "target_direction": "전체",
+    "boarding_position": "2-2",
+    "raw_source": "공항철도 - 홍대입구역 - 인천공항2터미널 방면",
+    "raw_target": "2호선, 경의·중앙선"
+  },
+  {
+    "id": "tr-337",
+    "station_key": "디지털미디어시티",
+    "station_display": "디지털미디어시티역",
+    "current_line": "공항철도",
+    "current_direction": "서울역 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "6호선",
+      "경의중앙선"
+    ],
+    "target_line_raw": "6호선, 경의·중앙선",
+    "target_direction": "전체",
+    "boarding_position": "2-4",
+    "raw_source": "공항철도 - 디지털미디어시티역 - 서울역 방면",
+    "raw_target": "6호선, 경의·중앙선"
+  },
+  {
+    "id": "tr-338",
+    "station_key": "디지털미디어시티",
+    "station_display": "디지털미디어시티역",
+    "current_line": "공항철도",
+    "current_direction": "인천공항2터미널 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "6호선",
+      "경의중앙선"
+    ],
+    "target_line_raw": "6호선, 경의·중앙선",
+    "target_direction": "전체",
+    "boarding_position": "6-4",
+    "raw_source": "공항철도 - 디지털미디어시티역 - 인천공항2터미널 방면",
+    "raw_target": "6호선, 경의·중앙선"
+  },
+  {
+    "id": "tr-339",
+    "station_key": "마곡나루",
+    "station_display": "마곡나루역",
+    "current_line": "공항철도",
+    "current_direction": "서울역 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "9호선"
+    ],
+    "target_line_raw": "9호선",
+    "target_direction": "전체",
+    "boarding_position": "2-1",
+    "raw_source": "공항철도 - 마곡나루역 - 서울역 방면",
+    "raw_target": "9호선"
+  },
+  {
+    "id": "tr-340",
+    "station_key": "마곡나루",
+    "station_display": "마곡나루역",
+    "current_line": "공항철도",
+    "current_direction": "인천공항2터미널 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "9호선"
+    ],
+    "target_line_raw": "9호선",
+    "target_direction": "전체",
+    "boarding_position": "6-3",
+    "raw_source": "공항철도 - 마곡나루역 - 인천공항2터미널 방면",
+    "raw_target": "9호선"
+  },
+  {
+    "id": "tr-341",
+    "station_key": "김포공항",
+    "station_display": "김포공항역",
+    "current_line": "공항철도",
+    "current_direction": "서울역 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선"
+    ],
+    "target_line_raw": "5호선",
+    "target_direction": "하남검단산, 마천 방면",
+    "boarding_position": "6-4",
+    "raw_source": "공항철도 - 김포공항역 - 서울역 방면",
+    "raw_target": "5호선 (하남검단산, 마천 방면)"
+  },
+  {
+    "id": "tr-342",
+    "station_key": "김포공항",
+    "station_display": "김포공항역",
+    "current_line": "공항철도",
+    "current_direction": "서울역 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선"
+    ],
+    "target_line_raw": "5호선",
+    "target_direction": "방화 방면",
+    "boarding_position": "4-1",
+    "raw_source": "공항철도 - 김포공항역 - 서울역 방면",
+    "raw_target": "5호선 (방화 방면)"
+  },
+  {
+    "id": "tr-343",
+    "station_key": "김포공항",
+    "station_display": "김포공항역",
+    "current_line": "공항철도",
+    "current_direction": "서울역 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "9호선"
+    ],
+    "target_line_raw": "9호선",
+    "target_direction": "개화 방면",
+    "boarding_position": "2-2",
+    "raw_source": "공항철도 - 김포공항역 - 서울역 방면",
+    "raw_target": "9호선 (개화 방면)"
+  },
+  {
+    "id": "tr-344",
+    "station_key": "김포공항",
+    "station_display": "김포공항역",
+    "current_line": "공항철도",
+    "current_direction": "서울역 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "9호선"
+    ],
+    "target_line_raw": "9호선",
+    "target_direction": "중앙보훈병원 방면",
+    "boarding_position": "모든 문",
+    "raw_source": "공항철도 - 김포공항역 - 서울역 방면",
+    "raw_target": "9호선 (중앙보훈병원 방면)"
+  },
+  {
+    "id": "tr-345",
+    "station_key": "김포공항",
+    "station_display": "김포공항역",
+    "current_line": "공항철도",
+    "current_direction": "서울역 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "김포골드라인",
+      "서해선"
+    ],
+    "target_line_raw": "김포 골드라인, 서해선",
+    "target_direction": "전체",
+    "boarding_position": "3-4",
+    "raw_source": "공항철도 - 김포공항역 - 서울역 방면",
+    "raw_target": "김포 골드라인, 서해선"
+  },
+  {
+    "id": "tr-346",
+    "station_key": "김포공항",
+    "station_display": "김포공항역",
+    "current_line": "공항철도",
+    "current_direction": "인천공항2터미널 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선",
+      "김포골드라인",
+      "서해선"
+    ],
+    "target_line_raw": "5호선, 김포 골드라인, 서해선",
+    "target_direction": "전체",
+    "boarding_position": "3-4",
+    "raw_source": "공항철도 - 김포공항역 - 인천공항2터미널 방면",
+    "raw_target": "5호선, 김포 골드라인, 서해선"
+  },
+  {
+    "id": "tr-347",
+    "station_key": "김포공항",
+    "station_display": "김포공항역",
+    "current_line": "공항철도",
+    "current_direction": "인천공항2터미널 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "9호선"
+    ],
+    "target_line_raw": "9호선",
+    "target_direction": "개화 방면",
+    "boarding_position": "모든 문",
+    "raw_source": "공항철도 - 김포공항역 - 인천공항2터미널 방면",
+    "raw_target": "9호선 (개화 방면)"
+  },
+  {
+    "id": "tr-348",
+    "station_key": "김포공항",
+    "station_display": "김포공항역",
+    "current_line": "공항철도",
+    "current_direction": "인천공항2터미널 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "9호선"
+    ],
+    "target_line_raw": "9호선",
+    "target_direction": "중앙보훈병원 방면",
+    "boarding_position": "6-4",
+    "raw_source": "공항철도 - 김포공항역 - 인천공항2터미널 방면",
+    "raw_target": "9호선 (중앙보훈병원 방면)"
+  },
+  {
+    "id": "tr-349",
+    "station_key": "계양",
+    "station_display": "계양역",
+    "current_line": "공항철도",
+    "current_direction": "서울역 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "인천1호선"
+    ],
+    "target_line_raw": "인천 1호선",
+    "target_direction": "전체",
+    "boarding_position": "5-4",
+    "raw_source": "공항철도 - 계양역 - 서울역 방면",
+    "raw_target": "인천 1호선"
+  },
+  {
+    "id": "tr-350",
+    "station_key": "계양",
+    "station_display": "계양역",
+    "current_line": "공항철도",
+    "current_direction": "인천공항2터미널 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "인천1호선"
+    ],
+    "target_line_raw": "인천 1호선",
+    "target_direction": "전체",
+    "boarding_position": "1-4",
+    "raw_source": "공항철도 - 계양역 - 인천공항2터미널 방면",
+    "raw_target": "인천 1호선"
+  },
+  {
+    "id": "tr-351",
+    "station_key": "검암",
+    "station_display": "검암역",
+    "current_line": "공항철도",
+    "current_direction": "서울역 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "인천2호선"
+    ],
+    "target_line_raw": "인천 2호선",
+    "target_direction": "전체",
+    "boarding_position": "2-2",
+    "raw_source": "공항철도 - 검암역 - 서울역 방면",
+    "raw_target": "인천 2호선"
+  },
+  {
+    "id": "tr-352",
+    "station_key": "검암",
+    "station_display": "검암역",
+    "current_line": "공항철도",
+    "current_direction": "인천공항2터미널 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "인천2호선"
+    ],
+    "target_line_raw": "인천 2호선",
+    "target_direction": "전체",
+    "boarding_position": "6-4",
+    "raw_source": "공항철도 - 검암역 - 인천공항2터미널 방면",
+    "raw_target": "인천 2호선"
+  },
+  {
+    "id": "tr-353",
+    "station_key": "계양",
+    "station_display": "계양역",
+    "current_line": "인천1호선",
+    "current_direction": "전체",
+    "updn_code": "ALL",
+    "branch_hint": null,
+    "target_lines": [
+      "공항철도"
+    ],
+    "target_line_raw": "공항철도",
+    "target_direction": "전체",
+    "boarding_position": "3-3, 7-2",
+    "raw_source": "인천 1호선 - 계양역",
+    "raw_target": "공항철도"
+  },
+  {
+    "id": "tr-354",
+    "station_key": "부평구청",
+    "station_display": "부평구청역",
+    "current_line": "인천1호선",
+    "current_direction": "검단호수공원 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "7호선"
+    ],
+    "target_line_raw": "7호선",
+    "target_direction": "전체",
+    "boarding_position": "8-4",
+    "raw_source": "인천 1호선 - 부평구청역 - 검단호수공원 방면",
+    "raw_target": "7호선"
+  },
+  {
+    "id": "tr-355",
+    "station_key": "부평구청",
+    "station_display": "부평구청역",
+    "current_line": "인천1호선",
+    "current_direction": "송도달빛축제공원 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "7호선"
+    ],
+    "target_line_raw": "7호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "인천 1호선 - 부평구청역 - 송도달빛축제공원 방면",
+    "raw_target": "7호선"
+  },
+  {
+    "id": "tr-356",
+    "station_key": "부평",
+    "station_display": "부평역",
+    "current_line": "인천1호선",
+    "current_direction": "검단호수공원 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "3-3",
+    "raw_source": "인천 1호선 - 부평역 - 검단호수공원 방면",
+    "raw_target": "1호선"
+  },
+  {
+    "id": "tr-357",
+    "station_key": "부평",
+    "station_display": "부평역",
+    "current_line": "인천1호선",
+    "current_direction": "송도달빛축제공원 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "6-2",
+    "raw_source": "인천 1호선 - 부평역 - 송도달빛축제공원 방면",
+    "raw_target": "1호선"
+  },
+  {
+    "id": "tr-358",
+    "station_key": "인천시청",
+    "station_display": "인천시청역",
+    "current_line": "인천1호선",
+    "current_direction": "검단호수공원 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "인천2호선"
+    ],
+    "target_line_raw": "인천 2호선",
+    "target_direction": "전체",
+    "boarding_position": "8-4",
+    "raw_source": "인천 1호선 - 인천시청역 - 검단호수공원 방면",
+    "raw_target": "인천 2호선"
+  },
+  {
+    "id": "tr-359",
+    "station_key": "인천시청",
+    "station_display": "인천시청역",
+    "current_line": "인천1호선",
+    "current_direction": "송도달빛축제공원 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "인천2호선"
+    ],
+    "target_line_raw": "인천 2호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "인천 1호선 - 인천시청역 - 송도달빛축제공원 방면",
+    "raw_target": "인천 2호선"
+  },
+  {
+    "id": "tr-360",
+    "station_key": "원인재",
+    "station_display": "원인재역",
+    "current_line": "인천1호선",
+    "current_direction": "검단호수공원 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "수인분당선"
+    ],
+    "target_line_raw": "수인·분당선",
+    "target_direction": "전체",
+    "boarding_position": "2-3",
+    "raw_source": "인천 1호선 - 원인재역 - 검단호수공원 방면",
+    "raw_target": "수인·분당선"
+  },
+  {
+    "id": "tr-361",
+    "station_key": "원인재",
+    "station_display": "원인재역",
+    "current_line": "인천1호선",
+    "current_direction": "송도달빛축제공원 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "수인분당선"
+    ],
+    "target_line_raw": "수인·분당선",
+    "target_direction": "전체",
+    "boarding_position": "7-2",
+    "raw_source": "인천 1호선 - 원인재역 - 송도달빛축제공원 방면",
+    "raw_target": "수인·분당선"
+  },
+  {
+    "id": "tr-362",
+    "station_key": "검암",
+    "station_display": "검암역",
+    "current_line": "인천2호선",
+    "current_direction": "검단오류 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "공항철도"
+    ],
+    "target_line_raw": "공항철도",
+    "target_direction": "전체",
+    "boarding_position": "2-3",
+    "raw_source": "인천 2호선 - 검암역 - 검단오류 방면",
+    "raw_target": "공항철도"
+  },
+  {
+    "id": "tr-363",
+    "station_key": "검암",
+    "station_display": "검암역",
+    "current_line": "인천2호선",
+    "current_direction": "운연 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "공항철도"
+    ],
+    "target_line_raw": "공항철도",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "인천 2호선 - 검암역 - 운연 방면",
+    "raw_target": "공항철도"
+  },
+  {
+    "id": "tr-364",
+    "station_key": "석남",
+    "station_display": "석남역",
+    "current_line": "인천2호선",
+    "current_direction": "검단오류 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "7호선"
+    ],
+    "target_line_raw": "7호선",
+    "target_direction": "전체",
+    "boarding_position": "2-3",
+    "raw_source": "인천 2호선 - 석남역 - 검단오류 방면",
+    "raw_target": "7호선"
+  },
+  {
+    "id": "tr-365",
+    "station_key": "석남",
+    "station_display": "석남역",
+    "current_line": "인천2호선",
+    "current_direction": "운연 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "7호선"
+    ],
+    "target_line_raw": "7호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "인천 2호선 - 석남역 - 운연 방면",
+    "raw_target": "7호선"
+  },
+  {
+    "id": "tr-366",
+    "station_key": "주안",
+    "station_display": "주안역",
+    "current_line": "인천2호선",
+    "current_direction": "검단오류 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "2-3",
+    "raw_source": "인천 2호선 - 주안역 - 검단오류 방면",
+    "raw_target": "1호선"
+  },
+  {
+    "id": "tr-367",
+    "station_key": "주안",
+    "station_display": "주안역",
+    "current_line": "인천2호선",
+    "current_direction": "운연 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "인천 2호선 - 주안역 - 운연 방면",
+    "raw_target": "1호선"
+  },
+  {
+    "id": "tr-368",
+    "station_key": "인천시청",
+    "station_display": "인천시청역",
+    "current_line": "인천2호선",
+    "current_direction": "검단오류 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "인천1호선"
+    ],
+    "target_line_raw": "인천 1호선",
+    "target_direction": "전체",
+    "boarding_position": "2-3",
+    "raw_source": "인천 2호선 - 인천시청역 - 검단오류 방면",
+    "raw_target": "인천 1호선"
+  },
+  {
+    "id": "tr-369",
+    "station_key": "인천시청",
+    "station_display": "인천시청역",
+    "current_line": "인천2호선",
+    "current_direction": "운연 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "인천1호선"
+    ],
+    "target_line_raw": "인천 1호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "인천 2호선 - 인천시청역 - 운연 방면",
+    "raw_target": "인천 1호선"
+  },
+  {
+    "id": "tr-370",
+    "station_key": "광운대",
+    "station_display": "광운대역",
+    "current_line": "경춘선",
+    "current_direction": "전체",
+    "updn_code": "ALL",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "5-4",
+    "raw_source": "경춘선 - 광운대역",
+    "raw_target": "1호선"
+  },
+  {
+    "id": "tr-371",
+    "station_key": "청량리",
+    "station_display": "청량리역",
+    "current_line": "경춘선",
+    "current_direction": "전체",
+    "updn_code": "ALL",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선",
+      "경의중앙선"
+    ],
+    "target_line_raw": "1호선, 경의·중앙선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "경춘선 - 청량리역",
+    "raw_target": "1호선, 경의·중앙선"
+  },
+  {
+    "id": "tr-372",
+    "station_key": "청량리",
+    "station_display": "청량리역",
+    "current_line": "경춘선",
+    "current_direction": "전체",
+    "updn_code": "ALL",
+    "branch_hint": null,
+    "target_lines": [
+      "수인분당선"
+    ],
+    "target_line_raw": "수인·분당선",
+    "target_direction": "전체",
+    "boarding_position": "1-1 ~ 6-4",
+    "raw_source": "경춘선 - 청량리역",
+    "raw_target": "수인·분당선"
+  },
+  {
+    "id": "tr-373",
+    "station_key": "회기",
+    "station_display": "회기역",
+    "current_line": "경춘선",
+    "current_direction": "춘천 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "6-2",
+    "raw_source": "경춘선 - 회기역 - 춘천 방면",
+    "raw_target": "1호선"
+  },
+  {
+    "id": "tr-374",
+    "station_key": "회기",
+    "station_display": "회기역",
+    "current_line": "경춘선",
+    "current_direction": "춘천 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "경의중앙선"
+    ],
+    "target_line_raw": "경의·중앙선",
+    "target_direction": "전체",
+    "boarding_position": "모든 문",
+    "raw_source": "경춘선 - 회기역 - 춘천 방면",
+    "raw_target": "경의·중앙선"
+  },
+  {
+    "id": "tr-375",
+    "station_key": "회기",
+    "station_display": "회기역",
+    "current_line": "경춘선",
+    "current_direction": "청량리 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "3-3",
+    "raw_source": "경춘선 - 회기역 - 청량리 방면",
+    "raw_target": "1호선"
+  },
+  {
+    "id": "tr-376",
+    "station_key": "회기",
+    "station_display": "회기역",
+    "current_line": "경춘선",
+    "current_direction": "청량리 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "경의중앙선"
+    ],
+    "target_line_raw": "경의·중앙선",
+    "target_direction": "전체",
+    "boarding_position": "모든 문",
+    "raw_source": "경춘선 - 회기역 - 청량리 방면",
+    "raw_target": "경의·중앙선"
+  },
+  {
+    "id": "tr-377",
+    "station_key": "상봉",
+    "station_display": "상봉역",
+    "current_line": "경춘선",
+    "current_direction": "청량리 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "7호선",
+      "경의중앙선"
+    ],
+    "target_line_raw": "7호선, 경의·중앙선",
+    "target_direction": "전체",
+    "boarding_position": "5-1",
+    "raw_source": "경춘선 - 상봉역 - 청량리 방면",
+    "raw_target": "7호선, 경의·중앙선"
+  },
+  {
+    "id": "tr-378",
+    "station_key": "상봉",
+    "station_display": "상봉역",
+    "current_line": "경춘선",
+    "current_direction": "춘천 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "7호선",
+      "경의중앙선"
+    ],
+    "target_line_raw": "7호선, 경의·중앙선",
+    "target_direction": "전체",
+    "boarding_position": "5-1",
+    "raw_source": "경춘선 - 상봉역 - 춘천 방면",
+    "raw_target": "7호선, 경의·중앙선"
+  },
+  {
+    "id": "tr-379",
+    "station_key": "망우",
+    "station_display": "망우역",
+    "current_line": "경춘선",
+    "current_direction": "청량리 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "경의중앙선"
+    ],
+    "target_line_raw": "경의·중앙선",
+    "target_direction": "전체",
+    "boarding_position": "3-4",
+    "raw_source": "경춘선 - 망우역 - 청량리 방면",
+    "raw_target": "경의·중앙선"
+  },
+  {
+    "id": "tr-380",
+    "station_key": "망우",
+    "station_display": "망우역",
+    "current_line": "경춘선",
+    "current_direction": "춘천 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "경의중앙선"
+    ],
+    "target_line_raw": "경의·중앙선",
+    "target_direction": "전체",
+    "boarding_position": "6-1",
+    "raw_source": "경춘선 - 망우역 - 춘천 방면",
+    "raw_target": "경의·중앙선"
+  },
+  {
+    "id": "tr-381",
+    "station_key": "신내",
+    "station_display": "신내역",
+    "current_line": "경춘선",
+    "current_direction": "전체",
+    "updn_code": "ALL",
+    "branch_hint": null,
+    "target_lines": [
+      "6호선"
+    ],
+    "target_line_raw": "6호선",
+    "target_direction": "전체",
+    "boarding_position": "4-4",
+    "raw_source": "경춘선 - 신내역",
+    "raw_target": "6호선"
+  },
+  {
+    "id": "tr-382",
+    "station_key": "별내",
+    "station_display": "별내역",
+    "current_line": "경춘선",
+    "current_direction": "청량리 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "8호선"
+    ],
+    "target_line_raw": "8호선",
+    "target_direction": "전체",
+    "boarding_position": "4-2",
+    "raw_source": "경춘선 - 별내역 - 청량리 방면",
+    "raw_target": "8호선"
+  },
+  {
+    "id": "tr-383",
+    "station_key": "별내",
+    "station_display": "별내역",
+    "current_line": "경춘선",
+    "current_direction": "춘천 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "8호선"
+    ],
+    "target_line_raw": "8호선",
+    "target_direction": "전체",
+    "boarding_position": "5-3",
+    "raw_source": "경춘선 - 별내역 - 춘천 방면",
+    "raw_target": "8호선"
+  },
+  {
+    "id": "tr-384",
+    "station_key": "신사",
+    "station_display": "신사역",
+    "current_line": "신분당선",
+    "current_direction": "전체",
+    "updn_code": "ALL",
+    "branch_hint": null,
+    "target_lines": [
+      "3호선"
+    ],
+    "target_line_raw": "3호선",
+    "target_direction": "대화 방면",
+    "boarding_position": "4-3",
+    "raw_source": "신분당선 - 신사역",
+    "raw_target": "3호선 (대화 방면)"
+  },
+  {
+    "id": "tr-385",
+    "station_key": "신사",
+    "station_display": "신사역",
+    "current_line": "신분당선",
+    "current_direction": "전체",
+    "updn_code": "ALL",
+    "branch_hint": null,
+    "target_lines": [
+      "3호선"
+    ],
+    "target_line_raw": "3호선",
+    "target_direction": "오금 방면",
+    "boarding_position": "3-2",
+    "raw_source": "신분당선 - 신사역",
+    "raw_target": "3호선 (오금 방면)"
+  },
+  {
+    "id": "tr-386",
+    "station_key": "논현",
+    "station_display": "논현역",
+    "current_line": "신분당선",
+    "current_direction": "신사 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "7호선"
+    ],
+    "target_line_raw": "7호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "신분당선 - 논현역 - 신사 방면",
+    "raw_target": "7호선"
+  },
+  {
+    "id": "tr-387",
+    "station_key": "논현",
+    "station_display": "논현역",
+    "current_line": "신분당선",
+    "current_direction": "광교 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "7호선"
+    ],
+    "target_line_raw": "7호선",
+    "target_direction": "전체",
+    "boarding_position": "6-4",
+    "raw_source": "신분당선 - 논현역 - 광교 방면",
+    "raw_target": "7호선"
+  },
+  {
+    "id": "tr-388",
+    "station_key": "신논현",
+    "station_display": "신논현역",
+    "current_line": "신분당선",
+    "current_direction": "신사 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "9호선"
+    ],
+    "target_line_raw": "9호선",
+    "target_direction": "전체",
+    "boarding_position": "1-2",
+    "raw_source": "신분당선 - 신논현역 - 신사 방면",
+    "raw_target": "9호선"
+  },
+  {
+    "id": "tr-389",
+    "station_key": "신논현",
+    "station_display": "신논현역",
+    "current_line": "신분당선",
+    "current_direction": "광교 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "9호선"
+    ],
+    "target_line_raw": "9호선",
+    "target_direction": "전체",
+    "boarding_position": "6-3",
+    "raw_source": "신분당선 - 신논현역 - 광교 방면",
+    "raw_target": "9호선"
+  },
+  {
+    "id": "tr-390",
+    "station_key": "강남",
+    "station_display": "강남역",
+    "current_line": "신분당선",
+    "current_direction": "신사 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1, 3-2",
+    "raw_source": "신분당선 - 강남역 - 신사 방면",
+    "raw_target": "2호선"
+  },
+  {
+    "id": "tr-391",
+    "station_key": "강남",
+    "station_display": "강남역",
+    "current_line": "신분당선",
+    "current_direction": "광교 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "전체",
+    "boarding_position": "4-3, 6-4",
+    "raw_source": "신분당선 - 강남역 - 광교 방면",
+    "raw_target": "2호선"
+  },
+  {
+    "id": "tr-392",
+    "station_key": "양재",
+    "station_display": "양재역",
+    "current_line": "신분당선",
+    "current_direction": "신사 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "3호선"
+    ],
+    "target_line_raw": "3호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "신분당선 - 양재역 - 신사 방면",
+    "raw_target": "3호선"
+  },
+  {
+    "id": "tr-393",
+    "station_key": "양재",
+    "station_display": "양재역",
+    "current_line": "신분당선",
+    "current_direction": "광교 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "3호선"
+    ],
+    "target_line_raw": "3호선",
+    "target_direction": "전체",
+    "boarding_position": "6-4",
+    "raw_source": "신분당선 - 양재역 - 광교 방면",
+    "raw_target": "3호선"
+  },
+  {
+    "id": "tr-394",
+    "station_key": "판교",
+    "station_display": "판교역",
+    "current_line": "신분당선",
+    "current_direction": "신사 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "경강선"
+    ],
+    "target_line_raw": "경강선",
+    "target_direction": "전체",
+    "boarding_position": "4-3",
+    "raw_source": "신분당선 - 판교역 - 신사 방면",
+    "raw_target": "경강선"
+  },
+  {
+    "id": "tr-395",
+    "station_key": "판교",
+    "station_display": "판교역",
+    "current_line": "신분당선",
+    "current_direction": "광교 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "경강선"
+    ],
+    "target_line_raw": "경강선",
+    "target_direction": "전체",
+    "boarding_position": "3-1",
+    "raw_source": "신분당선 - 판교역 - 광교 방면",
+    "raw_target": "경강선"
+  },
+  {
+    "id": "tr-396",
+    "station_key": "정자",
+    "station_display": "정자역",
+    "current_line": "신분당선",
+    "current_direction": "신사 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "수인분당선"
+    ],
+    "target_line_raw": "수인·분당선",
+    "target_direction": "전체",
+    "boarding_position": "2-4",
+    "raw_source": "신분당선 - 정자역 - 신사 방면",
+    "raw_target": "수인·분당선"
+  },
+  {
+    "id": "tr-397",
+    "station_key": "정자",
+    "station_display": "정자역",
+    "current_line": "신분당선",
+    "current_direction": "광교 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "수인분당선"
+    ],
+    "target_line_raw": "수인·분당선",
+    "target_direction": "전체",
+    "boarding_position": "2-1",
+    "raw_source": "신분당선 - 정자역 - 광교 방면",
+    "raw_target": "수인·분당선"
+  },
+  {
+    "id": "tr-398",
+    "station_key": "미금",
+    "station_display": "미금역",
+    "current_line": "신분당선",
+    "current_direction": "신사 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "수인분당선"
+    ],
+    "target_line_raw": "수인·분당선",
+    "target_direction": "전체",
+    "boarding_position": "4-1",
+    "raw_source": "신분당선 - 미금역 - 신사 방면",
+    "raw_target": "수인·분당선"
+  },
+  {
+    "id": "tr-399",
+    "station_key": "미금",
+    "station_display": "미금역",
+    "current_line": "신분당선",
+    "current_direction": "광교 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "수인분당선"
+    ],
+    "target_line_raw": "수인·분당선",
+    "target_direction": "전체",
+    "boarding_position": "4-1",
+    "raw_source": "신분당선 - 미금역 - 광교 방면",
+    "raw_target": "수인·분당선"
+  },
+  {
+    "id": "tr-400",
+    "station_key": "판교",
+    "station_display": "판교역",
+    "current_line": "경강선",
+    "current_direction": "전체",
+    "updn_code": "ALL",
+    "branch_hint": null,
+    "target_lines": [
+      "신분당선"
+    ],
+    "target_line_raw": "신분당선",
+    "target_direction": "신사 방면",
+    "boarding_position": "2-3",
+    "raw_source": "경강선 - 판교역",
+    "raw_target": "신분당선 (신사 방면)"
+  },
+  {
+    "id": "tr-401",
+    "station_key": "판교",
+    "station_display": "판교역",
+    "current_line": "경강선",
+    "current_direction": "전체",
+    "updn_code": "ALL",
+    "branch_hint": null,
+    "target_lines": [
+      "신분당선"
+    ],
+    "target_line_raw": "신분당선",
+    "target_direction": "광교 방면",
+    "boarding_position": "3-2",
+    "raw_source": "경강선 - 판교역",
+    "raw_target": "신분당선 (광교 방면)"
+  },
+  {
+    "id": "tr-402",
+    "station_key": "성남",
+    "station_display": "성남역",
+    "current_line": "경강선",
+    "current_direction": "판교 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "GTX-A"
+    ],
+    "target_line_raw": "GTX-A",
+    "target_direction": "전체",
+    "boarding_position": "4-2",
+    "raw_source": "경강선 - 성남역 - 판교 방면",
+    "raw_target": "GTX-A"
+  },
+  {
+    "id": "tr-403",
+    "station_key": "성남",
+    "station_display": "성남역",
+    "current_line": "경강선",
+    "current_direction": "여주 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "GTX-A"
+    ],
+    "target_line_raw": "GTX-A",
+    "target_direction": "전체",
+    "boarding_position": "1-3",
+    "raw_source": "경강선 - 성남역 - 여주 방면",
+    "raw_target": "GTX-A"
+  },
+  {
+    "id": "tr-404",
+    "station_key": "이매",
+    "station_display": "이매역",
+    "current_line": "경강선",
+    "current_direction": "판교 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "수인분당선"
+    ],
+    "target_line_raw": "수인·분당선",
+    "target_direction": "인천 방면",
+    "boarding_position": "4-4",
+    "raw_source": "경강선 - 이매역 - 판교 방면",
+    "raw_target": "수인·분당선 (인천 방면)"
+  },
+  {
+    "id": "tr-405",
+    "station_key": "이매",
+    "station_display": "이매역",
+    "current_line": "경강선",
+    "current_direction": "판교 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "수인분당선"
+    ],
+    "target_line_raw": "수인·분당선",
+    "target_direction": "청량리 방면",
+    "boarding_position": "2-3",
+    "raw_source": "경강선 - 이매역 - 판교 방면",
+    "raw_target": "수인·분당선 (청량리 방면)"
+  },
+  {
+    "id": "tr-406",
+    "station_key": "이매",
+    "station_display": "이매역",
+    "current_line": "경강선",
+    "current_direction": "여주 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "수인분당선"
+    ],
+    "target_line_raw": "수인·분당선",
+    "target_direction": "인천 방면",
+    "boarding_position": "1-1",
+    "raw_source": "경강선 - 이매역 - 여주 방면",
+    "raw_target": "수인·분당선 (인천 방면)"
+  },
+  {
+    "id": "tr-407",
+    "station_key": "이매",
+    "station_display": "이매역",
+    "current_line": "경강선",
+    "current_direction": "여주 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "수인분당선"
+    ],
+    "target_line_raw": "수인·분당선",
+    "target_direction": "청량리 방면",
+    "boarding_position": "3-2",
+    "raw_source": "경강선 - 이매역 - 여주 방면",
+    "raw_target": "수인·분당선 (청량리 방면)"
+  },
+  {
+    "id": "tr-408",
+    "station_key": "대곡",
+    "station_display": "대곡역",
+    "current_line": "서해선",
+    "current_direction": "일산 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "3호선",
+      "GTX-A"
+    ],
+    "target_line_raw": "3호선, GTX-A",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "서해선 - 대곡역 - 일산 방면",
+    "raw_target": "3호선, GTX-A"
+  },
+  {
+    "id": "tr-409",
+    "station_key": "대곡",
+    "station_display": "대곡역",
+    "current_line": "서해선",
+    "current_direction": "일산 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "경의중앙선"
+    ],
+    "target_line_raw": "경의·중앙선",
+    "target_direction": "문산 방면",
+    "boarding_position": "모든 문",
+    "raw_source": "서해선 - 대곡역 - 일산 방면",
+    "raw_target": "경의·중앙선 (문산 방면)"
+  },
+  {
+    "id": "tr-410",
+    "station_key": "대곡",
+    "station_display": "대곡역",
+    "current_line": "서해선",
+    "current_direction": "원시 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "3호선",
+      "GTX-A"
+    ],
+    "target_line_raw": "3호선, GTX-A",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "서해선 - 대곡역 - 원시 방면",
+    "raw_target": "3호선, GTX-A"
+  },
+  {
+    "id": "tr-411",
+    "station_key": "대곡",
+    "station_display": "대곡역",
+    "current_line": "서해선",
+    "current_direction": "원시 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "경의중앙선"
+    ],
+    "target_line_raw": "경의·중앙선",
+    "target_direction": "서울역, 용문 방면",
+    "boarding_position": "모든 문",
+    "raw_source": "서해선 - 대곡역 - 원시 방면",
+    "raw_target": "경의·중앙선 (서울역, 용문 방면)"
+  },
+  {
+    "id": "tr-412",
+    "station_key": "능곡",
+    "station_display": "능곡역",
+    "current_line": "서해선",
+    "current_direction": "일산 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "경의중앙선"
+    ],
+    "target_line_raw": "경의·중앙선",
+    "target_direction": "서울역/용문 방면",
+    "boarding_position": "3-1",
+    "raw_source": "서해선 - 능곡역 - 일산 방면",
+    "raw_target": "경의·중앙선 (서울역/용문 방면)"
+  },
+  {
+    "id": "tr-413",
+    "station_key": "능곡",
+    "station_display": "능곡역",
+    "current_line": "서해선",
+    "current_direction": "원시 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "경의중앙선"
+    ],
+    "target_line_raw": "경의·중앙선",
+    "target_direction": "서울역/용문 방면",
+    "boarding_position": "4-3",
+    "raw_source": "서해선 - 능곡역 - 원시 방면",
+    "raw_target": "경의·중앙선 (서울역/용문 방면)"
+  },
+  {
+    "id": "tr-414",
+    "station_key": "김포공항",
+    "station_display": "김포공항역",
+    "current_line": "서해선",
+    "current_direction": "일산 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선",
+      "9호선",
+      "공항철도",
+      "김포골드라인"
+    ],
+    "target_line_raw": "5호선, 9호선, 공항철도, 김포 골드라인",
+    "target_direction": "전체",
+    "boarding_position": "3-3",
+    "raw_source": "서해선 - 김포공항역 - 일산 방면",
+    "raw_target": "5호선, 9호선, 공항철도, 김포 골드라인"
+  },
+  {
+    "id": "tr-415",
+    "station_key": "김포공항",
+    "station_display": "김포공항역",
+    "current_line": "서해선",
+    "current_direction": "원시 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선",
+      "9호선",
+      "공항철도",
+      "김포골드라인"
+    ],
+    "target_line_raw": "5호선, 9호선, 공항철도, 김포 골드라인",
+    "target_direction": "전체",
+    "boarding_position": "4-2",
+    "raw_source": "서해선 - 김포공항역 - 원시 방면",
+    "raw_target": "5호선, 9호선, 공항철도, 김포 골드라인"
+  },
+  {
+    "id": "tr-416",
+    "station_key": "부천종합운동장",
+    "station_display": "부천종합운동장역",
+    "current_line": "서해선",
+    "current_direction": "일산 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "7호선"
+    ],
+    "target_line_raw": "7호선",
+    "target_direction": "전체",
+    "boarding_position": "2-1",
+    "raw_source": "서해선 - 부천종합운동장역 - 일산 방면",
+    "raw_target": "7호선"
+  },
+  {
+    "id": "tr-417",
+    "station_key": "부천종합운동장",
+    "station_display": "부천종합운동장역",
+    "current_line": "서해선",
+    "current_direction": "원시 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "7호선"
+    ],
+    "target_line_raw": "7호선",
+    "target_direction": "전체",
+    "boarding_position": "4-4",
+    "raw_source": "서해선 - 부천종합운동장역 - 원시 방면",
+    "raw_target": "7호선"
+  },
+  {
+    "id": "tr-418",
+    "station_key": "소사",
+    "station_display": "소사역",
+    "current_line": "서해선",
+    "current_direction": "대곡 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "4-4",
+    "raw_source": "서해선 - 소사역 - 대곡 방면",
+    "raw_target": "1호선"
+  },
+  {
+    "id": "tr-419",
+    "station_key": "소사",
+    "station_display": "소사역",
+    "current_line": "서해선",
+    "current_direction": "원시 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "서해선 - 소사역 - 원시 방면",
+    "raw_target": "1호선"
+  },
+  {
+    "id": "tr-420",
+    "station_key": "초지",
+    "station_display": "초지역",
+    "current_line": "서해선",
+    "current_direction": "일산 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "4호선",
+      "수인분당선"
+    ],
+    "target_line_raw": "4호선, 수인·분당선",
+    "target_direction": "전체",
+    "boarding_position": "4-4",
+    "raw_source": "서해선 - 초지역 - 일산 방면",
+    "raw_target": "4호선, 수인·분당선"
+  },
+  {
+    "id": "tr-421",
+    "station_key": "초지",
+    "station_display": "초지역",
+    "current_line": "서해선",
+    "current_direction": "원시 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "4호선",
+      "수인분당선"
+    ],
+    "target_line_raw": "4호선, 수인·분당선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "서해선 - 초지역 - 원시 방면",
+    "raw_target": "4호선, 수인·분당선"
+  },
+  {
+    "id": "tr-422",
+    "station_key": "회룡",
+    "station_display": "회룡역",
+    "current_line": "의정부경전철",
+    "current_direction": "발곡 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "2-1",
+    "raw_source": "의정부 경전철 - 회룡역 - 발곡 방면",
+    "raw_target": "1호선"
+  },
+  {
+    "id": "tr-423",
+    "station_key": "회룡",
+    "station_display": "회룡역",
+    "current_line": "의정부경전철",
+    "current_direction": "탑석 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "의정부 경전철 - 회룡역 - 탑석 방면",
+    "raw_target": "1호선"
+  },
+  {
+    "id": "tr-424",
+    "station_key": "기흥",
+    "station_display": "기흥역",
+    "current_line": "용인경전철",
+    "current_direction": "전체",
+    "updn_code": "ALL",
+    "branch_hint": null,
+    "target_lines": [
+      "수인분당선"
+    ],
+    "target_line_raw": "수인·분당선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "용인 에버라인 - 기흥역",
+    "raw_target": "수인·분당선"
+  },
+  {
+    "id": "tr-425",
+    "station_key": "성신여대입구",
+    "station_display": "성신여대입구역",
+    "current_line": "우이신설선",
+    "current_direction": "북한산우이 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "4호선"
+    ],
+    "target_line_raw": "4호선",
+    "target_direction": "전체",
+    "boarding_position": "1-2",
+    "raw_source": "우이신설선 - 성신여대입구역 - 북한산우이 방면",
+    "raw_target": "4호선"
+  },
+  {
+    "id": "tr-426",
+    "station_key": "성신여대입구",
+    "station_display": "성신여대입구역",
+    "current_line": "우이신설선",
+    "current_direction": "신설동 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "4호선"
+    ],
+    "target_line_raw": "4호선",
+    "target_direction": "전체",
+    "boarding_position": "2-1",
+    "raw_source": "우이신설선 - 성신여대입구역 - 신설동 방면",
+    "raw_target": "4호선"
+  },
+  {
+    "id": "tr-427",
+    "station_key": "보문",
+    "station_display": "보문역",
+    "current_line": "우이신설선",
+    "current_direction": "북한산우이 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "6호선"
+    ],
+    "target_line_raw": "6호선",
+    "target_direction": "전체",
+    "boarding_position": "2-2",
+    "raw_source": "우이신설선 - 보문역 - 북한산우이 방면",
+    "raw_target": "6호선"
+  },
+  {
+    "id": "tr-428",
+    "station_key": "보문",
+    "station_display": "보문역",
+    "current_line": "우이신설선",
+    "current_direction": "신설동 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "6호선"
+    ],
+    "target_line_raw": "6호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "우이신설선 - 보문역 - 신설동 방면",
+    "raw_target": "6호선"
+  },
+  {
+    "id": "tr-429",
+    "station_key": "신설동",
+    "station_display": "신설동역",
+    "current_line": "우이신설선",
+    "current_direction": "전체",
+    "updn_code": "ALL",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선",
+      "2호선 성수지선"
+    ],
+    "target_line_raw": "1호선, 2호선 성수지선",
+    "target_direction": "전체",
+    "boarding_position": "1-2",
+    "raw_source": "우이신설선 - 신설동역",
+    "raw_target": "1호선, 2호선 성수지선"
+  },
+  {
+    "id": "tr-430",
+    "station_key": "샛강",
+    "station_display": "샛강역",
+    "current_line": "신림선",
+    "current_direction": "전체",
+    "updn_code": "ALL",
+    "branch_hint": null,
+    "target_lines": [
+      "9호선"
+    ],
+    "target_line_raw": "9호선",
+    "target_direction": "전체",
+    "boarding_position": "3-1",
+    "raw_source": "신림선 - 샛강역",
+    "raw_target": "9호선"
+  },
+  {
+    "id": "tr-431",
+    "station_key": "대방",
+    "station_display": "대방역",
+    "current_line": "신림선",
+    "current_direction": "샛강 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "3-1",
+    "raw_source": "신림선 - 대방역 - 샛강 방면",
+    "raw_target": "1호선"
+  },
+  {
+    "id": "tr-432",
+    "station_key": "대방",
+    "station_display": "대방역",
+    "current_line": "신림선",
+    "current_direction": "관악산 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "2-1",
+    "raw_source": "신림선 - 대방역 - 관악산 방면",
+    "raw_target": "1호선"
+  },
+  {
+    "id": "tr-433",
+    "station_key": "보라매",
+    "station_display": "보라매역",
+    "current_line": "신림선",
+    "current_direction": "샛강 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "7호선"
+    ],
+    "target_line_raw": "7호선",
+    "target_direction": "전체",
+    "boarding_position": "3-1",
+    "raw_source": "신림선 - 보라매역 - 샛강 방면",
+    "raw_target": "7호선"
+  },
+  {
+    "id": "tr-434",
+    "station_key": "보라매",
+    "station_display": "보라매역",
+    "current_line": "신림선",
+    "current_direction": "관악산 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "7호선"
+    ],
+    "target_line_raw": "7호선",
+    "target_direction": "전체",
+    "boarding_position": "1-2",
+    "raw_source": "신림선 - 보라매역 - 관악산 방면",
+    "raw_target": "7호선"
+  },
+  {
+    "id": "tr-435",
+    "station_key": "신림",
+    "station_display": "신림역",
+    "current_line": "신림선",
+    "current_direction": "샛강 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "전체",
+    "boarding_position": "3-2",
+    "raw_source": "신림선 - 신림역 - 샛강 방면",
+    "raw_target": "2호선"
+  },
+  {
+    "id": "tr-436",
+    "station_key": "신림",
+    "station_display": "신림역",
+    "current_line": "신림선",
+    "current_direction": "관악산 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "신림선 - 신림역 - 관악산 방면",
+    "raw_target": "2호선"
+  },
+  {
+    "id": "tr-437",
+    "station_key": "김포공항",
+    "station_display": "김포공항역",
+    "current_line": "김포골드라인",
+    "current_direction": "전체",
+    "updn_code": "ALL",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선",
+      "9호선",
+      "공항철도",
+      "서해선"
+    ],
+    "target_line_raw": "5호선, 9호선, 공항철도, 서해선",
+    "target_direction": "전체",
+    "boarding_position": "2-2",
+    "raw_source": "김포 골드라인 - 김포공항역",
+    "raw_target": "5호선, 9호선, 공항철도, 서해선"
+  },
+  {
+    "id": "tr-438",
+    "station_key": "대곡",
+    "station_display": "대곡역",
+    "current_line": "GTX-A",
+    "current_direction": "운정중앙 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "3호선",
+      "경의중앙선",
+      "서해선"
+    ],
+    "target_line_raw": "3호선, 경의·중앙선, 서해선",
+    "target_direction": "전체",
+    "boarding_position": "3-1, 7-1",
+    "raw_source": "GTX-A - 대곡역 - 운정중앙 방면",
+    "raw_target": "3호선, 경의·중앙선, 서해선"
+  },
+  {
+    "id": "tr-439",
+    "station_key": "대곡",
+    "station_display": "대곡역",
+    "current_line": "GTX-A",
+    "current_direction": "서울역 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "3호선",
+      "경의중앙선",
+      "서해선"
+    ],
+    "target_line_raw": "3호선, 경의·중앙선, 서해선",
+    "target_direction": "전체",
+    "boarding_position": "2-3, 6-3",
+    "raw_source": "GTX-A - 대곡역 - 서울역 방면",
+    "raw_target": "3호선, 경의·중앙선, 서해선"
+  },
+  {
+    "id": "tr-443",
+    "station_key": "수서",
+    "station_display": "수서역",
+    "current_line": "GTX-A",
+    "current_direction": "전체",
+    "updn_code": "ALL",
+    "branch_hint": null,
+    "target_lines": [
+      "3호선",
+      "수인분당선"
+    ],
+    "target_line_raw": "3호선, 수인·분당선",
+    "target_direction": "전체",
+    "boarding_position": "2-3",
+    "raw_source": "GTX-A - 수서역",
+    "raw_target": "3호선, 수인·분당선"
+  },
+  {
+    "id": "tr-444",
+    "station_key": "성남",
+    "station_display": "성남역",
+    "current_line": "GTX-A",
+    "current_direction": "수서 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "경강선"
+    ],
+    "target_line_raw": "경강선",
+    "target_direction": "전체",
+    "boarding_position": "6-2",
+    "raw_source": "GTX-A - 성남역 - 수서 방면",
+    "raw_target": "경강선"
+  },
+  {
+    "id": "tr-445",
+    "station_key": "성남",
+    "station_display": "성남역",
+    "current_line": "GTX-A",
+    "current_direction": "동탄 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "경강선"
+    ],
+    "target_line_raw": "경강선",
+    "target_direction": "전체",
+    "boarding_position": "3-2",
+    "raw_source": "GTX-A - 성남역 - 동탄 방면",
+    "raw_target": "경강선"
+  },
+  {
+    "id": "tr-446",
+    "station_key": "구성",
+    "station_display": "구성역",
+    "current_line": "GTX-A",
+    "current_direction": "수서 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "수인분당선"
+    ],
+    "target_line_raw": "수인·분당선",
+    "target_direction": "전체",
+    "boarding_position": "4-3",
+    "raw_source": "GTX-A - 구성역 - 수서 방면",
+    "raw_target": "수인·분당선"
+  },
+  {
+    "id": "tr-447",
+    "station_key": "구성",
+    "station_display": "구성역",
+    "current_line": "GTX-A",
+    "current_direction": "동탄 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "수인분당선"
+    ],
+    "target_line_raw": "수인·분당선",
+    "target_direction": "전체",
+    "boarding_position": "5-1",
+    "raw_source": "GTX-A - 구성역 - 동탄 방면",
+    "raw_target": "수인·분당선"
+  }
+]

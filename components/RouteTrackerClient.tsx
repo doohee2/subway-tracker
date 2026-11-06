@@ -4,8 +4,11 @@ import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import AlarmButton from "@/components/AlarmButton";
+import TransferInfoSlideCard from "@/components/TransferInfoSlideCard";
 import { hmToSeconds, parseKSTDate, formatKSTTime } from "@/utils/subwayData";
 import { getLineColor, getLineNumberText } from "@/utils/subwayColors";
+import { getTransfersForRouteStation } from "@/utils/transferData";
+import { NormalizedTransferRecord } from "@/types/transfer";
 import { createClientError, extractClientErrorInfo, formatUserErrorMessage } from "@/utils/errorMessage";
 import { APP_CONFIG } from "@/utils/config";
 
@@ -72,6 +75,23 @@ export default function RouteTrackerClient({
   const [lastUpdated, setLastUpdated] = useState<Date>(getInitialLastUpdated());
   const [isLoading, setIsLoading] = useState(true); // 첫 진입 시 바로 로딩 상태로 시작
   const [showInfoModal, setShowInfoModal] = useState(false);
+  const [transferModal, setTransferModal] = useState<{
+    isOpen: boolean;
+    stationName: string;
+    transfers: NormalizedTransferRecord[];
+  }>({
+    isOpen: false,
+    stationName: "",
+    transfers: [],
+  });
+
+  const handleOpenTransfer = (stationName: string, transfers: NormalizedTransferRecord[]) => {
+    setTransferModal({
+      isOpen: true,
+      stationName,
+      transfers,
+    });
+  };
 
   const handleRefresh = async () => {
     setIsLoading(true);
@@ -280,19 +300,43 @@ export default function RouteTrackerClient({
           )}
 
           {/* Current Station */}
-          <div className="relative flex items-center gap-6 py-2 group">
-            <div className="z-10 w-10 h-10 rounded-full bg-indigo-600 border-4 dark:border-slate-950 border-white flex items-center justify-center shadow-[0_0_15px_rgba(79,70,229,0.5)] transition-colors">
-              <span className="material-symbols-outlined text-white text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>train</span>
-            </div>
-            <div className="flex-1 flex items-center justify-between border-b border-indigo-900/30 py-4 bg-indigo-50 dark:bg-indigo-900/10 rounded-r-xl px-4 -mx-4">
-              <Link href={`/?station=${encodeURIComponent(currentStationInfo.station_nm)}`} className="text-xl font-bold dark:text-white text-indigo-950 hover:text-indigo-500 transition-colors">
-                {currentStationInfo.station_nm}역
-              </Link>
-              <span className="px-4 py-1.5 rounded-lg bg-indigo-600 text-white text-sm font-bold animate-pulse">
-                {currentLocationMsg === '0' || currentLocationMsg === '진입' ? '진입' : currentLocationMsg === '1' || currentLocationMsg === '도착' ? '도착' : '출발'}
-              </span>
-            </div>
-          </div>
+          {(() => {
+            const currentTransfers = getTransfersForRouteStation(
+              currentStationInfo.station_nm,
+              lineName,
+              routeParams.updnLine,
+              bstatnNm,
+              isExpressTrain
+            );
+            return (
+              <div className="relative flex items-center gap-6 py-2 group">
+                <div className="z-10 w-10 h-10 rounded-full bg-indigo-600 border-4 dark:border-slate-950 border-white flex items-center justify-center shadow-[0_0_15px_rgba(79,70,229,0.5)] transition-colors">
+                  <span className="material-symbols-outlined text-white text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>train</span>
+                </div>
+                <div className="flex-1 flex items-center justify-between border-b border-indigo-900/30 py-4 bg-indigo-50 dark:bg-indigo-900/10 rounded-r-xl px-4 -mx-4">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <Link href={`/?station=${encodeURIComponent(currentStationInfo.station_nm)}`} className="text-xl font-bold dark:text-white text-indigo-950 hover:text-indigo-500 transition-colors">
+                      {currentStationInfo.station_nm}역
+                    </Link>
+                    {currentTransfers.length > 0 && (
+                      <button
+                        type="button"
+                        onClick={() => handleOpenTransfer(currentStationInfo.station_nm, currentTransfers)}
+                        className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold text-indigo-700 dark:text-indigo-300 bg-white dark:bg-slate-800 shadow-sm border border-indigo-200 dark:border-indigo-700/60 hover:bg-indigo-50 dark:hover:bg-slate-700 transition-all cursor-pointer"
+                        title="빠른 환승 위치 확인"
+                      >
+                        <span className="material-symbols-outlined text-[14px]">swap_horiz</span>
+                        <span>환승</span>
+                      </button>
+                    )}
+                  </div>
+                  <span className="px-4 py-1.5 rounded-lg bg-indigo-600 text-white text-sm font-bold animate-pulse">
+                    {currentLocationMsg === '0' || currentLocationMsg === '진입' ? '진입' : currentLocationMsg === '1' || currentLocationMsg === '도착' ? '도착' : '출발'}
+                  </span>
+                </div>
+              </div>
+            );
+          })()}
 
           {/* Next Stations */}
           {nextStations.map((station, idx) => {
@@ -312,6 +356,13 @@ export default function RouteTrackerClient({
               bstatnNm && (station.station_nm.includes(bstatnNm) || bstatnNm.includes(station.station_nm))
             );
             const isSkippedByExpress = isExpressTrain && station.is_express === false && !isTerminalStation;
+            const stationTransfers = !isSkippedByExpress ? getTransfersForRouteStation(
+              station.station_nm,
+              lineName,
+              routeParams.updnLine,
+              bstatnNm,
+              isExpressTrain
+            ) : [];
 
             // Calculate estimated arrival time
             const estTime = new Date(lastUpdated.getTime() + cumulativeSeconds * 1000);
@@ -323,7 +374,7 @@ export default function RouteTrackerClient({
                   <div className={`w-2 h-2 rounded-full ${isSkippedByExpress ? 'bg-slate-400 dark:bg-slate-600' : 'bg-indigo-400'}`}></div>
                 </div>
                 <div className="flex-1 flex items-center justify-between border-b dark:border-slate-800/50 border-slate-100 pb-4">
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 flex-wrap">
                     <Link
                       href={`/?station=${encodeURIComponent(station.station_nm)}`}
                       className={`${isSkippedByExpress ? 'text-base dark:text-slate-500 text-slate-400 line-through' : 'text-lg font-medium dark:text-slate-200 text-slate-700'} hover:text-indigo-500 transition-colors`}
@@ -334,6 +385,17 @@ export default function RouteTrackerClient({
                       <span className="text-[10px] font-bold text-rose-500 dark:text-rose-400 bg-rose-500/10 px-1.5 py-0.5 rounded">
                         급행정차
                       </span>
+                    )}
+                    {stationTransfers.length > 0 && (
+                      <button
+                        type="button"
+                        onClick={() => handleOpenTransfer(station.station_nm, stationTransfers)}
+                        className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[11px] font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/50 border border-indigo-200 dark:border-indigo-800/60 hover:bg-indigo-100 dark:hover:bg-indigo-900/60 transition-all cursor-pointer"
+                        title="빠른 환승 위치 확인"
+                      >
+                        <span className="material-symbols-outlined text-[13px]">swap_horiz</span>
+                        <span>환승</span>
+                      </button>
                     )}
                   </div>
                   {isSkippedByExpress ? (
@@ -384,6 +446,15 @@ export default function RouteTrackerClient({
         </div>,
         document.body
       )}
+
+      {/* 시나리오 1: 빠른 환승 정보 바텀 시트 */}
+      <TransferInfoSlideCard
+        isOpen={transferModal.isOpen}
+        stationName={transferModal.stationName}
+        currentLine={lineName}
+        transfers={transferModal.transfers}
+        onClose={() => setTransferModal((prev) => ({ ...prev, isOpen: false }))}
+      />
     </main>
   );
 }
