@@ -1,9 +1,32 @@
 const fs = require('fs');
 const path = require('path');
 
-const srcPath = fs.existsSync(path.join(__dirname, '../json/subway_transfer_info_v3.json'))
-  ? path.join(__dirname, '../json/subway_transfer_info_v3.json')
-  : path.join(__dirname, '../json/subway_transfer_info_v2.json');
+function getLatestTransferInfoFile() {
+  const jsonDir = path.join(__dirname, '../json');
+  if (!fs.existsSync(jsonDir)) {
+    throw new Error(`[generate_transfer_data] json 디렉토리를 찾을 수 없습니다: ${jsonDir}`);
+  }
+
+  // subway_transfer_info_v{N}.json 파일들을 검색하여 가장 높은 버전(v4 > v3 > v2 ...) 자동 선택
+  const matchedFiles = fs.readdirSync(jsonDir)
+    .filter(file => /^subway_transfer_info_v\d+\.json$/.test(file))
+    .sort((a, b) => {
+      const verA = parseInt(a.match(/v(\d+)\.json$/)[1], 10);
+      const verB = parseInt(b.match(/v(\d+)\.json$/)[1], 10);
+      return verB - verA;
+    });
+
+  if (matchedFiles.length > 0) {
+    return path.join(jsonDir, matchedFiles[0]);
+  }
+
+  const fallback = path.join(jsonDir, 'subway_transfer_info.json');
+  if (fs.existsSync(fallback)) return fallback;
+
+  throw new Error(`[generate_transfer_data] 환승 원본 JSON 파일(subway_transfer_info_v*.json)을 찾을 수 없습니다.`);
+}
+
+const srcPath = getLatestTransferInfoFile();
 const outPath = path.join(__dirname, '../json/subway_transfer_data.json');
 
 const rawData = JSON.parse(fs.readFileSync(srcPath, 'utf8'));
@@ -12,6 +35,7 @@ const rawData = JSON.parse(fs.readFileSync(srcPath, 'utf8'));
 function normalizeLine(name) {
   if (!name) return '';
   const trimmed = name.trim();
+  const cleaned = trimmed.replace(/\(.*?\)/g, '').trim();
   const map = {
     'GTX': 'GTX-A',
     '인천 1호선': '인천1호선',
@@ -31,7 +55,8 @@ function normalizeLine(name) {
     '공항철도': '공항철도',
   };
   if (map[trimmed]) return map[trimmed];
-  return trimmed;
+  if (map[cleaned]) return map[cleaned];
+  return cleaned || trimmed;
 }
 
 // 2. target_line 분리 및 정규화
@@ -242,6 +267,7 @@ rawData.forEach((item) => {
 fs.writeFileSync(outPath, JSON.stringify(cleanedRecords, null, 2), 'utf8');
 
 console.log(`[generate_transfer_data] Complete!`);
+console.log(`- Source file: ${path.basename(srcPath)}`);
 console.log(`- Original records: ${rawData.length}`);
 console.log(`- Skipped records (-): ${skippedCount}`);
 console.log(`- Cleaned records: ${cleanedRecords.length}`);
