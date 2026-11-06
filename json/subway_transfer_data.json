@@ -7637,5 +7637,619 @@
     "boarding_position": "5-1",
     "raw_source": "GTX-A - 구성역 - 동탄 방면",
     "raw_target": "수인·분당선"
+  },
+  {
+    "id": "tr-448",
+    "station_key": "청량리",
+    "station_display": "청량리역",
+    "current_line": "수인분당선",
+    "current_direction": "청량리 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "6-4",
+    "raw_source": "수인·분당선 - 청량리역 - 청량리 방면",
+    "raw_target": "1호선"
+  },
+  {
+    "id": "tr-449",
+    "station_key": "청량리",
+    "station_display": "청량리역",
+    "current_line": "수인분당선",
+    "current_direction": "청량리 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "경의중앙선"
+    ],
+    "target_line_raw": "경의·중앙선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "수인·분당선 - 청량리역 - 청량리 방면",
+    "raw_target": "경의·중앙선"
+  },
+  {
+    "id": "tr-450",
+    "station_key": "왕십리",
+    "station_display": "왕십리역",
+    "current_line": "수인분당선",
+    "current_direction": "청량리/왕십리 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "전체",
+    "boarding_position": "6-4",
+    "raw_source": "수인·분당선 - 왕십리역 - 청량리/왕십리 방면",
+    "raw_target": "2호선"
+  },
+  {
+    "id": "tr-451",
+    "station_key": "왕십리",
+    "station_display": "왕십리역",
+    "current_line": "수인분당선",
+    "current_direction": "청량리/왕십리 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선"
+    ],
+    "target_line_raw": "5호선",
+    "target_direction": "전체",
+    "boarding_position": "6-1",
+    "raw_source": "수인·분당선 - 왕십리역 - 청량리/왕십리 방면",
+    "raw_target": "5호선"
+  },
+  {
+    "id": "tr-452",
+    "station_key": "왕십리",
+    "station_display": "왕십리역",
+    "current_line": "수인분당선",
+    "current_direction": "청량리/왕십리 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "경의중앙선"
+    ],
+    "target_line_raw": "경의·중앙선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "수인·분당선 - 왕십리역 - 청량리/왕십리 방면",
+    "raw_target": "경의·중앙선"
+  },
+  {
+    "id": "tr-453",
+    "station_key": "왕십리",
+    "station_display": "왕십리역",
+    "current_line": "수인분당선",
+    "current_direction": "인천/고색 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "수인·분당선 - 왕십리역 - 인천/고색 방면",
+    "raw_target": "2호선"
+  },
+  {
+    "id": "tr-454",
+    "station_key": "왕십리",
+    "station_display": "왕십리역",
+    "current_line": "수인분당선",
+    "current_direction": "인천/고색 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "5호선"
+    ],
+    "target_line_raw": "5호선",
+    "target_direction": "전체",
+    "boarding_position": "1-4",
+    "raw_source": "수인·분당선 - 왕십리역 - 인천/고색 방면",
+    "raw_target": "5호선"
+  },
+  {
+    "id": "tr-455",
+    "station_key": "왕십리",
+    "station_display": "왕십리역",
+    "current_line": "수인분당선",
+    "current_direction": "인천/고색 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "경의중앙선"
+    ],
+    "target_line_raw": "경의·중앙선",
+    "target_direction": "전체",
+    "boarding_position": "6-4",
+    "raw_source": "수인·분당선 - 왕십리역 - 인천/고색 방면",
+    "raw_target": "경의·중앙선"
+  },
+  {
+    "id": "tr-456",
+    "station_key": "강남구청",
+    "station_display": "강남구청역",
+    "current_line": "수인분당선",
+    "current_direction": "청량리/왕십리 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "7호선"
+    ],
+    "target_line_raw": "7호선",
+    "target_direction": "전체",
+    "boarding_position": "6-4",
+    "raw_source": "수인·분당선 - 강남구청역 - 청량리/왕십리 방면",
+    "raw_target": "7호선"
+  },
+  {
+    "id": "tr-457",
+    "station_key": "강남구청",
+    "station_display": "강남구청역",
+    "current_line": "수인분당선",
+    "current_direction": "인천/고색 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "7호선"
+    ],
+    "target_line_raw": "7호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "수인·분당선 - 강남구청역 - 인천/고색 방면",
+    "raw_target": "7호선"
+  },
+  {
+    "id": "tr-458",
+    "station_key": "선릉",
+    "station_display": "선릉역",
+    "current_line": "수인분당선",
+    "current_direction": "청량리/왕십리 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "전체",
+    "boarding_position": "6-4",
+    "raw_source": "수인·분당선 - 선릉역 - 청량리/왕십리 방면",
+    "raw_target": "2호선"
+  },
+  {
+    "id": "tr-459",
+    "station_key": "선릉",
+    "station_display": "선릉역",
+    "current_line": "수인분당선",
+    "current_direction": "인천/고색 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "2호선"
+    ],
+    "target_line_raw": "2호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "수인·분당선 - 선릉역 - 인천/고색 방면",
+    "raw_target": "2호선"
+  },
+  {
+    "id": "tr-460",
+    "station_key": "도곡",
+    "station_display": "도곡역",
+    "current_line": "수인분당선",
+    "current_direction": "청량리/왕십리 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "3호선"
+    ],
+    "target_line_raw": "3호선",
+    "target_direction": "전체",
+    "boarding_position": "6-4",
+    "raw_source": "수인·분당선 - 도곡역 - 청량리/왕십리 방면",
+    "raw_target": "3호선"
+  },
+  {
+    "id": "tr-461",
+    "station_key": "도곡",
+    "station_display": "도곡역",
+    "current_line": "수인분당선",
+    "current_direction": "인천/고색 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "3호선"
+    ],
+    "target_line_raw": "3호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "수인·분당선 - 도곡역 - 인천/고색 방면",
+    "raw_target": "3호선"
+  },
+  {
+    "id": "tr-462",
+    "station_key": "수서",
+    "station_display": "수서역",
+    "current_line": "수인분당선",
+    "current_direction": "청량리/왕십리 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "3호선"
+    ],
+    "target_line_raw": "3호선",
+    "target_direction": "전체",
+    "boarding_position": "6-4",
+    "raw_source": "수인·분당선 - 수서역 - 청량리/왕십리 방면",
+    "raw_target": "3호선"
+  },
+  {
+    "id": "tr-463",
+    "station_key": "수서",
+    "station_display": "수서역",
+    "current_line": "수인분당선",
+    "current_direction": "인천/고색 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "3호선"
+    ],
+    "target_line_raw": "3호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "수인·분당선 - 수서역 - 인천/고색 방면",
+    "raw_target": "3호선"
+  },
+  {
+    "id": "tr-464",
+    "station_key": "수서",
+    "station_display": "수서역",
+    "current_line": "수인분당선",
+    "current_direction": "청량리/왕십리 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "GTX-A"
+    ],
+    "target_line_raw": "GTX-A",
+    "target_direction": "전체",
+    "boarding_position": "4-3",
+    "raw_source": "수인·분당선 - 수서역 - 청량리/왕십리 방면",
+    "raw_target": "GTX-A"
+  },
+  {
+    "id": "tr-465",
+    "station_key": "수서",
+    "station_display": "수서역",
+    "current_line": "수인분당선",
+    "current_direction": "인천/고색 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "GTX-A"
+    ],
+    "target_line_raw": "GTX-A",
+    "target_direction": "전체",
+    "boarding_position": "3-2",
+    "raw_source": "수인·분당선 - 수서역 - 인천/고색 방면",
+    "raw_target": "GTX-A"
+  },
+  {
+    "id": "tr-466",
+    "station_key": "복정",
+    "station_display": "복정역",
+    "current_line": "수인분당선",
+    "current_direction": "청량리/왕십리 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "8호선"
+    ],
+    "target_line_raw": "8호선",
+    "target_direction": "전체",
+    "boarding_position": "3-2",
+    "raw_source": "수인·분당선 - 복정역 - 청량리/왕십리 방면",
+    "raw_target": "8호선"
+  },
+  {
+    "id": "tr-467",
+    "station_key": "복정",
+    "station_display": "복정역",
+    "current_line": "수인분당선",
+    "current_direction": "인천/고색 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "8호선"
+    ],
+    "target_line_raw": "8호선",
+    "target_direction": "전체",
+    "boarding_position": "4-2",
+    "raw_source": "수인·분당선 - 복정역 - 인천/고색 방면",
+    "raw_target": "8호선"
+  },
+  {
+    "id": "tr-468",
+    "station_key": "모란",
+    "station_display": "모란역",
+    "current_line": "수인분당선",
+    "current_direction": "전체",
+    "updn_code": "ALL",
+    "branch_hint": null,
+    "target_lines": [
+      "8호선"
+    ],
+    "target_line_raw": "8호선",
+    "target_direction": "전체",
+    "boarding_position": "6-4",
+    "raw_source": "수인·분당선 - 모란역",
+    "raw_target": "8호선"
+  },
+  {
+    "id": "tr-469",
+    "station_key": "이매",
+    "station_display": "이매역",
+    "current_line": "수인분당선",
+    "current_direction": "청량리/왕십리 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "경강선"
+    ],
+    "target_line_raw": "경강선",
+    "target_direction": "전체",
+    "boarding_position": "6-4",
+    "raw_source": "수인·분당선 - 이매역 - 청량리/왕십리 방면",
+    "raw_target": "경강선"
+  },
+  {
+    "id": "tr-470",
+    "station_key": "이매",
+    "station_display": "이매역",
+    "current_line": "수인분당선",
+    "current_direction": "인천/고색 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "경강선"
+    ],
+    "target_line_raw": "경강선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "수인·분당선 - 이매역 - 인천/고색 방면",
+    "raw_target": "경강선"
+  },
+  {
+    "id": "tr-471",
+    "station_key": "정자",
+    "station_display": "정자역",
+    "current_line": "수인분당선",
+    "current_direction": "청량리/왕십리 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "신분당선"
+    ],
+    "target_line_raw": "신분당선",
+    "target_direction": "전체",
+    "boarding_position": "6-4",
+    "raw_source": "수인·분당선 - 정자역 - 청량리/왕십리 방면",
+    "raw_target": "신분당선"
+  },
+  {
+    "id": "tr-472",
+    "station_key": "정자",
+    "station_display": "정자역",
+    "current_line": "수인분당선",
+    "current_direction": "인천/고색 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "신분당선"
+    ],
+    "target_line_raw": "신분당선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "수인·분당선 - 정자역 - 인천/고색 방면",
+    "raw_target": "신분당선"
+  },
+  {
+    "id": "tr-473",
+    "station_key": "미금",
+    "station_display": "미금역",
+    "current_line": "수인분당선",
+    "current_direction": "청량리/왕십리 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "신분당선"
+    ],
+    "target_line_raw": "신분당선",
+    "target_direction": "전체",
+    "boarding_position": "6-4",
+    "raw_source": "수인·분당선 - 미금역 - 청량리/왕십리 방면",
+    "raw_target": "신분당선"
+  },
+  {
+    "id": "tr-474",
+    "station_key": "미금",
+    "station_display": "미금역",
+    "current_line": "수인분당선",
+    "current_direction": "인천/고색 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "신분당선"
+    ],
+    "target_line_raw": "신분당선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "수인·분당선 - 미금역 - 인천/고색 방면",
+    "raw_target": "신분당선"
+  },
+  {
+    "id": "tr-475",
+    "station_key": "기흥",
+    "station_display": "기흥역",
+    "current_line": "수인분당선",
+    "current_direction": "청량리/왕십리 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "용인경전철"
+    ],
+    "target_line_raw": "용인 에버라인",
+    "target_direction": "전체",
+    "boarding_position": "6-4",
+    "raw_source": "수인·분당선 - 기흥역 - 청량리/왕십리 방면",
+    "raw_target": "용인 에버라인"
+  },
+  {
+    "id": "tr-476",
+    "station_key": "기흥",
+    "station_display": "기흥역",
+    "current_line": "수인분당선",
+    "current_direction": "인천/고색 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "용인경전철"
+    ],
+    "target_line_raw": "용인 에버라인",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "수인·분당선 - 기흥역 - 인천/고색 방면",
+    "raw_target": "용인 에버라인"
+  },
+  {
+    "id": "tr-477",
+    "station_key": "수원",
+    "station_display": "수원역",
+    "current_line": "수인분당선",
+    "current_direction": "청량리/왕십리 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "6-4",
+    "raw_source": "수인·분당선 - 수원역 - 청량리/왕십리 방면",
+    "raw_target": "1호선"
+  },
+  {
+    "id": "tr-478",
+    "station_key": "수원",
+    "station_display": "수원역",
+    "current_line": "수인분당선",
+    "current_direction": "인천/고색 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "수인·분당선 - 수원역 - 인천/고색 방면",
+    "raw_target": "1호선"
+  },
+  {
+    "id": "tr-479",
+    "station_key": "초지",
+    "station_display": "초지역",
+    "current_line": "수인분당선",
+    "current_direction": "청량리/왕십리 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "4호선",
+      "서해선"
+    ],
+    "target_line_raw": "4호선, 서해선",
+    "target_direction": "전체",
+    "boarding_position": "6-4",
+    "raw_source": "수인·분당선 - 초지역 - 청량리/왕십리 방면",
+    "raw_target": "4호선, 서해선"
+  },
+  {
+    "id": "tr-480",
+    "station_key": "초지",
+    "station_display": "초지역",
+    "current_line": "수인분당선",
+    "current_direction": "인천/고색 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "4호선",
+      "서해선"
+    ],
+    "target_line_raw": "4호선, 서해선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "수인·분당선 - 초지역 - 인천/고색 방면",
+    "raw_target": "4호선, 서해선"
+  },
+  {
+    "id": "tr-481",
+    "station_key": "원인재",
+    "station_display": "원인재역",
+    "current_line": "수인분당선",
+    "current_direction": "청량리/왕십리 방면",
+    "updn_code": "0",
+    "branch_hint": null,
+    "target_lines": [
+      "인천1호선"
+    ],
+    "target_line_raw": "인천 1호선",
+    "target_direction": "전체",
+    "boarding_position": "6-4",
+    "raw_source": "수인·분당선 - 원인재역 - 청량리/왕십리 방면",
+    "raw_target": "인천 1호선"
+  },
+  {
+    "id": "tr-482",
+    "station_key": "원인재",
+    "station_display": "원인재역",
+    "current_line": "수인분당선",
+    "current_direction": "인천 방면",
+    "updn_code": "1",
+    "branch_hint": null,
+    "target_lines": [
+      "인천1호선"
+    ],
+    "target_line_raw": "인천 1호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "수인·분당선 - 원인재역 - 인천 방면",
+    "raw_target": "인천 1호선"
+  },
+  {
+    "id": "tr-483",
+    "station_key": "인천",
+    "station_display": "인천역",
+    "current_line": "수인분당선",
+    "current_direction": "전체",
+    "updn_code": "ALL",
+    "branch_hint": null,
+    "target_lines": [
+      "1호선"
+    ],
+    "target_line_raw": "1호선",
+    "target_direction": "전체",
+    "boarding_position": "1-1",
+    "raw_source": "수인·분당선 - 인천역",
+    "raw_target": "1호선"
   }
 ]

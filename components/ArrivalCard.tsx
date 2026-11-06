@@ -55,11 +55,11 @@ export default function ArrivalCard({ group, isExpanded, onToggle }: ArrivalCard
                   e.stopPropagation();
                   setIsTransferModalOpen(true);
                 }}
-                className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 border border-amber-500/30 hover:bg-amber-500/20 transition-all cursor-pointer whitespace-nowrap active:scale-95 shadow-xs"
-                title="빠른 환승 위치 가이드 열기"
+                className="w-6 h-6 rounded-full inline-flex items-center justify-center text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800/60 hover:bg-indigo-100 dark:hover:bg-indigo-900/80 transition-all cursor-pointer shrink-0 shadow-xs active:scale-95"
+                title="빠른 환승 위치 확인"
+                aria-label="빠른 환승 위치 확인"
               >
-                <span>⚡</span>
-                <span>환승</span>
+                <span className="material-symbols-outlined text-[16px]">swap_horiz</span>
               </button>
             )}
 

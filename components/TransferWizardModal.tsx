@@ -122,11 +122,12 @@ export default function TransferWizardModal({
 
   return createPortal(
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 transition-opacity"
+      className="fixed top-0 left-0 w-screen h-screen z-[100] flex items-center justify-center dark:bg-slate-950/60 bg-slate-900/30 backdrop-blur-sm p-4 transition-colors"
       onClick={onClose}
     >
       <div
-        className="w-full max-w-md rounded-2xl dark:bg-slate-900 bg-white dark:border-slate-800 border-slate-200 border p-5 sm:p-6 shadow-2xl transition-all max-h-[90vh] flex flex-col animate-in zoom-in-95"
+        style={{ width: 'min(480px, calc(100vw - 2rem))', flexShrink: 0 }}
+        className="rounded-2xl dark:bg-slate-900 bg-white dark:border-slate-800 border-slate-200 border p-5 sm:p-6 shadow-2xl transition-all max-h-[90vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         {/* 헤더 */}

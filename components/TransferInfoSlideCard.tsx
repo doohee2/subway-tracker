@@ -44,11 +44,12 @@ export default function TransferInfoSlideCard({
 
   return createPortal(
     <div 
-      className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center bg-black/60 backdrop-blur-sm transition-opacity p-0 sm:p-4"
+      className="fixed top-0 left-0 w-screen h-screen z-[100] flex items-end sm:items-center justify-center dark:bg-slate-950/60 bg-slate-900/30 backdrop-blur-sm transition-colors p-0 sm:p-4"
       onClick={onClose}
     >
       <div
-        className="w-full sm:max-w-lg rounded-t-2xl sm:rounded-2xl dark:bg-slate-900 bg-white dark:border-slate-800 border-slate-200 border p-5 shadow-2xl transition-all max-h-[85vh] flex flex-col animate-in slide-in-from-bottom"
+        style={{ width: 'min(500px, 100vw)', flexShrink: 0 }}
+        className="rounded-t-2xl sm:rounded-2xl dark:bg-slate-900 bg-white dark:border-slate-800 border-slate-200 border p-5 shadow-2xl transition-all max-h-[85vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         {/* 상단 드래그 핸들 (모바일) */}

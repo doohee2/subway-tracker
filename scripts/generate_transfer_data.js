@@ -1,7 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 
-const srcPath = path.join(__dirname, '../json/subway_transfer_info_v2.json');
+const srcPath = fs.existsSync(path.join(__dirname, '../json/subway_transfer_info_v3.json'))
+  ? path.join(__dirname, '../json/subway_transfer_info_v3.json')
+  : path.join(__dirname, '../json/subway_transfer_info_v2.json');
 const outPath = path.join(__dirname, '../json/subway_transfer_data.json');
 
 const rawData = JSON.parse(fs.readFileSync(srcPath, 'utf8'));
@@ -173,6 +175,11 @@ function resolveDirection(currentLine, currentDir) {
   else if (line === '신림선') {
     if (dir.includes('샛강')) updnCode = '0';
     else if (dir.includes('관악산')) updnCode = '1';
+  }
+  // 수인분당선
+  else if (line === '수인분당선') {
+    if (dir.includes('청량리') || dir.includes('왕십리')) updnCode = '0';
+    else if (dir.includes('인천') || dir.includes('고색') || dir.includes('수원')) updnCode = '1';
   }
   // GTX-A
   else if (line === 'GTX-A') {

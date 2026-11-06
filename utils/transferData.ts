@@ -42,6 +42,8 @@ export function normalizeLineForTransfer(lineName: string): string {
     '용인 에버라인': '용인경전철',
     의정부경전철: '의정부경전철',
     '의정부 경전철': '의정부경전철',
+    '수인·분당선': '수인분당선',
+    수인분당: '수인분당선',
   };
 
   return aliasMap[trimmed] || trimmed;

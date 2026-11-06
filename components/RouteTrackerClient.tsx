@@ -322,11 +322,11 @@ export default function RouteTrackerClient({
                       <button
                         type="button"
                         onClick={() => handleOpenTransfer(currentStationInfo.station_nm, currentTransfers)}
-                        className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold text-indigo-700 dark:text-indigo-300 bg-white dark:bg-slate-800 shadow-sm border border-indigo-200 dark:border-indigo-700/60 hover:bg-indigo-50 dark:hover:bg-slate-700 transition-all cursor-pointer"
+                        className="w-6 h-6 rounded-full inline-flex items-center justify-center text-indigo-600 dark:text-indigo-400 bg-white dark:bg-slate-800 shadow-xs border border-indigo-200 dark:border-indigo-700/60 hover:bg-indigo-50 dark:hover:bg-slate-700 transition-all cursor-pointer active:scale-95 shrink-0"
                         title="빠른 환승 위치 확인"
+                        aria-label="빠른 환승 위치 확인"
                       >
-                        <span className="material-symbols-outlined text-[14px]">swap_horiz</span>
-                        <span>환승</span>
+                        <span className="material-symbols-outlined text-[15px]">swap_horiz</span>
                       </button>
                     )}
                   </div>
@@ -390,11 +390,11 @@ export default function RouteTrackerClient({
                       <button
                         type="button"
                         onClick={() => handleOpenTransfer(station.station_nm, stationTransfers)}
-                        className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[11px] font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/50 border border-indigo-200 dark:border-indigo-800/60 hover:bg-indigo-100 dark:hover:bg-indigo-900/60 transition-all cursor-pointer"
+                        className="w-5 h-5 rounded-full inline-flex items-center justify-center text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/50 border border-indigo-200 dark:border-indigo-800/60 hover:bg-indigo-100 dark:hover:bg-indigo-900/60 transition-all cursor-pointer active:scale-95 shrink-0"
                         title="빠른 환승 위치 확인"
+                        aria-label="빠른 환승 위치 확인"
                       >
                         <span className="material-symbols-outlined text-[13px]">swap_horiz</span>
-                        <span>환승</span>
                       </button>
                     )}
                   </div>
