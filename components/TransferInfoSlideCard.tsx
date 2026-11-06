@@ -93,19 +93,19 @@ export default function TransferInfoSlideCard({
                 key={item.id}
                 className="p-3.5 rounded-xl border dark:border-slate-800/80 border-slate-200 dark:bg-slate-800/60 bg-slate-50 flex items-center justify-between gap-3 transition-colors hover:border-indigo-400/50"
               >
-                <div className="space-y-1.5 min-w-0">
+                <div className="space-y-2 min-w-0">
                   {/* 갈아탈 노선 뱃지들 */}
-                  <div className="flex items-center gap-1.5 flex-wrap">
+                  <div className="flex items-center gap-2 flex-wrap">
                     {item.target_lines.map((line) => {
                       const color = getLineColor(line);
                       const text = getLineNumberText(line);
                       return (
                         <span
                           key={line}
-                          className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-bold text-white bg-slate-700 shadow-sm"
+                          className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-sm sm:text-base font-bold text-white bg-slate-700 shadow-sm"
                           style={{ backgroundColor: color.startsWith("bg-") ? undefined : color }}
                         >
-                          <span className={`w-3.5 h-3.5 rounded-full ${color} text-white flex items-center justify-center text-[9px] font-bold`}>
+                          <span className={`w-5 h-5 rounded-full ${color} text-white flex items-center justify-center text-xs font-bold shrink-0`}>
                             {text}
                           </span>
                           <span>{line}</span>
@@ -115,25 +115,30 @@ export default function TransferInfoSlideCard({
                   </div>
 
                   {/* 목적 방면 */}
-                  <div className="text-xs text-slate-700 dark:text-slate-300 font-medium truncate">
+                  <div className="text-base sm:text-lg text-slate-800 dark:text-slate-200 font-medium truncate">
                     목적지:{" "}
-                    <span className="font-semibold text-slate-900 dark:text-white">
+                    <span className="font-bold text-slate-900 dark:text-white">
                       {item.target_direction === "전체" ? "전 방면 환승" : item.target_direction}
                     </span>
                   </div>
 
                   {/* 승차 방면 보조 문구 */}
-                  <div className="text-[11px] text-slate-500 dark:text-slate-400">
+                  <div className="text-xs text-slate-500 dark:text-slate-400">
                     현재 승차: {item.current_direction}
+                    {item.branch_hint && (
+                      <span className="ml-1.5 text-[11px] px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 font-medium">
+                        {item.branch_hint}
+                      </span>
+                    )}
                   </div>
                 </div>
 
                 {/* 빠른 탑승 위치 강조 */}
-                <div className="text-right shrink-0 pl-2">
-                  <span className="text-[11px] text-slate-500 dark:text-slate-400 font-medium block">
+                <div className="text-right shrink-0 pl-3">
+                  <span className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-semibold block mb-0.5">
                     빠른 하차문
                   </span>
-                  <span className="text-base sm:text-lg font-black text-emerald-600 dark:text-emerald-400 whitespace-nowrap">
+                  <span className="text-lg sm:text-xl font-black text-emerald-600 dark:text-emerald-400 whitespace-nowrap">
                     🚪 {item.boarding_position}
                   </span>
                 </div>
