@@ -9,6 +9,7 @@ interface TransferInfoSlideCardProps {
   isOpen: boolean;
   stationName: string;
   currentLine: string;
+  currentDirection?: string;
   transfers: NormalizedTransferRecord[];
   onClose: () => void;
 }
@@ -17,6 +18,7 @@ export default function TransferInfoSlideCard({
   isOpen,
   stationName,
   currentLine,
+  currentDirection,
   transfers,
   onClose,
 }: TransferInfoSlideCardProps) {
@@ -63,7 +65,7 @@ export default function TransferInfoSlideCard({
                 {currentLineText}
               </span>
               <span className="text-xs font-semibold text-indigo-600 dark:text-indigo-400">
-                {currentLine} 하차
+                {currentLine} {currentDirection ? `${currentDirection} ` : ""}하차
               </span>
             </div>
             <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-1.5">

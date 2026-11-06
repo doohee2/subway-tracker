@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { ArrivalGroup } from "@/types/subway";
 import { getLineColor, getLineNumberText } from "@/utils/subwayColors";
-import { hasTransferForLineDirection } from "@/utils/transferData";
-import TransferWizardModal from "@/components/TransferWizardModal";
+import { getTransfersForLineDirection } from "@/utils/transferData";
+import TransferInfoSlideCard from "@/components/TransferInfoSlideCard";
 import Link from "next/link";
 
 interface ArrivalCardProps {
@@ -21,11 +21,12 @@ export default function ArrivalCard({ group, isExpanded, onToggle }: ArrivalCard
   const directionText = group.directionLabel || (group.updnLine === "0" ? "상행" : "하행");
 
   const currentStationName = group.arrivals[0]?.statnNm || "";
-  const hasTransfer = hasTransferForLineDirection(
+  const transfers = getTransfersForLineDirection(
     currentStationName,
     group.lineName,
     group.updnLine
   );
+  const hasTransfer = transfers.length > 0;
 
   return (
     <>
@@ -144,12 +145,13 @@ export default function ArrivalCard({ group, isExpanded, onToggle }: ArrivalCard
         )}
       </div>
 
-      {/* 시나리오 2: 환승 맞춤 가이드 모달 */}
-      <TransferWizardModal
+      {/* 빠른 환승 정보 바텀시트 (경로추적페이지와 동일한 전체 목록 뷰) */}
+      <TransferInfoSlideCard
         isOpen={isTransferModalOpen}
         stationName={currentStationName}
-        initialLineName={group.lineName}
-        initialUpdnLine={group.updnLine}
+        currentLine={group.lineName}
+        currentDirection={directionText}
+        transfers={transfers}
         onClose={() => setIsTransferModalOpen(false)}
       />
     </>

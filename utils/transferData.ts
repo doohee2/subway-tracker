@@ -123,7 +123,32 @@ export function getTransfersForRouteStation(
 }
 
 /**
- * [시나리오 2: 도착 카드용]
+ * [실시간 도착 카드용]
+ * 해당 역에서 현재 노선 및 방향 기준으로 일치하는 모든 환승 데이터 목록을 반환합니다.
+ */
+export function getTransfersForLineDirection(
+  stationName: string,
+  currentLine: string,
+  updnLine?: string
+): NormalizedTransferRecord[] {
+  const stKey = normalizeStationKey(stationName);
+  const records = stationIndex.get(stKey);
+  if (!records || records.length === 0) return [];
+
+  const normLine = normalizeLineForTransfer(currentLine);
+  const lineRecords = records.filter((r) => r.current_line === normLine);
+  if (lineRecords.length === 0) return [];
+
+  if (!updnLine) return lineRecords;
+
+  const isUp = updnLine === '0' || (typeof updnLine === 'string' && (updnLine.includes('상행') || updnLine.includes('외선')));
+  const targetUpdn: '0' | '1' = isUp ? '0' : '1';
+
+  return lineRecords.filter((r) => r.updn_code === 'ALL' || r.updn_code === targetUpdn);
+}
+
+/**
+ * [실시간 도착 카드용]
  * 해당 역에서 현재 노선 및 방향 기준으로 환승 데이터가 존재하는지 확인합니다.
  */
 export function hasTransferForLineDirection(
@@ -131,20 +156,7 @@ export function hasTransferForLineDirection(
   currentLine: string,
   updnLine?: string
 ): boolean {
-  const stKey = normalizeStationKey(stationName);
-  const records = stationIndex.get(stKey);
-  if (!records || records.length === 0) return false;
-
-  const normLine = normalizeLineForTransfer(currentLine);
-  const lineRecords = records.filter((r) => r.current_line === normLine);
-  if (lineRecords.length === 0) return false;
-
-  if (!updnLine) return true;
-
-  const isUp = updnLine === '0' || updnLine.includes('상행') || updnLine.includes('외선');
-  const targetUpdn: '0' | '1' = isUp ? '0' : '1';
-
-  return lineRecords.some((r) => r.updn_code === 'ALL' || r.updn_code === targetUpdn);
+  return getTransfersForLineDirection(stationName, currentLine, updnLine).length > 0;
 }
 
 /**
