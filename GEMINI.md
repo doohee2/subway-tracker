@@ -118,8 +118,8 @@
 ├── json/                             # 지하철 정적 데이터셋
 │   ├── subway_data.json              # 통합 정적 데이터 (역 기본정보, 인접역 소요시간, 별칭 통합본)
 │   ├── subway_standard_timetables.json # 전처리된 역별·방향별 표준 열차 시간표 데이터 (columns & data 2차원 테이블 구조)
-│   ├── subway_transfer_data.json     # 정제된 환승 및 빠른 탑승 위치 데이터 (480개 레코드)
-│   ├── subway_transfer_info_v3.json  # 원본 환승 정보 데이터셋 v3 (수인분당선 등 확장 반영)
+│   ├── subway_transfer_data.json     # 정제된 환승 및 빠른 탑승 위치 데이터 (494개 레코드)
+│   ├── subway_transfer_info_v4.json  # 최신 원본 환승 정보 데이터셋 v4 (버전 자동 감지)
 │   ├── stations.json                 # 원본 역 정보 데이터
 │   ├── distances.json                # 원본 역간 소요시간 데이터
 │   ├── stations_nm_alias.json        # 역명 별칭 데이터
@@ -252,7 +252,7 @@ Next.js App Router와 서버리스 함수 간의 경계를 보호하기 위한 �
 
 ### 5.10. 수도권 전철 환승 정보 및 빠른 탑승 위치(출입문) 안내 기능
 *   **데이터 파이프라인 및 정규화 (`npm run generate:transfer` / `scripts/generate_transfer_data.js`)**:
-    *   터미널에서 `npm run generate:transfer` (또는 `node scripts/generate_transfer_data.js`) 명령어를 실행하면 `json/subway_transfer_info_v3.json`을 읽어 유효성 검증 및 정제를 거쳐 `json/subway_transfer_data.json`으로 즉시 빌드합니다.
+    *   터미널에서 `npm run generate:transfer` (또는 `node scripts/generate_transfer_data.js`) 명령어를 실행하면 `json/subway_transfer_info_v*.json` 중 가장 높은 버전(v4 > v3 > v2 ...)을 자동으로 감지하여 유효성 검증 및 정제를 거쳐 `json/subway_transfer_data.json`으로 즉시 빌드합니다.
     *   수도권 환승 구간 원본 데이터 중 탑승 위치 미제공(`"-"`) 3건을 제외하고, GTX-A 파싱 결함(하이픈 분리 오류)을 복원하였으며, 신규 추가된 수인분당선(상행: 청량리/왕십리, 하행: 수원/고색/인천)을 포함한 유효 레코드를 정제합니다.
     *   역명 끝의 `'역'` 접미사를 제거(`'서울역'` 예외 유지)하여 기존 `subway_data.json`의 799개 역명 및 별칭과 100% 일치시켰습니다.
     *   텍스트 방면(`current_direction`)을 실시간 API의 `updnLine`(`"0"`: 상행/외선, `"1"`: 하행/내선, `"ALL"`: 공통)과 성수·신정지선, 마천·하남검단산 분기, 급행 태그(`branch_hint`)로 정규화 매핑했습니다.
