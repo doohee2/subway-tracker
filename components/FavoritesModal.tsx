@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { createPortal } from "react-dom";
 import {
   loadPinnedStations,
@@ -19,6 +19,7 @@ import { getLineColor, getLineNumberText } from "@/utils/subwayColors";
 
 interface FavoritesModalProps {
   isOpen: boolean;
+  isChildModalOpen?: boolean;
   onClose: () => void;
   onSelectStation: (stationName: string) => void;
   onSelectTransfer: (stationName: string, lineName: string, direction?: string) => void;
@@ -26,6 +27,7 @@ interface FavoritesModalProps {
 
 export default function FavoritesModal({
   isOpen,
+  isChildModalOpen,
   onClose,
   onSelectStation,
   onSelectTransfer,
@@ -41,6 +43,13 @@ export default function FavoritesModal({
   // 환승 정보 드래그 앤 드롭 상태
   const [draggedTransferIndex, setDraggedTransferIndex] = useState<number | null>(null);
   const [dragOverTransferIndex, setDragOverTransferIndex] = useState<number | null>(null);
+
+  // 모바일 터치 드래그 참조 및 스크롤 영역 참조
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const touchDraggedStationRef = useRef<number | null>(null);
+  const touchDragOverStationRef = useRef<number | null>(null);
+  const touchDraggedTransferRef = useRef<number | null>(null);
+  const touchDragOverTransferRef = useRef<number | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -69,15 +78,15 @@ export default function FavoritesModal({
     };
   }, [isOpen]);
 
-  // ESC 키 닫기
+  // ESC 키 닫기 (자식 모달인 환승 카드가 떠 있는 동안에는 즐겨찾기 창이 닫히지 않도록 방어)
   useEffect(() => {
-    if (!isOpen) return;
+    if (!isOpen || isChildModalOpen) return;
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, onClose]);
+  }, [isOpen, isChildModalOpen, onClose]);
 
   if (!isOpen || !mounted) return null;
 
@@ -163,6 +172,136 @@ export default function FavoritesModal({
     setDragOverTransferIndex(null);
   };
 
+  // 5. 모바일 터치 드래그 앤 드롭 핸들러 (지하철역)
+  const handleStationTouchStart = (e: React.TouchEvent, index: number) => {
+    touchDraggedStationRef.current = index;
+    touchDragOverStationRef.current = index;
+    setDraggedStationIndex(index);
+    setDragOverStationIndex(index);
+  };
+
+  const handleStationTouchMove = (e: React.TouchEvent) => {
+    const touch = e.touches[0];
+    if (!touch) return;
+
+    // 스크롤 컨테이너 자동 스크롤
+    if (scrollContainerRef.current) {
+      const containerRect = scrollContainerRef.current.getBoundingClientRect();
+      const touchY = touch.clientY;
+      const scrollZone = 36;
+      if (touchY < containerRect.top + scrollZone) {
+        scrollContainerRef.current.scrollTop -= 6;
+      } else if (touchY > containerRect.bottom - scrollZone) {
+        scrollContainerRef.current.scrollTop += 6;
+      }
+    }
+
+    const el = document.elementFromPoint(touch.clientX, touch.clientY);
+    const target = el?.closest("[data-station-index]");
+    if (target) {
+      const targetIndex = Number(target.getAttribute("data-station-index"));
+      if (!isNaN(targetIndex) && targetIndex !== touchDragOverStationRef.current) {
+        touchDragOverStationRef.current = targetIndex;
+        setDragOverStationIndex(targetIndex);
+      }
+    }
+  };
+
+  const handleStationTouchEnd = (e: React.TouchEvent) => {
+    if (e.cancelable) {
+      e.preventDefault();
+    }
+    const from = touchDraggedStationRef.current;
+    const to = touchDragOverStationRef.current;
+
+    if (from !== null && to !== null && from !== to) {
+      setPinnedList((prev) => {
+        const updated = [...prev];
+        const [movedItem] = updated.splice(from, 1);
+        updated.splice(to, 0, movedItem);
+        reorderPinnedStations(updated);
+        return updated;
+      });
+    }
+
+    touchDraggedStationRef.current = null;
+    touchDragOverStationRef.current = null;
+    setDraggedStationIndex(null);
+    setDragOverStationIndex(null);
+  };
+
+  const handleStationTouchCancel = () => {
+    touchDraggedStationRef.current = null;
+    touchDragOverStationRef.current = null;
+    setDraggedStationIndex(null);
+    setDragOverStationIndex(null);
+  };
+
+  // 6. 모바일 터치 드래그 앤 드롭 핸들러 (환승 정보)
+  const handleTransferTouchStart = (e: React.TouchEvent, index: number) => {
+    touchDraggedTransferRef.current = index;
+    touchDragOverTransferRef.current = index;
+    setDraggedTransferIndex(index);
+    setDragOverTransferIndex(index);
+  };
+
+  const handleTransferTouchMove = (e: React.TouchEvent) => {
+    const touch = e.touches[0];
+    if (!touch) return;
+
+    // 스크롤 컨테이너 자동 스크롤
+    if (scrollContainerRef.current) {
+      const containerRect = scrollContainerRef.current.getBoundingClientRect();
+      const touchY = touch.clientY;
+      const scrollZone = 36;
+      if (touchY < containerRect.top + scrollZone) {
+        scrollContainerRef.current.scrollTop -= 6;
+      } else if (touchY > containerRect.bottom - scrollZone) {
+        scrollContainerRef.current.scrollTop += 6;
+      }
+    }
+
+    const el = document.elementFromPoint(touch.clientX, touch.clientY);
+    const target = el?.closest("[data-transfer-index]");
+    if (target) {
+      const targetIndex = Number(target.getAttribute("data-transfer-index"));
+      if (!isNaN(targetIndex) && targetIndex !== touchDragOverTransferRef.current) {
+        touchDragOverTransferRef.current = targetIndex;
+        setDragOverTransferIndex(targetIndex);
+      }
+    }
+  };
+
+  const handleTransferTouchEnd = (e: React.TouchEvent) => {
+    if (e.cancelable) {
+      e.preventDefault();
+    }
+    const from = touchDraggedTransferRef.current;
+    const to = touchDragOverTransferRef.current;
+
+    if (from !== null && to !== null && from !== to) {
+      setTransferList((prev) => {
+        const updated = [...prev];
+        const [movedItem] = updated.splice(from, 1);
+        updated.splice(to, 0, movedItem);
+        reorderFavoriteTransfers(updated);
+        return updated;
+      });
+    }
+
+    touchDraggedTransferRef.current = null;
+    touchDragOverTransferRef.current = null;
+    setDraggedTransferIndex(null);
+    setDragOverTransferIndex(null);
+  };
+
+  const handleTransferTouchCancel = () => {
+    touchDraggedTransferRef.current = null;
+    touchDragOverTransferRef.current = null;
+    setDraggedTransferIndex(null);
+    setDragOverTransferIndex(null);
+  };
+
   return createPortal(
     <div
       className="fixed top-0 left-0 w-screen h-screen z-[100] flex items-center justify-center dark:bg-slate-950/60 bg-slate-900/30 backdrop-blur-sm p-2 sm:p-3 transition-colors"
@@ -196,7 +335,7 @@ export default function FavoritesModal({
         </div>
 
         {/* 본문 스크롤 영역 */}
-        <div className="mt-2.5 overflow-y-auto space-y-3.5 pr-1 flex-1 min-h-0">
+        <div ref={scrollContainerRef} className="mt-2.5 overflow-y-auto space-y-3.5 pr-1 flex-1 min-h-0">
           {/* 섹션 1: 즐겨찾기 지하철역 */}
           <div className="space-y-1.5">
             <div className="flex items-center justify-between">
@@ -227,6 +366,7 @@ export default function FavoritesModal({
                   return (
                     <div
                       key={station.name}
+                      data-station-index={index}
                       draggable
                       onDragStart={() => handleStationDragStart(index)}
                       onDragOver={(e) => handleStationDragOver(e, index)}
@@ -245,10 +385,15 @@ export default function FavoritesModal({
                       }`}
                     >
                       <div className="flex items-center gap-2 min-w-0">
-                        {/* 드래그 핸들 아이콘 */}
+                        {/* 드래그 핸들 아이콘 (모바일 터치 및 데스크톱) */}
                         <span
-                          className="material-symbols-outlined text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-grab active:cursor-grabbing text-[16px] shrink-0"
+                          className="material-symbols-outlined text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-grab active:cursor-grabbing text-[16px] shrink-0 touch-none p-1.5 -m-1.5 select-none"
                           title="드래그하여 순서 변경"
+                          onClick={(e) => e.stopPropagation()}
+                          onTouchStart={(e) => handleStationTouchStart(e, index)}
+                          onTouchMove={handleStationTouchMove}
+                          onTouchEnd={handleStationTouchEnd}
+                          onTouchCancel={handleStationTouchCancel}
                         >
                           drag_indicator
                         </span>
@@ -311,6 +456,7 @@ export default function FavoritesModal({
                   return (
                     <div
                       key={item.id}
+                      data-transfer-index={index}
                       draggable
                       onDragStart={() => handleTransferDragStart(index)}
                       onDragOver={(e) => handleTransferDragOver(e, index)}
@@ -318,7 +464,6 @@ export default function FavoritesModal({
                       onDragEnd={handleTransferDragEnd}
                       onClick={() => {
                         onSelectTransfer(item.stationName, item.currentLine, item.currentDirection);
-                        onClose();
                       }}
                       className={`flex items-center justify-between py-1.5 px-2.5 rounded-lg border transition-all cursor-pointer group select-none ${
                         isDragging
@@ -331,8 +476,13 @@ export default function FavoritesModal({
                       {/* 1줄 표현: 드래그 핸들 + 노선 뱃지 + 환승역이름 + 노선-방면 */}
                       <div className="flex items-center gap-1.5 min-w-0 pr-2">
                         <span
-                          className="material-symbols-outlined text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-grab active:cursor-grabbing text-[16px] shrink-0"
+                          className="material-symbols-outlined text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-grab active:cursor-grabbing text-[16px] shrink-0 touch-none p-1.5 -m-1.5 select-none"
                           title="드래그하여 순서 변경"
+                          onClick={(e) => e.stopPropagation()}
+                          onTouchStart={(e) => handleTransferTouchStart(e, index)}
+                          onTouchMove={handleTransferTouchMove}
+                          onTouchEnd={handleTransferTouchEnd}
+                          onTouchCancel={handleTransferTouchCancel}
                         >
                           drag_indicator
                         </span>

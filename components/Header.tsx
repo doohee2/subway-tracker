@@ -190,6 +190,7 @@ export default function Header() {
       {/* 즐겨찾기 관리 모달 */}
       <FavoritesModal
         isOpen={showFavorites}
+        isChildModalOpen={activeTransferModal.isOpen}
         onClose={() => setShowFavorites(false)}
         onSelectStation={handleSelectStation}
         onSelectTransfer={handleSelectTransfer}

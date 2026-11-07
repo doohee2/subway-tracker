@@ -65,7 +65,7 @@ export default function TransferInfoSlideCard({
 
   return createPortal(
     <div 
-      className="fixed top-0 left-0 w-screen h-screen z-[100] flex items-end sm:items-center justify-center dark:bg-slate-950/60 bg-slate-900/30 backdrop-blur-sm transition-colors p-0 sm:p-4"
+      className="fixed top-0 left-0 w-screen h-screen z-[110] flex items-end sm:items-center justify-center dark:bg-slate-950/60 bg-slate-900/30 backdrop-blur-sm transition-colors p-0 sm:p-4"
       onClick={onClose}
     >
       <div
