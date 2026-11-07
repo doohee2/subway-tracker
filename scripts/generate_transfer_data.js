@@ -243,24 +243,21 @@ rawData.forEach((item) => {
 
   currentLine = normalizeLine(currentLine);
   const stationKey = getStationKey(stationName);
-  const stationDisplay = stationKey === '서울역' ? '서울역' : `${stationKey}역`;
   const targetLines = parseTargetLines(item.target_line);
   const { updnCode, branchHint } = resolveDirection(currentLine, currentDirection);
 
+  // 런타임(클라이언트 번들)에서 사용하는 필드만 출력하여 용량 절감
+  // (station_display, target_line_raw, raw_source, raw_target 등 원본 추적용 필드는 제외)
   cleanedRecords.push({
     id: item.id,
     station_key: stationKey,
-    station_display: stationDisplay,
     current_line: currentLine,
     current_direction: currentDirection,
     updn_code: updnCode,
     branch_hint: branchHint,
     target_lines: targetLines,
-    target_line_raw: item.target_line,
     target_direction: (item.target_direction || '전체').trim(),
     boarding_position: bp,
-    raw_source: item.raw_source,
-    raw_target: item.raw_target,
   });
 });
 
