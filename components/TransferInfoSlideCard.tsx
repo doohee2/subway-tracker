@@ -4,6 +4,11 @@ import React, { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { NormalizedTransferRecord } from "@/types/transfer";
 import { getLineColor, getLineNumberText } from "@/utils/subwayColors";
+import {
+  isFavoriteTransfer,
+  toggleFavoriteTransfer,
+  FAVORITE_TRANSFERS_CHANGED_EVENT,
+} from "@/utils/favoriteStorage";
 
 interface TransferInfoSlideCardProps {
   isOpen: boolean;
@@ -23,10 +28,24 @@ export default function TransferInfoSlideCard({
   onClose,
 }: TransferInfoSlideCardProps) {
   const [mounted, setMounted] = useState(false);
+  const [isFav, setIsFav] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // 즐겨찾기 상태 실시간 동기화
+  useEffect(() => {
+    if (!isOpen) return;
+    setIsFav(isFavoriteTransfer(stationName, currentLine, currentDirection));
+
+    const handleSync = () => {
+      setIsFav(isFavoriteTransfer(stationName, currentLine, currentDirection));
+    };
+
+    window.addEventListener(FAVORITE_TRANSFERS_CHANGED_EVENT, handleSync);
+    return () => window.removeEventListener(FAVORITE_TRANSFERS_CHANGED_EVENT, handleSync);
+  }, [isOpen, stationName, currentLine, currentDirection]);
 
   // ESC 키 닫기 지원
   useEffect(() => {
@@ -72,13 +91,37 @@ export default function TransferInfoSlideCard({
               <span>🔀</span> {displayStationName} 빠른 환승 위치
             </h3>
           </div>
-          <button
-            onClick={onClose}
-            className="p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
-            aria-label="닫기"
-          >
-            <span className="material-symbols-outlined text-[20px]">close</span>
-          </button>
+          <div className="flex items-center gap-1.5 shrink-0">
+            <button
+              type="button"
+              onClick={() => {
+                const added = toggleFavoriteTransfer(stationName, currentLine, currentDirection);
+                setIsFav(added);
+              }}
+              className={`p-1.5 rounded-lg transition-colors cursor-pointer flex items-center justify-center ${
+                isFav
+                  ? "text-amber-500 hover:text-amber-600 bg-amber-500/10"
+                  : "text-slate-400 hover:text-amber-500 hover:bg-slate-100 dark:hover:bg-slate-800"
+              }`}
+              title={isFav ? "환승 즐겨찾기 해제" : "환승 즐겨찾기 등록"}
+              aria-label={isFav ? "환승 즐겨찾기 해제" : "환승 즐겨찾기 등록"}
+            >
+              <span
+                className="material-symbols-outlined text-[24px] transition-transform active:scale-125"
+                style={{ fontVariationSettings: isFav ? "'FILL' 1" : "'FILL' 0" }}
+              >
+                star
+              </span>
+            </button>
+            <button
+              type="button"
+              onClick={onClose}
+              className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer flex items-center justify-center"
+              aria-label="닫기"
+            >
+              <span className="material-symbols-outlined text-[20px]">close</span>
+            </button>
+          </div>
         </div>
 
         {/* 안내 리스트 */}

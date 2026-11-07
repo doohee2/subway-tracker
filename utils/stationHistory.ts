@@ -80,18 +80,18 @@ export function getMostRecentStation(
   );
 }
 
-/** 즐겨찾기(최근 검색 순) + 일반 최근 검색(최근 검색 순) */
+/** 즐겨찾기(사용자 지정 순서 유지) + 일반 최근 검색(최근 검색 순) */
 export function getOrderedStationButtons(
   recent: StationRecord[],
   pinned: StationRecord[]
 ): StationRecord[] {
-  const pinnedSorted = [...pinned].sort((a, b) => b.timestamp - a.timestamp);
-  const pinnedNames = new Set(pinnedSorted.map((s) => s.name));
+  // 사용자가 즐겨찾기 관리 모달에서 드래그하여 조정한 순서(pinned 배열 순서)를 그대로 유지
+  const pinnedNames = new Set(pinned.map((s) => s.name));
   const recentSorted = recent
     .filter((s) => !pinnedNames.has(s.name))
     .sort((a, b) => b.timestamp - a.timestamp)
     .slice(0, RECENT_LIMIT);
-  return [...pinnedSorted, ...recentSorted];
+  return [...pinned, ...recentSorted];
 }
 
 export function recordSearch(
@@ -102,6 +102,7 @@ export function recordSearch(
   const now = Date.now();
   const isPinned = pinned.some((p) => p.name === station);
 
+  // 핀으로 등록된 역은 검색하더라도 순서(위치)를 바꾸지 않고 timestamp만 갱신
   const newPinned = isPinned
     ? pinned.map((p) => (p.name === station ? { ...p, timestamp: now } : p))
     : pinned;
@@ -125,19 +126,52 @@ export function togglePin(
 
   if (isPinned) {
     const removed = pinned.find((p) => p.name === station)!;
+    const newPinned = pinned.filter((p) => p.name !== station);
+    const newRecent = [
+      { name: station, timestamp: removed.timestamp },
+      ...recent.filter((r) => r.name !== station),
+    ].slice(0, RECENT_LIMIT);
+
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent("pinnedStationsChanged"));
+    }
+
     return {
-      pinned: pinned.filter((p) => p.name !== station),
-      recent: [
-        { name: station, timestamp: removed.timestamp },
-        ...recent.filter((r) => r.name !== station),
-      ].slice(0, RECENT_LIMIT),
+      pinned: newPinned,
+      recent: newRecent,
     };
   }
 
   const fromRecent = recent.find((r) => r.name === station);
   const timestamp = fromRecent?.timestamp ?? Date.now();
+  const newPinned = [...pinned, { name: station, timestamp }];
+  const newRecent = recent.filter((r) => r.name !== station);
+
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new CustomEvent("pinnedStationsChanged"));
+  }
+
   return {
-    pinned: [...pinned, { name: station, timestamp }],
-    recent: recent.filter((r) => r.name !== station),
+    pinned: newPinned,
+    recent: newRecent,
   };
+}
+
+/** 즐겨찾기(핀) 역 목록 순서 재정렬 및 스토리지 저장 */
+export function reorderPinnedStations(newPinned: StationRecord[]): void {
+  savePinnedStations(newPinned);
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new CustomEvent("pinnedStationsChanged"));
+  }
+}
+
+/** 즐겨찾기(핀) 단건 삭제 */
+export function removePinnedStationDirect(stationName: string): StationRecord[] {
+  const current = loadPinnedStations();
+  const updated = current.filter((p) => p.name !== stationName);
+  savePinnedStations(updated);
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new CustomEvent("pinnedStationsChanged"));
+  }
+  return updated;
 }

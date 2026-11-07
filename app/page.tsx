@@ -304,6 +304,29 @@ export default function Home() {
         handleSearch(mostRecent.name);
       }
     }
+
+    // 즐겨찾기 변경 및 외부 검색 트리거 이벤트 연동
+    const handlePinnedChange = () => {
+      const updatedPinned = loadPinnedStations();
+      setPinnedStations(updatedPinned);
+      pinnedRef.current = updatedPinned;
+    };
+
+    const handleStationSearch = (e: Event) => {
+      const customEvent = e as CustomEvent<{ station: string }>;
+      if (customEvent.detail?.station) {
+        setInitialSearchValue(customEvent.detail.station);
+        handleSearch(customEvent.detail.station);
+      }
+    };
+
+    window.addEventListener("pinnedStationsChanged", handlePinnedChange);
+    window.addEventListener("searchStation", handleStationSearch);
+
+    return () => {
+      window.removeEventListener("pinnedStationsChanged", handlePinnedChange);
+      window.removeEventListener("searchStation", handleStationSearch);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

@@ -2,15 +2,61 @@
 
 import { useState } from "react";
 import { createPortal } from "react-dom";
+import { useRouter, usePathname } from "next/navigation";
 import { useTheme } from "./ThemeProvider";
 import { APP_CONFIG } from "@/utils/config";
-import UserAvatar from "./UserAvatar";
 import { purgeSensitiveOfflineCaches } from "@/utils/cachePurging";
+import FavoritesModal from "./FavoritesModal";
+import TransferInfoSlideCard from "./TransferInfoSlideCard";
+import { getTransfersForLineDirection } from "@/utils/transferData";
+import { NormalizedTransferRecord } from "@/types/transfer";
 
 export default function Header() {
+  const router = useRouter();
+  const pathname = usePathname();
   const { theme, toggleTheme } = useTheme();
   const [showInfo, setShowInfo] = useState(false);
+  const [showFavorites, setShowFavorites] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
+
+  const [activeTransferModal, setActiveTransferModal] = useState<{
+    isOpen: boolean;
+    stationName: string;
+    currentLine: string;
+    currentDirection?: string;
+    transfers: NormalizedTransferRecord[];
+  }>({
+    isOpen: false,
+    stationName: "",
+    currentLine: "",
+    currentDirection: undefined,
+    transfers: [],
+  });
+
+  const handleSelectStation = (stationName: string) => {
+    if (pathname === "/") {
+      window.dispatchEvent(
+        new CustomEvent("searchStation", { detail: { station: stationName } })
+      );
+    } else {
+      router.push(`/?station=${encodeURIComponent(stationName)}`);
+    }
+  };
+
+  const handleSelectTransfer = (
+    stationName: string,
+    lineName: string,
+    direction?: string
+  ) => {
+    const records = getTransfersForLineDirection(stationName, lineName, direction);
+    setActiveTransferModal({
+      isOpen: true,
+      stationName,
+      currentLine: lineName,
+      currentDirection: direction,
+      transfers: records,
+    });
+  };
 
   const handleUpdateApp = async () => {
     setIsUpdating(true);
@@ -60,7 +106,19 @@ export default function Header() {
             {theme === "dark" ? "light_mode" : "dark_mode"}
           </span>
         </button>
-        <UserAvatar size={36} />
+        <button
+          onClick={() => setShowFavorites(true)}
+          className="w-10 h-10 rounded-full hover:bg-surface-container flex items-center justify-center transition-colors text-amber-500 hover:text-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-500/50 cursor-pointer"
+          title="즐겨찾기 관리"
+          aria-label="즐겨찾기 관리"
+        >
+          <span
+            className="material-symbols-outlined text-[26px]"
+            style={{ fontVariationSettings: "'FILL' 1" }}
+          >
+            star
+          </span>
+        </button>
       </div>
 
       {showInfo && typeof window !== 'undefined' && createPortal(
@@ -128,6 +186,26 @@ export default function Header() {
         </div>,
         document.body
       )}
+
+      {/* 즐겨찾기 관리 모달 */}
+      <FavoritesModal
+        isOpen={showFavorites}
+        onClose={() => setShowFavorites(false)}
+        onSelectStation={handleSelectStation}
+        onSelectTransfer={handleSelectTransfer}
+      />
+
+      {/* 즐겨찾기 목록에서 환승 항목 클릭 시 열리는 슬라이드 카드 */}
+      <TransferInfoSlideCard
+        isOpen={activeTransferModal.isOpen}
+        stationName={activeTransferModal.stationName}
+        currentLine={activeTransferModal.currentLine}
+        currentDirection={activeTransferModal.currentDirection}
+        transfers={activeTransferModal.transfers}
+        onClose={() =>
+          setActiveTransferModal((prev) => ({ ...prev, isOpen: false }))
+        }
+      />
     </header>
   );
 }
