@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import {
   loadPinnedStations,
@@ -11,6 +11,7 @@ import {
 import {
   loadFavoriteTransfers,
   removeFavoriteTransfer,
+  reorderFavoriteTransfers,
   FavoriteTransfer,
   FAVORITE_TRANSFERS_CHANGED_EVENT,
 } from "@/utils/favoriteStorage";
@@ -33,13 +34,13 @@ export default function FavoritesModal({
   const [pinnedList, setPinnedList] = useState<StationRecord[]>([]);
   const [transferList, setTransferList] = useState<FavoriteTransfer[]>([]);
 
-  // 드래그 앤 드롭 상태
-  const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
-  const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
+  // 지하철역 드래그 앤 드롭 상태
+  const [draggedStationIndex, setDraggedStationIndex] = useState<number | null>(null);
+  const [dragOverStationIndex, setDragOverStationIndex] = useState<number | null>(null);
 
-  // 모바일 터치 드래그용 ref
-  const touchStartYRef = useRef<number | null>(null);
-  const touchActiveIndexRef = useRef<number | null>(null);
+  // 환승 정보 드래그 앤 드롭 상태
+  const [draggedTransferIndex, setDraggedTransferIndex] = useState<number | null>(null);
+  const [dragOverTransferIndex, setDragOverTransferIndex] = useState<number | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -94,52 +95,72 @@ export default function FavoritesModal({
     setTransferList(updated);
   };
 
-  // 3. HTML5 드래그 앤 드롭 핸들러
-  const handleDragStart = (index: number) => {
-    setDraggedIndex(index);
+  // 3. 지하철역 드래그 앤 드롭 핸들러
+  const handleStationDragStart = (index: number) => {
+    setDraggedStationIndex(index);
   };
 
-  const handleDragOver = (e: React.DragEvent, index: number) => {
+  const handleStationDragOver = (e: React.DragEvent, index: number) => {
     e.preventDefault();
-    if (dragOverIndex !== index) {
-      setDragOverIndex(index);
+    if (dragOverStationIndex !== index) {
+      setDragOverStationIndex(index);
     }
   };
 
-  const handleDrop = (index: number) => {
-    if (draggedIndex === null || draggedIndex === index) {
-      setDraggedIndex(null);
-      setDragOverIndex(null);
+  const handleStationDrop = (index: number) => {
+    if (draggedStationIndex === null || draggedStationIndex === index) {
+      setDraggedStationIndex(null);
+      setDragOverStationIndex(null);
       return;
     }
 
     const updated = [...pinnedList];
-    const [movedItem] = updated.splice(draggedIndex, 1);
+    const [movedItem] = updated.splice(draggedStationIndex, 1);
     updated.splice(index, 0, movedItem);
 
     setPinnedList(updated);
     reorderPinnedStations(updated);
-    setDraggedIndex(null);
-    setDragOverIndex(null);
+    setDraggedStationIndex(null);
+    setDragOverStationIndex(null);
   };
 
-  const handleDragEnd = () => {
-    setDraggedIndex(null);
-    setDragOverIndex(null);
+  const handleStationDragEnd = () => {
+    setDraggedStationIndex(null);
+    setDragOverStationIndex(null);
   };
 
-  // 모바일 순서 조정을 위한 간단한 위/아래 이동 보조 버튼 지원
-  const handleMoveStation = (index: number, direction: "up" | "down", e: React.MouseEvent) => {
-    e.stopPropagation();
-    const targetIndex = direction === "up" ? index - 1 : index + 1;
-    if (targetIndex < 0 || targetIndex >= pinnedList.length) return;
+  // 4. 환승 정보 드래그 앤 드롭 핸들러
+  const handleTransferDragStart = (index: number) => {
+    setDraggedTransferIndex(index);
+  };
 
-    const updated = [...pinnedList];
-    const [movedItem] = updated.splice(index, 1);
-    updated.splice(targetIndex, 0, movedItem);
+  const handleTransferDragOver = (e: React.DragEvent, index: number) => {
+    e.preventDefault();
+    if (dragOverTransferIndex !== index) {
+      setDragOverTransferIndex(index);
+    }
+  };
 
-    setPinnedList(updated);
-    reorderPinnedStations(updated);
+  const handleTransferDrop = (index: number) => {
+    if (draggedTransferIndex === null || draggedTransferIndex === index) {
+      setDraggedTransferIndex(null);
+      setDragOverTransferIndex(null);
+      return;
+    }
+
+    const updated = [...transferList];
+    const [movedItem] = updated.splice(draggedTransferIndex, 1);
+    updated.splice(index, 0, movedItem);
+
+    setTransferList(updated);
+    reorderFavoriteTransfers(updated);
+    setDraggedTransferIndex(null);
+    setDragOverTransferIndex(null);
+  };
+
+  const handleTransferDragEnd = () => {
+    setDraggedTransferIndex(null);
+    setDragOverTransferIndex(null);
   };
 
   return createPortal(
@@ -200,17 +221,17 @@ export default function FavoritesModal({
             ) : (
               <div className="space-y-1">
                 {pinnedList.map((station, index) => {
-                  const isDragging = draggedIndex === index;
-                  const isOver = dragOverIndex === index;
+                  const isDragging = draggedStationIndex === index;
+                  const isOver = dragOverStationIndex === index;
 
                   return (
                     <div
                       key={station.name}
                       draggable
-                      onDragStart={() => handleDragStart(index)}
-                      onDragOver={(e) => handleDragOver(e, index)}
-                      onDrop={() => handleDrop(index)}
-                      onDragEnd={handleDragEnd}
+                      onDragStart={() => handleStationDragStart(index)}
+                      onDragOver={(e) => handleStationDragOver(e, index)}
+                      onDrop={() => handleStationDrop(index)}
+                      onDragEnd={handleStationDragEnd}
                       onClick={() => {
                         onSelectStation(station.name);
                         onClose();
@@ -231,37 +252,15 @@ export default function FavoritesModal({
                         >
                           drag_indicator
                         </span>
-                        <span className="material-symbols-outlined text-[18px] text-primary shrink-0">
+                        <span className="material-symbols-outlined text-[20px] text-primary shrink-0">
                           directions_subway
                         </span>
-                        <span className="text-sm font-semibold text-slate-900 dark:text-white truncate">
+                        <span className="text-base sm:text-[17px] font-bold text-slate-900 dark:text-white truncate">
                           {station.name.endsWith("역") ? station.name : `${station.name}역`}
                         </span>
                       </div>
 
-                      <div className="flex items-center gap-0.5 shrink-0">
-                        {/* 모바일/버튼식 순서 이동 보조 화살표 */}
-                        {index > 0 && (
-                          <button
-                            type="button"
-                            onClick={(e) => handleMoveStation(index, "up", e)}
-                            className="p-0.5 rounded text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors sm:hidden"
-                            title="위로 이동"
-                          >
-                            <span className="material-symbols-outlined text-[15px]">arrow_upward</span>
-                          </button>
-                        )}
-                        {index < pinnedList.length - 1 && (
-                          <button
-                            type="button"
-                            onClick={(e) => handleMoveStation(index, "down", e)}
-                            className="p-0.5 rounded text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors sm:hidden"
-                            title="아래로 이동"
-                          >
-                            <span className="material-symbols-outlined text-[15px]">arrow_downward</span>
-                          </button>
-                        )}
-
+                      <div className="flex items-center shrink-0">
                         {/* X 삭제 버튼 */}
                         <button
                           type="button"
@@ -300,48 +299,69 @@ export default function FavoritesModal({
               </div>
             ) : (
               <div className="space-y-1">
-                {transferList.map((item) => {
+                {transferList.map((item, index) => {
                   const lineColor = getLineColor(item.currentLine);
                   const lineText = getLineNumberText(item.currentLine);
                   const displayStation = item.stationName.endsWith("역")
                     ? item.stationName
                     : `${item.stationName}역`;
+                  const isDragging = draggedTransferIndex === index;
+                  const isOver = dragOverTransferIndex === index;
 
                   return (
                     <div
                       key={item.id}
+                      draggable
+                      onDragStart={() => handleTransferDragStart(index)}
+                      onDragOver={(e) => handleTransferDragOver(e, index)}
+                      onDrop={() => handleTransferDrop(index)}
+                      onDragEnd={handleTransferDragEnd}
                       onClick={() => {
                         onSelectTransfer(item.stationName, item.currentLine, item.currentDirection);
                         onClose();
                       }}
-                      className="flex items-center justify-between py-1.5 px-2.5 rounded-lg border dark:border-slate-800/80 border-slate-200 dark:bg-slate-800/60 bg-slate-50 hover:border-amber-500/50 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer group"
+                      className={`flex items-center justify-between py-1.5 px-2.5 rounded-lg border transition-all cursor-pointer group select-none ${
+                        isDragging
+                          ? "opacity-40 border-amber-500/50 bg-amber-50/20"
+                          : isOver
+                          ? "border-amber-500 bg-amber-500/5"
+                          : "dark:border-slate-800/80 border-slate-200 dark:bg-slate-800/60 bg-slate-50 hover:border-amber-500/50 hover:bg-slate-100 dark:hover:bg-slate-800"
+                      }`}
                     >
-                      {/* 1줄 표현: 노선 뱃지 + 환승역이름 + 노선-방면 */}
+                      {/* 1줄 표현: 드래그 핸들 + 노선 뱃지 + 환승역이름 + 노선-방면 */}
                       <div className="flex items-center gap-1.5 min-w-0 pr-2">
                         <span
-                          className={`w-4.5 h-4.5 rounded-full ${lineColor} text-white flex items-center justify-center text-[9px] font-bold shrink-0`}
+                          className="material-symbols-outlined text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-grab active:cursor-grabbing text-[16px] shrink-0"
+                          title="드래그하여 순서 변경"
+                        >
+                          drag_indicator
+                        </span>
+                        <span
+                          className={`w-5 h-5 rounded-full ${lineColor} text-white flex items-center justify-center text-[10px] font-bold shrink-0`}
                         >
                           {lineText}
                         </span>
-                        <span className="text-sm font-semibold text-slate-900 dark:text-white truncate">
+                        <span className="text-base sm:text-[17px] font-bold text-slate-900 dark:text-white truncate">
                           {displayStation}
                         </span>
                         <span className="text-slate-300 dark:text-slate-600 text-xs shrink-0">·</span>
-                        <span className="text-xs font-medium text-slate-600 dark:text-slate-300 truncate">
+                        <span className="text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-300 truncate">
                           {item.currentLine} {item.currentDirection ? `${item.currentDirection} ` : ""}하차
                         </span>
                       </div>
 
                       {/* X 삭제 버튼 */}
-                      <button
-                        type="button"
-                        onClick={(e) => handleRemoveTransfer(item.id, e)}
-                        className="p-1 rounded-md text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/40 transition-colors cursor-pointer shrink-0"
-                        title="환승 즐겨찾기 삭제"
-                        aria-label="환승 즐겨찾기 삭제"
-                      >
-                        <span className="material-symbols-outlined text-[16px]">close</span>
-                      </button>
+                      <div className="flex items-center shrink-0">
+                        <button
+                          type="button"
+                          onClick={(e) => handleRemoveTransfer(item.id, e)}
+                          className="p-1 rounded-md text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/40 transition-colors cursor-pointer shrink-0"
+                          title="환승 즐겨찾기 삭제"
+                          aria-label="환승 즐겨찾기 삭제"
+                        >
+                          <span className="material-symbols-outlined text-[16px]">close</span>
+                        </button>
+                      </div>
                     </div>
                   );
                 })}
